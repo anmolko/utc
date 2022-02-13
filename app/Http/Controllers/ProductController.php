@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\AttributeValue;
+use App\Models\Brand;
+use App\Models\BrandSeries;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductGallery;
@@ -58,10 +60,10 @@ class ProductController extends Controller
         $primary      = ProductPrimaryCategory::with('secondary')->get();
         $secondary    = ProductSecondaryCategory::all();
         $attributes   = ProductAttribute::with('values')->get();
-        $values   = AttributeValue::all();
+        $brands       = Brand::with('series')->get();
+        $values       = AttributeValue::all();
 
-//        dd($primary);
-        return view('backend.products.create',compact('primary','secondary','attributes','values'));
+        return view('backend.products.create',compact('primary','secondary','attributes','values','brands'));
     }
 
     /**
@@ -79,13 +81,15 @@ class ProductController extends Controller
             $data=[
                 'name'                  => $request->input('name'),
                 'slug'                  => $request->input('slug'),
-                'brand'                 => "Webor",
                 'status'                => $request->input('status'),
                 'summary'               => $request->input('summary'),
                 'description'           => $request->input('description'),
                 'information'           => $request->input('information'),
                 'primary_category_id'   => $request->input('primary_category_id'),
                 'secondary_category_id' => $request->input('secondary_category_id'),
+                'brand_id'              => $request->input('brand_id'),
+                'price'                 => $request->input('price'),
+                'brand_series_id'       => $request->input('brand_series_id'),
                 'created_by'            => Auth::user()->id,
             ];
 
@@ -160,6 +164,8 @@ class ProductController extends Controller
         $values             = AttributeValue::all();
         $product            = Product::with('attributeValue')->find($id);
         $secondary          = ProductSecondaryCategory::where('primary_category_id',$product->primary_category_id)->get();
+        $brands             = Brand::with('series')->get();
+        $brand_series       = BrandSeries::where('brand_id',$product->brand_id)->get();
 
         foreach ($product->attributeValue as $values) {
             if($values->pivot->product_id == $id){
@@ -176,7 +182,7 @@ class ProductController extends Controller
                 $selectedValues[] = $p->attribute_value_id;
             }
         }
-        return view('backend.products.edit',compact('product','primary','secondary','attributes','values','relatedAttr','selectedValues'));
+        return view('backend.products.edit',compact('product','primary','brands','brand_series','secondary','attributes','values','relatedAttr','selectedValues'));
     }
 
     /**
@@ -195,13 +201,15 @@ class ProductController extends Controller
             $product                            =  Product::find($id);
             $product->name                      =  $request->input('name');
             $product->slug                      =  $request->input('slug');
-            $product->brand                     =  "Webor";
             $product->status                    =  $request->input('status');
             $product->summary                   =  $request->input('summary');
             $product->description               =  $request->input('description');
             $product->information               =  $request->input('information');
             $product->primary_category_id       =  $request->input('primary_category_id');
             $product->secondary_category_id     =  $request->input('secondary_category_id');
+            $product->brand_id                  =  $request->input('brand_id');
+            $product->brand_series_id           =  $request->input('brand_series_id');
+            $product->price                     =  $request->input('price');
             $product->updated_by                = Auth::user()->id;
             $oldimage                           = $product->thumbnail;
             $oldbanner                          = $product->image;
@@ -323,6 +331,17 @@ class ProductController extends Controller
         $primarycat         = ProductPrimaryCategory::with('secondary')->find($id);
         $values             = array();
         foreach ($primarycat->secondary as $val){
+            $values[$val->id] = $val->name;
+        }
+
+        return response()->json($values);
+    }
+
+    public function brandGetSeries(Request $request){
+        $id                 = $request->id;
+        $brand              = Brand::with('series')->find($id);
+        $values             = array();
+        foreach ($brand->series as $val){
             $values[$val->id] = $val->name;
         }
 

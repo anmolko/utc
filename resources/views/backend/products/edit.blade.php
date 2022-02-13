@@ -106,6 +106,13 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="form-group mb-3">
+                                <label>Product Price <span class="text-muted text-danger">*</span></label>
+                                <input type="number" class="form-control" name="price" id="price"  value="{{$product->price}}" required>
+                                <div class="invalid-feedback">
+                                    Please enter the product price.
+                                </div>
+                            </div>
 
 {{--                            <div class="form-group mb-3">--}}
 {{--                                <label>Product Brand </label>--}}
@@ -138,6 +145,32 @@
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select the product primary category.
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Brands <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control shadow-none product-brands" name="brand_id" required>
+                                    <option value disabled> Select Primary Category</option>
+                                    @foreach($brands as $brand)
+                                        @if(count($brand->series)>0)
+                                            <option value="{{$brand->id}}" {{($product->brand_id == $brand->id) ? "selected" : ""}}> {{$brand->name}} </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select the product brand.
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Brand Series <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control shadow-none product-brand-series" name="brand_series_id" required>
+                                    <option value disabled selected> Select Brand Series</option>
+                                    @foreach($brand_series as $series)
+                                        <option value="{{$series->id}}" {{($product->brand_series_id == $series->id) ? "selected" : ""}}> {{$series->name}} </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select the brand series.
                                 </div>
                             </div>
                         </div>
@@ -559,9 +592,28 @@
 
                 }
             });
+        });
 
+        //getting series related tp brands selection
+        $('.product-brands').on('change', function(element) {
+            var id = this.value;
+            var name = this.name;
+            var url = "{{route('product-brand-series.fetch')}}";
+            $.ajax({
+                url: url,
+                type: "Get",
+                data:{id:id},
+                success: function(response){
+                    $('.product-brand-series').empty();
+                    jQuery.each(response, function(index, item) {
+                        $('.product-brand-series').append($('<option>', {
+                            value: index,
+                            text : item
+                        }));
+                    });
 
-
+                }
+            });
         });
 
         Array.prototype.compare = function(testArr) {

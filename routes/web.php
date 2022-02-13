@@ -214,7 +214,8 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
     Route::get('/products/{product}/edit', 'App\Http\Controllers\ProductController@edit')->name('products.edit');
     Route::patch('/products/{id}/update', 'App\Http\Controllers\ProductController@updateStatus')->name('products-status.update');
     Route::get('/products-attribute/', 'App\Http\Controllers\ProductController@attributeGetValues')->name('products-attribute.fetch');
-    Route::get('/products-secondart-cat/', 'App\Http\Controllers\ProductController@primaryGetSecondary')->name('products-secondary.fetch');
+    Route::get('/products-secondary-cat/', 'App\Http\Controllers\ProductController@primaryGetSecondary')->name('products-secondary.fetch');
+    Route::get('/brands-series/', 'App\Http\Controllers\ProductController@brandGetSeries')->name('product-brand-series.fetch');
 
     //product gallery
     Route::get('/product-gallery/{id}', 'App\Http\Controllers\ProductController@galleryindex')->name('products.galleryindex');

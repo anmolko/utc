@@ -101,13 +101,13 @@
                                     Please enter the product code.
                                 </div>
                             </div>
-{{--                            <div class="form-group mb-3">--}}
-{{--                                <label>Product Brand </label>--}}
-{{--                                <input type="text" class="form-control" value="Webor" name="brand" />--}}
-{{--                                <div class="invalid-feedback">--}}
-{{--                                    Please enter the product brand.--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="form-group mb-3">
+                                <label>Product Price <span class="text-muted text-danger">*</span></label>
+                                <input type="number" class="form-control" name="price" required>
+                                <div class="invalid-feedback">
+                                    Please enter the product price.
+                                </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
                                 <select class="form-control  shadow-none product-primary-cat" name="primary_category_id" required>
@@ -136,9 +136,33 @@
                                     Please select the product primary category.
                                 </div>
                             </div>
+                            <div class="form-group mb-3">
+                                <label>Brands <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control  shadow-none product-brands" name="brand_id" required>
+                                    <option value disabled selected> Select Brand</option>
+
+                                    @foreach($brands as $brand)
+                                        @if(count($brand->series)>0)
+                                            <option value="{{$brand->id}}"> {{$brand->name}} </option>
+                                        @endif
+                                    @endforeach
+
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select the brand.
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label>Brand Series <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control shadow-none product-brand-series" name="brand_series_id" required>
+                                    <option value disabled selected> Select Brand Series</option>
+                                </select>
+                                    <div class="invalid-feedback">
+                                        Please select the brand series.
+                                    </div>
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -505,9 +529,28 @@
 
                 }
             });
+        });
 
+        //getting series related tp brands selection
+        $('.product-brands').on('change', function(element) {
+            var id = this.value;
+            var name = this.name;
+            var url = "{{route('product-brand-series.fetch')}}";
+            $.ajax({
+                url: url,
+                type: "Get",
+                data:{id:id},
+                success: function(response){
+                    $('.product-brand-series').empty();
+                    jQuery.each(response, function(index, item) {
+                        $('.product-brand-series').append($('<option>', {
+                            value: index,
+                            text : item
+                        }));
+                    });
 
-
+                }
+            });
         });
 
         Array.prototype.compare = function(testArr) {
