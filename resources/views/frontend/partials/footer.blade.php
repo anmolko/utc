@@ -241,7 +241,7 @@
                         <p class="copyright">All Rights Reserved © Techno Store 2017</p>
                         <p class="btn-scroll">
                             <a href="#" title="">
-                                <img src="images/icons/top.png" alt="">
+                                <img src="/images/icons/top.png" alt="">
                             </a>
                         </p>
                     </div>

@@ -1027,7 +1027,7 @@
             $('.demo').percentcircle({
                 coverBg: '#e1e1e4',
                 bgColor: '#e1e1e4',
-                fillColor: '#f28b00'
+                fillColor: '#7DAC44'
             });
             $('.demo').children('div:not(:first-child)').css({
                 display: 'none'
