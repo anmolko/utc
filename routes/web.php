@@ -136,6 +136,28 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
 
     //End of teams
 
+    //brand
+
+    Route::get('/brands', 'App\Http\Controllers\BrandController@index')->name('brands.index');
+    Route::get('/brands/create', 'App\Http\Controllers\BrandController@create')->name('brands.create');
+    Route::post('/brands', 'App\Http\Controllers\BrandController@store')->name('brands.store');
+    Route::put('/brands/{brands}', 'App\Http\Controllers\BrandController@update')->name('brands.update');
+    Route::delete('/brands/{brands}', 'App\Http\Controllers\BrandController@destroy')->name('brands.destroy');
+    Route::get('/brands/{brands}/edit', 'App\Http\Controllers\BrandController@edit')->name('brands.edit');
+
+    //End of brand
+
+    //brand
+
+    Route::get('/brand-series', 'App\Http\Controllers\BrandSeriesController@index')->name('brand-series.index');
+    Route::get('/brand-series/create', 'App\Http\Controllers\BrandSeriesController@create')->name('brand-series.create');
+    Route::post('/brand-series', 'App\Http\Controllers\BrandSeriesController@store')->name('brand-series.store');
+    Route::put('/brand-series/{series}', 'App\Http\Controllers\BrandSeriesController@update')->name('brand-series.update');
+    Route::delete('/brand-series/{series}', 'App\Http\Controllers\BrandSeriesController@destroy')->name('brand-series.destroy');
+    Route::get('/brand-series/{series}/edit', 'App\Http\Controllers\BrandSeriesController@edit')->name('brand-series.edit');
+
+    //End of brand
+
 
     //Product Primary categories
 

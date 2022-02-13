@@ -67,9 +67,9 @@
                                     <div class="col-6 align-items-center shadow-none text-center">
                                         <a href="{{route('menu.index')}}" class="{{(Request::segment(2) == 'manage-menus') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-menu pr-0 pb-lg-2 font-23"></span><span class="">Menu</span></a>
                                     </div>
-{{--                                    <div class="col-6 align-items-center shadow-none text-center">--}}
-{{--                                        <a href="{{route('teams.index')}}" class="{{(Request::segment(2) == 'teams') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-license pr-0 pb-lg-2 font-23"></span><span class="">Teams</span></a>--}}
-{{--                                    </div>--}}
+                                    <div class="col-6 align-items-center shadow-none text-center">
+                                        <a href="{{route('brands.index')}}" class="{{(Request::segment(2) == 'brands') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-bold pr-0 pb-lg-2 font-23"></span><span class="">Brands</span></a>
+                                    </div>
                                     <div class="col-6 align-items-center shadow-none text-center" >
                                         <a href="{{route('proprimarycat.index')}}" class="{{(Request::segment(2) == 'product-categories') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-layers pr-0 pb-lg-2 font-23"></span><span class="">Categories</span></a>
                                     </div>
