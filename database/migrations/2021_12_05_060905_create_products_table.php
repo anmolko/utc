@@ -17,9 +17,11 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('brand')->default('webor');
             $table->string('status')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_series_id');
+            $table->unsignedBigInteger('price');
             $table->text('summary');
             $table->longText('description');
             $table->longText('information')->nullable();
@@ -31,6 +33,8 @@ class CreateProductsTable extends Migration
             $table->foreign('secondary_category_id')->references('id')->on('product_secondary_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('brand_series_id')->references('id')->on('brand_series')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
 
