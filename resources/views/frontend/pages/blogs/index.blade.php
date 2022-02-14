@@ -1,5 +1,32 @@
 @extends('frontend.layouts.master')
 @section('title') Blog  @endsection
+@section('styles')
+<style>
+    ul.product-list > li {
+        display: inline-block;
+    }
+    ul.product-list li .img-product {
+        width: 100px;
+        height: 60px;
+    }
+    ul.product-list li .img-product img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    ul.product-list li .info-product .price .regular{
+        text-decoration: none;
+    }
+
+    ul.product-list li .info-product .name {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 14px;
+    }
+
+</style>
+@endsection
 @section('breadcrumb')
 
    <!-- BREADCRUMBS SETCTION START -->

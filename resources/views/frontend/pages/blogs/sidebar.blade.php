@@ -41,7 +41,7 @@
                     <a href="{{route('blog.single',@$latest->slug)}}" title="">{{ucwords(@$latest->title)}}</a>
                 </div>
                 <div class="price">
-                    <span class="sale">{{date('M j, Y',strtotime(@$latest->created_at))}}</span>
+                    <span class="regular">{{date('M j, Y',strtotime(@$latest->created_at))}}</span>
                 </div>
             </div>
         </li>	
