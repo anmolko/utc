@@ -1,6 +1,6 @@
 /**
   *	default color code
-  *	7DAC44
+  *	f28b00
 */
 
 .loading-effect-2>span,
@@ -454,4 +454,16 @@ article.main-post.single .content-post .entry-post ul li:before {
 
 ol.comment-list li.comment .comment-text .comment-metadata .queue {
     color: #7DAC44;
+}
+
+.slider .slider-item:before {
+    content: '';
+    position: absolute;
+    width: 92px;
+    background-color: #94ca51;
+    height: 200%;
+    top: 0px;
+    right: 273px;
+    -webkit-transform: rotate(48deg);
+    transform: rotate(48deg);
 }

@@ -11,7 +11,7 @@
                             <!-- /.lgo-ft -->
                             <div class="widget-content">
                                 <div class="icon">
-                                    <img src="images/icons/call.png" alt="">
+                                    <img src="{{asset('assets/frontend/images/icons/call.png')}}" alt="">
                                 </div>
                                 <div class="info">
                                     <p class="questions">Got Questions ? Call us 24/7!</p>
@@ -151,7 +151,7 @@
                             <form action="#" class="subscribe-form" method="get" accept-charset="utf-8">
                                 <div class="subscribe-content">
                                     <input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
-                                    <button type="submit"><img src="images/icons/right-2.png" alt=""></button>
+                                    <button type="submit"><img src="{{asset('assets/frontend/images/icons/right-2.png')}}" alt=""></button>
                                 </div>
                             </form>
                             <!-- /.subscribe-form -->
@@ -189,45 +189,7 @@
                     <!-- /.col-lg-4 col-md-6 -->
                 </div>
                 <!-- /.row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="widget widget-apps">
-                            <div class="widget-title">
-                                <h3>Mobile Apps</h3>
-                            </div>
-                            <!-- /.widget-title -->
-                            <ul class="app-list">
-                                <li class="app-store">
-                                    <a href="#" title="">
-                                        <div class="img">
-                                            <img src="images/icons/app-store.png" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>App Store</h4>
-                                            <p>Available now on the</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- /.app-store -->
-                                <li class="google-play">
-                                    <a href="#" title="">
-                                        <div class="img">
-                                            <img src="images/icons/google-play.png" alt="">
-                                        </div>
-                                        <div class="text">
-                                            <h4>Google Play</h4>
-                                            <p>Get in on</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- /.google-play -->
-                            </ul>
-                            <!-- /.app-list -->
-                        </div>
-                        <!-- /.widget-apps -->
-                    </div>
-                    <!-- /.col-md-12 -->
-                </div>
+            
                 <!-- /.row -->
             </div>
             <!-- /.container -->
@@ -238,10 +200,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="copyright">All Rights Reserved © Techno Store 2017</p>
+                        <p class="copyright">All Rights Reserved © Universal Trading Concern 2022</p>
                         <p class="btn-scroll">
                             <a href="#" title="">
-                                <img src="/images/icons/top.png" alt="">
+                                <img src="{{asset('assets/frontend/images/icons/top.png')}}" alt="">
                             </a>
                         </p>
                     </div>
@@ -264,7 +226,6 @@
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.zoom.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.flexslider-min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/owl.carousel.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/frontend/js/smoothscroll.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.mCustomScrollbar.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/waves.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.countdown.js')}}"></script>

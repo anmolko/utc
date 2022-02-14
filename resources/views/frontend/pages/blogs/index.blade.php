@@ -3,90 +3,109 @@
 @section('breadcrumb')
 
    <!-- BREADCRUMBS SETCTION START -->
-   <div class="breadcrumbs-section plr-200 mb-80 section">
-            <div class="{{($blog_banner == null) ? 'breadcrumbs':''}} overlay-bg" @if($blog_banner !== null) style="background: #f6f6f6 url('{{asset('/images/uploads/banners/'.@$blog_banner->image)}}') no-repeat scroll center center;" @endif>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Latest Posts</h1>
-
-                                <ol class="breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li class="active">Blog</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BREADCRUMBS SETCTION END -->
+        <section class="flat-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumbs">
+                            <li class="trail-item">
+                                <a href="/" title="">Home</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
+                            
+                            <li class="trail-end">
+                                <a href="#" title="">Blog</a>
+                            </li>
+                        </ul><!-- /.breacrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-breadcrumb -->
+    <!-- BREADCRUMBS SETCTION END -->
 @endsection
 
 @section('content')
 
     <!-- Start page content -->
-    <div id="page-content" class="page-wrapper section">
+    <section class="main-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                    <div class="post-wrap">
+                        @if(count($allPosts) > 0)
+                            @foreach($allPosts as $post)
 
-        <!-- BLOG SECTION START -->
-        <div class="blog-section mb-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 left-container">
-
-                        <div class="row">
-                            <!-- blog-item start -->
-                            @if(count($allPosts) > 0)
-                                @foreach($allPosts as $post)
-
-                                    <div class="col-md-6">
-                                        <div class="blog-item-2">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="blog-image">
-                                                        <a href="{{route('blog.single',@$post->slug)}}"><img src="<?php if(@$post->thumb_image){?>{{asset('/images/uploads/blog/thumb/'.@$post->thumb_image)}}<?php }?>" alt="{{@$post->slug}}"></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="blog-desc">
-                                                        <h5 class="blog-title-2"><a href="{{route('blog.single',@$post->slug)}}">{{ucwords(@$post->title)}}</a></h5>
-                                                        <p>{{ucwords(Str::limit(@$post->excerpt,100,' ...'))}}</p>
-                                                        <div class="read-more">
-                                                            <a href="{{route('blog.single',$post->slug)}}">Read more</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <article class="main-post style1">
+                                    <div class="featured-post">
+                                        <a href="{{route('blog.single',@$post->slug)}}" title="">
+                                            <img src="<?php if(@$post->thumb_image){?>{{asset('/images/uploads/blog/thumb/'.@$post->thumb_image)}}<?php }?>" alt="{{@$post->slug}}">
+                                        </a>
+                                    </div><!-- /.featured-post -->
+                                    <div class="content-post">
+                                        <h3 class="title-post">
+                                            <a href="{{route('blog.single',@$post->slug)}}" title="">{{ucwords(@$post->title)}}</a>
+                                        </h3>
+                                        <ul class="meta-post">
+                                            <li class="date">
+                                                <a href="#" title="">
+                                                    {{date('M j, Y',strtotime(@$post->created_at))}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="entry-post">
+                                            <p>{{ucwords(Str::limit(@$post->excerpt,100,' ...'))}}</p>
+                                            <div class="more-link">
+                                                <a href="{{route('blog.single',$post->slug)}}" title="">Read More
+                                                    <span>
+                                                        <img src="{{asset('assets/frontend/images/icons/right-2.png')}}" alt="">
+                                                    </span>
+                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                            <!-- blog-item end -->
-                        </div>
+                                    </div><!-- /.content-post -->
+                                </article><!-- /.main-post style1 -->
+                            @endforeach
+                        @endif
+                    </div><!-- /.post-wrap -->
+                    <div class="blog-pagination style2">
+                        {{ $allPosts->links('vendor.pagination.default') }}
 
-                        <div class="mb-80">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                {{ $allPosts->links('vendor.pagination.default') }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- sidebar -->
-                    <div class="col-lg-3 right-container">
-                        <div id="sticky-anchor"></div>
-                        <div class="sidebar">
-                            @include('frontend.pages.blogs.sidebar')
+                        <ul class="flat-pagination">
+                            <li class="prev">
+                                <a href="#" title="">
+                                    <img src="images/icons/left-1.png" alt="">Prev Page
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">01</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">02</a>
+                            </li>
+                            <li class="active">
+                                <a href="#" class="waves-effect" title="">03</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">04</a>
+                            </li>
+                            <li class="next">
+                                <a href="#" title="">
+                                    Next Page<img src="images/icons/right-1.png" alt="">
+                                </a>
+                            </li>
+                        </ul><!-- /.flat-pagination -->
+                    </div><!-- /.blog-pagination style2 -->
+                </div><!-- /.col-md-8 col-lg-9 -->
+                <div class="col-md-4 col-lg-3">
+                    <div class="sidebar left">
+                        @include('frontend.pages.blogs.sidebar')
+                      
+                    </div><!-- /.sidebar left -->
+                </div><!-- /.col-md-4 col-lg-3 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.main-blog -->
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BLOG SECTION END -->
-
-    </div>
     <!-- End page content -->
 
 @endsection
