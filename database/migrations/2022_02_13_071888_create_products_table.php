@@ -23,8 +23,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('brand_series_id');
             $table->unsignedBigInteger('price');
             $table->text('summary');
-            $table->longText('description');
-            $table->longText('information')->nullable();
             $table->unsignedBigInteger('primary_category_id');
             $table->unsignedBigInteger('secondary_category_id');
             $table->unsignedBigInteger('created_by');

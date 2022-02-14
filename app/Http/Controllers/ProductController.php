@@ -11,8 +11,10 @@ use App\Models\ProductAttribute;
 use App\Models\ProductGallery;
 use App\Models\ProductPrimaryCategory;
 use App\Models\ProductSecondaryCategory;
+use App\Models\ProductSpecification;
 use App\Models\ProductValue;
 use App\Models\SiteBanner;
+use App\Models\Specification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -57,13 +59,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $primary      = ProductPrimaryCategory::with('secondary')->get();
-        $secondary    = ProductSecondaryCategory::all();
-        $attributes   = ProductAttribute::with('values')->get();
-        $brands       = Brand::with('series')->get();
-        $values       = AttributeValue::all();
+        $primary        = ProductPrimaryCategory::with('secondary')->get();
+        $secondary      = ProductSecondaryCategory::all();
+        $attributes     = ProductAttribute::with('values')->get();
+        $specifications  = Specification::all();
+        $brands         = Brand::with('series')->get();
+        $values         = AttributeValue::all();
 
-        return view('backend.products.create',compact('primary','secondary','attributes','values','brands'));
+        return view('backend.products.create',compact('primary','secondary','specifications','attributes','values','brands'));
     }
 
     /**
@@ -83,8 +86,6 @@ class ProductController extends Controller
                 'slug'                  => $request->input('slug'),
                 'status'                => $request->input('status'),
                 'summary'               => $request->input('summary'),
-                'description'           => $request->input('description'),
-                'information'           => $request->input('information'),
                 'primary_category_id'   => $request->input('primary_category_id'),
                 'secondary_category_id' => $request->input('secondary_category_id'),
                 'brand_id'              => $request->input('brand_id'),
@@ -104,17 +105,9 @@ class ProductController extends Controller
                     $data['thumbnail']=$name;
                 }
             }
-            if(!empty($request->file('image'))){
-                $image          = $request->file('image');
-                $name           = uniqid().'_'.$image->getClientOriginalName();
-                $path           = base_path().'/public/images/uploads/products/banners/';
-                $moved          = Image::make($image->getRealPath())->resize(1479, 311)->orientate()->save($path.$name);
-                if ($moved){
-                    $data['image']=$name;
-                }
-            }
             $product = Product::create($data);
-            $attribute = $request->input('product_attribute_id');
+            $attribute     = $request->input('product_attribute_id');
+            $specification = $request->input('specification_id');
             if ($product){
                 foreach ($attribute as $key=>$value){
                     $attrValue = $request->input('attribute_value_id_'.$value);
@@ -127,6 +120,17 @@ class ProductController extends Controller
                         ];
                         $productValue = ProductValue::create($data1);
                     }
+                }
+                foreach ($specification as $key=>$value){
+                    $specificDetails = $request->input('specification_details_'.$value);
+                        $data2=[
+                            'product_id'                => $product->id,
+                            'specification_id'          => $value,
+                            'specification_details'     => $specificDetails,
+                            'created_by'                => Auth::user()->id,
+                        ];
+                        $productSpecification = ProductSpecification::create($data2);
+
                 }
                 Session::flash('success','Product Created Successfully');
             }
@@ -203,8 +207,6 @@ class ProductController extends Controller
             $product->slug                      =  $request->input('slug');
             $product->status                    =  $request->input('status');
             $product->summary                   =  $request->input('summary');
-            $product->description               =  $request->input('description');
-            $product->information               =  $request->input('information');
             $product->primary_category_id       =  $request->input('primary_category_id');
             $product->secondary_category_id     =  $request->input('secondary_category_id');
             $product->brand_id                  =  $request->input('brand_id');
@@ -212,7 +214,6 @@ class ProductController extends Controller
             $product->price                     =  $request->input('price');
             $product->updated_by                = Auth::user()->id;
             $oldimage                           = $product->thumbnail;
-            $oldbanner                          = $product->image;
 
             if (!empty($request->file('thumbnail'))){
                 $image       = $request->file('thumbnail');
@@ -230,19 +231,6 @@ class ProductController extends Controller
                 }
             }
 
-            if (!empty($request->file('image'))){
-                $image       = $request->file('image');
-                $name1       = uniqid().'_'.$image->getClientOriginalName();
-                $path        = base_path().'/public/images/uploads/products/banners/';
-                $moved       = Image::make($image->getRealPath())->resize(1479, 311)->orientate()->save($path.$name1);
-
-                if ($moved){
-                    $product->image= $name1;
-                    if (!empty($oldbanner) && file_exists(public_path().'/images/uploads/products/banners/'.$oldbanner)){
-                        @unlink(public_path().'/images/uploads/products/banners/'.$oldbanner);
-                    }
-                }
-            }
 
             $status = $product->update();
             $incoming_attribute = $request->input('product_attribute_id');

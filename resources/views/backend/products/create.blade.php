@@ -211,8 +211,53 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="company-doc">
+                    <div class="card ctm-border-radius shadow-sm grow">
+                        <div class="card-header">
+                            <h4 class="card-title d-inline-block mb-0">
+                                Product Specification Mapping <span class="text-muted text-danger">*</span>
+                            </h4>
+
+                        </div>
+                        <div class="card-body">
+
+                            <div id="multi-field-wrapper-specific">
+                                <div id="multi-fields-specific">
+                                    <div class="multi-field-specific">
+                                        <div class="input-group mb-3">
+                                            <select class="form-control shadow-none product-specification" name="specification_id[]" id="specification_id_0" required>
+                                                <option value disabled readonly selected> Select Specification</option>
+                                                @foreach($specifications as $spec)
+                                                    <option value="{{$spec->id}}"> {{$spec->name}} </option>
+                                                @endforeach
+                                            </select>
+                                            <button class="btn btn-theme text-white remove-field-specific"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="specific-values" id="addValuesspecific">
+{{--                                            <div class="form-group mb-3">--}}
+{{--                                                <label>Specification Details </label>--}}
+{{--                                                <textarea class="form-control" rows="4" name="specification_details" id="specification_details"></textarea>--}}
+{{--                                            </div>--}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="javascript:void(0)" class="btn btn-theme mt-2 text-white float-right ctm-border-radius" id="add-field-specific"><i class="fa fa-copy"></i> Add Specification </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
                 <div class="company-doc">
                     <div class="card ctm-border-radius shadow-sm grow">
                         <div class="card-header">
@@ -222,7 +267,6 @@
 
                         </div>
                         <div class="card-body">
-
                             <div class="form-group mb-3">
                                 <label>Thumbnail <span class="text-muted text-danger">*</span></label>
                                 <div class="row justify-content-center">
@@ -243,43 +287,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="company-doc">
-                    <div class="card ctm-border-radius shadow-sm grow">
-                        <div class="card-header">
-                            <h4 class="card-title d-inline-block mb-0">
-                                Product Banner Details
-                            </h4>
-
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group mb-3">
-                                <label>Banner Image <span class="text-muted text-danger">*</span></label>
-                                <div class="row justify-content-center">
-                                    <div class="col-6 mb-4">
-                                        <div class="custom-file h-auto">
-                                            <div class="avatar-upload">
-                                                <div class="avatar-edit">
-                                                    <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="image" onchange="loadbasicFile('image','current-image-img',event)" name="image" />
-                                                    <label for="image"></label>
-                                                    <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                        Please select a Product Slider image.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <img id="current-image-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="banner_image" class="w-100 current-img">
-                                        </div>
-                                        <span class="ctm-text-sm">*use image minimum of 1479 x 311px for product banner</span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -304,20 +311,6 @@
                                     Please enter the product summary.
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <label>Description <span class="text-muted text-danger">*</span></label>
-                                <textarea  class="form-control" rows="4" name="description" id="description" required></textarea>
-                                <div class="invalid-feedback">
-                                    Please enter the product description.
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Information </label>
-                                <textarea  class="form-control" rows="4" name="information" id="information"></textarea>
-                                <div class="invalid-feedback">
-                                    Please enter the product information.
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -337,10 +330,14 @@
     <script src="{{asset('assets/backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         var all_attribute_id = [];
+        var all_specific_id = [];
         var selected_attribute_id = [];
-        let uniqueItems;
+        var selected_specification_id = [];
         <?php foreach($attributes as $key => $val){ ?>
         all_attribute_id.push('<?php echo $val->id; ?>');
+        <?php } ?>
+        <?php foreach($specifications as $key => $val){ ?>
+        all_specific_id.push('<?php echo $val->id; ?>');
         <?php } ?>
 
         $("#slug").keyup(function(){
@@ -351,36 +348,35 @@
             $("#slug").val(Text);
         });
 
-        function createEditor ( elementId ) {
-            return ClassicEditor
-                .create( document.querySelector( '#' + elementId ), {
-                    toolbar : {
-                        items: [
-                            'heading', '|',
-                            'bold', 'italic', 'link', '|',
-                            'outdent', 'indent', '|',
-                            'bulletedList', 'numberedList', '|',
-                            'insertTable', 'blockQuote', '|',
-                            'undo', 'redo'
-                        ],
-                    },
-                } )
-                .then( editor => {
-                    window.editor = editor;
-                    editor.model.document.on( 'change:data', () => {
-                        $( '#' + elementId).text(editor.getData());
-                    } );
-                } )
-                .catch( err => {
-                    console.error( err.stack );
-                } );
-        }
+        // function createEditor ( elementId ) {
+        //     return ClassicEditor
+        //         .create( document.querySelector( '#' + elementId ), {
+        //             toolbar : {
+        //                 items: [
+        //                     'heading', '|',
+        //                     'bold', 'italic', 'link', '|',
+        //                     'outdent', 'indent', '|',
+        //                     'bulletedList', 'numberedList', '|',
+        //                     'insertTable', 'blockQuote', '|',
+        //                     'undo', 'redo'
+        //                 ],
+        //             },
+        //         } )
+        //         .then( editor => {
+        //             window.editor = editor;
+        //             editor.model.document.on( 'change:data', () => {
+        //                 $( '#' + elementId).text(editor.getData());
+        //             } );
+        //         } )
+        //         .catch( err => {
+        //             console.error( err.stack );
+        //         } );
+        // }
 
-        $(document).ready(function () {
-            createEditor('description');
-            createEditor('information');
-
-        });
+        // $(document).ready(function () {
+        //
+        //
+        // });
 
         var loadbasicFile = function(id1,id2,event) {
             var image       = document.getElementById(id1);
@@ -417,7 +413,7 @@
                 var id       = this.value;
                 var name     = this.name;
                 var selectid = this.id;
-                var counterNum = selectid.replace('product_attribute_id_', '');
+                // var counterNum = selectid.replace('product_attribute_id_', '');
 
                 //========= FOR DISABLING THE BUTTON=============
                 //empty the arrary first
@@ -490,7 +486,7 @@
                         //if all matches, disable button
                         $('#add-field').addClass('add-disabled');
                     } else {
-                        //if all doesn't matche, enable button
+                        //if all doesn't match, enable button
                         $('#add-field').removeClass('add-disabled');
                     }
 
@@ -509,7 +505,114 @@
             });
         });
 
-        //getting secondary category value based on primary category values selection
+        var counterspec = 0;
+
+        $('#multi-field-wrapper-specific').each(function() {
+            var $wrapper = $('#multi-fields-specific', this);
+            $("#add-field-specific", $(this)).click(function(e) {
+                counterspec++;
+                //clone the element and add the id to div to make select field unique and empty the attribute value div to bring in fresh data.
+                var newElem = $('.multi-field-specific:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-' + counterspec).find('div.specific-values').html('');
+                //remove the initial id from select and add new ID
+                $('.multi-field-specific').find('select').last().removeAttr('id').attr('id', 'specification_id_' + counterspec).find('option').focus();
+
+                //loop over the select with class product attribute and collect all selected ID
+                //disable the selected ID from newly cloned select
+                $('select.product-specification').each(function() {
+                    var id = this.value;
+                    // console.log(id);
+                    $('.multi-field-specific').find('select').last().find('option').filter(function() {
+                        return this.value === id;
+                    }).prop('disabled', true);
+                });
+            });
+
+            $('select.product-specification').on('change', function(element) {
+                var id       = this.value;
+                var name     = this.name;
+                var selectid = this.id;
+
+                //========= FOR DISABLING THE BUTTON=============
+                //empty the arrary first
+                selected_attribute_id.length =0;
+                //upon selected, add the value in array
+                $("select.product-specification option:selected").each(function () {
+                    selected_specification_id.push(this.value);
+                });
+                //compare the unique values with array that contains all values of attributes
+                //using custom function with jquery prototype compare
+                if(selected_specification_id.sort().compare(all_specific_id.sort())) {
+                    //if all matches, disable button
+                    $('#add-field-specific').addClass('add-disabled');
+                } else {
+                    //if all doesn't match, enable button
+                    $('#add-field-specific').removeClass('add-disabled');
+                }
+
+                //========= END OF DISABLING THE BUTTON=============
+
+                //remove all the disable option except for the first one
+                $('option[value!=""]').prop('disabled', false);
+                //loop around product attribute select field and disable the recently selected option from other select.
+                $('select.product-specification').each(function() {
+                    var val = this.value;
+                    $('select.product-specification').not(this).find('option').filter(function() {
+                        return this.value === val;
+                    }).prop('disabled', true);
+                });
+
+                //determining the parent div of the selected field inorder to target right div to attach the values to
+                var wrapper = $(this).parent('.input-group').parent('.multi-field-specific').find('.specific-values');
+                //setting URL and fetching data with ajax request
+
+                wrapper.empty();
+                //empting the wrapper inorder to avoid duplication and attaching values accordinly.
+                var attachment = ' <div class="form-group mb-3">' + '<label>Specification Details For ' + $(this).find("option:selected").text() + '</label> ' +
+                    '<textarea class="form-control" rows="4" name="specification_details_'+id+'" id="specification_details_'+id+'" required></textarea> ' +
+                    '</div>';
+                wrapper.append(attachment);
+            });
+
+            $('.multi-field-specific .remove-field-specific', $wrapper).click(function() {
+
+                if ($('.multi-field-specific', $wrapper).length > 1){
+                    var id = $(this).prev().find('option:selected').val();
+
+                    //========= FOR DISABLING THE BUTTON=============
+                    //remove the recently deleted id from the array of unique ID
+                    selected_specification_id = jQuery.grep(selected_specification_id, function(value) {
+                        return value !== id;
+                    });
+                    //again compare the data and disable/enable accordingly
+                    if(selected_specification_id.sort().compare(all_specific_id.sort())) {
+                        //if all matches, disable button
+                        $('#add-field-specific').addClass('add-disabled');
+                    } else {
+                        //if all doesn't match, enable button
+                        $('#add-field-specific').removeClass('add-disabled');
+                    }
+
+                    //========= FOR DISABLING THE BUTTON=============
+
+                    //get the value of closest selected option from the delete button.
+                    $('select.product-specification').each(function() {
+                        var val = id;
+                        $('select.product-specification').find('option').filter(function() {
+                            return this.value === val;
+                        }).prop('disabled', false);
+                    }); //use the value to remove the disable option from all others select field
+                    //remove the cloned div after clicking on delete button.
+                    $(this).parent('.input-group').parent('.multi-field-specific').remove();
+                }
+            });
+
+
+        });
+
+
+
+
+            //getting secondary category value based on primary category values selection
         $('.product-primary-cat').on('change', function(element) {
             var id = this.value;
             var name = this.name;
