@@ -664,22 +664,6 @@
                                                 <div class="clearfix"></div>
                                                 <span class="delete">x</span>
                                             </li>
-                                            <li>
-                                                <div class="img-product">
-                                                    <img src="images/product/other/img-cart-2.jpg" alt="">
-                                                </div>
-                                                <div class="info-product">
-                                                    <div class="name">
-                                                        Sennheiser - Over-the-Ear Headphone System - Black
-                                                    </div>
-                                                    <div class="price">
-                                                        <span>1 x</span>
-                                                        <span>$250.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <span class="delete">x</span>
-                                            </li>
                                         </ul>
                                         <div class="total">
                                             <span>Subtotal:</span>
@@ -697,6 +681,6 @@
                 </div><!-- /.container -->
             </div><!-- /.header-bottom -->
         </section><!-- /#header -->
-        
+
         @yield('slider')
         @yield('breadcrumb')

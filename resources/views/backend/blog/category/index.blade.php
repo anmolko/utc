@@ -63,9 +63,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> Blog Category </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-banner-tab" data-toggle="pill" href="#pills-banner" role="tab" aria-controls="pills-banner" aria-selected="false"> Blog List Banner </a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -163,7 +161,7 @@
                                                         </div>
                                                         <img id="current-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
                                                     </div>
-                                                    <span class="ctm-text-sm">*use image minimum of 830 x 390px for blog</span>
+                                                    <span class="ctm-text-sm">*use image minimum of 850 x 345px for blog</span>
                                                 </div>
 
                                             </div>
@@ -193,7 +191,7 @@
                                                         </div>
                                                         <img id="current-thumb-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
                                                     </div>
-                                                    <span class="ctm-text-sm">*use image minimum of 370 x 300px for blog thumbnail</span>
+                                                    <span class="ctm-text-sm">*use image minimum of 258 x 230px for blog thumbnail</span>
                                                 </div>
 
                                             </div>
@@ -383,62 +381,6 @@
                 {{--  End Tab content--}}
             </div>
 
-            <div class="tab-pane fade" id="pills-banner" role="tabpanel" aria-labelledby="pills-banner-tab">
-                {{--  Tab content--}}
-                    @if(@$blogbanner !== null)
-                        {!! Form::open(['method'=>'PUT','url'=>route('banner.update', $blogbanner->id),'class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
-                    @else
-                        {!! Form::open(['route' => 'banner.store','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
-                    @endif
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-12 col-md-12">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-6 col-md-6 d-flex">
-                                    <div class="card ctm-border-radius shadow-sm flex-fill">
-                                        <div class="card-header">
-                                            <h4 class="card-title mb-0">
-                                                Blog List Page Image <span class="text-muted text-danger">*</span>
-                                            </h4>
-                                        </div>
-                                        <input type="hidden" value="blog" name="name"/>
-                                        <div class="card-body">
-                                            <div class="row justify-content-center">
-                                                <div class="col-8 mb-4">
-                                                    <div class="custom-file h-auto">
-                                                        <div class="avatar-upload">
-                                                            <div class="avatar-edit">
-                                                                <input type="file" accept="image/png, image/jpeg" class="custom-file-input" hidden="" id="imageUploadbanner" onchange="loadbasicFile('imageUploadbanner','current-imageUploadbanner-img',event)" name="image" {{(@$blogbanner == null) ? "required":""}}>
-                                                                <label for="imageUploadbanner"></label>
-                                                                <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                                    Please select a banner image.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @if(@$blogbanner !== null)
-                                                            <img id="current-imageUploadbanner-img" src="{{asset('/images/uploads/banners/'.@$blogbanner->image)}}" alt="{{$blogbanner->name}}" class="w-100 current-img">
-                                                        @else
-                                                            <img id="current-imageUploadbanner-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_banner" class="w-100 current-img">
-                                                        @endif
-                                                    </div>
-                                                    <span class="ctm-text-sm">*use image minimum of 1479 x 311px for blog banner</span>
-                                                </div>
-                                            </div>
-                                            <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-theme text-white ctm-border-radius button-1">{{(@$blogbanner->image !== null) ? "Update":"Add"}}</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {!! Form::close() !!}
-
-                {{--  End Tab content--}}
-            </div>
-
         </div>
 
     </div>
@@ -548,7 +490,7 @@
                                                 </div>
                                                 <img id="current-edit-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
                                             </div>
-                                            <span class="ctm-text-sm">*use image minimum of 830 x 390px for blog</span>
+                                            <span class="ctm-text-sm">*use image minimum of 850 x 345px for blog</span>
                                         </div>
 
                                     </div>
@@ -577,7 +519,7 @@
                                                 </div>
                                                 <img id="current-editthumb-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
                                             </div>
-                                            <span class="ctm-text-sm">*use image minimum of 370 x 300px for blog</span>
+                                            <span class="ctm-text-sm">*use image minimum of 258 x 230px for blog</span>
                                         </div>
 
                                     </div>

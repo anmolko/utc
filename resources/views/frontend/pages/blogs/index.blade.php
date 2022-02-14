@@ -73,7 +73,7 @@
                         <ul class="flat-pagination">
                             <li class="prev">
                                 <a href="#" title="">
-                                    <img src="images/icons/left-1.png" alt="">Prev Page
+                                    <img src="{{asset('assets/frontend/images/icons/left-1.png')}}" alt="">Prev Page
                                 </a>
                             </li>
                             <li>
@@ -90,7 +90,7 @@
                             </li>
                             <li class="next">
                                 <a href="#" title="">
-                                    Next Page<img src="images/icons/right-1.png" alt="">
+                                    Next Page<img src="{{asset('assets/frontend/images/icons/right-1.png')}}" alt="">
                                 </a>
                             </li>
                         </ul><!-- /.flat-pagination -->

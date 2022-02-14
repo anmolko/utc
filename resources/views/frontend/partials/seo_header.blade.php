@@ -49,8 +49,6 @@
                 <span></span>
             </div>
         </div><!-- /.preloader -->
-
-        
         
         <section id="header" class="header">
             <div class="header-top style3">
@@ -105,26 +103,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#" title="">English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="unstyled">
-                                        <li>
-                                        <a href="#" title="">Turkish</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">English</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">اللغة العربية</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">Español</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">Italiano</a>
-                                    </li>
-                                    </ul>
-                                </li>
+                              
                             </ul><!-- /.flat-unstyled -->
                         </div><!-- /.col-md-4 -->
                     </div><!-- /.row -->
@@ -144,88 +123,9 @@
                                     <ul class="menu">
                                         <li class="column-1">
                                             <a href="#" title="">Home</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="index.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 02</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v3.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 03</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v4.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 04</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v5.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 05</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v6.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 06</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v7.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 07</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v8.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 08</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v9.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 09</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-v10.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Layout 10</a>
-                                                </li>
-                                            </ul>
+                                           
                                         </li>
-                                        <li class="column-1">
-                                            <a href="shop.html" title="">Shop</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="shop.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop left sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop right sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop list view</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v4.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop full width</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v5.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop 03 column</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-cart.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop cart</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-checkout.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Shop checkout</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="column-1">
-                                            <a href="#" title="">Features</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Home Theater Systems</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Receivers & Amplifiers</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Speakers</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>CD Players & Turntables</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>High-Resolution Audio</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>4K Ultra HD TVs</a>
-                                                </li>
-                                            </ul><!-- /.submenu -->
-                                        </li><!-- /.column-1 -->
+                                       
                                         <li class="has-mega-menu">
                                             <a href="#" title="">Electronic</a>
                                             <div class="submenu">
@@ -355,74 +255,7 @@
                                             </div><!-- /.submenu -->
                                         </li>
                                         <li class="column-1">
-                                            <a href="#" title="">Pages</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="about.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>About</a>
-                                                </li>
-                                                <li>
-                                                    <a href="404.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>404 Page</a>
-                                                </li>
-                                                <li>
-                                                    <a href="brands.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Brands Page</a>
-                                                </li>
-                                                <li>
-                                                    <a href="categories.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Categories 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="categories-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Categories 02</a>
-                                                </li>
-                                                <li>
-                                                    <a href="element.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Element</a>
-                                                </li>
-                                                <li>
-                                                    <a href="faq.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a>
-                                                </li>
-                                                <li>
-                                                    <a href="order-tracking.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Order Tracking</a>
-                                                </li>
-                                                <li>
-                                                <a href="term-condition.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Terms & Conditions</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 01</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 02</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-v3.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 03</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-v4.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 04</a>
-                                            </li>
-                                            <li>
-                                                <a href="single-product-v5.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product 05</a>
-                                            </li>
-                                            </ul>
-                                        </li>
-                                        <li class="column-1">
                                             <a href="blog.html" title="">Blog</a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="blog.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog left sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog right sidebar</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-v3.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog list</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-v4.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog 02 column</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-v5.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog full width</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-single.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Blog single</a>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li class="column-1">
                                             <a href="contact.html" title="">Contact</a>
@@ -443,7 +276,7 @@
                             </div><!-- //mobile menu button -->
                             <ul class="flat-infomation style1">
                                 <li class="phone">
-                                    <img src="images/icons/call-3.png" alt="">
+                                    <img src="{{asset('assets/frontend/images/icons/call-3.png')}}" alt="">
                                     Call Us: <a href="#" title="">(888) 1234 56789</a>
                                 </li>
                             </ul><!-- /.flat-infomation -->
@@ -460,9 +293,7 @@
                                 <ul class="menu">
                                     <li>
                                         <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/01.png" alt="">
-                                            </span>
+                                         
                                             <span class="menu-title">
                                                 Laptops & Mac
                                             </span>
@@ -566,586 +397,15 @@
                                             </div>
                                         </div><!-- /.drop-menu -->
                                     </li>
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/02.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Mobile & Tablet
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/03.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Home Devices
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
+                                
                                     <li>
                                         <a href="#" title="">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/04.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Software
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/05.png" alt="">
-                                            </span>
                                             <span class="menu-title">
                                                 TV & Audio
                                             </span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/06.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Sports & Fitness
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/07.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Games & Toys
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/08.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Video Cameras
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/09.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Accessories
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                            <span class="menu-img">
-                                                <img src="images/icons/menu/10.png" alt="">
-                                            </span>
-                                            <span class="menu-title">
-                                                Security
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
+                             
                                 </ul><!-- /.menu -->
                             </div>
                         </div><!-- /.col-md-3 col-2 -->
@@ -1155,9 +415,6 @@
                                     <div class="cat-wrap cat-wrap-v1">
                                         <select name="category">
                                         <option hidden value="">All Category</option>
-                                        <option hidden value="">Cameras</option>
-                                        <option hidden value="">Computer</option>
-                                        <option hidden value="">Laptops</option>
                                     </select>
                                         <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                         <div class="all-categories">
@@ -1202,7 +459,7 @@
                                     <div class="box-search">
                                         <input type="text" name="search" placeholder="Search what you looking for ?">
                                         <span class="btn-search">
-                                            <button type="submit" class="waves-effect"><img src="images/icons/search-2.png" alt=""></button>
+                                            <button type="submit" class="waves-effect"><img src="{{asset('assets/frontend/images/icons/search-2.png')}}" alt=""></button>
                                         </span>
                                         <div class="search-suggestions">
                                             <div class="box-suggestions">
@@ -1353,12 +610,12 @@
                                     <ul class="menu-compare-wishlist">
                                         <li class="compare">
                                             <a href="#" title="">
-                                                <img src="images/icons/compare-2.png" alt="">
+                                                <img src="{{asset('assets/frontend/images/icons/compare-2.png')}}" alt="">
                                             </a>
                                         </li>
                                         <li class="wishlist">
                                             <a href="#" title="">
-                                                <img src="images/icons/wishlist-2.png" alt="">
+                                                <img src="{{asset('assets/frontend/images/icons/wishlist-2.png')}}" alt="">
                                             </a>
                                         </li>
                                     </ul><!-- /.menu-compare-wishlist -->
@@ -1366,7 +623,7 @@
                                 <div class="inner-box">
                                     <a href="#" title="">
                                         <div class="icon-cart">
-                                            <img src="images/icons/add-cart.png" alt="">
+                                            <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">
                                             <span>4</span>
                                         </div>
                                         <div class="price">
@@ -1424,186 +681,8 @@
                 </div><!-- /.container -->
             </div><!-- /.header-bottom -->
         </section><!-- /#header -->
-
-        <div class="divider30"></div>
-
-        <section class="flat-row flat-slider style1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="slider owl-carousel-11 style2">
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$2.456.90</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                            </div><!-- /.slider-item style4 -->
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$1.589.99</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><!-- /.slider-item style4 -->
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$2.456.90</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                            </div><!-- /.slider-item style4 -->
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$1.589.99</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><!-- /.slider-item style4 -->
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$2.456.90</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                            </div><!-- /.slider-item style4 -->
-                            <div class="slider-item style4">
-                                <div class="item-text">
-                                    <div class="header-item">
-                                        <p>Enhanced Technology</p>
-                                        <h2 class="name">SMART <span>TV</span></h2>
-                                        <p>The ship set ground on the shore of this uncharted desert isle
-                                        with Gilligan the Skipper too the millionaire and his story.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="price">
-                                            <span class="sale">$1.589.99</span>
-                                            <span class="btn-shop">
-                                                <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                            </span>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="regular">
-                                            $2.500.99
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-image">
-                                    <img src="images/slider/01.png" alt="">
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><!-- /.slider-item style4 -->
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="banner-box">
-                            <div class="inner-box">
-                                <a href="#" title="">
-                                    <img src="images/banner_boxes/02.png" alt="">
-                                </a>
-                            </div><!-- /.inner-box -->
-                            <div class="inner-box">
-                                <a href="#" title="">
-                                    <img src="images/banner_boxes/01.png" alt="">
-                                </a>
-                            </div><!-- /.inner-box -->
-                            <div class="clearfix"></div>
-                        </div><!-- /.box -->
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </section><!-- /.flat-slider -->
+        
+        @yield('slider')
+        @yield('breadcrumb')
 
       

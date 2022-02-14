@@ -62,7 +62,7 @@ class BlogController extends Controller
             $image          = $request->file('image');
             $name           = uniqid().'_'.$image->getClientOriginalName();
             $path           = base_path().'/public/images/uploads/blog/';
-            $moved          = Image::make($image->getRealPath())->resize(830, 390, function ($constraint) {
+            $moved          = Image::make($image->getRealPath())->resize(850 , 345, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name);
             if ($moved){
@@ -74,7 +74,7 @@ class BlogController extends Controller
             $image        = $request->file('thumb_image');
             $name         = uniqid().'_'.$image->getClientOriginalName();
             $path         = base_path().'/public/images/uploads/blog/thumb/';
-            $moved        = Image::make($image->getRealPath())->resize(370, 300, function ($constraint) {
+            $moved        = Image::make($image->getRealPath())->resize(258, 230, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name);
             if ($moved){
@@ -140,7 +140,7 @@ class BlogController extends Controller
             $image       = $request->file('image');
             $name1       = uniqid().'_'.$image->getClientOriginalName();
             $path        = base_path().'/public/images/uploads/blog/';
-            $moved       = Image::make($image->getRealPath())->resize(830, 390, function ($constraint) {
+            $moved       = Image::make($image->getRealPath())->resize(850 , 345, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name1);
 
@@ -156,7 +156,7 @@ class BlogController extends Controller
             $image       = $request->file('thumb_image');
             $name1       = uniqid().'_'.$image->getClientOriginalName();
             $thumb_path  = base_path().'/public/images/uploads/blog/thumb/';
-            $thumb       = Image::make($image->getRealPath())->resize(370, 300, function ($constraint) {
+            $thumb       = Image::make($image->getRealPath())->resize(258, 230, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($thumb_path.$name1);
 

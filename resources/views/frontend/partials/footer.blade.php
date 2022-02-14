@@ -15,9 +15,9 @@
                                 </div>
                                 <div class="info">
                                     <p class="questions">Got Questions ? Call us 24/7!</p>
-                                    <p class="phone">Call Us: (888) 1234 56789</p>
+                                    <p class="phone">Call Us: @if(!empty(@$setting_data->phone)) {{@$setting_data->phone}} @else +977 1234567 @endif</p>
                                     <p class="address">
-                                        PO Box CT16122 Collins Street West, Victoria 8007,<br />Australia.
+                                    @if(!empty(@$setting_data->address)) {{@$setting_data->address}} @else Kathmandu, Nepal @endif 
                                     </p>
                                 </div>
                             </div>
@@ -40,17 +40,12 @@
                                 </li>
                                 <li>
                                     <a href="#" title="">
-                                        <i class="fa fa-pinterest" aria-hidden="true"></i>
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" title="">
-                                        <i class="fa fa-dribbble" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <i class="fa fa-google" aria-hidden="true"></i>
+                                        <i class="fa fa-youtube" aria-hidden="true"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -69,24 +64,7 @@
                                 <li>
                                     <a href="#" title="">Desktops</a>
                                 </li>
-                                <li>
-                                    <a href="#" title="">Laptops & Notebooks</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">Components</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">Tablets</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">Software</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">Phones & PDAs</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">Cameras</a>
-                                </li>
+                              
                             </ul>
                             <!-- /.cat-list-ft -->
                         </div>
@@ -105,36 +83,7 @@
 											Contact us
 										</a>
                                 </li>
-                                <li>
-                                    <a href="#" title="">
-											Site Map
-										</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-											My Account
-										</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-											Wish List
-										</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-											Delivery Information
-										</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-											Privacy Policy
-										</a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-											Terms & Conditions
-										</a>
-                                </li>
+                            
                             </ul>
                         </div>
                         <!-- /.widget-menu -->
@@ -161,26 +110,7 @@
                                         <img src="images/logos/ft-01.png" alt="">
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <img src="images/logos/ft-02.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <img src="images/logos/ft-03.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <img src="images/logos/ft-04.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <img src="images/logos/ft-05.png" alt="">
-                                    </a>
-                                </li>
+                               
                             </ul>
                             <!-- /.pay-list -->
                         </div>
