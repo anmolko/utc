@@ -76,6 +76,9 @@
                                     <div class="col-6 align-items-center shadow-none text-center">
                                         <a href="{{route('productattribute.index')}}" class="{{(Request::segment(2) == 'product-attribute') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-text-format pr-0 pb-lg-2 font-23"></span><span class="">Attributes</span></a>
                                     </div>
+                                    <div class="col-6 align-items-center shadow-none text-center">
+                                        <a href="{{route('specification.index')}}" class="{{(Request::segment(2) == 'specifications') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-star-empty pr-0 pb-lg-2 font-23"></span><span class="">Specification</span></a>
+                                    </div>
                                     <div class="col-6 align-items-center shadow-none text-center" >
                                         <a href="{{route('products.index')}}" class="{{(Request::segment(2) == 'products') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-tag pr-0 pb-lg-2 font-23"></span><span class="">Products</span></a>
                                     </div>

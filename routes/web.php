@@ -136,6 +136,17 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
 
     //End of teams
 
+    //specification
+
+    Route::get('/specifications', 'App\Http\Controllers\SpecificationController@index')->name('specification.index');
+    Route::get('/specifications/create', 'App\Http\Controllers\SpecificationController@create')->name('specification.create');
+    Route::post('/specifications', 'App\Http\Controllers\SpecificationController@store')->name('specification.store');
+    Route::put('/specifications/{specification}', 'App\Http\Controllers\SpecificationController@update')->name('specification.update');
+    Route::delete('/specifications/{specification}', 'App\Http\Controllers\SpecificationController@destroy')->name('specification.destroy');
+    Route::get('/specifications/{specification}/edit', 'App\Http\Controllers\SpecificationController@edit')->name('specification.edit');
+
+    //End of brand
+
     //brand
 
     Route::get('/brands', 'App\Http\Controllers\BrandController@index')->name('brands.index');
