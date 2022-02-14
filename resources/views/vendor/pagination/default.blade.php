@@ -1,53 +1,68 @@
 
 
 @if ($paginator->hasPages())
-    <ul class="shop-pagination box-shadow text-center ptblr-10-30">
+<ul class="flat-pagination">
+    @if ($paginator->onFirstPage())
 
-        @if ($paginator->onFirstPage())
+    @else
+    <li class="prev disabled">
+        <a href="{{ $paginator->previousPageUrl() }}" title="">
+            <img src="{{asset('assets/frontend/images/icons/left-1.png')}}" alt="">Prev Page
+        </a>
+    </li>
+    @endif
 
-        @else
-        
-        <li class="disabled"><a  href="{{ $paginator->previousPageUrl() }}" ><i class="zmdi zmdi-chevron-left"></i></a></li>
+    @if($paginator->currentPage() > 3)
+    <li>
+        <a href="{{ $paginator->url(1) }}" class="waves-effect" title="">1</a>
+    </li>
 
-        @endif
+    @endif
 
-        @if($paginator->currentPage() > 3)
-        <li class="nav-item "><a class="page-numbers" href="{{ $paginator->url(1) }}">1</a>
+    @if($paginator->currentPage() > 4)
+    <li class="disabled" aria-disabled="true">
+        <a  class="waves-effect" title="">...</a>
+    </li>
+    @endif
 
-        @endif
-
-        @if($paginator->currentPage() > 4)
-        <li class="nav-item disabled" aria-disabled="true"><span class="page-link seperate-pagination-link">...</span></li>
-
-        @endif
-
-        @foreach(range(1, $paginator->lastPage()) as $i)
-            @if($i >= $paginator->currentPage() - 2 && $i <= $paginator->currentPage() + 2)
-                @if ($i == $paginator->currentPage())
-                    <li class="nav-item active"><a class="active">{{ $i }}</a></li>
-                @else
-                    <li class="nav-item"><a href="{{ $paginator->url($i) }}"> {{ $i }}</a></li>
-                    @endif
+    @foreach(range(1, $paginator->lastPage()) as $i)
+        @if($i >= $paginator->currentPage() - 2 && $i <= $paginator->currentPage() + 2)
+            @if ($i == $paginator->currentPage())
+                <li class="active">
+                    <a href="#" class="waves-effect" title="">{{ $i }}</a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ $paginator->url($i) }}" class="waves-effect" title="">{{ $i }}</a>
+                </li>
             @endif
-        @endforeach
-
-        @if($paginator->currentPage() < $paginator->lastPage() - 3)
-                 <li class="nav-item disabled" aria-disabled="true"><span class="page-link seperate-pagination-link">...</span></li>
-
         @endif
-        @if($paginator->currentPage() < $paginator->lastPage() - 2)
-            <li class="nav-item"><a class="page-numbers" href="{{ $paginator->url($paginator->lastPage()) }}">{{ $paginator->lastPage() }}</a></li>
-        @endif
+    @endforeach
 
-        @if ($paginator->hasMorePages())
-        <li class="nav-item"><a class="next-page page-numbers"
-        href="{{ $paginator->nextPageUrl() }}"><i class="zmdi zmdi-chevron-right"></i></a></li>
-        @else
-        
-        @endif
+    @if($paginator->currentPage() < $paginator->lastPage() - 3)
+        <li class="disabled" aria-disabled="true">
+            <a  class="waves-effect" title="">...</a>
+        </li>
+    @endif
+    @if($paginator->currentPage() < $paginator->lastPage() - 2)
+        <li>
+            <a href="{{ $paginator->url($paginator->lastPage()) }}" class="waves-effect" title="">{{ $paginator->lastPage() }}</a>
+        </li>
+    @endif
 
- 
-    </ul>
+    @if ($paginator->hasMorePages())
+  
+    <li class="next">
+        <a href="{{ $paginator->nextPageUrl() }}" title="">
+            Next Page<img src="{{asset('assets/frontend/images/icons/right-1.png')}}" alt="">
+        </a>
+    </li>
+    @else
+    
+    @endif
+
+</ul><!-- /.flat-pagination -->
+
 @endif
 
 

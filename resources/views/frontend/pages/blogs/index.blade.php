@@ -70,30 +70,7 @@
                     <div class="blog-pagination style2">
                         {{ $allPosts->links('vendor.pagination.default') }}
 
-                        <ul class="flat-pagination">
-                            <li class="prev">
-                                <a href="#" title="">
-                                    <img src="{{asset('assets/frontend/images/icons/left-1.png')}}" alt="">Prev Page
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect" title="">01</a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect" title="">02</a>
-                            </li>
-                            <li class="active">
-                                <a href="#" class="waves-effect" title="">03</a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect" title="">04</a>
-                            </li>
-                            <li class="next">
-                                <a href="#" title="">
-                                    Next Page<img src="{{asset('assets/frontend/images/icons/right-1.png')}}" alt="">
-                                </a>
-                            </li>
-                        </ul><!-- /.flat-pagination -->
+                      
                     </div><!-- /.blog-pagination style2 -->
                 </div><!-- /.col-md-8 col-lg-9 -->
                 <div class="col-md-4 col-lg-3">

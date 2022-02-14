@@ -85,6 +85,20 @@
 
                                 <div class="card-body">
                                     <div class="form-group mb-3">
+                                        <label>Category <span class="text-muted text-danger">*</span></label>
+                                        <select class="form-control" name="blog_category_id" required>
+                                            <option value disabled selected>Select Blog Category</option>
+                                            @if(!empty(@$categories))
+                                                @foreach(@$categories as $categoryList)
+                                                    <option value="{{ @$categoryList->id }}" >{{ ucwords(@$categoryList->name) }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a category.
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
                                         <label>Title <span class="text-muted text-danger">*</span></label>
                                         <input type="text" class="form-control" id="title" name="title" required>
                                         <div class="invalid-feedback">
@@ -114,20 +128,7 @@
                                             Please enter the post description.
                                         </div>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label>Category <span class="text-muted text-danger">*</span></label>
-                                        <select class="form-control" name="blog_category_id" required>
-                                            <option value disabled selected>Select Blog Category</option>
-                                            @if(!empty(@$categories))
-                                                @foreach(@$categories as $categoryList)
-                                                    <option value="{{ @$categoryList->id }}" >{{ ucwords(@$categoryList->name) }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a category.
-                                        </div>
-                                    </div>
+                                
 
                                 </div>
 
@@ -436,6 +437,21 @@
                     <h4 class="modal-title mb-3">Edit Blog Category</h4>
 
                     <div class="form-group mb-3">
+                        <label>Category <span class="text-muted text-danger">*</span></label>
+                        <select class="form-control" name="blog_category_id" id="edit-blog-cat" required>
+                            <option value disabled>Select Blog Category</option>
+                            @if(!empty(@$categories))
+                                @foreach(@$categories as $categoryList)
+                                    <option value="{{ @$categoryList->id }}" >{{ ucwords(@$categoryList->name) }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a category.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
                         <label>Title <span class="text-muted text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="edit-title" required>
                         <div class="invalid-feedback">
@@ -528,20 +544,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label>Category <span class="text-muted text-danger">*</span></label>
-                        <select class="form-control" name="blog_category_id" id="edit-blog-cat" required>
-                            <option value disabled>Select Blog Category</option>
-                            @if(!empty(@$categories))
-                                @foreach(@$categories as $categoryList)
-                                    <option value="{{ @$categoryList->id }}" >{{ ucwords(@$categoryList->name) }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a category.
-                        </div>
-                    </div>
+
 
 
                     <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>
