@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('title') Edit Products @endsection
 @section('css')
-    <style>
+<style>
         .ck-editor__editable_inline {
             min-height: 150px !important;
         }
@@ -55,6 +55,18 @@
         .select-label input:checked + span {
             border-color: #41237c;
             color: #41237c;
+        }
+
+        .custom-card{
+            border: 1px solid #ededed;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+            padding: 1.25rem;
+        }
+
+        .custom-card:hover{
+            box-shadow: 1px 0px 20px rgb(0 0 0 / 6%) !important;
         }
         /*end of custom select*/
 
@@ -113,14 +125,6 @@
                                     Please enter the product price.
                                 </div>
                             </div>
-
-{{--                            <div class="form-group mb-3">--}}
-{{--                                <label>Product Brand </label>--}}
-{{--                                <input type="text" class="form-control" value="{{$product->brand}}" name="brand" />--}}
-{{--                                <div class="invalid-feedback">--}}
-{{--                                    Please enter the product brand.--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="form-group mb-3">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
                                 <select class="form-control shadow-none product-primary-cat" name="primary_category_id" required>
@@ -180,6 +184,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="company-doc">
@@ -196,7 +201,7 @@
                                 <div id="multi-fields">
 
                                     @foreach($relatedAttr as $key=>$attrvalues)
-                                        <div class="multi-field">
+                                        <div class="multi-field custom-card">
                                             <div class="input-group mb-3">
                                                 <select class="form-control shadow-none product-attribute" name="product_attribute_id[]" id="product_attribute_id_0" required>
                                                     <option value disabled readonly selected> Select Attributes</option>
@@ -232,8 +237,66 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="company-doc">
+                    <div class="card ctm-border-radius shadow-sm grow">
+                        <div class="card-header">
+                            <h4 class="card-title d-inline-block mb-0">
+                                Product Specification Mapping <span class="text-muted text-danger">*</span>
+                            </h4>
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item action-value-edit small"> Add Specification  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div id="multi-field-wrapper-specific">
+                                <div id="multi-fields-specific">
+
+                                    @foreach($pivotSpecification as $key=>$values)
+                                        <div class="multi-field-specific custom-card">
+                                            <div class="input-group mb-3">
+                                                <select class="form-control shadow-none product-specification" name="specification_id[]" id="specification_id_0" required>
+                                                    <option value disabled readonly selected> Select Attributes</option>
+                                                    @foreach($allspecifications as $spec)
+                                                        <option value="{{$spec->id}}" {{($key == $spec->id) ? "selected":""}}> {{$spec->name}} </option>
+                                                    @endforeach
+                                                </select>
+                                                <button class="btn btn-theme text-white remove-field-specific"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                            <div class="specific-values" id="addValuesspecific">
+                                                <div class="form-group mb-3">
+                                                    <label><strong>Specification Details for {{\App\Models\Specification::find($key)->name}}</strong></label>
+                                                    <textarea class="form-control" rows="4" name="specification_details_{{$key}}" id="specification_details_{{$key}}">{{ $values }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+
+
+
+                                </div>
+
+                                <a href="javascript:void(0)" class="btn btn-theme mt-2 text-white float-right ctm-border-radius" id="add-field-specific"><i class="fa fa-copy"></i> Add Specification </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <div class="company-doc">
                     <div class="card ctm-border-radius shadow-sm grow">
                         <div class="card-header">
@@ -247,7 +310,7 @@
                             <div class="form-group mb-3">
                                 <label>Thumbnail </label>
                                 <div class="row justify-content-center">
-                                    <div class="col-8 mb-4">
+                                    <div class="col-4 mb-4">
                                         <div class="custom-file h-auto">
                                             <div class="avatar-upload">
                                                 <div class="avatar-edit">
@@ -264,47 +327,7 @@
                                                 <img id="current-thumbnail-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_image" class="w-100 current-img">
                                             @endif
                                         </div>
-                                        <span class="ctm-text-sm">*use image minimum of 270 x 300px for product thumbnail</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="company-doc">
-                    <div class="card ctm-border-radius shadow-sm grow">
-                        <div class="card-header">
-                            <h4 class="card-title d-inline-block mb-0">
-                                Product Banner Details
-                            </h4>
-
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group mb-3">
-                                <label>Banner Image </label>
-                                <div class="row justify-content-center">
-                                    <div class="col-8 mb-4">
-                                        <div class="custom-file h-auto">
-                                            <div class="avatar-upload">
-                                                <div class="avatar-edit">
-                                                    <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="image" onchange="loadbasicFile('image','current-image-img',event)" name="image" />
-                                                    <label for="image"></label>
-                                                    <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                        Please select a Product Banner image.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @if($product->image !== null)
-                                                <img id="current-image-img" src="{{asset('/images/uploads/products/banners/'.$product->image)}}" alt="banner_image" class="w-100 current-img">
-                                            @else
-                                                <img id="current-image-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_image" class="w-100 current-img">
-                                            @endif
-                                        </div>
-                                        <span class="ctm-text-sm">*use image minimum of 270 x 300px for product thumbnail</span>
+                                        <span class="ctm-text-sm">*use image minimum of 265 x 210px for product thumbnail</span>
                                     </div>
                                 </div>
                             </div>
@@ -314,6 +337,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="company-doc">
@@ -331,20 +355,6 @@
                                 <textarea maxlength="470" class="form-control" rows="4" name="summary" required>{{$product->summary}}</textarea>
                                 <div class="invalid-feedback">
                                     Please enter the product summary.
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Description <span class="text-muted text-danger">*</span></label>
-                                <textarea  class="form-control" rows="4" name="description" id="description" required>{!! $product->description !!}</textarea>
-                                <div class="invalid-feedback">
-                                    Please enter the product description.
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Information </label>
-                                <textarea  class="form-control" rows="4" name="information" id="information">{!! $product->information !!}</textarea>
-                                <div class="invalid-feedback">
-                                    Please enter the product information.
                                 </div>
                             </div>
                         </div>
@@ -366,19 +376,26 @@
 @section('js')
     <script src="{{asset('assets/backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
-
         var database_values = [];
         var attribute_values = [];
         var database_attribute = [];
+        var database_specification = [];
         var all_attribute_id = [];
+        var all_specific_id = [];
         <?php foreach($attributes as $key => $val){ ?>
         all_attribute_id.push('<?php echo $val->id; ?>');
+        <?php } ?>
+        <?php foreach($allspecifications as $key => $val){ ?>
+        all_specific_id.push('<?php echo $val->id; ?>');
         <?php } ?>
         <?php foreach($selectedValues as $key => $val){ ?>
         database_values.push('<?php echo $val; ?>');
         <?php } ?>
         <?php foreach($relatedAttr as $key => $val){ ?>
         database_attribute.push('<?php echo $val->id; ?>');
+        <?php } ?>
+        <?php foreach($pivotSpecification as $key => $val){ ?>
+        database_specification.push('<?php echo $key; ?>');
         <?php } ?>
 
         $("#slug").keyup(function(){
@@ -415,21 +432,25 @@
         }
 
         $(document).ready(function () {
-            createEditor('description');
-            createEditor('information');
-
-
+            //for attributes - to disable add attribute button
             if(database_attribute.sort().compare(all_attribute_id.sort())) {
-                console.log('match');
                 //if all matches, disable button
                 $('#add-field').addClass('add-disabled');
             } else {
-                //if all doesn't matche, enable button
+                //if all doesn't match, enable button
                 $('#add-field').removeClass('add-disabled');
             }
 
+            //for specifications - to disable add specification buttob
+            if(database_specification.sort().compare(all_specific_id.sort())) {
+                //if all matches, disable button
+                $('#add-field-specific').addClass('add-disabled');
+            } else {
+                //if all doesn't match, enable button
+                $('#add-field-specific').removeClass('add-disabled');
+            }
 
-            //disable already selected values from all available select fields
+            //disable already selected attribute values from all available select fields
             $('select.product-attribute').each(function() {
                 var val = this.value;
                 $('select.product-attribute').not(this).find('option').filter(function() {
@@ -437,7 +458,15 @@
                 }).prop('disabled', true);
             });
 
-            //get all the values from listed selectbox and compare and tick with database values
+            //disable already selected specification values from all available select fields
+            $('select.product-specification').each(function() {
+                var val = this.value;
+                $('select.product-specification').not(this).find('option').filter(function() {
+                    return this.value === val;
+                }).prop('disabled', true);
+            });
+
+            //get all the values from listed select-box and compare and tick with database values
             $("input[id='attribute_value_id[]']").each(function(index, value) {
                 if($.inArray(value.value, database_values) !== -1){
                     $(this).prop('checked', true);
@@ -490,7 +519,7 @@
                         //if all matches, disable button
                         $('#add-field').addClass('add-disabled');
                     } else {
-                        //if all doesn't matche, enable button
+                        //if all doesn't match, enable button
                         $('#add-field').removeClass('add-disabled');
                     }
 
@@ -555,7 +584,7 @@
                     data:{id:id},
                     success: function(response){
                         wrapper.empty();
-                        //empting the wrapper inorder to avoid duplication and attaching values accordinly.
+                        //emptying the wrapper inorder to avoid duplication and attaching values accordingly.
                         jQuery.each(response, function(index, item) {
                             var attachment = ' <div class="col-md-3 col-6 text-center">' +
                                 '<label class="select-label"> ' +
@@ -569,6 +598,110 @@
                     }
                 });
 
+            });
+        });
+
+        var counterspec = 0;
+        $('#multi-field-wrapper-specific').each(function() {
+            var $wrapper = $('#multi-fields-specific', this);
+
+            $("#add-field-specific", $(this)).click(function(e) {
+                counterspec++;
+                //clone the element and add the id to div to make select field unique and empty the specification value div to bring in fresh data.
+                var newElem = $('.multi-field-specific:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-specific-' + counterspec).find('div.specific-values').html('').find('option[value=""]').attr("selected", "selected");
+
+                //remove the initial id from select and add new ID
+                $('.multi-field-specific').find('select').last().removeAttr('id').attr('id', 'specification_id_' + counterspec).find('option').focus();
+                //remove all the selected options from newly cloned select
+                $('.multi-field-specific').find('select').last().val('');
+                //loop over the select with class product specification and collect all selected ID. Disable the selected ID from newly cloned select
+                $('select.product-specification').each(function() {
+                    var id = this.value;
+                    $('.multi-field-specific').find('select').last().find('option').filter(function() {
+                        return this.value === id;
+                    }).prop('disabled', true);
+                });
+            });
+
+            $('.multi-field-specific .remove-field-specific', $wrapper).click(function() {
+                if ($('.multi-field-specific', $wrapper).length > 1){
+                    var id = $(this).prev().find('option:selected').val();
+                    //get the value of closest selected option from the delete button.
+
+                    //========= FOR DISABLING THE BUTTON=============
+                    //remove the recently deleted id from the array of unique ID
+                    database_specification = jQuery.grep(database_specification, function(value) {
+                        return value !== id;
+                    });
+                    //again compare the data and disable/enable accordingly
+                    if(database_specification.sort().compare(all_specific_id.sort())) {
+                        //if all matches, disable button
+                        $('#add-field-specific').addClass('add-disabled');
+                    } else {
+                        //if all doesn't match, enable button
+                        $('#add-field-specific').removeClass('add-disabled');
+                    }
+
+                    //========= FOR DISABLING THE BUTTON=============
+
+
+                    $('select.product-specification').each(function() {
+                        var val = id;
+                        $('select.product-specification').find('option').filter(function() {
+                            return this.value === val;
+                        }).prop('disabled', false);
+                    }); //use the value to remove the disable option from all others select field
+
+                    //remove the cloned div after clicking on delete button.
+                    $(this).parent('.input-group').parent('.multi-field-specific').remove();
+                }
+            });
+
+            //getting the attributeValues based on the attribute changes from multiple select fields
+            $('select.product-specification').on('change', function(element) {
+                var id       = this.value;
+                var name     = this.name;
+                var selectid = this.id;
+
+                //========= FOR DISABLING THE BUTTON=============
+                //empty the array first
+                database_specification.length =0;
+                //upon selected, add the value in array
+                $("select.product-specification option:selected").each(function () {
+                    database_specification.push(this.value);
+                });
+                //compare the unique values with array that contains all values of attributes
+                //using custom function with jquery prototype compare
+                if(database_specification.sort().compare(all_specific_id.sort())) {
+                    //if all matches, disable button
+                    $('#add-field-specific').addClass('add-disabled');
+                } else {
+                    //if all doesn't matche, enable button
+                    $('#add-field-specific').removeClass('add-disabled');
+                }
+
+                //========= END OF DISABLING THE BUTTON=============
+
+                //remove all the disable option except for the first one
+                $('option[value!=""]').prop('disabled', false);
+                //loop around product specification select field and disable the recently selected option from other select.
+                $('select.product-specification').each(function() {
+                    var val = this.value;
+                    $('select.product-specification').not(this).find('option').filter(function() {
+                        return this.value === val;
+                    }).prop('disabled', true);
+                });
+
+                //determining the parent div of the selected field inorder to target right div to attach the values to
+                var wrapper = $(this).parent('.input-group').parent('.multi-field-specific').find('.specific-values');
+                //setting URL and fetching data with ajax request
+
+                wrapper.empty();
+                //emptying the wrapper inorder to avoid duplication and attaching text-field accordingly.
+                var attachment = ' <div class="form-group mb-3">' + '<label>Specification Details For ' + $(this).find("option:selected").text() + '</label> ' +
+                    '<textarea class="form-control" rows="4" name="specification_details_'+id+'" id="specification_details_'+id+'" required></textarea> ' +
+                    '</div>';
+               wrapper.append(attachment);
             });
         });
 

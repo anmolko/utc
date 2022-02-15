@@ -55,6 +55,17 @@
             border-color: #41237c;
             color: #41237c;
         }
+        .custom-card{
+            border: 1px solid #ededed;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+            padding: 1.25rem;
+        }
+
+        .custom-card:hover{
+            box-shadow: 1px 0px 20px rgb(0 0 0 / 6%) !important;
+        }
         /*end of custom select*/
 
 
@@ -69,9 +80,9 @@
                     <h4 class="card-title d-inline-block mb-0">
                         Product Create Form
                     </h4>
-                    <a href="{{route('products.index')}}" class="float-right add-doc text-primary">Go Back
-                    </a>
 
+                <a href="{{route('products.index')}}" class="float-right add-doc text-primary">Go Back
+                </a>
             </div>
         </div>
         {!! Form::open(['id'=>'productcreate-form','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
@@ -84,6 +95,17 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 General Details
                             </h4>
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                   <a class="dropdown-item action-value-edit small"> Add Primary Category </a>
+                                   <a class="dropdown-item action-value-edit small"> Add Secondary Category </a>
+                                   <a class="dropdown-item action-value-edit small"> Add Brand</a>
+                                   <a class="dropdown-item action-value-edit small"> Add Brand Series </a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-body">
@@ -167,6 +189,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="company-doc">
@@ -175,13 +198,21 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Attribute and Values <span class="text-muted text-danger">*</span>
                             </h4>
-
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item action-value-edit small"> Add Attribute  </a>
+                                    <a class="dropdown-item action-value-edit small"> Add Attribute's Value </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
 
                             <div id="multi-field-wrapper">
                                 <div id="multi-fields">
-                                    <div class="multi-field">
+                                    <div class="multi-field custom-card">
                                         <div class="input-group mb-3">
                                             <select class="form-control shadow-none product-attribute" name="product_attribute_id[]" id="product_attribute_id_0" required>
                                                 <option value disabled readonly selected> Select Attributes</option>
@@ -220,13 +251,20 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Product Specification Mapping <span class="text-muted text-danger">*</span>
                             </h4>
-
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item action-value-edit small"> Add Specification  </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
 
                             <div id="multi-field-wrapper-specific">
                                 <div id="multi-fields-specific">
-                                    <div class="multi-field-specific">
+                                    <div class="multi-field-specific custom-card">
                                         <div class="input-group mb-3">
                                             <select class="form-control shadow-none product-specification" name="specification_id[]" id="specification_id_0" required>
                                                 <option value disabled readonly selected> Select Specification</option>
@@ -237,10 +275,10 @@
                                             <button class="btn btn-theme text-white remove-field-specific"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="specific-values" id="addValuesspecific">
-{{--                                            <div class="form-group mb-3">--}}
-{{--                                                <label>Specification Details </label>--}}
-{{--                                                <textarea class="form-control" rows="4" name="specification_details" id="specification_details"></textarea>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="form-group mb-3">--}}
+                                            {{--                                                <label>Specification Details </label>--}}
+                                            {{--                                                <textarea class="form-control" rows="4" name="specification_details" id="specification_details"></textarea>--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +292,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-md-12">
@@ -270,7 +307,7 @@
                             <div class="form-group mb-3">
                                 <label>Thumbnail <span class="text-muted text-danger">*</span></label>
                                 <div class="row justify-content-center">
-                                    <div class="col-6 mb-4">
+                                    <div class="col-4 mb-4">
                                         <div class="custom-file h-auto">
                                             <div class="avatar-upload">
                                                 <div class="avatar-edit">
@@ -283,7 +320,7 @@
                                             </div>
                                             <img id="current-thumbnail-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_image" class="w-100 current-img">
                                         </div>
-                                        <span class="ctm-text-sm">*use image minimum of 270 x 300px for product thumbnail</span>
+                                        <span class="ctm-text-sm">*use image minimum of 265 x 210px for product thumbnail</span>
                                     </div>
                                 </div>
                             </div>
@@ -292,6 +329,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="company-doc">
@@ -454,7 +492,7 @@
                     data:{id:id},
                     success: function(response){
                         wrapper.empty();
-                        //empting the wrapper inorder to avoid duplication and attaching values accordinly.
+                        //empting the wrapper inorder to avoid duplication and attaching values accordingly.
                         jQuery.each(response, function(index, item) {
                             var attachment = ' <div class="col-md-3 col-6 text-center">' +
                                 '<label class="select-label"> ' +
@@ -512,7 +550,7 @@
             $("#add-field-specific", $(this)).click(function(e) {
                 counterspec++;
                 //clone the element and add the id to div to make select field unique and empty the attribute value div to bring in fresh data.
-                var newElem = $('.multi-field-specific:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-' + counterspec).find('div.specific-values').html('');
+                var newElem = $('.multi-field-specific:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-specific-' + counterspec).find('div.specific-values').html('');
                 //remove the initial id from select and add new ID
                 $('.multi-field-specific').find('select').last().removeAttr('id').attr('id', 'specification_id_' + counterspec).find('option').focus();
 
@@ -553,7 +591,7 @@
 
                 //remove all the disable option except for the first one
                 $('option[value!=""]').prop('disabled', false);
-                //loop around product attribute select field and disable the recently selected option from other select.
+                //loop around product specification select field and disable the recently selected option from other select.
                 $('select.product-specification').each(function() {
                     var val = this.value;
                     $('select.product-specification').not(this).find('option').filter(function() {
@@ -563,10 +601,8 @@
 
                 //determining the parent div of the selected field inorder to target right div to attach the values to
                 var wrapper = $(this).parent('.input-group').parent('.multi-field-specific').find('.specific-values');
-                //setting URL and fetching data with ajax request
-
                 wrapper.empty();
-                //empting the wrapper inorder to avoid duplication and attaching values accordinly.
+                //emptying the wrapper inorder to avoid duplication and attaching textfield accordingly.
                 var attachment = ' <div class="form-group mb-3">' + '<label>Specification Details For ' + $(this).find("option:selected").text() + '</label> ' +
                     '<textarea class="form-control" rows="4" name="specification_details_'+id+'" id="specification_details_'+id+'" required></textarea> ' +
                     '</div>';
@@ -610,9 +646,7 @@
         });
 
 
-
-
-            //getting secondary category value based on primary category values selection
+        //getting secondary category value based on primary category values selection
         $('.product-primary-cat').on('change', function(element) {
             var id = this.value;
             var name = this.name;

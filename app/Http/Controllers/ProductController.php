@@ -98,7 +98,7 @@ class ProductController extends Controller
                 $image          = $request->file('thumbnail');
                 $name           = uniqid().'_'.$image->getClientOriginalName();
                 $path           = base_path().'/public/images/uploads/products/';
-                $moved          = Image::make($image->getRealPath())->resize(270, 300, function ($constraint) {
+                $moved          = Image::make($image->getRealPath())->resize(265, 210, function ($constraint) {
                     $constraint->aspectRatio(); //maintain image ratio
                 })->orientate()->save($path.$name);
                 if ($moved){
@@ -123,13 +123,13 @@ class ProductController extends Controller
                 }
                 foreach ($specification as $key=>$value){
                     $specificDetails = $request->input('specification_details_'.$value);
-                        $data2=[
-                            'product_id'                => $product->id,
-                            'specification_id'          => $value,
-                            'specification_details'     => $specificDetails,
-                            'created_by'                => Auth::user()->id,
-                        ];
-                        $productSpecification = ProductSpecification::create($data2);
+                    $data2=[
+                        'product_id'                => $product->id,
+                        'specification_id'          => $value,
+                        'specification_details'     => $specificDetails,
+                        'created_by'                => Auth::user()->id,
+                    ];
+                    $productSpecification = ProductSpecification::create($data2);
 
                 }
                 Session::flash('success','Product Created Successfully');
@@ -166,27 +166,39 @@ class ProductController extends Controller
         $primary            = ProductPrimaryCategory::with('secondary')->get();
         $attributes         = ProductAttribute::with('values')->get();
         $values             = AttributeValue::all();
-        $product            = Product::with('attributeValue')->find($id);
+        $allspecifications  = Specification::all();
+        $product            = Product::with('attributeValue','productSpecification')->find($id);
         $secondary          = ProductSecondaryCategory::where('primary_category_id',$product->primary_category_id)->get();
         $brands             = Brand::with('series')->get();
         $brand_series       = BrandSeries::where('brand_id',$product->brand_id)->get();
 
+        //getting product attribute ID from the pivot table because the attribute id is repeated as one attribute can have many saved values
         foreach ($product->attributeValue as $values) {
             if($values->pivot->product_id == $id){
                 $attributeID[]    = $values->pivot->product_attribute_id;
+                //take all the attribute values and remove the repetitive one by making them unique.
                 $new = array_unique($attributeID);
             }
         }
+
+        //take all the product related specification ID from pivot table in this loop as one specification ID has one detail attached to it.
+        foreach ($product->productSpecification as $pro){
+            $pivotSpecification[$pro->pivot->specification_id] = $pro->pivot->specification_details;
+        }
+
+        //take the new unique attribute array and find the details in product attr table and its values from pivot table
         foreach ($new as $n){
             $relatedAttr[]  = ProductAttribute::with('values')->find($n);
-            $pivotValues[] =  ProductValue::where('product_id',$id)->where('product_attribute_id',$n)->get();
+            $pivotValues[]  = ProductValue::where('product_id',$id)->where('product_attribute_id',$n)->get();
         }
+
+        //add all the values that are in use in pivot table to different array to use it in jquery.
         foreach ($pivotValues as $pivot){
             foreach ($pivot as $p){
                 $selectedValues[] = $p->attribute_value_id;
             }
         }
-        return view('backend.products.edit',compact('product','primary','brands','brand_series','secondary','attributes','values','relatedAttr','selectedValues'));
+        return view('backend.products.edit',compact('product','primary','brands','brand_series','pivotSpecification','allspecifications','secondary','attributes','values','relatedAttr','selectedValues'));
     }
 
     /**
@@ -198,6 +210,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $slug = Product::where('slug', $request->input('slug'))->where('id', '!=' , $id)->first();
         if ($slug !== null) {
             return 'duplicate';
@@ -219,7 +232,7 @@ class ProductController extends Controller
                 $image       = $request->file('thumbnail');
                 $name1       = uniqid().'_'.$image->getClientOriginalName();
                 $path        = base_path().'/public/images/uploads/products/';
-                $moved       = Image::make($image->getRealPath())->resize(270, 300, function ($constraint) {
+                $moved       = Image::make($image->getRealPath())->resize(265, 210, function ($constraint) {
                     $constraint->aspectRatio(); //maintain image ratio
                 })->orientate()->save($path.$name1);
 
@@ -233,27 +246,44 @@ class ProductController extends Controller
 
 
             $status = $product->update();
-            $incoming_attribute = $request->input('product_attribute_id');
+            $incoming_attribute     = $request->input('product_attribute_id');
+            $incoming_specification = $request->input('specification_id');
             if($status){
-                $removeValues = ProductValue::where('product_id',$id)->get();
+                $removeValues        = ProductValue::where('product_id',$id)->get();
+                $removeSpecification = ProductSpecification::where('product_id',$id)->get();
                 foreach ($removeValues as $val){
                     $val->delete();
                 }//remove all the values from the pivot table
+                foreach ($removeSpecification as $spec){
+                    $spec->delete();
+                }
                 if($incoming_attribute !== null) {
                     foreach ($incoming_attribute as $key=>$value) {
                         $attrValue = $request->input('attribute_value_id_' . $value);
                         foreach ($attrValue as $av) {
                             $data1 = [
-                                'product_id' => $product->id,
-                                'product_attribute_id' => $value,
-                                'attribute_value_id' => $av,
-                                'created_by' => Auth::user()->id,
+                                'product_id'            => $product->id,
+                                'product_attribute_id'  => $value,
+                                'attribute_value_id'    => $av,
+                                'created_by'            => Auth::user()->id,
                             ];
                             $productValue = ProductValue::create($data1);
                         }
                     }
                 }// recreate all the incoming values in pivot table again.
-                Session::flash('success','Product was updated successfully');
+                if($incoming_specification !== null) {
+                    foreach ($incoming_specification as $key=>$value) {
+                        $specificDetails = $request->input('specification_details_'.$value);
+                        $data2=[
+                            'product_id'                => $product->id,
+                            'specification_id'          => $value,
+                            'specification_details'     => $specificDetails,
+                            'created_by'                => Auth::user()->id,
+                        ];
+                        $productSpecification = ProductSpecification::create($data2);
+                    }
+                }
+                    Session::flash('success','Product was updated successfully');
             }
             else{
                 Session::flash('error','Something Went Wrong. Product could not be Updated');

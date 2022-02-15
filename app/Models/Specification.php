@@ -11,4 +11,8 @@ class Specification extends Model
     protected $table ='specification';
     protected $fillable =['id','name','slug','created_by','updated_by'];
 
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Product')->withPivot('id','specification_details');
+    }
 }

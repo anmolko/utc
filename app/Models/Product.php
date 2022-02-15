@@ -32,6 +32,11 @@ class Product extends Model
         return $this->belongsToMany('App\Models\AttributeValue')->withPivot('id','product_attribute_id');
     }
 
+    public function productSpecification()
+    {
+        return $this->belongsToMany('App\Models\Specification')->withPivot('id','specification_details');
+    }
+
     public function gallery()
     {
         return $this->hasMany('App\Models\ProductGallery');
