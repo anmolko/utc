@@ -24,7 +24,18 @@
         overflow: hidden;
         font-size: 14px;
     }
+    @media only screen and (min-width: 575px){
+        article.main-post.style1 .featured-post {
+            width: 255px;
+            height: 225px;
+        }
 
+        article.main-post .featured-post a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 </style>
 @endsection
 @section('breadcrumb')
@@ -94,11 +105,10 @@
                             @endforeach
                         @endif
                     </div><!-- /.post-wrap -->
-                    <div class="blog-pagination style2">
-                        {{ $allPosts->links('vendor.pagination.default') }}
 
-                      
-                    </div><!-- /.blog-pagination style2 -->
+                    {{ $allPosts->links('vendor.pagination.default') }}
+
+                   <!-- /.blog-pagination style2 -->
                 </div><!-- /.col-md-8 col-lg-9 -->
                 <div class="col-md-4 col-lg-3">
                     <div class="sidebar left">
