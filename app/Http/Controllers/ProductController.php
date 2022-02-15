@@ -210,7 +210,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
         $slug = Product::where('slug', $request->input('slug'))->where('id', '!=' , $id)->first();
         if ($slug !== null) {
             return 'duplicate';
