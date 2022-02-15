@@ -24,7 +24,7 @@
                             <!-- /.widget-content -->
                             <ul class="social-list">
                                 <li>
-                                    <a href="#" title="">
+                                    <a href="@if(!empty(@$setting_data->facebook)) {{@$setting_data->facebook}} @endif" title="">
                                         <i class="fa fa-facebook" aria-hidden="true"></i>
                                     </a>
                                 </li>
@@ -34,7 +34,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" title="">
+                                    <a href="@if(!empty(@$setting_data->instagram)) {{@$setting_data->instagram}} @endif" title="">
                                         <i class="fa fa-instagram" aria-hidden="true"></i>
                                     </a>
                                 </li>
