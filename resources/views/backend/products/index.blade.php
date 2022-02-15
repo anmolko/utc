@@ -18,6 +18,15 @@
             border-radius: 10px;
         }
 
+        .hide-overflow{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            max-width: 170px;
+        }
+
+
         /*end for image*/
 
 
@@ -63,7 +72,7 @@
                                                     <th>Name</th>
                                                     <th>Slug</th>
                                                     <th>Primary Category</th>
-                                                    <th>Secondary Category</th>
+                                                    <th>Brand</th>
                                                     <th>Status</th>
                                                     <th class="text-right">Action</th>
                                                 </tr>
@@ -79,10 +88,10 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>{{$product->name}}</td>
-                                                            <td>{{$product->slug}}</td>
+                                                            <td class="hide-overflow">{{$product->name}}</td>
+                                                            <td  class="hide-overflow">{{$product->slug}}</td>
                                                             <td>{{ucfirst($product->primaryCategory->name)}}</td>
-                                                            <td>{{ucfirst($product->secondaryCategory->name)}}</td>
+                                                            <td>{{ucfirst($product->brand->name)}}</td>
                                                             <td><div class="dropdown action-label drop-active">
                                                                     <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> {{(($product->status == 'active') ? "Active":"De-active")}}
                                                                     </a>

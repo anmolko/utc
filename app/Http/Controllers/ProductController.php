@@ -39,7 +39,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products      = Product::with('primaryCategory','secondaryCategory')->get();
+        $products      = Product::with('primaryCategory','secondaryCategory','brand')->get();
         $productbanner = SiteBanner::where('name','product')->first();
 
         return view('backend.products.index',compact('products','productbanner'));
