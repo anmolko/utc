@@ -96,6 +96,17 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 General Details
                             </h4>
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item action-value-edit small"> Add Primary Category </a>
+                                    <a class="dropdown-item action-value-edit small"> Add Secondary Category </a>
+                                    <a class="dropdown-item action-value-edit small"> Add Brand</a>
+                                    <a class="dropdown-item action-value-edit small"> Add Brand Series </a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-body">
@@ -193,7 +204,15 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Attribute and Values <span class="text-muted text-danger">*</span>
                             </h4>
-
+                            <div class="float-right action-label dropdown btn-group dropleft">
+                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item action-value-edit small"> Add Attribute  </a>
+                                    <a class="dropdown-item action-value-edit small"> Add Attribute's Value </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
 
