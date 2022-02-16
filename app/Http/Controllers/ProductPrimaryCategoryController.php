@@ -55,26 +55,6 @@ class ProductPrimaryCategoryController extends Controller
             'created_by'  => Auth::user()->id,
         ];
 
-        if(!empty($request->file('image'))){
-            $image          = $request->file('image');
-            $name           = uniqid().'_'.$image->getClientOriginalName();
-            $path           = base_path().'/public/images/uploads/product_primary/';
-            $moved          = Image::make($image->getRealPath())->resize(270, 300)->orientate()->save($path.$name);
-            if ($moved){
-                $data['image']=$name;
-            }
-        }
-
-        if(!empty($request->file('banner'))){
-            $image          = $request->file('banner');
-            $name           = uniqid().'_'.$image->getClientOriginalName();
-            $path           = base_path().'/public/images/uploads/product_primary/banners/';
-            $moved          = Image::make($image->getRealPath())->resize(1479, 311)->orientate()->save($path.$name);
-            if ($moved){
-                $data['banner']=$name;
-            }
-        }
-
         $category = ProductPrimaryCategory::create($data);
         if($category){
             Session::flash('success','Product Primary Category Created Successfully');
@@ -122,35 +102,6 @@ class ProductPrimaryCategoryController extends Controller
         $category->name         = $request->input('name');
         $category->slug         = $request->input('slug');
         $category->updated_by   = Auth::user()->id;
-        $oldimage               = $category->image;
-        $oldbanner              = $category->banner;
-
-        if (!empty($request->file('image'))){
-            $image       = $request->file('image');
-            $name1       = uniqid().'_'.$image->getClientOriginalName();
-            $path        = base_path().'/public/images/uploads/product_primary/';
-            $moved       = Image::make($image->getRealPath())->resize(270, 300)->orientate()->save($path.$name1);
-
-            if ($moved){
-                $category->image= $name1;
-                if (!empty($oldimage) && file_exists(public_path().'/images/uploads/product_primary/'.$oldimage)){
-                    @unlink(public_path().'/images/uploads/product_primary/'.$oldimage);
-                }
-            }
-        }
-        if (!empty($request->file('banner'))){
-            $image       = $request->file('banner');
-            $name1       = uniqid().'_'.$image->getClientOriginalName();
-            $path        = base_path().'/public/images/uploads/product_primary/banners/';
-            $moved       = Image::make($image->getRealPath())->resize(1479, 311)->orientate()->save($path.$name1);
-
-            if ($moved){
-                $category->banner= $name1;
-                if (!empty($oldbanner) && file_exists(public_path().'/images/uploads/product_primary/banners/'.$oldbanner)){
-                    @unlink(public_path().'/images/uploads/product_primary/banners/'.$oldbanner);
-                }
-            }
-        }
         $status                 = $category->update();
         if($status){
             Session::flash('success','Product Primary Category Updated Successfully');

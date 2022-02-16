@@ -71,7 +71,7 @@
                                     Product Primary Category
                                 </h4>
                             </div>
-                            {!! Form::open(['route' => 'proprimarycat.store','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+                            {!! Form::open(['route' => 'proprimarycat.store','method'=>'post','class'=>'needs-validation','novalidate'=>'']) !!}
 
                             <div class="card-body">
                                 <div class="form-group mb-3">
@@ -86,46 +86,6 @@
                                     <input type="text" class="form-control" name="slug" id="slug" required>
                                     <div class="invalid-feedback">
                                         Please enter the category Slug.
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>Image <span class="text-muted text-danger">*</span></label>
-                                    <div class="row justify-content-center">
-                                        <div class="col-9 mb-4">
-                                            <div class="custom-file h-auto">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageUpload" onchange="loadbasicFile('imageUpload','current-img',event)" name="image" required />
-                                                        <label for="imageUpload"></label>
-                                                        <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                            Please select a image.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img id="current-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_image" class="w-100 current-img">
-                                            </div>
-                                            <span class="ctm-text-sm">*use image minimum of 270 x 300px for Primary category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>Banner Image <span class="text-muted text-danger">*</span></label>
-                                    <div class="row justify-content-center">
-                                        <div class="col-9 mb-4">
-                                            <div class="custom-file h-auto">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageUploadbanner" onchange="loadbasicFile('imageUploadbanner','current-imageUploadbanner-img',event)" name="banner" required />
-                                                        <label for="imageUploadbanner"></label>
-                                                        <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                            Please select a banner image.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img id="current-imageUploadbanner-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_banner_image" class="w-100 current-img">
-                                            </div>
-                                            <span class="ctm-text-sm">*use image minimum of 1479 x 311px for Primary category banner</span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="text-center mt-3">
@@ -150,7 +110,6 @@
                                         <table id="primary-category-index" class="table custom-table">
                                             <thead>
                                             <tr>
-                                                <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Slug</th>
                                                 <th class="text-right">Action</th>
@@ -160,13 +119,6 @@
                                             @if(!empty($primary_categories))
                                                 @foreach($primary_categories as  $categoryList)
                                                     <tr>
-                                                        <td class="align-middle pt-6 pb-4 px-6">
-                                                            <div class="avatar-upload">
-                                                                <div class="cat-preview">
-                                                                    <img id="primary-img" src="{{asset('/images/uploads/product_primary/'.@$categoryList->image)}}" alt="{{@$categoryList->slug}}"/>
-                                                                </div>
-                                                            </div>
-                                                        </td>
                                                         <td>{{ ucwords(@$categoryList->name) }}</td>
                                                         <td>{{ @$categoryList->slug }}</td>
                                                         <td class="text-right">
@@ -199,13 +151,13 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Primary Category
                                 </h4>
                             </div>
-                            {!! Form::open(['route' => 'secondarycat.store','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+                            {!! Form::open(['route' => 'secondarycat.store','method'=>'post','class'=>'needs-validation','novalidate'=>'']) !!}
 
                             <div class="card-body">
                                 <div class="form-group mb-3">
@@ -242,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Secondary Category List
@@ -305,7 +257,7 @@
         </form>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content pb-4">
-                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updateprimarycategory','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updateprimarycategory','novalidate'=>'']) !!}
 
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -322,48 +274,6 @@
                         <input type="text" class="form-control" name="slug" id="update-slug" required>
                         <div class="invalid-feedback">
                             Please enter the category Slug.
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Image <span class="text-muted text-danger">*</span></label>
-                        <div class="row justify-content-center">
-                            <div class="col-9 mb-4">
-                                <div class="custom-file h-auto">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageeditUpload" onchange="loadbasicFile('imageeditUpload','current-edit-img',event)" name="image" />
-                                            <label for="imageeditUpload"></label>
-                                            <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                Please select a image.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img id="current-edit-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_image" class="w-100 current-img">
-                                </div>
-                                <span class="ctm-text-sm">*use image minimum of 270 x 300px for Primary category</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Banner <span class="text-muted text-danger">*</span></label>
-                        <div class="row justify-content-center">
-                            <div class="col-9 mb-4">
-                                <div class="custom-file h-auto">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageeditbannerUpload" onchange="loadbasicFile('imageeditbannerUpload','current-imageeditbannerUpload-img',event)" name="banner" />
-                                            <label for="imageeditbannerUpload"></label>
-                                            <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                Please select a banner image.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img id="current-imageeditbannerUpload-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="primary_banner_image" class="w-100 current-img">
-                                </div>
-                                <span class="ctm-text-sm">*use image minimum of 1479 x 311px for Primary category banner</span>
-                            </div>
                         </div>
                     </div>
 
@@ -404,14 +314,14 @@
                         <label>Category Name <span class="text-muted text-danger">*</span></label>
                         <input type="text" class="form-control" name="name" id="secondary-name-edit" onkeyup="slugMaker('secondary-name-edit','secondary-slug-edit')" required>
                         <div class="invalid-feedback">
-                            Please enter the category name.
+                            Please enter the Secondary category name.
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <label>Slug <span class="text-muted text-danger">*</span></label>
                         <input type="text" class="form-control" name="slug" id="secondary-slug-edit" required>
                         <div class="invalid-feedback">
-                            Please enter the category Slug.
+                            Please enter the Secondary category Slug.
                         </div>
                     </div>
                     <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>

@@ -100,10 +100,10 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                   <a class="dropdown-item action-value-edit small"> Add Primary Category </a>
-                                   <a class="dropdown-item action-value-edit small"> Add Secondary Category </a>
-                                   <a class="dropdown-item action-value-edit small"> Add Brand</a>
-                                   <a class="dropdown-item action-value-edit small"> Add Brand Series </a>
+                                   <a class="dropdown-item action-primary-add small" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
+                                   <a class="dropdown-item action-secondary-add small" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
+                                   <a class="dropdown-item action-brand-add small" data-toggle="modal" data-target="#add_brand_details"> Add Brand</a>
+                                   <a class="dropdown-item action-series-add small" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
                                 </div>
                             </div>
                         </div>
@@ -135,9 +135,9 @@
                                 <select class="form-control  shadow-none product-primary-cat" name="primary_category_id" required>
                                     <option value disabled selected> Select Primary Category</option>
 
-                                        @foreach($primary as $pri)
-                                        @if(count($pri->secondary)>0)
-                                            <option value="{{$pri->id}}"> {{$pri->name}} </option>
+                                        @foreach($primary as $primaryList)
+                                        @if(count($primaryList->secondary)>0)
+                                            <option value="{{$primaryList->id}}"> {{$primaryList->name}} </option>
                                         @endif
                                         @endforeach
 
@@ -203,8 +203,8 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item action-value-edit small"> Add Attribute  </a>
-                                    <a class="dropdown-item action-value-edit small"> Add Attribute's Value </a>
+                                    <a class="dropdown-item action-attribute-edit small" data-toggle="modal" data-target="#add_attribute_details"> Add Attribute  </a>
+                                    <a class="dropdown-item action-value-edit small" data-toggle="modal" data-target="#add_value_details"> Add Attribute's Value </a>
                                 </div>
                             </div>
                         </div>
@@ -256,7 +256,7 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item action-value-edit small"> Add Specification  </a>
+                                    <a class="dropdown-item action-specification-edit small" data-toggle="modal" data-target="#add_specification_details"> Add Specification  </a>
                                 </div>
                             </div>
                         </div>
@@ -362,6 +362,16 @@
         </div>
         {!! Form::close() !!}
     </div>
+
+
+    <!-- Add Primary Category Modal -->
+    @include('backend.products.modals.primary')
+    <!-- /Add Primary Category Modal -->
+
+    <!-- Add Secondary Category Modal -->
+    @include('backend.products.modals.secondary')
+    <!-- /Add Secondary Category Modal -->
+
 @endsection
 
 @section('js')
@@ -377,6 +387,16 @@
         <?php foreach($specifications as $key => $val){ ?>
         all_specific_id.push('<?php echo $val->id; ?>');
         <?php } ?>
+
+        function slugMaker(title, slug){
+            $("#"+ title).keyup(function(){
+                var Text = $(this).val();
+                Text = Text.toLowerCase();
+                var regExp = /\s+/g;
+                Text = Text.replace(regExp,'-');
+                $("#"+slug).val(Text);
+            });
+        }
 
         $("#slug").keyup(function(){
             var Text = $(this).val();
@@ -422,6 +442,7 @@
             replacement.src = URL.createObjectURL(event.target.files[0]);
         };
 
+        //for attributes and values
         var counter = 0;
         $('#multi-field-wrapper').each(function() {
             var $wrapper = $('#multi-fields', this);
@@ -543,8 +564,8 @@
             });
         });
 
+        //for specification and details
         var counterspec = 0;
-
         $('#multi-field-wrapper-specific').each(function() {
             var $wrapper = $('#multi-fields-specific', this);
             $("#add-field-specific", $(this)).click(function(e) {
@@ -644,7 +665,6 @@
 
 
         });
-
 
         //getting secondary category value based on primary category values selection
         $('.product-primary-cat').on('change', function(element) {
