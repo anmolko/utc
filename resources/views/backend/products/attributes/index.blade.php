@@ -66,7 +66,7 @@
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Attribute
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label>Attribute Slug <span class="text-muted text-danger">*</span></label>
+                                    <label>Slug <span class="text-muted text-danger">*</span></label>
                                     <input type="text" class="form-control" name="slug" id="slug" required>
                                     <div class="invalid-feedback">
                                         Please enter the attribute Slug.
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Attribute List
@@ -152,13 +152,13 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Attribute's Value
                                 </h4>
                             </div>
-                            {!! Form::open(['route' => 'values.store','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+                            {!! Form::open(['route' => 'values.store','method'=>'post','class'=>'needs-validation','novalidate'=>'']) !!}
 
                             <div class="card-body">
                                 <div class="form-group mb-3">
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Attribute's Value List
@@ -251,91 +251,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit_attribute">
-        <form action="#" method="post" id="deleted-form" >
-            {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
-        </form>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content pb-4">
-                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updateattribute','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+    <!-- Edit Attribute Modal -->
+    @include('backend.products.attributes.modals.editattribute')
+    <!-- /Edit Attribute  Modal -->
 
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title mb-3">Edit Product Attribute</h4>
-                    <div class="form-group mb-3">
-                        <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="update-name" onclick="slugMaker('update-name','update-slug')" required>
-                        <div class="invalid-feedback">
-                            Please enter the attribute name.
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Slug <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="slug" id="update-slug" required>
-                        <div class="invalid-feedback">
-                            Please enter the attribute Slug.
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-theme text-white ctm-border-radius float-right button-1">Update</button>
-                </div>
-
-                {!! Form::close() !!}
-
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="edit_values">
-        <form action="#" method="post" id="deleted-form" >
-            {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
-        </form>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content pb-4">
-                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updatevalues','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
-
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title mb-3">Edit Attribute's Value</h4>
-
-                    <div class="form-group mb-3">
-                        <select class="form-control" name="product_attribute_id" id="product_attribute_id_edit" required>
-                            <option value disabled>Select Attribute</option>
-                            @if(!empty(@$attributes))
-                                @foreach(@$attributes as $attribute)
-                                    <option value="{{ @$attribute->id }}" >{{ ucwords(@$attribute->name) }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="value-name-edit" onclick="slugMaker('value-name-edit','value-slug-edit')" required />
-                        <div class="invalid-feedback">
-                            Please enter the value name.
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Slug <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="slug" id="value-slug-edit" required>
-                        <div class="invalid-feedback">
-                            Please enter the value Slug.
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-theme text-white ctm-border-radius float-right button-1">Update</button>
-                </div>
-
-                {!! Form::close() !!}
-
-
-            </div>
-        </div>
-    </div>
-
+    <!-- Edit values Modal -->
+    @include('backend.products.attributes.modals.editvalues')
+    <!-- /Edit values  Modal -->
 
 @endsection
 

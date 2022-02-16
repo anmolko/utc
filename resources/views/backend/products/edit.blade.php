@@ -101,10 +101,10 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item action-value-edit small"> Add Primary Category </a>
-                                    <a class="dropdown-item action-value-edit small"> Add Secondary Category </a>
-                                    <a class="dropdown-item action-value-edit small"> Add Brand</a>
-                                    <a class="dropdown-item action-value-edit small"> Add Brand Series </a>
+                                    <a class="dropdown-item action-primary-add small" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
+                                    <a class="dropdown-item action-secondary-add small" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
+                                    <a class="dropdown-item action-brand-add small" data-toggle="modal" data-target="#add_brand_details"> Add Brand</a>
+                                    <a class="dropdown-item action-series-add small" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
                                 </div>
                             </div>
                         </div>
@@ -209,8 +209,8 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item action-value-edit small"> Add Attribute  </a>
-                                    <a class="dropdown-item action-value-edit small"> Add Attribute's Value </a>
+                                    <a class="dropdown-item action-attribute-edit small" data-toggle="modal" data-target="#add_attribute_details"> Add Attribute  </a>
+                                    <a class="dropdown-item action-value-edit small" data-toggle="modal" data-target="#add_value_details"> Add Attribute's Value </a>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +225,9 @@
                                                 <select class="form-control shadow-none product-attribute" name="product_attribute_id[]" id="product_attribute_id_0" required>
                                                     <option value disabled readonly selected> Select Attributes</option>
                                                     @foreach($attributes as $attr)
-                                                        <option value="{{$attr->id}}" {{($attrvalues->id == $attr->id) ? "selected":""}}> {{$attr->name}} </option>
+                                                        @if(count($attr->values)>0)
+                                                            <option value="{{$attr->id}}" {{($attrvalues->id == $attr->id) ? "selected":""}}> {{$attr->name}} </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                                 <button class="btn btn-theme text-white remove-field"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -242,8 +244,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
-
 
                                 </div>
 
@@ -265,20 +265,16 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Product Specification Mapping <span class="text-muted text-danger">*</span>
                             </h4>
-                            <div class="float-right action-label dropdown btn-group dropleft">
-                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="float-right action-label btn-group">
+                                <a class="btn btn-theme text-white btn-sm" data-toggle="modal" data-target="#add_specification_details">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item action-value-edit small"> Add Specification  </a>
-                                </div>
                             </div>
                         </div>
                         <div class="card-body">
 
                             <div id="multi-field-wrapper-specific">
                                 <div id="multi-fields-specific">
-
                                     @foreach($pivotSpecification as $key=>$values)
                                         <div class="multi-field-specific custom-card">
                                             <div class="input-group mb-3">
@@ -297,11 +293,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     @endforeach
-
-
-
                                 </div>
 
                                 <a href="javascript:void(0)" class="btn btn-theme mt-2 text-white float-right ctm-border-radius" id="add-field-specific"><i class="fa fa-copy"></i> Add Specification </a>
@@ -368,7 +360,6 @@
 
                         </div>
                         <div class="card-body">
-
                             <div class="form-group mb-3">
                                 <label>Summary <span class="text-muted text-danger">*</span></label>
                                 <textarea maxlength="470" class="form-control" rows="4" name="summary" required>{{$product->summary}}</textarea>
@@ -389,6 +380,34 @@
         </div>
         {!! Form::close() !!}
     </div>
+
+    <!-- Add Primary Category Modal -->
+    @include('backend.products.modals.primary')
+    <!-- /Add Primary Category Modal -->
+
+    <!-- Add Secondary Category Modal -->
+    @include('backend.products.modals.secondary')
+    <!-- /Add Secondary Category Modal -->
+
+    <!-- Add Brand Modal -->
+    @include('backend.products.modals.brand')
+    <!-- /Add Brand Modal -->
+
+    <!-- Add Brand Series Modal -->
+    @include('backend.products.modals.series')
+    <!-- /Add Brand Series Modal -->
+
+    <!-- Add Attribute Modal -->
+    @include('backend.products.modals.attribute')
+    <!-- /Add Attribute Modal -->
+
+    <!-- Add Attribute's Value Modal -->
+    @include('backend.products.modals.values')
+    <!-- /Add Attribute Modal -->
+
+    <!-- Add specification's Value Modal -->
+    @include('backend.products.modals.specification')
+    <!-- /Add specification Modal -->
 
 @endsection
 
@@ -425,30 +444,40 @@
             $("#slug").val(Text);
         });
 
-        function createEditor ( elementId ) {
-            return ClassicEditor
-                .create( document.querySelector( '#' + elementId ), {
-                    toolbar : {
-                        items: [
-                            'heading', '|',
-                            'bold', 'italic', 'link', '|',
-                            'outdent', 'indent', '|',
-                            'bulletedList', 'numberedList', '|',
-                            'insertTable', 'blockQuote', '|',
-                            'undo', 'redo'
-                        ],
-                    },
-                } )
-                .then( editor => {
-                    window.editor = editor;
-                    editor.model.document.on( 'change:data', () => {
-                        $( '#' + elementId).text(editor.getData());
-                    } );
-                } )
-                .catch( err => {
-                    console.error( err.stack );
-                } );
+        function slugMaker(title, slug){
+            $("#"+ title).keyup(function(){
+                var Text = $(this).val();
+                Text = Text.toLowerCase();
+                var regExp = /\s+/g;
+                Text = Text.replace(regExp,'-');
+                $("#"+slug).val(Text);
+            });
         }
+
+        // function createEditor ( elementId ) {
+        //     return ClassicEditor
+        //         .create( document.querySelector( '#' + elementId ), {
+        //             toolbar : {
+        //                 items: [
+        //                     'heading', '|',
+        //                     'bold', 'italic', 'link', '|',
+        //                     'outdent', 'indent', '|',
+        //                     'bulletedList', 'numberedList', '|',
+        //                     'insertTable', 'blockQuote', '|',
+        //                     'undo', 'redo'
+        //                 ],
+        //             },
+        //         } )
+        //         .then( editor => {
+        //             window.editor = editor;
+        //             editor.model.document.on( 'change:data', () => {
+        //                 $( '#' + elementId).text(editor.getData());
+        //             } );
+        //         } )
+        //         .catch( err => {
+        //             console.error( err.stack );
+        //         } );
+        // }
 
         $(document).ready(function () {
             //for attributes - to disable add attribute button

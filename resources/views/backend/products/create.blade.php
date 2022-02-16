@@ -217,7 +217,9 @@
                                             <select class="form-control shadow-none product-attribute" name="product_attribute_id[]" id="product_attribute_id_0" required>
                                                 <option value disabled readonly selected> Select Attributes</option>
                                                 @foreach($attributes as $attr)
-                                                    <option value="{{$attr->id}}"> {{$attr->name}} </option>
+                                                    @if(count($attr->values)>0)
+                                                        <option value="{{$attr->id}}"> {{$attr->name}} </option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                             <button class="btn btn-theme text-white remove-field"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -377,7 +379,15 @@
     @include('backend.products.modals.series')
     <!-- /Add Brand Series Modal -->
 
-    <!-- Add specification Modal -->
+    <!-- Add Attribute Modal -->
+    @include('backend.products.modals.attribute')
+    <!-- /Add Attribute Modal -->
+
+    <!-- Add Attribute's Value Modal -->
+    @include('backend.products.modals.values')
+    <!-- /Add Attribute Modal -->
+
+    <!-- Add specification's Value Modal -->
     @include('backend.products.modals.specification')
     <!-- /Add specification Modal -->
 @endsection
