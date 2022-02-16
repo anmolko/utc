@@ -77,7 +77,7 @@
                             <div class="card-body">
                                 <div class="form-group mb-3">
                                     <label>Attribute Name <span class="text-muted text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" onkeyup="slugMaker('name','slug')" required>
+                                    <input type="text" class="form-control" name="name" id="name" onclick="slugMaker('name','slug')" required>
                                     <div class="invalid-feedback">
                                         Please enter the attribute name.
                                     </div>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Value Name <span class="text-muted text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="value-name" onkeyup="slugMaker('value-name','value-slug')" required />
+                                    <input type="text" class="form-control" name="name" id="value-name" onclick="slugMaker('value-name','value-slug')" required />
                                     <div class="invalid-feedback">
                                         Please enter the value name.
                                     </div>
@@ -265,7 +265,7 @@
                     <h4 class="modal-title mb-3">Edit Product Attribute</h4>
                     <div class="form-group mb-3">
                         <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="update-name" onkeyup="slugMaker('update-name','update-slug')" required>
+                        <input type="text" class="form-control" name="name" id="update-name" onclick="slugMaker('update-name','update-slug')" required>
                         <div class="invalid-feedback">
                             Please enter the attribute name.
                         </div>
@@ -313,7 +313,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="value-name-edit" onkeyup="slugMaker('value-name-edit','value-slug-edit')" required />
+                        <input type="text" class="form-control" name="name" id="value-name-edit" onclick="slugMaker('value-name-edit','value-slug-edit')" required />
                         <div class="invalid-feedback">
                             Please enter the value name.
                         </div>

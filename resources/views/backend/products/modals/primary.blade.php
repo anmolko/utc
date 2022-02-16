@@ -8,7 +8,7 @@
                 <h4 class="modal-title mb-3">Quick Add Primary Category</h4>
                 <div class="form-group mb-3">
                     <label>Category Name <span class="text-muted text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="add-primary-name" onkeyup="slugMaker('add-primary-name','add-primary-slug')" required>
+                    <input type="text" class="form-control" name="name" id="add-primary-name" onclick="slugMaker('add-primary-name','add-primary-slug')" required>
                     <div class="invalid-feedback">
                         Please enter the category name.
                     </div>

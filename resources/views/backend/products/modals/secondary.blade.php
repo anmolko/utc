@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label>Category Name <span class="text-muted text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="secondary-name-edit" onkeyup="slugMaker('secondary-name-edit','secondary-slug-edit')" required>
+                    <input type="text" class="form-control" name="name" id="secondary-name-edit" onclick="slugMaker('secondary-name-edit','secondary-slug-edit')" required>
                     <div class="invalid-feedback">
                         Please enter the secondary category name.
                     </div>

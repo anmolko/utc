@@ -62,7 +62,7 @@
                     <div class="card-body">
                         <div class="form-group mb-3">
                             <label>Specification Name <span class="text-muted text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" id="name" onkeyup="slugMaker('name','slug')" required>
+                            <input type="text" class="form-control" name="name" id="name" onclick="slugMaker('name','slug')" required>
                             <div class="invalid-feedback">
                                 Please enter the specification name.
                             </div>
@@ -147,7 +147,7 @@
                     <h4 class="modal-title mb-3">Edit Specification Details</h4>
                     <div class="form-group mb-3">
                         <label>Specification Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="update-name" onkeyup="slugMaker('update-name','update-slug')" required>
+                        <input type="text" class="form-control" name="name" id="update-name" onclick="slugMaker('update-name','update-slug')" required>
                         <div class="invalid-feedback">
                             Please enter the specification name.
                         </div>

@@ -76,7 +76,7 @@
                             <div class="card-body">
                                 <div class="form-group mb-3">
                                     <label>Category Name <span class="text-muted text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" onkeyup="slugMaker('name','slug')" required>
+                                    <input type="text" class="form-control" name="name" id="name" onclick="slugMaker('name','slug')" required>
                                     <div class="invalid-feedback">
                                         Please enter the category name.
                                     </div>
@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Category Name <span class="text-muted text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="secondary-name" onkeyup="slugMaker('secondary-name','secondary-slug')" required />
+                                    <input type="text" class="form-control" name="name" id="secondary-name" onclick="slugMaker('secondary-name','secondary-slug')" required />
                                     <div class="invalid-feedback">
                                         Please enter the Secondary category name.
                                     </div>
@@ -264,7 +264,7 @@
                     <h4 class="modal-title mb-3">Edit Primary Category</h4>
                     <div class="form-group mb-3">
                         <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="update-name" onkeyup="slugMaker('update-name','update-slug')" required>
+                        <input type="text" class="form-control" name="name" id="update-name" onclick="slugMaker('update-name','update-slug')" required>
                         <div class="invalid-feedback">
                             Please enter the category name.
                         </div>
@@ -312,7 +312,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="secondary-name-edit" onkeyup="slugMaker('secondary-name-edit','secondary-slug-edit')" required>
+                        <input type="text" class="form-control" name="name" id="secondary-name-edit" onclick="slugMaker('secondary-name-edit','secondary-slug-edit')" required>
                         <div class="invalid-feedback">
                             Please enter the Secondary category name.
                         </div>

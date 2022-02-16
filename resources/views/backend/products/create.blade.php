@@ -372,6 +372,14 @@
     @include('backend.products.modals.secondary')
     <!-- /Add Secondary Category Modal -->
 
+    <!-- Add Brand Modal -->
+    @include('backend.products.modals.brand')
+    <!-- /Add Brand Modal -->
+
+    <!-- Add Brand Series Modal -->
+    @include('backend.products.modals.series')
+    <!-- /Add Brand Series Modal -->
+
 @endsection
 
 @section('js')
