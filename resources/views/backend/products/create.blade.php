@@ -251,13 +251,10 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Product Specification Mapping <span class="text-muted text-danger">*</span>
                             </h4>
-                            <div class="float-right action-label dropdown btn-group dropleft">
-                                <a href="javascript:void(0)" class="btn btn-theme text-white btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="float-right action-label btn-group">
+                                <a class="btn btn-theme text-white btn-sm" data-toggle="modal" data-target="#add_specification_details">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item action-specification-edit small" data-toggle="modal" data-target="#add_specification_details"> Add Specification  </a>
-                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -380,6 +377,9 @@
     @include('backend.products.modals.series')
     <!-- /Add Brand Series Modal -->
 
+    <!-- Add specification Modal -->
+    @include('backend.products.modals.specification')
+    <!-- /Add specification Modal -->
 @endsection
 
 @section('js')
