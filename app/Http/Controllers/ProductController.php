@@ -299,23 +299,28 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $delete          = Product::find($id);
+        $delete          = Product::with('gallery')->find($id);
         $rid             = $delete->id;
         $thumbimage      = $delete->thumbnail;
-        $image           = $delete->image;
 
-        if (!empty($thumbimage) && file_exists(public_path().'/images/uploads/products/banners/'.$thumbimage)){
-            @unlink(public_path().'/images/uploads/products/banners/'.$thumbimage);
+
+        if (!empty($thumbimage) && file_exists(public_path().'/images/uploads/products/'.$thumbimage)){
+            @unlink(public_path().'/images/uploads/products/'.$thumbimage);
         }
-        if (!empty($image) && file_exists(public_path().'/images/uploads/products/'.$image)){
-            @unlink(public_path().'/images/uploads/products/'.$image);
+
+        if($delete->gallery->count() > 0){
+            foreach ($delete->gallery as $gallery){
+                $filename = $gallery->filename;
+                $thumbname = $gallery->resized_name;
+                if (!empty($filename) && file_exists(public_path().'/images/uploads/products/gallery/'.$filename)){
+                    @unlink(public_path().'/images/uploads/products/gallery/'.$filename);
+                }
+                if (!empty($thumbname) && file_exists(public_path().'/images/uploads/products/gallery/'.$thumbname)){
+                    @unlink(public_path().'/images/uploads/products/gallery/'.$thumbname);
+                }
+            }
         }
-//        $checkproduct       = $deletecategory->blogs()->get();
-//        if ($checkproduct->count() > 0) {
-//            return 0;
-//        }else{
         $delete->delete();
-//        }
         return '#products'.$rid;
     }
 

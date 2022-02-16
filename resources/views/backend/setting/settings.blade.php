@@ -285,39 +285,38 @@
                                 <div class="row">
                                     {{-- main logo --}}
 
-                                    <div class="col-lg-6 d-flex">
-                                        <div class="card ctm-border-radius shadow-sm company-logo flex-fill grow">
-                                            <div class="card-header">
-                                                <h4 class="card-title mb-0"> Backend Logo</h4>
-                                                <span class="ctm-text-sm">*Please use 849 x 151px of image for main logo</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-12 mb-4">
-                                                        <div class="custom-file h-auto">
-                                                            <div class="avatar-upload">
-                                                                <div class="avatar-edit">
-                                                                    <input type="file" class="custom-file-input" hidden id="imageUpload" onchange="loadbasicFile('imageUpload','current-imgupload-img',event)" name="logo">
-                                                                    <label for="imageUpload"></label>
-                                                                </div>
-                                                            </div>
-                                                            <img id="current-imgupload-img" src="<?php if(!empty($settings->logo)){ echo '/images/uploads/settings/'.$settings->logo; } else{  echo '/images/uploads/default-placeholder.png'; } ?>"  alt="{{@$settings->website_name}}" class="default-image w-100">
-                                                        </div>
-                                                    </div>
+{{--                                    <div class="col-lg-6 d-flex">--}}
+{{--                                        <div class="card ctm-border-radius shadow-sm company-logo flex-fill grow">--}}
+{{--                                            <div class="card-header">--}}
+{{--                                                <h4 class="card-title mb-0"> Backend Logo</h4>--}}
+{{--                                                <span class="ctm-text-sm">*Please use 849 x 151px of image for main logo</span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="card-body">--}}
+{{--                                                <div class="row justify-content-center">--}}
+{{--                                                    <div class="col-12 mb-4">--}}
+{{--                                                        <div class="custom-file h-auto">--}}
+{{--                                                            <div class="avatar-upload">--}}
+{{--                                                                <div class="avatar-edit">--}}
+{{--                                                                    <input type="file" class="custom-file-input" hidden id="imageUpload" onchange="loadbasicFile('imageUpload','current-imgupload-img',event)" name="logo">--}}
+{{--                                                                    <label for="imageUpload"></label>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <img id="current-imgupload-img" src="<?php if(!empty($settings->logo)){ echo '/images/uploads/settings/'.$settings->logo; } else{  echo '/images/uploads/default-placeholder.png'; } ?>"  alt="{{@$settings->website_name}}" class="default-image w-100">--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     {{-- white logo and favicon    --}}
-                                    <div class="col-xl-6 col-lg-12 col-md-12">
+                                    <div class="col-lg-6 d-flex">
                                         <div class="row">
                                             <div class="col-xl-12 col-lg-6 col-md-6 d-flex">
                                                 <div class="card ctm-border-radius shadow-sm grow flex-fill">
                                                     <div class="card-header">
                                                         <h4 class="card-title mb-0">Frontend Logo</h4>
-                                                        <span class="ctm-text-sm">*Please use 114 x 32px of image for frontend logo</span>
 
                                                     </div>
                                                     <div class="card-body text-center">
@@ -335,36 +334,39 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-6 col-md-6 d-flex">
-                                                <div class="card ctm-border-radius shadow-sm grow flex-fill">
-                                                    <div class="card-header">
-                                                        <h4 class="card-title d-inline-block mb-0">Favicon</h4>
-                                                    </div>
-                                                    <div class="card-body">
-
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-4 mb-4">
-                                                                <div class="custom-file h-auto">
-                                                                    <div class="avatar-upload">
-                                                                        <div class="avatar-edit">
-                                                                            <input type="file" class="custom-file-input" hidden="" id="favicon" onchange="loadbasicFile('favicon','currentfav-img',event)" name="favicon">
-                                                                            <label for="favicon"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <img id="currentfav-img" src="<?php if(!empty($settings->favicon)){ echo '/images/uploads/settings/'.$settings->favicon; } else{  echo '/images/uploads/default-placeholder.png'; } ?>" alt="{{@$settings->website_name}}" class="default-image w-100">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <span class="ctm-text-sm">*Please use 114 x 32px of image for frontend logo</span>
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6 d-flex">
+                                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                                            <div class="card-header">
+                                                <h4 class="card-title d-inline-block mb-0">Favicon</h4>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="row justify-content-center">
+                                                    <div class="col-6 mb-4">
+                                                        <div class="custom-file h-auto">
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type="file" class="custom-file-input" hidden="" id="favicon" onchange="loadbasicFile('favicon','currentfav-img',event)" name="favicon">
+                                                                    <label for="favicon"></label>
+                                                                </div>
+                                                            </div>
+                                                            <img id="currentfav-img" src="<?php if(!empty($settings->favicon)){ echo '/images/uploads/settings/'.$settings->favicon; } else{  echo '/images/uploads/default-placeholder.png'; } ?>" alt="{{@$settings->website_name}}" class="default-image w-100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
 
 
                                 </div>

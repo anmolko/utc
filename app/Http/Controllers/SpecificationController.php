@@ -119,12 +119,12 @@ class SpecificationController extends Controller
     {
         $delete          = Specification::find($id);
         $rid             = $delete->id;
-//        $check_relation  = $delete->series()->get();
-//        if ($check_relation->count() > 0) {
-//            return 0;
-//        }else{
+        $check_relation  = $delete->products()->get();
+        if ($check_relation->count() > 0) {
+            return 0;
+        }else{
             $delete->delete();
-//        }
+        }
         return '#specification_'.$rid;
     }
 }

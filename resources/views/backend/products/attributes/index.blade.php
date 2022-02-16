@@ -415,7 +415,7 @@
                         if(response == 0){
                             swal({
                                 title: "Warning.",
-                                text: "You need to Remove Assigned Secondary Category",
+                                text: "Cannot Delete ! This Value is attached with Products currently in use. You need to remove them first.",
                                 type: "info",
                                 showCancelButton: true,
                                 closeOnConfirm: false,
@@ -428,11 +428,10 @@
                         }else{
 
                             swal("Deleted!", "Deleted Successfully", "success");
-                            // toastr.success('file deleted Successfully');
                             $(response).remove();
-                            // setTimeout(function() {
-                            //     window.location.reload();
-                            // }, 2500);
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 2500);
                         }
 
                     })

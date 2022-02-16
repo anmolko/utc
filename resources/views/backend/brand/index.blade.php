@@ -254,8 +254,8 @@
                                                                 <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> <span class="lnr lnr-cog"></span>
                                                                 </a>
                                                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-                                                                    <a class="dropdown-item action-secondary-edit" href="#" hrm-update-action="{{route('brand-series.update',$series->id)}}" hrm-edit-action="{{route('brand-series.edit',$series->id)}}"> Edit </a>
-                                                                    <a class="dropdown-item action-secondary-delete" href="#" hrm-delete-per-action="{{route('brand-series.destroy',$series->id)}}"> Delete </a>
+                                                                    <a class="dropdown-item action-series-edit" href="#" hrm-update-action="{{route('brand-series.update',$series->id)}}" hrm-edit-action="{{route('brand-series.edit',$series->id)}}"> Edit </a>
+                                                                    <a class="dropdown-item action-series-delete" href="#" hrm-delete-per-action="{{route('brand-series.destroy',$series->id)}}"> Delete </a>
                                                                 </div>
                                                             </div>
 
@@ -396,7 +396,7 @@
         //end of brands
 
         //Series
-        $(document).on('click','.action-secondary-edit', function (e) {
+        $(document).on('click','.action-series-edit', function (e) {
             e.preventDefault();
             var url =  $(this).attr('hrm-edit-action');
             // console.log(action)
@@ -422,7 +422,7 @@
             });
         });
 
-        $(document).on('click','.action-secondary-delete', function (e) {
+        $(document).on('click','.action-series-delete', function (e) {
             e.preventDefault();
             var form = $('#deleted-form');
             var action = $(this).attr('hrm-delete-per-action');
@@ -443,7 +443,7 @@
                         if(response == 0){
                             swal({
                                 title: "Warning !",
-                                text: "Cannot Delete ! This Secondary category has attached Products currently in use. You need to remove them first.",
+                                text: "Cannot Delete ! This Series is attached with Product(s) currently in use. You need to remove them first.",
                                 type: "info",
                                 showCancelButton: true,
                                 closeOnConfirm: false,

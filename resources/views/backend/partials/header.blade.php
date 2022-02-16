@@ -58,7 +58,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                        <div class="logo my-3 my-sm-0">
+                        <div class="my-3 my-sm-0">
                             <a href="/" target="_blank">
                                 <img src="<?php if(@$setting_data->logo_white){?>{{asset('/images/uploads/settings/'.@$setting_data->logo_white)}}<?php }?>" alt="logo image" class="img-fluid" width="100">
                             </a>

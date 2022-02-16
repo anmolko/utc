@@ -147,11 +147,15 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $delete          = Brand::find($id);
+        $oldimage        = $delete->image;
         $rid             = $delete->id;
         $check_relation  = $delete->series()->get();
         if ($check_relation->count() > 0) {
             return 0;
         }else{
+            if (!empty($oldimage) && file_exists(public_path().'/images/uploads/brands/'.$oldimage)){
+                @unlink(public_path().'/images/uploads/brands/'.$oldimage);
+            }
             $delete->delete();
         }
         return '#brand_'.$rid;

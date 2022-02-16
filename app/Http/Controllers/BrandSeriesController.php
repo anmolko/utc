@@ -120,14 +120,15 @@ class BrandSeriesController extends Controller
      */
     public function destroy($id)
     {
-            $delete  =  BrandSeries::find($id);
-            $rid     = $delete->id;
-//        $checkproduct    = $delete->products()->get();
-//        if ($checkproduct->count() > 0) {
-//            return 0;
-//        }else{
-            $delete->delete();
-//        }
-        return '#series_'.$rid;
+            $delete          =  BrandSeries::find($id);
+            $rid             = $delete->id;
+            $checkproduct    = $delete->products()->get();
+
+            if ($checkproduct->count() > 0) {
+                return 0;
+            }else{
+                $delete->delete();
+            }
+            return '#series_'.$rid;
     }
 }

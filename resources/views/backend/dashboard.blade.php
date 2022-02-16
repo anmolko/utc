@@ -144,7 +144,6 @@
                             @foreach(@$latestcategory as $index => $latest)
 
                                 <div class="media mb-3">
-                                    <div class="e-avatar avatar-online mr-3"><img src="{{asset('/images/uploads/product_primary/'.@$latest->image)}}" alt="{{@$categoryList->slug}}" class="img-fluid"></div>
                                     <div class="media-body">
                                         <h6 class="m-0">{{ucwords($latest->name)}}</h6>
                                         <p class="mb-0 ctm-text-sm">{{'Has '. count($latest->secondary)." secondary Category"}} | {{ 'Used in ' .count($latest->products)." Product(s)"}} </p>

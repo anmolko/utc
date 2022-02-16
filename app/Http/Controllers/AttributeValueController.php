@@ -119,12 +119,12 @@ class AttributeValueController extends Controller
     {
         $delete        = AttributeValue::find($id);
         $rid           = $delete->id;
-//        $checkproduct       = $delete->blogs()->get();
-//        if ($checkproduct->count() > 0) {
-//            return 0;
-//        }else{
-        $delete->delete();
-//        }
+        $checkproduct       = $delete->products()->get();
+        if ($checkproduct->count() > 0) {
+            return 0;
+        }else{
+            $delete->delete();
+        }
         return '#attribute_value_'.$rid;
     }
 }
