@@ -48,7 +48,7 @@
 @endsection
 @section('content')
     <div class="col-xl-9 col-lg-8  col-md-12">
-        <div class="card shadow-sm grow ctm-border-radius">
+        <div class="card shadow-sm ctm-border-radius">
             <div class="card-body align-center">
                 <ul class="nav flex-row nav-pills" id="pills-tab" role="tablist">
                     <li class="nav-item mr-2">
@@ -65,7 +65,7 @@
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Primary Category
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Product Primary Category List

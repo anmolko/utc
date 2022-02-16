@@ -54,7 +54,7 @@
 
 
     <div class="col-xl-9 col-lg-8  col-md-12">
-        <div class="card shadow-sm grow ctm-border-radius">
+        <div class="card shadow-sm ctm-border-radius">
             <div class="card-body align-center">
                 <ul class="nav flex-row nav-pills" id="pills-tab" role="tablist">
                     <li class="nav-item mr-2">
@@ -63,7 +63,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> Blog Category </a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -76,7 +76,7 @@
                     {!! Form::open(['route' => 'blog.store','method'=>'post','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 d-flex">
-                            <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                            <div class="card ctm-border-radius shadow-sm flex-fill">
                                 <div class="card-header">
                                     <h4 class="card-title mb-0">
                                         Blog Post Details
@@ -128,7 +128,7 @@
                                             Please enter the post description.
                                         </div>
                                     </div>
-                                
+
 
                                 </div>
 
@@ -140,7 +140,7 @@
                         <div class="col-xl-6 col-lg-12 col-md-12">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-6 col-md-6 d-flex">
-                                    <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                                    <div class="card ctm-border-radius shadow-sm flex-fill">
                                         <div class="card-header">
                                             <h4 class="card-title mb-0">
                                                 Blog Feature Image <span class="text-muted text-danger">*</span>
@@ -170,7 +170,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-6 col-md-6 d-flex">
-                                    <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                                    <div class="card ctm-border-radius shadow-sm flex-fill">
                                         <div class="card-header">
                                             <h4 class="card-title mb-0">
                                                 Blog Thumbnail Image <span class="text-muted text-danger">*</span>
@@ -218,7 +218,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="company-doc">
-                                <div class="card ctm-border-radius shadow-sm grow">
+                                <div class="card ctm-border-radius shadow-sm">
                                     <div class="card-header">
                                         <h4 class="card-title d-inline-block mb-0">
                                             Blog List
@@ -299,7 +299,7 @@
                 {{--  Tab content--}}
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Add Blog Category
@@ -332,7 +332,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="card ctm-border-radius shadow-sm grow flex-fill">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">
                                     Category List
@@ -450,7 +450,7 @@
                             Please select a category.
                         </div>
                     </div>
-                    
+
                     <div class="form-group mb-3">
                         <label>Title <span class="text-muted text-danger">*</span></label>
                         <input type="text" class="form-control" name="title" id="edit-title" required>

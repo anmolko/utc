@@ -12,9 +12,6 @@
               color: #000000;
           }
 
-          .fade{
-              display: none;
-          }
           /*end for tab*/
 
           /*for image*/
@@ -37,155 +34,126 @@
 @section('content')
 
 
-    <div class="col-xl-9 col-lg-8  col-md-12">
-        <div class="collapse-tabs">
-            <div class="quicklink-sidebar-menu ctm-border-radius shadow-sm grow bg-white p-4 mb-4 card">
-                <ul class="list-group list-group-horizontal-lg" role="tablist">
-                    <li class="list-group-item text-center active button-5">
-                        <a class="active"
-                           id="general-info-tab" data-toggle="pill" href="#general-info"
-                           role="tab" aria-controls="description" aria-selected="true">
-                            General Information</a>
+    <div class="col-xl-9 col-lg-8 col-md-12">
+        <div class="card shadow-sm ctm-border-radius">
+            <div class="card-body align-center">
+                <ul class="nav flex-row nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link active mb-2" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">General Information</a>
                     </li>
-                    <li class="list-group-item text-center button-6">
-                        <a class="in-active"
-                           id="sensitive-info-tab" data-toggle="pill" data-number="" href="#sensitive-info" role="tab"
-                           aria-controls="media" aria-selected="false">
-                            Sensitive Information</a>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sensitive Information</a>
                     </li>
                 </ul>
             </div>
+        </div>
 
-
-            <div class="tab-content shadow-none p-0">
-
-                    <div id="collapse-tabs-accordion">
-                        <div class="tab-pane tab-pane-parent show active px-0" id="general-info"
-                             role="tabpanel" aria-labelledby="general-info-tab">
-                            <div class="bg-transparent border-0">
-                                <div id="general-info-collapse" class="collapse show collapsible"
-                                     aria-labelledby="heading-general-info"
-                                     data-parent="#collapse-tabs-accordion">
-                                    {{-- Tab content --}}
-
-                                    <div class="row">
-                                        {{--general information display fields--}}
-                                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex">
-                                            <div class="card flex-fill ctm-border-radius shadow-sm grow">
-                                                <div class="card-header">
-                                                    <h4 class="card-title mb-0">Basic Information</h4>
-                                                </div>
-                                                <div class="card-body text-center">
-                                                    <p class="card-text mb-3"><span class="text-primary">Name :</span><b> {{ucfirst($user->name)}}</b></p>
-                                                    <p class="card-text mb-3"><span class="text-primary">Email :</span><b> {{$user->email}}</b></p>
-                                                    <p class="card-text mb-3"><span class="text-primary">Contact :</span> {{$user->contact}}</p>
-                                                    <p class="card-text mb-3"><span class="text-primary">Gender : </span> {{ucfirst($user->gender)}}</p>
-                                                    <p class="card-text mb-3"><span class="text-primary">Status :</span> {{($user->status == 1) ? "Active":"De-active"}}</p>
-                                                    <p class="card-text mb-3"><span class="text-primary">User Type:</span> {{ ucfirst($user->user_type)}}</p>
-                                                    <p class="card-text mb-3"><span class="text-primary">Joined Date : </span> {{\Carbon\Carbon::parse($user->created_at)->isoFormat('MMMM Do, YYYY')}}</p>
-                                                    <a href="javascript:void(0)" class="btn btn-theme ctm-border-radius text-white btn-sm" data-toggle="modal" data-target="#edit_basicInformation"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {{--profile image field--}}
-                                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex">
-                                            <div class="card ctm-border-radius shadow-sm company-logo flex-fill grow">
-                                                <div class="card-header">
-                                                    <h4 class="card-title mb-0">{{ucfirst($user->name)}}'s Profile Image</h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    {!! Form::open(['method'=>'put','route'=>['user.imageupdate', $user->id],'enctype'=>'multipart/form-data','class'=>'needs-validation','novalidate'=>'']) !!}
-
-                                                    <div class="row justify-content-center">
-                                                            <div class="col-9 mb-4">
-                                                                <div class="custom-file h-auto">
-                                                                    <div class="avatar-upload">
-                                                                            <div class="avatar-edit">
-                                                                                <input type="file" class="custom-file-input" hidden id="imageUpload" onchange="loadFile(event)" name="image">
-                                                                                <label for="imageUpload"></label>
-                                                                            </div>
-                                                                    </div>
-                                                                    <img id="current-img" src="<?php if(!empty($user->image)){ echo '/images/uploads/profiles/'.$user->image; } else{  echo '/images/uploads/profiles/default-profile.png'; } ?>" alt="{{$user->name}}" class="w-100">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-theme ctm-border-radius text-white button-1"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                                        </div>
-                                                    {!! Form::close() !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {{-- End of Tab content --}}
-
-                                </div>
+        <div class="tab-content" id="pills-tabContent">
+            {{--general tab--}}
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    {{--general information display fields--}}
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex">
+                        <div class="card flex-fill ctm-border-radius shadow-sm">
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">Basic Information</h4>
                             </div>
-                        </div>
-
-                        <div class="tab-pane tab-pane-parent fade px-0" id="sensitive-info" role="tabpanel"
-                             aria-labelledby="sensitive-info-tab">
-                            <div class="bg-transparent border-0">
-                                <div id="sensitive-info-collapse" class="collapse show collapsible"
-                                     aria-labelledby="heading-sensitive-info"
-                                     data-parent="#collapse-tabs-accordion">
-                                {{--  Tab content--}}
-
-                                    <div class="row">
-                                        <div class="col-lg-6 d-flex">
-                                            <div class="card ctm-border-radius shadow-sm grow flex-fill">
-                                                <div class="card-header">
-                                                    <h4 class="card-title mb-0">Change Password</h4>
-                                                    <span class="ctm-text-sm">Your password needs to be at least 8 characters long.</span>
-                                                </div>
-                                                <div class="card-body">
-                                                    {!! Form::open(['method'=>'put','route'=>['user.password'],'enctype'=>'multipart/form-data','class'=>'needs-validation','novalidate'=>'']) !!}
-
-                                                    <div class="form-group">
-                                                        <label>Current Password <span class="text-muted text-danger">*</span></label>
-                                                        <input type="password" class="form-control" placeholder="Current Password" name="current_password" required>
-                                                        <div class="invalid-feedback">
-                                                            Please enter your current password.
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>New Password <span class="text-muted text-danger">*</span></label>
-                                                        <input type="password" class="form-control" placeholder="New Password" id="password" name="password" required>
-                                                        <div class="invalid-feedback">
-                                                            Please enter your new password.
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Repeat Password <span class="text-muted text-danger">*</span></label>
-                                                        <input type="password" class="form-control" placeholder="Repeat Password" name="repeated_password" id="repeated_password" required>
-                                                        <span class="ctm-text-sm" id="wrongpassword"></span>
-                                                        <div class="invalid-feedback">
-                                                            Please repeat your new password.
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <button type="submit" id="changepswBtn" class="btn btn-theme button-1 ctm-border-radius text-white text-center">Change My Password</button>
-                                                    </div>
-                                                    {!! Form::close() !!}
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    {{--  End Tab content--}}
-                                </div>
+                            <div class="card-body text-center">
+                                <p class="card-text mb-3"><span class="text-primary">Name :</span><b> {{ucfirst($user->name)}}</b></p>
+                                <p class="card-text mb-3"><span class="text-primary">Email :</span><b> {{$user->email}}</b></p>
+                                <p class="card-text mb-3"><span class="text-primary">Contact :</span> {{$user->contact}}</p>
+                                <p class="card-text mb-3"><span class="text-primary">Gender : </span> {{ucfirst($user->gender)}}</p>
+                                <p class="card-text mb-3"><span class="text-primary">Status :</span> {{($user->status == 1) ? "Active":"De-active"}}</p>
+                                <p class="card-text mb-3"><span class="text-primary">User Type:</span> {{ ucfirst($user->user_type)}}</p>
+                                <p class="card-text mb-3"><span class="text-primary">Joined Date : </span> {{\Carbon\Carbon::parse($user->created_at)->isoFormat('MMMM Do, YYYY')}}</p>
+                                <a href="javascript:void(0)" class="btn btn-theme ctm-border-radius text-white btn-sm" data-toggle="modal" data-target="#edit_basicInformation"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
+
+                    {{--profile image field--}}
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex">
+                        <div class="card ctm-border-radius shadow-sm company-logo flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">{{ucfirst($user->name)}}'s Profile Image</h4>
+                            </div>
+                            <div class="card-body">
+                                {!! Form::open(['method'=>'put','route'=>['user.imageupdate', $user->id],'enctype'=>'multipart/form-data','class'=>'needs-validation','novalidate'=>'']) !!}
+
+                                <div class="row justify-content-center">
+                                    <div class="col-9 mb-4">
+                                        <div class="custom-file h-auto">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type="file" class="custom-file-input" hidden id="imageUpload" onchange="loadFile(event)" name="image">
+                                                    <label for="imageUpload"></label>
+                                                </div>
+                                            </div>
+                                            <img id="current-img" src="<?php if(!empty($user->image)){ echo '/images/uploads/profiles/'.$user->image; } else{  echo '/images/uploads/profiles/default-profile.png'; } ?>" alt="{{$user->name}}" class="w-100">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-theme ctm-border-radius text-white button-1"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            {{--sensitive tab--}}
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">  <div class="row">
+                    <div class="col-lg-6 d-flex">
+                        <div class="card ctm-border-radius shadow-sm flex-fill">
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">Change Password</h4>
+                                <span class="ctm-text-sm">Your password needs to be at least 8 characters long.</span>
+                            </div>
+                            <div class="card-body">
+                                {!! Form::open(['method'=>'put','route'=>['user.password'],'enctype'=>'multipart/form-data','class'=>'needs-validation','novalidate'=>'']) !!}
+
+                                <div class="form-group">
+                                    <label>Current Password <span class="text-muted text-danger">*</span></label>
+                                    <input type="password" class="form-control" placeholder="Current Password" name="current_password" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your current password.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>New Password <span class="text-muted text-danger">*</span></label>
+                                    <input type="password" class="form-control" placeholder="New Password" id="password" name="password" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your new password.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeat Password <span class="text-muted text-danger">*</span></label>
+                                    <input type="password" class="form-control" placeholder="Repeat Password" name="repeated_password" id="repeated_password" required>
+                                    <span class="ctm-text-sm" id="wrongpassword"></span>
+                                    <div class="invalid-feedback">
+                                        Please repeat your new password.
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" id="changepswBtn" class="btn btn-theme button-1 ctm-border-radius text-white text-center">Change My Password</button>
+                                </div>
+                                {!! Form::close() !!}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
 </div>
 
-<div class="modal fade" id="edit_basicInformation">
+
+    <div class="modal fade" id="edit_basicInformation">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -254,27 +222,6 @@
 
         $(document).ready(function () {
             $("#repeated_password").keyup(checkPasswordMatch);
-        });
-
-        //necessary for switching tabs
-        $(document).on('click','li.list-group-item a', function (e) {
-            var t = $(this);
-            t.parents('.list-group').find('li').removeClass('active');
-            t.parents('.list-group').find('li').removeClass('button-5');
-            t.parents('.list-group').find('li').addClass('button-6');
-            t.parentsUntil('.list-group', 'li').addClass('active');
-            t.parentsUntil('.list-group', 'li').addClass('button-5');
-            t.parentsUntil('.list-group', 'li').removeClass('button-6');
-
-            //retrieve the href value of the active tab link
-            var id = $(this).attr('href');
-            //remove the class show from tabs which is not active and add class fade
-            $(".tab-pane:not(.active)").addClass('fade')
-            $(".tab-pane:not(.active)").removeClass('show')
-            if($(id).hasClass('active')){
-                //if the tab has active class, remove the class fade
-                $(id).removeClass('fade');
-            }
         });
 
     </script>

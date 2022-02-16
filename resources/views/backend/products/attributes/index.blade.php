@@ -49,7 +49,7 @@
 @endsection
 @section('content')
     <div class="col-xl-9 col-lg-8  col-md-12">
-        <div class="card shadow-sm grow ctm-border-radius">
+        <div class="card shadow-sm ctm-border-radius">
             <div class="card-body align-center">
                 <ul class="nav flex-row nav-pills" id="pills-tab" role="tablist">
                     <li class="nav-item mr-2">
