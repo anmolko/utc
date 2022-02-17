@@ -227,22 +227,15 @@ class FrontController extends Controller
 
     }
 
-    public function productSingle($category,$slug)
+    public function productSingle($slug)
     {
         $product_primary_categories = $this->product_primary_category->with('secondary')->get();
-        $product_primary_category   = $this->product_primary_category->with('secondary')->where('slug',$category)->first();
-        $p_category_id              = $product_primary_category->id;
-        $latestProducts             = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(3)->get();
-        $product                    = $this->product->with(['primaryCategory','secondaryCategory','gallery','productSEO'])
+        $latestProducts             = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(7)->get();
+        $product                    = $this->product->with(['primaryCategory','brand','productSpecification','secondaryCategory','gallery','productSEO'])
                                                     ->where('status','active')
                                                     ->where('slug',$slug)->first();
-        $relatedProducts            = $this->product->with(['primaryCategory','secondaryCategory','attributeValue'])
-                                                    ->whereHas('primaryCategory',function($query)use($p_category_id){
-                                                        $query->where('primary_category_id',$p_category_id);
-                                                    })
-                                                    ->where('status','active')
-                                                    ->orderBy(\DB::raw('RAND()'))->take(6)->get()->except($product->id);
-        return view('frontend.pages.products.single',compact('relatedProducts','product_primary_category','product','product_primary_categories','latestProducts'));
+
+        return view('frontend.pages.products.single',compact('product','product_primary_categories','latestProducts'));
     }
 
     public function searchProduct(Request $request)

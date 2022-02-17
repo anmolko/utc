@@ -7,179 +7,223 @@
     <meta property='article:section' content='article' />
     <meta property="og:description" content="{{ucfirst(@$product->productSEO->description)}}" />
     <meta property="og:title" content="{{ucfirst(@$product->productSEO->title)}}" />
-    <meta property="og:url" content="https://weborelectronics.com/,www.weborelectronics.com/,{{url()->current()}}" />
+    <!-- <meta property="og:url" content="https://weborelectronics.com/,www.weborelectronics.com/,{{url()->current()}}" /> -->
     <meta property="og:type" content="ecommerce" />
     <meta property="og:locale" content="en-us" />
     <meta property="og:locale:alternate"  content="en-us" />
-    <meta property="og:site_name" content="@if(!empty(@$setting_data->website_name)) {{ucwords(@$setting_data->website_name)}} @else Webor Electronics @endif" />
+    <meta property="og:site_name" content="@if(!empty(@$setting_data->website_name)) {{ucwords(@$setting_data->website_name)}} @else Universal Trading Concern @endif" />
     <meta property="og:image" content="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" />
     <meta property="og:image:url" content="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" />
     <meta property="og:image:size" content="300" />
 @endsection
+@section('styles')
+<style>
+    .tecnical-specs table tr td:first-child {
+        width: 210px;
+        font-weight: bold;
+        color: #484848;
+    }
+    .owl-carousel .owl-stage{
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    .owl-carousel .owl-item{
+        display: flex;
+    }
+
+  
+</style>
+@endsection
 @section('breadcrumb')
 
    <!-- BREADCRUMBS SETCTION START -->
-   <div class="breadcrumbs-section plr-200 mb-80 section">
-            <div class="{{($product->image == null) ? 'breadcrumbs':''}} overlay-bg" @if($product->image !== null) style="background: #f6f6f6 url('{{asset('/images/uploads/products/banners/'.@$product->image)}}') no-repeat scroll center center;" @endif>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">{{ucwords(@$product->name)}}</h1>
-
-                                <ol class="breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="{{url('/product')}}">Product</a></li>
-                                    <li><a href="{{route('product.category',@$product_primary_category->slug)}}">{{ucwords(@$product_primary_category->name)}}</a></li>
-                                    <li class="active">{{ucwords(@$product->name)}} </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <section class="flat-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumbs">
+                            <li class="trail-item">
+                                <a href="/" title="">Home</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
+                            <li class="trail-end">
+                                <a href="#" title="">{{ucwords(@$product->name)}}</a>
+                            </li>
+                        </ul><!-- /.breacrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-breadcrumb -->
         <!-- BREADCRUMBS SETCTION END -->
 @endsection
 
 @section('content')
-
   <!-- Start page content -->
-  <section id="page-content" class="page-wrapper section">
-
-<!-- SHOP SECTION START -->
-<div class="shop-section mb-80">
+<section class="flat-product-detail">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <!-- single-product-area start -->
-                <div class="single-product-area mb-80">
-                    <div class="row">
-                        <!-- imgs-zoom-area start -->
-                        <div class="col-lg-6">
-                            <div class="imgs-zoom-area">
-                                    @if(count(@$product->gallery) > 0)
-                                        @foreach(@$product->gallery as $gallery)
-                                            @if($loop->first)
-                                                <img id="zoom_03" src="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" data-zoom-image="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" alt="{{@$product->slug}}">
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
-                                            @if(count(@$product->gallery) > 0)
-                                                @foreach(@$product->gallery as $gallery)
-                                                <div class="p-c">
-                                                    <a href="#" data-image="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" data-zoom-image="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}">
-                                                        <img class="zoom_03" src="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" alt="{{@$product->slug}}">
-                                                    </a>
-                                                </div>
-                                                @endforeach
-                                            @endif
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- imgs-zoom-area end -->
-                        <!-- single-product-info start -->
-                        <div class="col-lg-6">
-                            <div class="single-product-info">
-                                <h3 class="text-black-1">{{ucwords(@$product->name)}} </h3>
-                                <h6 class="brand-name-2">Webor</h6>
-                                <!--  hr -->
-                                <hr>
-                                <div class="text-body">
-                                {{Str::limit(@$product->summary,470,'')}}
-                                </div>
-                                <hr>
-                                <!-- single-pro-color-rating -->
-                                <div class="single-pro-color-rating clearfix">
-                                    <div class="sin-pro-color f-left">
-                                        <p class="f-left"><span class="color-title "><strong>Category: </strong></span><span class="pro-price">{{ucwords(@$product->primaryCategory->name)}}</span> <span>({{ucwords(@$product->secondaryCategory->name)}})</span></p>
-
-                                    </div>
-
-                                </div>
-                                <!-- hr -->
-                                <hr>
-                                  <!-- plus-minus-pro-action -->
-                                <div class="plus-minus-pro-action clearfix">
-                                    <div class="sin-plus-minus f-left clearfix">
-                                        <p class="color-title f-left"><strong>Share:</strong></p>
-                                        <div class="sin-pro-action f-left">
-                                            <ul class="footer-social f-left">
-                                                <li>
-                                                    <a class="facebook" href="#" onclick='fbShare("{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}")' title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="whatsapp" href="#" onclick='whatsappShare("{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}","{{ $product->name }}")' title="Whats App"><i class="zmdi zmdi-whatsapp"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="twitter" href="#" onclick='twitShare("{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}","{{ $product->name }}")' title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- plus-minus-pro-action end -->
-                                <!-- hr -->
-                                <hr>
-
-
-                            </div>
-                        </div>
-                        <!-- single-product-info end -->
+            <div class="col-md-6">
+                <div class="flexslider">
+                    <ul class="slides">
+                        @if(count(@$product->gallery) > 0)
+                            @foreach(@$product->gallery as $gallery)
+                                <li data-thumb="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}">
+                                        <a href='#' id="zoom{{$loop->iteration}}" class='zoom'><img src="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" alt='' width='400' height='300' /></a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul><!-- /.slides -->
+                </div><!-- /.flexslider -->
+            </div><!-- /.col-md-6 -->
+            <div class="col-md-6">
+                <div class="product-detail">
+                    <div class="header-detail">
+                        <h4 class="name">{{ucwords(@$product->name)}}</h4>
+                        
+                    </div><!-- /.header-detail -->
+                    <div class="brand-details">
+                        <div class="brand">SKU: <span class="id">FW511948218</span></div>
+                        <div class="brand-series">SKU: <span class="id">FW511948218</span></div>
                     </div>
-                    <!-- single-product-tab -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- hr -->
-                            <hr>
-                            <div class="single-product-tab reviews-tab">
-                                <ul class="nav mb-20">
-                                    <li><a class="active" href="#description" data-bs-toggle="tab">description</a></li>
-                                    @if(@$product->information)
-                                    <li><a href="#information" data-bs-toggle="tab">information</a></li>
-                                    @endif
-                                </ul>
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active show" id="description">
-                                    {!! @$product->description !!}
+                    <div class="content-detail">
+                        <div class="price">
+                            <div class="regular">
+                                NPR. {{number_format(@$product->price)}}
+                            </div>
+                            <div class="sale">
+                                $1,589.00
+                            </div>
+                        </div>
+                        <div class="info-text">
+                        {{@$product->summary}}
+                        </div>
+                       
+                    </div><!-- /.content-detail -->
+                    <div class="footer-detail">
+                        <div class="quanlity-box">
+                            <div class="quanlity">
+                                <span class="btn-down"></span>
+                                <input type="number" name="number" value="" min="1" max="100" placeholder="Quantiy">
+                                <span class="btn-up"></span>
+                            </div>
+                            <div class="box-cart style2">
 
-                                    </div>
-                                    @if(@$product->information)
-
-                                    <div role="tabpanel" class="tab-pane" id="information">
-                                    {!! @$product->information !!}
-
-                                    </div>
-                                    @endif
-
-
+                                <div class="btn-add-cart">
+                                    <a href="#" title=""><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
                                 </div>
                             </div>
-                            <!--  hr -->
-                            <hr>
-                        </div>
-                    </div>
+                            
+                        </div><!-- /.quanlity-box -->
+                        <div class="box-cart style2">
+                            <div class="btn-add-cart">
+                                <a href="#" title=""><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
+                            </div>
+                            <div class="compare-wishlist">
+                                <a href="compare.html" class="wishlist" title=""><img src="images/icons/wishlist.png" alt="">Wishlist</a>
+                            </div>
+                        </div><!-- /.box-cart -->
+                        <div class="social-single">
+                            <span>SHARE</span>
+                            <ul class="social-list style2">
+                                <li>
+                                    <a href="#" onclick='fbShare("{{route('product.single',@$product->slug)}}")' title="">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick='twitShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                              
+                                <li>
+                                    <a href="#" onclick='whatsappShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul><!-- /.social-list -->
+                        </div><!-- /.social-single -->
+                    </div><!-- /.footer-detail -->
+                </div><!-- /.product-detail -->
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.flat-product-detail -->
+
+<section class="flat-product-content">
+    <ul class="product-detail-bar">
+        <li class="active">Specifications</li>
+    </ul><!-- /.product-detail-bar -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tecnical-specs">
+                    <table>
+                        <tbody>
+                            @foreach(@$product->productSpecification as $spec)
+                            <tr>
+                                <td>{{ucwords(@$spec->name)}}</td>
+                                <td>{!! nl2br($spec->pivot->specification_details) !!}</td>
+                            </tr>
+                           @endforeach
+                        </tbody>
+                    </table><!-- /.table -->
+                </div><!-- /.tecnical-specs -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+ 
+    </div><!-- /.container -->
+</section><!-- /.flat-product-content -->
+
+
+@if(count($latestProducts) > 0)
+
+<section class="flat-imagebox style4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="flat-row-title">
+                    <h3>Recent Products</h3>
                 </div>
-                <!-- single-product-area end -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel-3">
+                    @foreach($latestProducts as $index => $latest)
 
-             
+                    <div class="imagebox style4">
+                        <span class="item-sale">SALE</span>
+                        <span class="item-new">NEW</span>
 
-            </div>
-           
-        </div>
-    </div>
-</div>
-<!-- SHOP SECTION END -->
+                        <div class="box-image">
+                            <a href="#" title="">
+                                <img src="images/product/other/09.jpg" alt="">
+                            </a>
+                        </div><!-- /.box-image -->
+                        <div class="box-content">
+                            <div class="cat-name">
+                                <a href="#" title="">Laptops</a>
+                            </div>
+                            <div class="product-name">
+                                <a href="{{route('product.single',@$latest->slug)}}" title="">{{ucwords(Str::limit(@$latest->name,100,' ...'))}}</a>
+                            </div>
+                            <div class="price">
+                                <span class="sale">$50.00</span>
+                                <span class="regular">$2,999.00</span>
+                            </div>
+                        </div><!-- /.box-content -->
+                    </div><!-- /.imagebox style4 -->
+                    @endforeach
+                    
+                </div><!-- /.owl-carousel-3 -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.flat-imagebox style4 -->
+@endif
 
-</section>
 <!-- End page content -->
 
 @endsection

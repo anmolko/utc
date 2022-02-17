@@ -400,8 +400,8 @@ class ProductController extends Controller
 
             $resize_name = "Thumb_".$name . '.' . $photo->getClientOriginalExtension();
 
-            Image::make($photo)->save($this->photos_path . '/' . $resize_name);
-//                ->resize(270, 300)
+            // Image::make($photo)->save($this->photos_path . '/' . $resize_name);
+            //    ->resize(270, 300)
 
 
             $photo->move($this->photos_path, $save_name);
@@ -410,7 +410,7 @@ class ProductController extends Controller
             $upload->product_id = $product->id;
             $upload->upload_by = Auth::user()->id;
             $upload->filename = $save_name;
-            $upload->resized_name = $resize_name;
+            $upload->resized_name = $save_name;
             $upload->original_name = basename($photo->getClientOriginalName());
             $upload->save();
         }

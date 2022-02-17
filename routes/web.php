@@ -41,7 +41,7 @@ Route::get('product/search/', 'App\Http\Controllers\FrontController@searchProduc
 Route::get('/products/search','App\Http\Controllers\FrontController@productSearchFilter')->name('productsearch.filter');
 Route::get('/products','App\Http\Controllers\FrontController@productFilter')->name('product.filter');
 Route::get('/product/category','App\Http\Controllers\FrontController@productCategoryFilter')->name('product.categoryfilter');
-Route::get('product/{category}/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
+Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
 Route::get('product/{category}','App\Http\Controllers\FrontController@productCategory')->name('product.category');
 Route::get('/product', 'App\Http\Controllers\FrontController@products')->name('product.frontend');
 //end product

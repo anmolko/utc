@@ -58,10 +58,11 @@ html .ui-button.ui-state-disabled:active {
     border-color: #7DAC44 !important;
 }
 
-.imagebox span.item-new,
+
+/* .imagebox span.item-new,
 .imagebox span.item-sale {
     background-color: #7DAC44;
-}
+} */
 
 .imagebox .box-content .product-name a:hover {
     color: #7DAC44;
