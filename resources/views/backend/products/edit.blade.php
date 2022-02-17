@@ -137,6 +137,14 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
+                                <label> Type <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control shadow-none" name="type" required>
+                                    <option value disabled readonly> Select Type</option>
+                                    <option value="electronics" {{($product->type == 'electronics') ? 'selected':''}}> Electronics </option>
+                                    <option value="laptops" {{($product->type == 'laptops') ? 'selected':''}}> Laptops </option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
                                 <select class="form-control shadow-none product-primary-cat" name="primary_category_id" required>
                                     <option value disabled> Select Primary Category</option>

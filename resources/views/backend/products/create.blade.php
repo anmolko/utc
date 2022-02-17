@@ -131,6 +131,14 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
+                                <label> Type <span class="text-muted text-danger">*</span></label>
+                                <select class="form-control shadow-none" name="type" required>
+                                    <option value disabled readonly selected> Select Type</option>
+                                    <option value="electronics"> Electronics </option>
+                                    <option value="laptops"> Laptops </option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
                                 <select class="form-control  shadow-none product-primary-cat" name="primary_category_id" required>
                                     <option value disabled selected> Select Primary Category</option>
@@ -464,6 +472,8 @@
         var counter = 0;
         $('#multi-field-wrapper').each(function() {
             var $wrapper = $('#multi-fields', this);
+
+            // console.log($('.multi-field', $wrapper).length);
 
             $("#add-field", $(this)).click(function(e) {
                 counter++;

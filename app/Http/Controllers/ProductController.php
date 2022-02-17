@@ -86,6 +86,7 @@ class ProductController extends Controller
                 'slug'                  => $request->input('slug'),
                 'status'                => $request->input('status'),
                 'summary'               => $request->input('summary'),
+                'type'                  => $request->input('type'),
                 'primary_category_id'   => $request->input('primary_category_id'),
                 'secondary_category_id' => $request->input('secondary_category_id'),
                 'brand_id'              => $request->input('brand_id'),
@@ -219,6 +220,7 @@ class ProductController extends Controller
             $product->slug                      =  $request->input('slug');
             $product->status                    =  $request->input('status');
             $product->summary                   =  $request->input('summary');
+            $product->type                      =  $request->input('type');
             $product->primary_category_id       =  $request->input('primary_category_id');
             $product->secondary_category_id     =  $request->input('secondary_category_id');
             $product->brand_id                  =  $request->input('brand_id');

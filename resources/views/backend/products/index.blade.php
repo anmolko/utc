@@ -112,6 +112,7 @@
                                                                         <a class="dropdown-item action-edit" href="{{route('products.edit',$product->id)}}"> Edit </a>
                                                                         <a class="dropdown-item action-gallery" href="{{route('products.galleryindex',$product->id)}}"> Gallery </a>
                                                                         <a class="dropdown-item action-seo" href="{{route('product-seo.edit',$product->id)}}"> SEO </a>
+                                                                        <a class="dropdown-item action-front" href="#"> Frontend View</a>
                                                                         <a class="dropdown-item action-delete" href="#" hrm-delete-per-action="{{route('products.destroy',$product->id)}}"> Delete </a>
                                                                     </div>
                                                                 </div>
