@@ -415,6 +415,9 @@
         all_specific_id.push('<?php echo $val->id; ?>');
         <?php } ?>
 
+        var clonecount;
+        var clonecountspecific;
+
         function slugMaker(title, slug){
             $("#"+ title).keyup(function(){
                 var Text = $(this).val();
@@ -474,10 +477,19 @@
         $('#multi-field-wrapper').each(function() {
             var $wrapper = $('#multi-fields', this);
 
-            // console.log($('.multi-field', $wrapper).length);
+            //disable the delete button if the cloned div is just one
+            clonecount = $('.multi-field').length;
+            if(clonecount == 1){
+                $('.remove-field').addClass('add-disabled');
+            }
 
             $("#add-field", $(this)).click(function(e) {
                 counter++;
+                clonecount = clonecount + 1;
+                //remove the disable option for button once the cloned div is more than 1
+                if(clonecount > 1){
+                    $('.remove-field').removeClass('add-disabled');
+                }
                 //clone the element and add the id to div to make select field unique and empty the attribute value div to bring in fresh data.
                 var newElem = $('.multi-field:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-' + counter).find('div.attribute-values').html('');
                 //remove the initial id from select and add new ID
@@ -493,8 +505,6 @@
                     }).prop('disabled', true);
                 });
             });
-
-
 
             //getting the attributeValues based on the attribute changes from multiple select fields
             $('select.product-attribute').on('change', function(element) {
@@ -558,9 +568,13 @@
 
             });
 
-
             $('.multi-field .remove-field', $wrapper).click(function() {
-
+                clonecount = clonecount - 1;
+                if(clonecount == 1){
+                    $('.remove-field').addClass('add-disabled');
+                }else if (clonecount > 1){
+                    $('.remove-field').removeClass('add-disabled');
+                }
                 if ($('.multi-field', $wrapper).length > 1){
                     var id = $(this).prev().find('option:selected').val();
 
@@ -591,14 +605,27 @@
                     $(this).parent('.input-group').parent('.multi-field').remove();
                 }
             });
+
         });
 
         //for specification and details
         var counterspec = 0;
         $('#multi-field-wrapper-specific').each(function() {
             var $wrapper = $('#multi-fields-specific', this);
+
+            //disable the delete button if the cloned div is just one
+            clonecountspecific = $('.multi-field-specific').length;
+            if(clonecountspecific == 1){
+                $('.remove-field-specific').addClass('add-disabled');
+            }
+
             $("#add-field-specific", $(this)).click(function(e) {
                 counterspec++;
+                clonecountspecific = clonecountspecific + 1;
+                //remove the disable option for button once the cloned div is more than 1
+                if(clonecountspecific > 1){
+                    $('.remove-field-specific').removeClass('add-disabled');
+                }
                 //clone the element and add the id to div to make select field unique and empty the attribute value div to bring in fresh data.
                 var newElem = $('.multi-field-specific:last-child', $wrapper).clone(true).appendTo($wrapper).attr('id', 'cloned-specific-' + counterspec).find('div.specific-values').html('');
                 //remove the initial id from select and add new ID
@@ -660,7 +687,12 @@
             });
 
             $('.multi-field-specific .remove-field-specific', $wrapper).click(function() {
-
+                clonecountspecific = clonecountspecific - 1;
+                if(clonecountspecific == 1){
+                    $('.remove-field-specific').addClass('add-disabled');
+                }else if (clonecount > 1){
+                    $('.remove-field-specific').removeClass('add-disabled');
+                }
                 if ($('.multi-field-specific', $wrapper).length > 1){
                     var id = $(this).prev().find('option:selected').val();
 
