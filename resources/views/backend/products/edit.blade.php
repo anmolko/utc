@@ -69,7 +69,9 @@
             box-shadow: 1px 0px 20px rgb(0 0 0 / 6%) !important;
         }
         /*end of custom select*/
-
+        .hide-item{
+            display: none;
+        }
 
     </style>
 @endsection
@@ -101,10 +103,10 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item action-primary-add small" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
-                                    <a class="dropdown-item action-secondary-add small" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
+                                    <a class="dropdown-item primary_category_block action-primary-add small hide-item" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
+                                    <a class="dropdown-item secondary_category_block action-secondary-add small hide-item" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
                                     <a class="dropdown-item action-brand-add small" data-toggle="modal" data-target="#add_brand_details"> Add Brand</a>
-                                    <a class="dropdown-item action-series-add small" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
+                                    <a class="dropdown-item brand_series_block action-series-add small hide-item" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <label>Product Code <span class="text-muted text-danger">*</span></label>
+                                <label>Product Slug <span class="text-muted text-danger">*</span></label>
                                 <input type="text" class="form-control" name="slug" id="slug" value="{{$product->slug}}" required>
                                 <div class="invalid-feedback">
                                     Please enter the product code.
@@ -138,15 +140,15 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label> Type <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none" name="type" required>
+                                <select class="form-control shadow-none product-type" name="type" required>
                                     <option value disabled readonly> Select Type</option>
                                     <option value="electronics" {{($product->type == 'electronics') ? 'selected':''}}> Electronics </option>
                                     <option value="laptops" {{($product->type == 'laptops') ? 'selected':''}}> Laptops </option>
                                 </select>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 primary_category_block hide-item">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none product-primary-cat" name="primary_category_id" required>
+                                <select class="form-control shadow-none product-primary-cat" name="primary_category_id">
                                     <option value disabled> Select Primary Category</option>
                                     @foreach($primary as $pri)
                                         @if(count($pri->secondary)>0)
@@ -158,9 +160,9 @@
                                     Please select the product primary category.
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 secondary_category_block hide-item">
                                 <label>Secondary Category <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none product-secondary-cat" name="secondary_category_id" required>
+                                <select class="form-control shadow-none product-secondary-cat" name="secondary_category_id">
                                     <option value disabled selected> Select Secondary Category</option>
                                         @foreach($secondary as $sec)
                                             <option value="{{$sec->id}}" {{($product->secondary_category_id == $sec->id) ? "selected" : ""}}> {{$sec->name}} </option>
@@ -184,9 +186,9 @@
                                     Please select the product brand.
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 brand_series_block hide-item">
                                 <label>Brand Series <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none product-brand-series" name="brand_series_id" required>
+                                <select class="form-control shadow-none product-brand-series" name="brand_series_id">
                                     <option value disabled selected> Select Brand Series</option>
                                     @foreach($brand_series as $series)
                                         <option value="{{$series->id}}" {{($product->brand_series_id == $series->id) ? "selected" : ""}}> {{$series->name}} </option>
@@ -370,7 +372,7 @@
                         <div class="card-body">
                             <div class="form-group mb-3">
                                 <label>Summary <span class="text-muted text-danger">*</span></label>
-                                <textarea maxlength="470" class="form-control" rows="4" name="summary" required>{{$product->summary}}</textarea>
+                                <textarea class="form-control" rows="4" name="summary" required>{{$product->summary}}</textarea>
                                 <div class="invalid-feedback">
                                     Please enter the product summary.
                                 </div>
@@ -488,6 +490,17 @@
         // }
 
         $(document).ready(function () {
+            var type = "{{$product->type}}";
+            if(type == 'electronics'){
+                $('.primary_category_block').removeClass('hide-item');
+                $('.secondary_category_block').removeClass('hide-item');
+                $('.brand_series_block').addClass('hide-item');
+            }else{
+                $('.primary_category_block').addClass('hide-item');
+                $('.secondary_category_block').addClass('hide-item');
+                $('.brand_series_block').removeClass('hide-item');
+            }
+
             //for attributes - to disable add attribute button
             if(database_attribute.sort().compare(all_attribute_id.sort())) {
                 //if all matches, disable button
@@ -880,6 +893,19 @@
 
         });
 
+        //for product type
+        $('.product-type').on('change', function(element) {
+            var value = this.value;
+            if(value == 'electronics'){
+                $('.primary_category_block').removeClass('hide-item');
+                $('.secondary_category_block').removeClass('hide-item');
+                $('.brand_series_block').addClass('hide-item');
+            }else{
+                $('.primary_category_block').addClass('hide-item');
+                $('.secondary_category_block').addClass('hide-item');
+                $('.brand_series_block').removeClass('hide-item');
+            }
+        });
 
     </script>
 @endsection

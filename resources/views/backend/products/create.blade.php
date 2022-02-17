@@ -68,6 +68,10 @@
         }
         /*end of custom select*/
 
+        .hide-item{
+            display: none;
+        }
+
 
     </style>
 @endsection
@@ -100,10 +104,10 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <div class="dropdown-menu">
-                                   <a class="dropdown-item action-primary-add small" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
-                                   <a class="dropdown-item action-secondary-add small" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
+                                   <a class="dropdown-item primary_category_block action-primary-add small hide-item" data-toggle="modal" data-target="#add_primary_details"> Add Primary Category </a>
+                                   <a class="dropdown-item secondary_category_block action-secondary-add small hide-item" data-toggle="modal" data-target="#add_secondary_details"> Add Secondary Category </a>
                                    <a class="dropdown-item action-brand-add small" data-toggle="modal" data-target="#add_brand_details"> Add Brand</a>
-                                   <a class="dropdown-item action-series-add small" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
+                                   <a class="dropdown-item brand_series_block action-series-add small hide-item" data-toggle="modal" data-target="#add_series_details"> Add Brand Series </a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +121,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <label>Product Code <span class="text-muted text-danger">*</span></label>
+                                <label>Product Slug <span class="text-muted text-danger">*</span></label>
                                 <input type="text" class="form-control" name="slug" id="slug" required>
                                 <div class="invalid-feedback">
                                     Please enter the product code.
@@ -132,15 +136,15 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label> Type <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none" name="type" required>
+                                <select class="form-control shadow-none product-type" name="type" required>
                                     <option value disabled readonly selected> Select Type</option>
                                     <option value="electronics"> Electronics </option>
                                     <option value="laptops"> Laptops </option>
                                 </select>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 primary_category_block hide-item">
                                 <label>Primary Category <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control  shadow-none product-primary-cat" name="primary_category_id" required>
+                                <select class="form-control shadow-none product-primary-cat" name="primary_category_id">
                                     <option value disabled selected> Select Primary Category</option>
 
                                         @foreach($primary as $primaryList)
@@ -154,13 +158,10 @@
                                     Please select the product primary category.
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 secondary_category_block hide-item">
                                 <label>Secondary Category <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none product-secondary-cat" name="secondary_category_id" required>
+                                <select class="form-control shadow-none product-secondary-cat" name="secondary_category_id">
                                     <option value disabled selected> Select Secondary Category</option>
-{{--                                    @foreach($primary as $pri)--}}
-{{--                                        <option value="{{$pri->id}}"> {{$pri->name}} </option>--}}
-{{--                                    @endforeach--}}
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select the product primary category.
@@ -183,9 +184,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 brand_series_block hide-item">
                                 <label>Brand Series <span class="text-muted text-danger">*</span></label>
-                                <select class="form-control shadow-none product-brand-series" name="brand_series_id" required>
+                                <select class="form-control shadow-none product-brand-series" name="brand_series_id">
                                     <option value disabled selected> Select Brand Series</option>
                                 </select>
                                     <div class="invalid-feedback">
@@ -351,7 +352,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Summary <span class="text-muted text-danger">*</span></label>
-                                <textarea maxlength="470" class="form-control" rows="4" name="summary" required></textarea>
+                                <textarea class="form-control" rows="4" name="summary" required></textarea>
                                 <div class="invalid-feedback">
                                     Please enter the product summary.
                                 </div>
@@ -810,7 +811,19 @@
 
         });
 
-
+        //for product type
+        $('.product-type').on('change', function(element) {
+            var value = this.value;
+            if(value == 'electronics'){
+                $('.primary_category_block').removeClass('hide-item');
+                $('.secondary_category_block').removeClass('hide-item');
+                $('.brand_series_block').addClass('hide-item');
+            }else{
+                $('.primary_category_block').addClass('hide-item');
+                $('.secondary_category_block').addClass('hide-item');
+                $('.brand_series_block').removeClass('hide-item');
+            }
+        });
 
     </script>
 @endsection

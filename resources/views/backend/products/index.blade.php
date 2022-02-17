@@ -90,8 +90,8 @@
                                                             </td>
                                                             <td class="hide-overflow">{{$product->name}}</td>
                                                             <td  class="hide-overflow">{{$product->slug}}</td>
-                                                            <td>{{ucfirst($product->primaryCategory->name)}}</td>
-                                                            <td>{{ucfirst($product->brand->name)}}</td>
+                                                            <td>{{ucfirst(@$product->primaryCategory->name)}}</td>
+                                                            <td>{{ucfirst(@$product->brand->name)}}</td>
                                                             <td><div class="dropdown action-label drop-active">
                                                                     <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> {{(($product->status == 'active') ? "Active":"De-active")}}
                                                                     </a>

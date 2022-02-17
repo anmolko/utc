@@ -20,11 +20,11 @@ class CreateProductsTable extends Migration
             $table->string('status')->nullable();
             $table->string('thumbnail')->nullable();
             $table->unsignedBigInteger('brand_id');
-            $table->unsignedBigInteger('brand_series_id');
+            $table->unsignedBigInteger('brand_series_id')->nullable();
             $table->unsignedBigInteger('price');
             $table->text('summary');
-            $table->unsignedBigInteger('primary_category_id');
-            $table->unsignedBigInteger('secondary_category_id');
+            $table->unsignedBigInteger('primary_category_id')->nullable();
+            $table->unsignedBigInteger('secondary_category_id')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('primary_category_id')->references('id')->on('product_primary_categories')->onUpdate('cascade')->onDelete('cascade');
