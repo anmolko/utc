@@ -198,6 +198,22 @@
                                     Please select the brand series.
                                 </div>
                             </div>
+                            <div class="form-group mb-3">
+                                <label> State </label>
+                                <select class="form-control shadow-none product-state" name="state">
+                                    <option value disabled readonly {{(@$product->state == "normal") ? "selected" : ""}}> Select State</option>
+                                    <option value="new_arrival" {{(@$product->state == "new_arrival") ? "selected" : ""}}> New Arrival </option>
+                                    <option value="sale" {{(@$product->state == "sale") ? "selected" : ""}}> Sale </option>
+                                    <option value="featured" {{(@$product->state == "featured") ? "selected" : ""}}> Featured </option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 discount_price_block hide-item">
+                                <label>Discount Price <span class="text-muted text-danger">*</span></label>
+                                <input type="number" class="form-control" name="discount_price" value="{{$product->discount_price}}" id="discount_price">
+                                <div class="invalid-feedback">
+                                    Please enter the product discount price.
+                                </div>
+                            </div>
                         </div>
 
 
@@ -494,6 +510,7 @@
 
         $(document).ready(function () {
             var type = "{{$product->type}}";
+            var state = "{{$product->state}}";
             if(type == 'electronics'){
                 $('.primary_category_block').removeClass('hide-item');
                 $('.secondary_category_block').removeClass('hide-item');
@@ -504,11 +521,20 @@
                 $('.brand_series_block').removeClass('hide-item');
             }
 
+            if(state == 'sale'){
+                $('.discount_price_block').removeClass('hide-item');
+                $('#discount_price').attr('required','required');
+            }else{
+                $('.discount_price_block').addClass('hide-item');
+                $('#discount_price').removeAttr('required','required');
+            }
+
             //for attributes - to disable add attribute button
             if(database_attribute.sort().compare(all_attribute_id.sort())) {
                 //if all matches, disable button
                 $('#add-field').addClass('add-disabled');
-            } else {
+            }
+            else {
                 //if all doesn't match, enable button
                 $('#add-field').removeClass('add-disabled');
             }
@@ -517,7 +543,8 @@
             if(database_specification.sort().compare(all_specific_id.sort())) {
                 //if all matches, disable button
                 $('#add-field-specific').addClass('add-disabled');
-            } else {
+            }
+            else {
                 //if all doesn't match, enable button
                 $('#add-field-specific').removeClass('add-disabled');
             }
@@ -944,6 +971,18 @@
                 $('.primary_category_block').addClass('hide-item');
                 $('.secondary_category_block').addClass('hide-item');
                 $('.brand_series_block').removeClass('hide-item');
+            }
+        });
+
+        //for product state
+        $('.product-state').on('change', function(element) {
+            var value = this.value;
+            if(value == 'sale'){
+                $('.discount_price_block').removeClass('hide-item');
+                $('#discount_price').attr('required','required');
+            }else{
+                $('.discount_price_block').addClass('hide-item');
+                $('#discount_price').removeAttr('required','required');
             }
         });
 

@@ -183,7 +183,6 @@
                                     Please select the brand.
                                 </div>
                             </div>
-
                             <div class="form-group mb-3 brand_series_block hide-item">
                                 <label>Brand Series <span class="text-muted text-danger">*</span></label>
                                 <select class="form-control shadow-none product-brand-series" name="brand_series_id">
@@ -192,6 +191,22 @@
                                     <div class="invalid-feedback">
                                         Please select the brand series.
                                     </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label> State </label>
+                                <select class="form-control shadow-none product-state" name="state">
+                                    <option value disabled readonly selected> Select State</option>
+                                    <option value="new_arrival"> New Arrival </option>
+                                    <option value="sale"> Sale </option>
+                                    <option value="featured"> Featured </option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 discount_price_block hide-item">
+                                <label>Discount Price <span class="text-muted text-danger">*</span></label>
+                                <input type="number" class="form-control" name="discount_price" id="discount_price">
+                                <div class="invalid-feedback">
+                                    Please enter the product discount price.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -854,6 +869,17 @@
                 $('.primary_category_block').addClass('hide-item');
                 $('.secondary_category_block').addClass('hide-item');
                 $('.brand_series_block').removeClass('hide-item');
+            }
+        });
+
+        $('.product-state').on('change', function(element) {
+            var value = this.value;
+            if(value == 'sale'){
+                $('.discount_price_block').removeClass('hide-item');
+                $('#discount_price').attr('required','required');
+            }else{
+                $('.discount_price_block').addClass('hide-item');
+                $('#discount_price').removeAttr('required','required');
             }
         });
 

@@ -87,6 +87,8 @@ class ProductController extends Controller
                 'status'                => $request->input('status'),
                 'summary'               => $request->input('summary'),
                 'type'                  => $request->input('type'),
+                'state'                 => $request->input('state'),
+                'discount_price'        => $request->input('discount_price'),
                 'primary_category_id'   => $request->input('primary_category_id'),
                 'secondary_category_id' => $request->input('secondary_category_id'),
                 'brand_id'              => $request->input('brand_id'),
@@ -215,12 +217,15 @@ class ProductController extends Controller
         if ($slug !== null) {
             return 'duplicate';
         }else{
+
             $product                            =  Product::find($id);
             $product->name                      =  $request->input('name');
             $product->slug                      =  $request->input('slug');
             $product->status                    =  $request->input('status');
             $product->summary                   =  $request->input('summary');
             $product->type                      =  $request->input('type');
+            $product->state                     =  $request->input('state');
+            $product->discount_price            =  ($product->state !== 'sale') ? null : $request->input('discount_price');
             $product->primary_category_id       =  $request->input('primary_category_id');
             $product->secondary_category_id     =  $request->input('secondary_category_id');
             $product->brand_id                  =  $request->input('brand_id');
