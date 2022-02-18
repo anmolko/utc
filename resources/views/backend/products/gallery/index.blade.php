@@ -14,7 +14,7 @@
                     </h4>
                     <a href="{{route('products.index')}}" class="float-right add-doc text-primary">Go Back
                             </a>
-                    <p class="text-danger">Note* Please add the images of Minimum size 1000px * 1000px or used images with same height and weight(e.g 1100px * 1100px) </p>
+                    <p class="text-danger">Note* Please add the images of Minimum size 1000px * 1000px or use images with same height and weight(e.g 1100px * 1100px) </p>
                 </div>
                 <div class="card-body">
                     <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
