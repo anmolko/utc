@@ -19,6 +19,8 @@ class CreateSlidersTable extends Migration
             $table->string('subheading')->nullable();
             $table->string('description');
             $table->string('button_link');
+            $table->string('price');
+            $table->string('discount_price')->nullable();
             $table->string('image')->nullable();
             $table->enum('status',['active','deactive']);
             $table->unsignedBigInteger('created_by');
