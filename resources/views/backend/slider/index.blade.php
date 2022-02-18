@@ -291,7 +291,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row justify-content-center">
-                                        <div class="col-9 mb-4">
+                                        <div class="col-6 mb-4">
                                             <div class="custom-file h-auto">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
