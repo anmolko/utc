@@ -57,6 +57,7 @@ class SettingController extends Controller
             'whatsapp'                  => $request->input('whatsapp'),
             'viber'                     => $request->input('viber'),
             'facebook'                  => $request->input('facebook'),
+            'linkedin'                  => $request->input('linkedin'),
             'youtube'                   => $request->input('youtube'),
             'instagram'                 => $request->input('instagram'),
             'address'                   => $request->input('address'),
@@ -115,6 +116,7 @@ class SettingController extends Controller
         $update_theme->whatsapp                 =  $request->input('whatsapp');
         $update_theme->viber                    =  $request->input('viber');
         $update_theme->facebook                 =  $request->input('facebook');
+        $update_theme->linkedin                 =  $request->input('linkedin');
         $update_theme->youtube                  =  $request->input('youtube');
         $update_theme->instagram                =  $request->input('instagram');
         $update_theme->address                  =  $request->input('address');
