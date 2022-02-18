@@ -53,6 +53,8 @@ class SliderController extends Controller
             'heading'               => $request->input('heading'),
             'subheading'            => $request->input('subheading'),
             'description'           => $request->input('description'),
+            'price'                 => $request->input('price'),
+            'discount_price'        => $request->input('discount_price'),
             'button_link'           => $request->input('button_link'),
             'status'                => $request->input('status'),
             'created_by'            => Auth::user()->id,
@@ -62,7 +64,7 @@ class SliderController extends Controller
             $image        = $request->file('image');
             $name         = uniqid().'_'.$image->getClientOriginalName();
             $path         = base_path().'/public/images/uploads/sliders/';
-            $moved        = Image::make($image->getRealPath())->resize(630, 645, function ($constraint) {
+            $moved        = Image::make($image->getRealPath())->resize(460, 430, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name);
             if ($moved){
@@ -116,6 +118,8 @@ class SliderController extends Controller
         $slider->heading             =  $request->input('heading');
         $slider->subheading          =  $request->input('subheading');
         $slider->description         =  $request->input('description');
+        $slider->price               =  $request->input('price');
+        $slider->discount_price      =  $request->input('discount_price');
         $slider->button_link         =  $request->input('button_link');
         $slider->status              =  $request->input('status');
         $oldimage                    = $slider->image;
@@ -125,7 +129,7 @@ class SliderController extends Controller
             $image               = $request->file('image');
             $name1               = uniqid().'_'.$image->getClientOriginalName();
             $path                = base_path().'/public/images/uploads/sliders/';
-            $moved               = Image::make($image->getRealPath())->resize(630, 645, function ($constraint) {
+            $moved               = Image::make($image->getRealPath())->resize(460, 430, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name1);
             if ($moved){

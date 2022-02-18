@@ -132,8 +132,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Sub Heading </label>
-                                        <input type="text" class="form-control" name="subheading"/>
+                                        <label>Sub Heading  <span class="text-muted text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="subheading" required/>
                                         <div class="invalid-feedback">
                                             Please enter the slider subheading.
                                         </div>
@@ -146,8 +146,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label>Price  <span class="text-muted text-danger">*</span></label>
+                                        <input type="number"  min="1" class="form-control" name="price" required />
+                                        <div class="invalid-feedback">
+                                            Please enter the price.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Discount Price </label>
+                                        <input type="number"  class="form-control" name="discount_price"/>
+                                        <div class="invalid-feedback">
+                                            Please enter the discount price.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Button link <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="button_link" required />
+                                        <input type="url" class="form-control" name="button_link" required />
                                         <div class="invalid-feedback">
                                             Please enter the button link.
                                         </div>
@@ -179,7 +193,7 @@
                                                 </div>
                                                 <img id="current-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="slider image" class="w-100 current-img">
                                             </div>
-                                            <span class="ctm-text-sm">*use image minimum of 630 x 645px for slider</span>
+                                            <span class="ctm-text-sm">*use image minimum of 460 x 430px for slider</span>
                                         </div>
                                     </div>
 
@@ -243,8 +257,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label>Price  <span class="text-muted text-danger">*</span></label>
+                                        <input type="number"  min="1" class="form-control" name="price" id="price" required />
+                                        <div class="invalid-feedback">
+                                            Please enter the price.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Discount Price </label>
+                                        <input type="number"  class="form-control" name="discount_price" id="discount_price"/>
+                                        <div class="invalid-feedback">
+                                            Please enter the discount price.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Button link <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="button_link" id="button_link" required>
+                                        <input type="url" class="form-control" name="button_link" id="button_link" required>
                                         <div class="invalid-feedback">
                                             Please enter the button link.
                                         </div>
@@ -276,7 +304,7 @@
                                                 </div>
                                                 <img id="current-edit-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="slider image" class="w-100 current-img">
                                             </div>
-                                            <span class="ctm-text-sm">*use image minimum of 630 x 645px for slider front</span>
+                                            <span class="ctm-text-sm">*use image minimum of 460 x 430px for slider front</span>
                                         </div>
 
                                     </div>
@@ -338,6 +366,9 @@
                     $("#editSlider").modal("toggle");
                     $('#heading').attr('value',dataResult.heading);
                     $('#subheading').attr('value',dataResult.subheading);
+                    $('#discount_price').attr('value',dataResult.discount_price);
+                    $('#price').attr('value',dataResult.price);
+                    
                     $('#status').attr('value',dataResult.status);
                     $('#current-edit-img').attr("src",'/images/uploads/sliders/'+dataResult.image);
                     $('#description').text(dataResult.description);

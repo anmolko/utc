@@ -294,7 +294,7 @@
 
 .owl-theme .owl-controls .owl-nav div.owl-prev:before,
 .owl-theme .owl-controls .owl-nav div.owl-next:before {
-    font-family: FontAwesome;
+    font-family: 'font awesome 5 pro';
     font-size: 15px;
     color: #e5e5e5;
     -webkit-transition: all 0.3s ease-in-out;
