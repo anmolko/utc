@@ -1500,7 +1500,7 @@ ul.flat-unstyled li>ul>li>a {
 #mega-menu>ul.menu>li>a.dropdown:after {
     content: '\f105';
     position: absolute;
-    font-family: 'fontawesome';
+    font-family: 'font awesome 5 pro';
     right: 29px;
     font-size: 14px;
     color: #484848;
@@ -2384,7 +2384,7 @@ ul.menu li.column-1 .submenu>li>a i {
 .widget-categories>ul.cat-list>li>a:before {
     content: '\f105';
     position: absolute;
-    font-family: 'fontawesome';
+    font-family: 'font awesome 5 pro';
     top: -2px;
     left: 0;
 }

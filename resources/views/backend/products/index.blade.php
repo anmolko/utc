@@ -138,10 +138,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card ctm-border-radius shadow-sm flex-fill">
+                        <div class="card-header">
+                                <h4 class="card-title d-inline-block mb-0">
+                                    Add Product Banner</strong>
+                                </h4>
+                                
+                                <p class="text-danger">Note* Please add the images size of 850px * 260px</p>
+                            </div>
                             <div class="card-body">
                                 <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
                                 <div class="invalid-feedback">    </div>
-                                {!! Form::open(['url'=>route('banner-gallery.store'),'method'=>'post','class'=>'dropzone','id'=>'myDropzone','enctype'=>'multipart/form-data']) !!}
+                                
+                                {!! Form::open(['url'=>route('banner-gallery.update'),'method'=>'put','class'=>'dropzone','id'=>'myDropzone','enctype'=>'multipart/form-data']) !!}
                                 <div class="dz-message">
                                     <div class="col-xs-8">
                                         <div class="">

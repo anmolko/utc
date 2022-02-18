@@ -18,6 +18,14 @@ class SiteBannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $photos_path;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->photos_path   = public_path('/images/uploads/products/banner_gallery');
+    }
+
     public function index()
     {
         //
@@ -140,15 +148,8 @@ class SiteBannerController extends Controller
         //
     }
 
-    public function uploadGallery(Request $request,$id)
+    public function uploadGallery(Request $request)
     {
-        $product                 =  Product::find($id);
-        if($product==null || $product=="null"){
-
-            return Response::json([
-                'message' => 'Product ID Not Found'
-            ], 400);
-        }
 
         $photos = $request->file('file');
 
@@ -163,23 +164,15 @@ class SiteBannerController extends Controller
 
         for ($i = 0; $i < count($photos); $i++) {
             $photo = $photos[$i];
-            $name = $product->slug."_gallery_".date('YmdHis') . uniqid();
+            $name = "banner_gallery_".date('YmdHis') . uniqid();
             $save_name = $name . '.' . $photo->getClientOriginalExtension();
-
-            $resize_name = "Thumb_".$name . '.' . $photo->getClientOriginalExtension();
-
-            // Image::make($photo)->save($this->photos_path . '/' . $resize_name);
-            //    ->resize(270, 300)
-
 
             $photo->move($this->photos_path, $save_name);
 
-            $upload = new ProductGallery();
-            $upload->product_id = $product->id;
-            $upload->upload_by = Auth::user()->id;
-            $upload->filename = $save_name;
-            $upload->resized_name = $save_name;
-            $upload->original_name = basename($photo->getClientOriginalName());
+            $upload = new SiteBanner();
+            $upload->created_by = Auth::user()->id;
+            $upload->name = $save_name;
+            $upload->image = $save_name;
             $upload->save();
         }
 
@@ -190,22 +183,18 @@ class SiteBannerController extends Controller
     public function deleteGallery(Request $request)
     {
         $filename = $request->get('filename');
-        $uploaded_image = ProductGallery::where('filename', $filename)->first();
+        $uploaded_image = SiteBanner::where('name', $filename)->first();
 
         if (empty($uploaded_image)) {
             return Response::json(['message' => 'Sorry file does not exist'], 400);
         }
 
-        $file_path = $this->photos_path . '/' . $uploaded_image->filename;
-        $resized_file = $this->photos_path . '/' . $uploaded_image->resized_name;
+        $file_path = $this->photos_path . '/' . $uploaded_image->name;
 
         if (file_exists($file_path)) {
             @unlink($file_path);
         }
 
-        if (file_exists($resized_file)) {
-            @unlink($resized_file);
-        }
 
         if (!empty($uploaded_image)) {
             $uploaded_image->delete();
@@ -214,22 +203,22 @@ class SiteBannerController extends Controller
         return Response::json(['success' => $filename], 200);
     }
 
-    public function getGallery(Request $request,$id)
+    public function getGallery(Request $request)
     {
-        $images = ProductGallery::where('product_id',$id)->get()->toArray();
+        $images = SiteBanner::get()->toArray();
         if (count($images) > 0){
             foreach($images as $image){
-                $tableImages[] = $image['filename'];
+                $tableImages[] = $image['name'];
             }
-            $storeFolder = public_path('images/uploads/products/gallery/');
-            $file_path = public_path('images/uploads/products/gallery/');
+            $storeFolder = public_path('images/uploads/products/banner_gallery/');
+            $file_path = public_path('images/uploads/products/banner_gallery/');
             $files = scandir($storeFolder);
             foreach ( $files as $file ) {
                 if ($file !='.' && $file !='..' && in_array($file,$tableImages)) {
                     $obj['name'] = $file;
-                    $file_path = public_path('images/uploads/products/gallery/').$file;
+                    $file_path = public_path('images/uploads/products/banner_gallery/').$file;
                     $obj['size'] = filesize($file_path);
-                    $obj['path'] = url('/images/uploads/products/gallery/'.$file);
+                    $obj['path'] = url('/images/uploads/products/banner_gallery/'.$file);
                     $data[] = $obj;
                 }
 

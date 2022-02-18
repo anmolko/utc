@@ -254,9 +254,9 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
     Route::put('/site-banners/{banners}', 'App\Http\Controllers\SiteBannerController@update')->name('banner.update');
     Route::delete('/site-banners/{banners}', 'App\Http\Controllers\SiteBannerController@destroy')->name('banner.destroy');
     Route::get('/site-banners/{banners}/edit', 'App\Http\Controllers\SiteBannerController@edit')->name('banner.edit');
-    Route::post('/product-banner-gallery/store', 'App\Http\Controllers\SiteBannerController@uploadGallery')->name('banner-gallery.store');
+    Route::put('/product-banner-gallery', 'App\Http\Controllers\SiteBannerController@uploadGallery')->name('banner-gallery.update');
     Route::post('/product-banner-gallery/image-delete', 'App\Http\Controllers\SiteBannerController@deleteGallery')->name('banner-gallery.delete');
-    Route::get('/product-banner-gallery/gallery/{id}', 'App\Http\Controllers\SiteBannerController@getGallery')->name('banner-gallery.display');
+    Route::get('/product-banner-gallery/gallery/', 'App\Http\Controllers\SiteBannerController@getGallery')->name('banner-gallery.display');
     //End of Site Banners
 
 
