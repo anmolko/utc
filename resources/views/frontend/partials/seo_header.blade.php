@@ -34,7 +34,11 @@
     
 
     </script>
-
+    <style>
+        .img.social-whatsapp i {
+            font-size: xxx-large;
+        }
+    </style>
     @yield('styles')
 
 </head>

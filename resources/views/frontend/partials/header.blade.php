@@ -23,7 +23,6 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php if(@$setting_data->favicon){?>{{asset('/images/uploads/settings/'.@$setting_data->favicon)}}<?php }?>">
 
-    <!-- All CSS Files -->
 
     <!-- Boostrap style -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/bootstrap.min.css')}}">
@@ -48,6 +47,11 @@
     
 
     </script>
+    <style>
+        .img.social-whatsapp i {
+            font-size: xxx-large;
+        }
+    </style>
 
     @yield('styles')
 

@@ -30,8 +30,23 @@
     .owl-carousel .owl-item{
         display: flex;
     }
+    .product-detail .footer-detail .quanlity-box > div.quanlity {
+        position: relative;
+        margin-right: 8px;
+    }
+    
+    .box-cart.style2.detail-wishlist{
+        margin-top:15px;
+        margin-bottom:0px;
+    }
 
-  
+    
+    @media only screen and (min-width: 1024px){
+
+        .product-detail .footer-detail .social-single{
+            float:right;
+        }
+    }
 </style>
 @endsection
 @section('breadcrumb')
@@ -106,10 +121,10 @@
                                 <input type="number" name="number" value="" min="1" max="100" placeholder="Quantiy">
                                 <span class="btn-up"></span>
                             </div>
-                            <div class="box-cart style2">
+                            <div class="box-cart style2 detail-wishlist">
 
-                                <div class="btn-add-cart">
-                                    <a href="#" title=""><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
+                                <div class="compare-wishlist">
+                                    <a href="compare.html" class="wishlist" title=""><img src="images/icons/wishlist.png" alt="">Wishlist</a>
                                 </div>
                             </div>
                             
@@ -118,31 +133,29 @@
                             <div class="btn-add-cart">
                                 <a href="#" title=""><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
                             </div>
-                            <div class="compare-wishlist">
-                                <a href="compare.html" class="wishlist" title=""><img src="images/icons/wishlist.png" alt="">Wishlist</a>
-                            </div>
+                            <div class="social-single">
+                                <span>SHARE</span>
+                                <ul class="social-list style2">
+                                    <li>
+                                        <a href="#" onclick='fbShare("{{route('product.single',@$product->slug)}}")' title="">
+                                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick='twitShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
+                                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                
+                                    <li>
+                                        <a href="#" onclick='whatsappShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
+                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul><!-- /.social-list -->
+                            </div><!-- /.social-single -->
                         </div><!-- /.box-cart -->
-                        <div class="social-single">
-                            <span>SHARE</span>
-                            <ul class="social-list style2">
-                                <li>
-                                    <a href="#" onclick='fbShare("{{route('product.single',@$product->slug)}}")' title="">
-                                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick='twitShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                              
-                                <li>
-                                    <a href="#" onclick='whatsappShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
-                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            </ul><!-- /.social-list -->
-                        </div><!-- /.social-single -->
+                     
                     </div><!-- /.footer-detail -->
                 </div><!-- /.product-detail -->
             </div><!-- /.col-md-6 -->

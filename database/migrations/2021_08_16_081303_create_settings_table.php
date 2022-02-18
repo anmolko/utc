@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('website_name');
             $table->text('website_description');
-            $table->string('logo')->nullable();
+            $table->string('linkedin')->nullable();
             $table->string('logo_white')->nullable();
             $table->string('favicon')->nullable();
             $table->string('phone')->nullable();

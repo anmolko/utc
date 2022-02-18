@@ -172,7 +172,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="youtube" class="text-heading">Linkedin Url</label>
+                                                            <label for="youtube" class="text-heading">Youtube Url</label>
                                                             <input type="url" class="form-control form-control-lg"
                                                                    id="youtube" name="youtube" value="{{@$settings->youtube}}">
                                                         </div>
@@ -186,7 +186,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-12">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="linkedin" class="text-heading">Linkedin Url</label>
+                                                            <input type="url" class="form-control form-control-lg"
+                                                                   id="linkedin" name="linkedin" value="{{@$settings->linkedin}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 leave-col">
                                                         <div class="form-group">
                                                             <label for="viber" class="text-heading">Viber Number</label>
                                                             <input type="text" class="form-control form-control-lg"
@@ -248,32 +255,6 @@
                     {!! Form::open(['url'=>route('setting.imageupdate', @$settings->id),'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
 
                     <div class="row">
-                        {{-- main logo --}}
-
-{{--                        <div class="col-lg-6 d-flex">--}}
-{{--                            <div class="card ctm-border-radius shadow-sm company-logo flex-fill">--}}
-{{--                                <div class="card-header">--}}
-{{--                                    <h4 class="card-title mb-0"> Backend Logo</h4>--}}
-{{--                                    <span class="ctm-text-sm">*Please use 849 x 151px of image for main logo</span>--}}
-{{--                                </div>--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="row justify-content-center">--}}
-{{--                                        <div class="col-12 mb-4">--}}
-{{--                                            <div class="custom-file h-auto">--}}
-{{--                                                <div class="avatar-upload">--}}
-{{--                                                    <div class="avatar-edit">--}}
-{{--                                                        <input type="file" class="custom-file-input" hidden id="logoUpload" onchange="loadbasicFile('logoUpload','current-logo-img',event)" name="logo">--}}
-{{--                                                        <label for="logoUpload"></label>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <img id="current-logo-img" src="<?php if(!empty($settings->logo)){ echo '/images/uploads/settings/'.$settings->logo; } else{  echo '/images/uploads/default-placeholder.png'; } ?>"  alt="{{@$settings->website_name}}" class="default-image w-100">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--    --}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                         {{-- white logo and favicon    --}}
                         <div class="col-lg-6 d-flex">

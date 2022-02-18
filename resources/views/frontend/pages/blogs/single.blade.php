@@ -93,18 +93,18 @@
                                         <ul class="social-list style2">
                                             <li>
                                                 <a href="#" onclick='fbShare("{{route('blog.single',$singleBlog->slug)}}")' title="">
-                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                    <i class="fab fa-facebook" aria-hidden="true"></i>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#" onclick='twitShare("{{route('blog.single',$singleBlog->slug)}}","{{ $singleBlog->title }}")' title="">
-                                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                    <i class="fab fa-twitter" aria-hidden="true"></i>
                                                 </a>
                                             </li>
                                             
                                             <li>
                                                 <a href="#" onclick='whatsappShare("{{route('blog.single',$singleBlog->slug)}}","{{ $singleBlog->title }}")' title="">
-                                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                                 </a>
                                             </li>
                                           
