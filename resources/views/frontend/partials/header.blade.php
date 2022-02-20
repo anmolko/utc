@@ -251,7 +251,7 @@
                             <ul class="flat-infomation style1">
                                 <li class="phone">
                                     <img src="{{asset('assets/frontend/images/icons/call-3.png')}}" alt="">
-                                    Call Us: <a href="#" title="">(888) 1234 56789</a>
+                                    Call Us: <a href="tel:@if(!empty(@$setting_data->phone)) {{@$setting_data->phone}} @else +977 1234567 @endif" title="">@if(!empty(@$setting_data->phone)) {{@$setting_data->phone}} @else +977 1234567 @endif</a>
                                 </li>
                             </ul><!-- /.flat-infomation -->
                         </div><!-- /.col-md-12 -->
@@ -264,123 +264,42 @@
                         <div class="col-md-3 col-2">
                             <div id="mega-menu">
                                 <div class="btn-mega"><span></span>ALL CATEGORIES</div>
+                                @if(count($product_primary_data) > 0)
                                 <ul class="menu">
-                                    <li>
-                                        <a href="#" title="" class="dropdown">
-                                         
-                                            <span class="menu-title">
-                                                Laptops & Mac
-                                            </span>
-                                        </a>
-                                        <div class="drop-menu">
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Laptop And Computer
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Printers & Ink</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Networking & Internet Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Computer Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Software</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <div class="cat-title">
-                                                    Audio & Video
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="">Headphones & Speakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">Home Entertainment Systems</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="">MP3 & Media Players</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="show">
-                                                    <a href="#" title="">Shop All</a>
-                                                </div>
-                                            </div>
-                                            <div class="one-third">
-                                                <ul class="banner">
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Headphones
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
+                                    @foreach(@$product_primary_data as $product_primary)
+                                        <li>
+                                            <a href="#" title="" class="dropdown">
+                                                <span class="menu-title">
+                                                    {{ucwords(@$product_primary->name)}}
+                                                </span>
+                                            </a>
+                                            @if(count($product_primary->secondary) > 0)
+                                                @foreach(@$product_primary->secondary as $product_secondary)
+                                                <div class="drop-menu">
+                                                    <div class="one-third">
+                                                        <div class="cat-title">
+                                                        {{ucwords(@$product_primary->name)}}
                                                         </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-01.png" alt="">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" title="">{{ucwords(@$product_secondary->name)}}</a>
+                                                            </li>
+                                                          
+                                                        </ul>
+                                                        <div class="show">
+                                                            <a href="#" title="">Shop All</a>
                                                         </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                TV & Audio
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-02.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="banner-text">
-                                                            <div class="banner-title">
-                                                                Computers
-                                                            </div>
-                                                            <div class="more-link">
-                                                                <a href="#" title="">Shop Now <img src="images/icons/right-2.png" alt=""></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="banner-img">
-                                                            <img src="images/banner_boxes/menu-03.png" alt="">
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>	
-                                            </div>
-                                        </div><!-- /.drop-menu -->
-                                    </li>
-                                
-                                    <li>
-                                        <a href="#" title="">
-                                            <span class="menu-title">
-                                                TV & Audio
-                                            </span>
-                                        </a>
-                                    </li>
-                             
+                                                    </div>
+                                                   
+                                                </div><!-- /.drop-menu -->
+                                                @endforeach
+                                            @endif
+                                        </li>
+                                    
+                                       
+                                    @endforeach
                                 </ul><!-- /.menu -->
+                                @endif
                             </div>
                         </div><!-- /.col-md-3 col-2 -->
                         <div class="col-md-9 col-10">

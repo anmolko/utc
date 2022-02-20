@@ -87,7 +87,7 @@ class ProductController extends Controller
                 'status'                => $request->input('status'),
                 'summary'               => $request->input('summary'),
                 'type'                  => $request->input('type'),
-                'state'                 => $request->input('state'),
+                'state'                 => ($request->input('state') == null) ? "normal" : $request->input('state'),
                 'discount_price'        => $request->input('discount_price'),
                 'primary_category_id'   => $request->input('primary_category_id'),
                 'secondary_category_id' => $request->input('secondary_category_id'),
@@ -213,6 +213,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $slug = Product::where('slug', $request->input('slug'))->where('id', '!=' , $id)->first();
         if ($slug !== null) {
             return 'duplicate';
@@ -224,7 +225,7 @@ class ProductController extends Controller
             $product->status                    =  $request->input('status');
             $product->summary                   =  $request->input('summary');
             $product->type                      =  $request->input('type');
-            $product->state                     =  $request->input('state');
+            $product->state                     =  ($request->input('state') == null) ? "normal" : $request->input('state');
             $product->discount_price            =  ($product->state !== 'sale') ? null : $request->input('discount_price');
             $product->primary_category_id       =  $request->input('primary_category_id');
             $product->secondary_category_id     =  $request->input('secondary_category_id');
