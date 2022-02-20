@@ -33,7 +33,6 @@
 
     <div class="col-xl-9 col-lg-8  col-md-12">
 
-
         <div class="card shadow-sm ctm-border-radius grow">
             <div class="card-body align-center">
                 <div class="row filter-row">
@@ -48,7 +47,7 @@
                                     <option disabled>Select a menu to edit</option>
                                     @foreach($menus as $menu)
                                         @if($desiredMenu !== '')
-                                            <option value="{{$menu->slug}}" @if($menu->id == $desiredMenu->id) selected @endif>{{$menu->title}}</option>
+                                            <option value="{{$menu->slug}}" @if($menu->id == $desiredMenu->id) selected @endif>{{$menu->name}}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -212,6 +211,15 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="title" class="text-heading">Menu Name</label>
+                                                        <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please enter the menu name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="title" class="text-heading">Menu Title (for frontend display)</label>
                                                         <input type="text" class="form-control form-control-lg" id="title" name="title" required>
                                                         <div class="invalid-feedback">
                                                             Please enter the menu title.
@@ -412,6 +420,16 @@
                                 </div>
 
                                 @if($desiredMenu != '')
+
+                                    <div class="form-group">
+                                        <label for="title" class="text-heading">Edit Title (for frontend display)</label>
+                                        <input type="text" class="form-control form-control-lg" id="title" name="title" value="{{$menuTitle}}" required>
+                                        <div class="invalid-feedback">
+                                            Please enter the menu title.
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group menulocation">
                                         <p class="mb-2">Select Menu Location: </p>
 
@@ -460,6 +478,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="title" class="text-heading">Menu Name</label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                                <div class="invalid-feedback">
+                                    Please enter the menu name.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="title" class="text-heading">Menu Title (for frontend display)</label>
                                 <input type="text" class="form-control form-control-lg" id="title" name="title" required>
                                 <div class="invalid-feedback">
                                     Please enter the menu title.
@@ -553,7 +580,7 @@
             }
         });
 
-        $("#title").keyup(function(){
+        $("#name").keyup(function(){
             var Text = $(this).val();
             Text = Text.toLowerCase();
             var regExp = /\s+/g;
@@ -679,14 +706,19 @@
             $('#saveMenu').click(function(){
                 var menuid  = "{{$desiredMenu->id}}";
                 var location = $('input[name="location"]:checked').val();
+                var title = $('input[name="title"]').val();
                 if(location == null){
                     swal("Mission location!", "Select the location to save the menu", "info");
+                    return false;
+                }
+                if(title == null){
+                    swal("Mission Title!", "Enter the title to save the menu", "info");
                     return false;
                 }
                 var data = JSON.parse($("#serialize_output").text());
                 $.ajax({
                     type:"get",
-                    data: {menuid:menuid,data:data,location:location},
+                    data: {menuid:menuid,data:data,location:location,title:title},
                     url: "{{route('menu.updateMenu')}}",
                     success:function(res){
                         window.location.reload();

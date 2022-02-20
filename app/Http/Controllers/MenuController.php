@@ -22,12 +22,14 @@ class MenuController extends Controller
     {
         $menuitems    = '';
         $desiredMenu  = '';
+        $menuTitle    = '';
         $cat          = ProductPrimaryCategory::all();
         $menus        = Menu::all();
         $blogs        = Blog::all();
         if(isset($_GET['slug']) && $_GET['slug'] != 'new'){
             $id = $_GET['slug'];
             $desiredMenu = Menu::where('slug',$id)->first();
+            $menuTitle   = $desiredMenu->title;
             if($desiredMenu->content != ''){
                 $menuitems = json_decode($desiredMenu->content);
                 $menuitems = $menuitems[0];
@@ -59,10 +61,10 @@ class MenuController extends Controller
             }else{
                 $menuitems = MenuItem::where('menu_id',$desiredMenu->id)->get();
             }
-
         }
         else{
             $desiredMenu = Menu::orderby('id','DESC')->first();
+            $menuTitle   = $desiredMenu->title;
             if($desiredMenu){
                 if($desiredMenu->content != ''){
                     $menuitems = json_decode($desiredMenu->content);
@@ -98,7 +100,7 @@ class MenuController extends Controller
             }
         }
 
-        return view('backend.menu.index',compact('blogs','menus','desiredMenu','menuitems','cat'));
+        return view('backend.menu.index',compact('blogs','menus','menuTitle','desiredMenu','menuitems','cat'));
 
     }
 
@@ -121,8 +123,9 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $data=[
+            'name'                => $request->input('name'),
             'title'               => $request->input('title'),
-            'slug'               => $request->input('slug'),
+            'slug'                => $request->input('slug'),
             'created_by'          => Auth::user()->id,
         ];
         $menu = Menu::create($data);
@@ -337,6 +340,7 @@ class MenuController extends Controller
         $content                = $request->data;
         $newdata                = [];
         $newdata['location']    = $request->location;
+        $newdata['title']       = $request->title;
         $newdata['content']     = json_encode($content);
         $status = $menu->update($newdata);
         if($status){
