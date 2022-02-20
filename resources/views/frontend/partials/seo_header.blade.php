@@ -7,7 +7,7 @@
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="Universal Trading Concern">
-    <link rel="canonical" href="" />
+    <link rel="canonical" href="https://universaltrading.com.np/" />
     @yield('seo')
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php if(@$setting_data->favicon){?>{{asset('/images/uploads/settings/'.@$setting_data->favicon)}}<?php }?>">
@@ -37,6 +37,16 @@
     <style>
         .img.social-whatsapp i {
             font-size: xxx-large;
+        }
+        .header-middle #logo a img {
+            max-height: 90px;
+        }
+        .widget-about .logo-ft a img {
+            height: 90px;
+        }
+
+        .widget-ft.widget-about.logo-details {
+            display: flex;
         }
     </style>
     @yield('styles')

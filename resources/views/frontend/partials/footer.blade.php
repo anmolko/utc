@@ -1,20 +1,17 @@
         <footer class="style1">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget-ft widget-about">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="widget-ft widget-about logo-details">
                             <div class="logo logo-ft">
                                 <a href="/" title="">
-                                    <img src="images/logos/logo-ft.png" alt="">
+                                    <img src="<?php if(@$setting_data->logo_white){?>{{asset('/images/uploads/settings/'.@$setting_data->logo_white)}}<?php }?>" alt="Universal Trading Concern">
                                 </a>
                             </div>
                             <!-- /.lgo-ft -->
                             <div class="widget-content">
-                                <div class="icon">
-                                    <img src="{{asset('assets/frontend/images/icons/call.png')}}" alt="">
-                                </div>
                                 <div class="info">
-                                    <p class="questions">Got Questions ? Call us 24/7!</p>
+                                    <p class="questions">Got Questions ? </p>
                                     <p class="phone">Call Us: @if(!empty(@$setting_data->phone)) {{@$setting_data->phone}} @else +977 1234567 @endif</p>
                                     <p class="address">
                                     @if(!empty(@$setting_data->address)) {{@$setting_data->address}} @else Kathmandu, Nepal @endif 
@@ -22,6 +19,10 @@
                                 </div>
                             </div>
                             <!-- /.widget-content -->
+                            
+                            <!-- /.social-list -->
+                        </div>
+                        <div class="widget-about">
                             <ul class="social-list">
                                 @if(!empty(@$setting_data->facebook))
                                     <li>
@@ -55,12 +56,10 @@
                                 @endif
 
                             </ul>
-                            <!-- /.social-list -->
                         </div>
                         <!-- /.widget-about -->
                     </div>
-                    <!-- /.col-lg-3 col-md-6 -->
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-12">
                         <div class="widget-ft widget-categories-ft">
                             <div class="widget-title">
                                 <h3>Find By Categories</h3>
@@ -76,8 +75,7 @@
                         </div>
                         <!-- /.widget-categries-ft -->
                     </div>
-                    <!-- /.col-lg-3 col-md-6 -->
-                    <div class="col-lg-2 col-md-6">
+                    <div class="col-lg-4 col-md-12">
                         <div class="widget-ft widget-menu">
                             <div class="widget-title">
                                 <h3>Customer Care</h3>
@@ -94,35 +92,7 @@
                         </div>
                         <!-- /.widget-menu -->
                     </div>
-                    <!-- /.col-lg-2 col-md-6 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="widget-ft widget-newsletter">
-                            <div class="widget-title">
-                                <h3>Sign Up To New Letter</h3>
-                            </div>
-                            <!-- /.widget-title -->
-                            <p>Make sure that you never miss our interesting <br /> news by joining our newsletter program
-                            </p>
-                            <form action="#" class="subscribe-form" method="get" accept-charset="utf-8">
-                                <div class="subscribe-content">
-                                    <input type="text" name="email" class="subscribe-email" placeholder="Your E-Mail">
-                                    <button type="submit"><img src="{{asset('assets/frontend/images/icons/right-2.png')}}" alt=""></button>
-                                </div>
-                            </form>
-                            <!-- /.subscribe-form -->
-                            <ul class="pay-list">
-                                <li>
-                                    <a href="#" title="">
-                                        <img src="images/logos/ft-01.png" alt="">
-                                    </a>
-                                </li>
-                               
-                            </ul>
-                            <!-- /.pay-list -->
-                        </div>
-                        <!-- /.widget-newletter -->
-                    </div>
-                    <!-- /.col-lg-4 col-md-6 -->
+                  
                 </div>
                 <!-- /.row -->
                 <div class="row">
@@ -175,7 +145,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="copyright">All Rights Reserved © Universal Trading Concern 2022</p>
+                        <p class="copyright">All Rights Reserved © Universal Trading Concern 2022 | Developed  by <a
+										rel="noopener" target="_blank" href="https://www.canosoft.com.np/">Canosoft Techonology </a></p>
                         <p class="btn-scroll">
                             <a href="#" title="">
                                 <img src="{{asset('assets/frontend/images/icons/top.png')}}" alt="">

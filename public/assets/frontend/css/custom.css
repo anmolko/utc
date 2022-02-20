@@ -122,6 +122,7 @@ html .ui-button.ui-state-disabled:active {
 
 .slider .slider-item .item-text .header-item h2 {
     color: #7DAC44;
+    font-size: 30px;
 }
 
 .slider .slider-item.style4 .item-text .header-item h2 {
@@ -139,6 +140,7 @@ html .ui-button.ui-state-disabled:active {
 
 .slider-item.style2 .item-text .content-item .price .sale {
     background-color: #7DAC44;
+    font-size: 30px;
 }
 
 .slider .slider-item.style10 .item-text .content-item .price .sale {
@@ -461,10 +463,30 @@ ol.comment-list li.comment .comment-text .comment-metadata .queue {
     content: '';
     position: absolute;
     width: 92px;
-    background-color: #94ca51;
+    background-color: unset;
     height: 200%;
     top: 0px;
     right: 273px;
     -webkit-transform: rotate(48deg);
     transform: rotate(48deg);
+}
+
+p.copyright a {
+    color: #94ca51;
+}
+
+.header-middle #logo {
+    margin-bottom: 15px;
+}
+
+.widget-about .widget-content .info {
+    margin-left: 25px;
+}
+
+.widget-about .widget-content {
+    padding-top: 0;
+}
+
+.widget-about ul.social-list {
+    margin-top: 10px;
 }

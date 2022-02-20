@@ -126,21 +126,21 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Heading <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="heading" required />
+                                        <input type="text" maxlength="30" class="form-control" name="heading" required />
                                         <div class="invalid-feedback">
                                             Please enter the slider heading.
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Sub Heading  <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="subheading" required/>
+                                        <input type="text" maxlength="60"  class="form-control" name="subheading" required/>
                                         <div class="invalid-feedback">
                                             Please enter the slider subheading.
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label> Description <span class="text-muted text-danger">*</span></label>
-                                        <textarea type="text" rows="4" class="form-control" name="description" required></textarea>
+                                        <textarea type="text" maxlength="255" rows="4" class="form-control" name="description" required></textarea>
                                         <div class="invalid-feedback">
                                             Please enter the slider product description.
                                         </div>
@@ -237,21 +237,21 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Heading <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="heading" id="heading" required>
+                                        <input type="text" maxlength="30" class="form-control" name="heading" id="heading" required>
                                         <div class="invalid-feedback">
                                             Please enter the slider heading.
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Sub Heading  <span class="text-muted text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="subheading" id="subheading" required />
+                                        <input type="text" maxlength="60" class="form-control" name="subheading" id="subheading" required />
                                         <div class="invalid-feedback">
                                             Please enter the slider subheading.
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Description<span class="text-muted text-danger">*</span></label>
-                                        <textarea type="text" rows="4" class="form-control" name="description" id="description" required></textarea>
+                                        <textarea maxlength="255" type="text" rows="4" class="form-control" name="description" id="description" required></textarea>
                                         <div class="invalid-feedback">
                                             Please enter the description of the product.
                                         </div>

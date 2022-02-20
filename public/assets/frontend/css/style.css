@@ -2084,7 +2084,7 @@ ul.menu li.column-1 .submenu>li>a i {
     position: absolute;
     right: 0px;
     top: -1px;
-    font: 20px/51px 'FontAwesome';
+    font: 20px/51px 'font awesome 5 pro';
     text-align: center;
     cursor: pointer;
     width: 51px;
@@ -2156,7 +2156,7 @@ ul.menu li.column-1 .submenu>li>a i {
     background: #262626;
     text-align: center;
     cursor: pointer;
-    font: 20px/54px 'FontAwesome';
+    font: 20px/54px 'font awesome 5 pro';
 }
 
 .btn-dropdown-child {

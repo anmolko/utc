@@ -4,101 +4,60 @@
 
 <div class="divider30"></div>
 
+@if(count($sliders) > 0)
 
 <section class="flat-row flat-slider style3">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="slider owl-carousel-14">
+                    @foreach(@$sliders as $slider)
+
                     <div class="slider-item style2 v2">
                         <div class="item-text">
                             <div class="header-item">
-                                <p>Enhanced Technology</p>
-                                <h2 class="name">SMART <span>TV</span></h2>
-                                <p>The ship set ground on the shore of this uncharted desert isle <br />with Gilligan the Skipper too the millionaire and his story.  </p>
+                                <p>{{ucwords(@$slider->subheading)}}</p>
+                                <h2 class="name">{{ucwords(@$slider->heading)}}</h2>
+                                <p>{{ucwords(@$slider->description)}} </p>
                             </div>
                             <div class="content-item">
+                                @if(@$slider->discount_price)
                                 <div class="price">
-                                    <span class="sale">$1.905.99</span>
+                                    <span class="sale">NPR. {{number_format(@$slider->discount_price)}}</span>
                                     <span class="btn-shop">
-                                        <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
+                                        <a href="{{@$slider->button_link}}" title="">SHOP NOW <img src="{{asset('assets/frontend/images/icons/right-2.png')}}" alt=""></a>
                                     </span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="regular">
-                                    $2.500.99
+                                    NPR. {{number_format(@$slider->price)}}
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item-image">
-                            <div class="sale-off">
-                                60 % <span>sale</span>
-                            </div>
-                            <img src="images/slider/03.png" alt="">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div><!-- /.slider -->
-                    <div class="slider-item style2 v2">
-                        <div class="item-text">
-                            <div class="header-item">
-                                <p>Enhanced Technology</p>
-                                <h2 class="name">SMART <span>TV</span></h2>
-                                <p>The ship set ground on the shore of this uncharted desert isle <br />with Gilligan the Skipper too the millionaire and his story.  </p>
-                            </div>
-                            <div class="content-item">
+                                @else  
                                 <div class="price">
-                                    <span class="sale">$2.605.99</span>
+                                    <span class="sale"> NPR. {{number_format(@$slider->price)}}</span>
                                     <span class="btn-shop">
-                                        <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
+                                        <a href="{{@$slider->button_link}}" title="">SHOP NOW <img src="{{asset('assets/frontend/images/icons/right-2.png')}}" alt=""></a>
                                     </span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="regular">
-                                    $2.500.99
                                 </div>
+                                @endif
                             </div>
                         </div>
                         <div class="item-image">
-                            <div class="sale-off">
-                                30 % <span>sale</span>
-                            </div>
-                            <img src="images/slider/03.png" alt="">
+                            <img src="{{asset('/images/uploads/sliders/'.$slider->image) }}" alt="">
                         </div>
                         <div class="clearfix"></div>
                     </div><!-- /.slider -->
-                    <div class="slider-item style2 v2">
-                        <div class="item-text">
-                            <div class="header-item">
-                                <p>Enhanced Technology</p>
-                                <h2 class="name">SMART <span>TV</span></h2>
-                                <p>The ship set ground on the shore of this uncharted desert isle <br />with Gilligan the Skipper too the millionaire and his story.</p>
-                            </div>
-                            <div class="content-item">
-                                <div class="price">
-                                    <span class="sale">$5.975.99</span>
-                                    <span class="btn-shop">
-                                        <a href="#" title="">SHOP NOW <img src="images/icons/right-2.png" alt=""></a>
-                                    </span>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="regular">
-                                    $2.500.99
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-image">
-                            <div class="sale-off">
-                                50 % <span>sale</span>
-                            </div>
-                            <img src="images/slider/03.png" alt="">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div><!-- /.slider -->
+                    @endforeach
+                    
                 </div><!-- /.slider -->
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </section><!-- /.flat-slider -->
+@endif
 
 
 @endsection

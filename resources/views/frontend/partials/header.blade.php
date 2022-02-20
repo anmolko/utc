@@ -9,11 +9,11 @@
 
     <meta name="author" content="Universal Trading Concern">
     <meta name="description" content="@if(!empty(@$setting_data->website_description)) {{ucwords(@$setting_data->website_description)}} @else Universal Trading Concern @endif ">
-    <link rel="canonical" href="" />
+    <link rel="canonical" href="https://universaltrading.com.np/" />
     <title>@yield('title') - @if(!empty(@$setting_data->website_name)) {{ucwords(@$setting_data->website_name)}} @else Universal Trading Concern @endif </title>
     <meta property="og:title" content="Home" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="" />
+	<meta property="og:url" content="https://universaltrading.com.np/" />
 	<meta property="og:site_name" content="Universal Trading Concern" />
 	<meta property="og:description" content="@if(!empty(@$setting_data->website_description)) {{ucwords(@$setting_data->website_description)}} @else Universal Trading Concern @endif " />
     <!-- Mobile Specific Metas -->
@@ -51,6 +51,17 @@
         .img.social-whatsapp i {
             font-size: xxx-large;
         }
+
+        .header-middle #logo a img {
+            max-height: 90px;
+        }
+        .widget-about .logo-ft a img {
+            height: 90px;
+        }
+
+        .widget-ft.widget-about.logo-details {
+            display: flex;
+        }
     </style>
 
     @yield('styles')
@@ -71,71 +82,14 @@
         </div><!-- /.preloader -->
         
         <section id="header" class="header">
-            <div class="header-top style3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <ul class="flat-support">
-                                <li>
-                                <a href="faq.html" title="">Support</a>
-                            </li>
-                            <li>
-                                <a href="store-location.html" title="">Store Locator</a>
-                            </li>
-                            <li>
-                                <a href="order-tracking.html" title="">Track Your Order</a>
-                            </li>
-                            </ul><!-- /.flat-support -->
-                        </div><!-- /.col-md-4 -->
-                        <div class="col-md-4">
-                            
-                        </div><!-- /.col-md-4 -->
-                        <div class="col-md-4">
-                            <ul class="flat-unstyled">
-                                <li class="account">
-                                    <a href="#" title="">My Account<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="unstyled">
-                                        <li>
-                                        <a href="#" title="">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.html" title="">Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-cart.html" title="">My Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="my-account.html" title="">My Account</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-checkout.html" title="">Checkout</a>
-                                    </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" title="">USD<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul class="unstyled">
-                                        <li>
-                                            <a href="#" title="">Euro</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">Dolar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                              
-                            </ul><!-- /.flat-unstyled -->
-                        </div><!-- /.col-md-4 -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
-            </div><!-- /.header-top -->
+        
             <div class="header-middle">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div id="logo" class="logo style1">
-                                <a href="index.html" title="">
-                                    <img src="images/logos/logo.png" alt="">
+                                <a href="/" title="Universal Trading Concern">
+                                    <img src="<?php if(@$setting_data->logo_white){?>{{asset('/images/uploads/settings/'.@$setting_data->logo_white)}}<?php }?>" alt="Universal Trading Concern">
                                 </a>
                             </div><!-- /#logo -->
                             <div class="nav-wrap">
