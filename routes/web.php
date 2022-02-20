@@ -46,6 +46,12 @@ Route::get('product/{category}','App\Http\Controllers\FrontController@productCat
 Route::get('/product', 'App\Http\Controllers\FrontController@products')->name('product.frontend');
 //end product
 
+
+//product by brand
+Route::get('/brands/{brand}','App\Http\Controllers\FrontController@productBrands')->name('product.brand');
+Route::get('/brands/{brand}/{series}','App\Http\Controllers\FrontController@productBrandSeries')->name('product.brandseries');
+
+
 //blog
 Route::get('blog/search/', 'App\Http\Controllers\FrontController@searchBlog')->name('searchBlog');
 

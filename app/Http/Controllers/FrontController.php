@@ -64,6 +64,18 @@ class FrontController extends Controller
                                     });
         return view('welcome',compact('primary_categories_tab','sliders','latestPosts','product_primary_categories','latestProducts'));
     }
+    
+    public function productBrands($brand)
+    {
+        return view('frontend.pages.products.brand');
+    }
+
+
+    public function productBrandSeries($brand,$series)
+    {
+        return view('frontend.pages.products.brand_series');
+
+    }
 
     public function products(Request $request)
     {

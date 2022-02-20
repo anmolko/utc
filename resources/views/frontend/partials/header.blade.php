@@ -264,35 +264,36 @@
                         <div class="col-md-3 col-2">
                             <div id="mega-menu">
                                 <div class="btn-mega"><span></span>ALL CATEGORIES</div>
-                                @if(count($product_primary_data) > 0)
+                                @if(count($product_brand_data) > 0)
                                 <ul class="menu">
-                                    @foreach(@$product_primary_data as $product_primary)
+                                    @foreach(@$product_brand_data as $product_brand)
                                         <li>
-                                            <a href="#" title="" class="dropdown">
+                                            <a href="{{route('product.brand',@$product_brand->slug)}}" title="" class="dropdown">
                                                 <span class="menu-title">
-                                                    {{ucwords(@$product_primary->name)}}
+                                                    {{ucwords(@$product_brand->name)}}
                                                 </span>
                                             </a>
-                                            @if(count($product_primary->secondary) > 0)
-                                                @foreach(@$product_primary->secondary as $product_secondary)
+                                            @if(count($product_brand->series) > 0)
                                                 <div class="drop-menu">
                                                     <div class="one-third">
                                                         <div class="cat-title">
-                                                        {{ucwords(@$product_primary->name)}}
+                                                        {{ucwords(@$product_brand->name)}}
                                                         </div>
                                                         <ul>
+                                                        @foreach(@$product_brand->series as $product_series)
+
                                                             <li>
-                                                                <a href="#" title="">{{ucwords(@$product_secondary->name)}}</a>
+                                                                <a href="{{route('product.brandseries',[@$product_brand->slug,@$product_series->slug])}}" title="">{{ucwords(@$product_series->name)}}</a>
                                                             </li>
+                                                        @endforeach
                                                           
                                                         </ul>
                                                         <div class="show">
-                                                            <a href="#" title="">Shop All</a>
+                                                            <a href="{{route('product.brand',@$product_brand->slug)}}" title="">Shop All</a>
                                                         </div>
                                                     </div>
                                                    
                                                 </div><!-- /.drop-menu -->
-                                                @endforeach
                                             @endif
                                         </li>
                                     
@@ -312,41 +313,30 @@
                                         <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                         <div class="all-categories">
                                             <div class="cat-list-search">
+                                            @if(count($product_brand_data) > 0)
+                                                <div class="title">
+                                                    Laptops
+                                                </div>
+                                                <ul>
+                                                @foreach(@$product_brand_data as $product_brand)
+                                                    <li>{{ucwords($product_brand->name)}}</li>
+                                                @endforeach
+                                                </ul>
+                                            @endif
+                                            </div><!-- /.cat-list-search -->
+                                            <div class="cat-list-search">
+                                            @if(count($product_primary_data) > 0)
                                                 <div class="title">
                                                     Electronics
                                                 </div>
                                                 <ul>
-                                                    <li>Components</li>
-                                                    <li>Laptop</li>
-                                                    <li>Monitor</li>
-                                                    <li>Mp3 player</li>
-                                                    <li>Scanners</li>
+                                                @foreach(@$product_primary_data as $product_primary)
+                                                    <li>{{ucwords($product_primary->name)}}</li>
+                                                @endforeach
                                                 </ul>
+                                            @endif
                                             </div><!-- /.cat-list-search -->
-                                            <div class="cat-list-search">
-                                                <div class="title">
-                                                    Furniture
-                                                </div>
-                                                <ul>
-                                                    <li>Bookcases</li>
-                                                    <li>Barstools</li>
-                                                    <li>TV stands</li>
-                                                    <li>Desks</li>
-                                                    <li>Accent chairs</li>
-                                                </ul>
-                                            </div><!-- /.cat-list-search -->
-                                            <div class="cat-list-search">
-                                                <div class="title">
-                                                    Accessories
-                                                </div>
-                                                <ul>
-                                                    <li>Software</li>
-                                                    <li>Mobile</li>
-                                                    <li>TV stands</li>
-                                                    <li>Printers</li>
-                                                    <li>Media</li>
-                                                </ul>
-                                            </div><!-- /.cat-list-search -->
+                                        
                                         </div><!-- /.all-categories -->
                                     </div><!-- /.cat-wrap -->
                                     <div class="box-search">

@@ -6,6 +6,7 @@ namespace App\Http\ViewComposer;
 use Illuminate\View\View;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Models\Brand;
 use App\Models\ProductPrimaryCategory;
 use App\Models\Blog;
 use App\Models\Setting;
@@ -17,7 +18,8 @@ class SensitiveComposer
 
         $topNav           = Menu::where('location',1)->first();
         $footerMenu       = Menu::where('location',2)->first();
-        $productPrimary   = ProductPrimaryCategory::with('secondary')->get();
+        $productBrand     = Brand::with('series')->get();
+        $productPrimary     = ProductPrimaryCategory::all();
         $topNavItems      = json_decode(@$topNav->content);
         $footerMenuItems  = json_decode(@$footerMenu->content);
         $topNavItems      = @$topNavItems[0];
@@ -62,6 +64,7 @@ class SensitiveComposer
             ->with('setting_data', $theme_data)
             ->with('latestPostsfooter', $latestPostsfooter)
             ->with('footer_nav_data', $footerMenuItems)
+            ->with('product_brand_data', $productBrand)
             ->with('product_primary_data', $productPrimary)
             ->with('top_nav_data', $topNavItems);
 
