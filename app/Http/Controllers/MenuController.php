@@ -44,6 +44,15 @@ class MenuController extends Controller
                             $child->slug    = MenuItem::where('id',$child->id)->value('slug');
                             $child->target  = MenuItem::where('id',$child->id)->value('target');
                             $child->type    = MenuItem::where('id',$child->id)->value('type');
+                            if(!empty($child->children[0])){
+                                foreach ($child->children[0] as $minichild) {
+                                    $minichild->title   = MenuItem::where('id',$minichild->id)->value('title');
+                                    $minichild->name    = MenuItem::where('id',$minichild->id)->value('name');
+                                    $minichild->slug    = MenuItem::where('id',$minichild->id)->value('slug');
+                                    $minichild->target  = MenuItem::where('id',$minichild->id)->value('target');
+                                    $minichild->type    = MenuItem::where('id',$minichild->id)->value('type');
+                                }
+                            }
                         }
                     }
                 }
@@ -71,6 +80,15 @@ class MenuController extends Controller
                                 $child->slug    = MenuItem::where('id',$child->id)->value('slug');
                                 $child->target  = MenuItem::where('id',$child->id)->value('target');
                                 $child->type    = MenuItem::where('id',$child->id)->value('type');
+                                if(!empty($child->children[0])){
+                                    foreach ($child->children[0] as $minichild) {
+                                        $minichild->title   = MenuItem::where('id',$minichild->id)->value('title');
+                                        $minichild->name    = MenuItem::where('id',$minichild->id)->value('name');
+                                        $minichild->slug    = MenuItem::where('id',$minichild->id)->value('slug');
+                                        $minichild->target  = MenuItem::where('id',$minichild->id)->value('target');
+                                        $minichild->type    = MenuItem::where('id',$minichild->id)->value('type');
+                                    }
+                                }
                             }
                         }
                     }
@@ -79,6 +97,7 @@ class MenuController extends Controller
                 }
             }
         }
+
         return view('backend.menu.index',compact('blogs','menus','desiredMenu','menuitems','cat'));
 
     }
@@ -170,7 +189,6 @@ class MenuController extends Controller
         return redirect()->route('menu.index');
 
     }
-
 
     public function addCategory(Request $request){
         $data       = $request->all();
@@ -344,25 +362,70 @@ class MenuController extends Controller
         return redirect()->back();
     }
 
-    public function deleteMenuItem($id,$key,$in=''){
+    public function deleteMenuItem($id,$key,$in='',$inside=''){
         $menuitem       = MenuItem::findOrFail($id);
-        $menu           = Menu::where('id',$menuitem->menu_id)->first();
-        if($menu->content != ''){
-            $data       = json_decode($menu->content,true);
-            $maindata   = $data[0];
+        $menus          = Menu::where('id',$menuitem->menu_id)->first();
+
+        if($menus->content != ''){
+            $data       = json_decode($menus->content,true);
             if($in == ''){
+
+                //collecting the inner child ID to remove them from table
+                $childarray = array();
+                if(array_key_exists('children', $data[0][$key])) {
+                    //first child of the main menu (second layer)
+                    foreach ($data[0][$key]['children'][0] as $k=>$child){
+                        $childarray[] = $child['id'];
+                        //looping through that child list to check if it has inner child (third layer)
+                        if (array_key_exists('children', $data[0][$key]['children'][0][$k])){
+                            //if second layer has children, then looping through them to get its ID
+                            foreach ($data[0][$key]['children'][0][$k]['children'][0] as $l=>$inner){
+                                $childarray[] = $inner['id'];
+                            }
+                        }
+                    }
+                }
+
+                if($childarray){
+                    //removing the collected item list ID here
+                    foreach ($childarray as $id){
+                        $childitem = MenuItem::find($id);
+                        $childitem->delete();
+                    }
+                }
+
                 unset($data[0][$key]);
+                //removing the ID from the structure
                 $newdata = json_encode($data);
-                $menu->update(['content'=>$newdata]);
-            }else{
+                $menus->update(['content'=>$newdata]);
+            }else if($inside == ''){
+
+                //checking if the removed menu child item has additional child or not.
+                if(array_key_exists('children', $data[0][$key]['children'][0][$in])){
+                    //if it does, looping over value to get the menu items ID and keeping it in array to remove them later.
+                    foreach ($data[0][$key]['children'][0][$in]['children'][0] as $child) {
+                        foreach ($child as $c){
+                            $childitem = MenuItem::findOrFail($c);
+                            $childitem->delete();
+                        }
+                    }
+                }
+                //removing the deleted menu item and its children from the menu content structure
                 unset($data[0][$key]['children'][0][$in]);
                 $newdata = json_encode($data);
-                $menu->update(['content'=>$newdata]);
+                $menus->update(['content'=>$newdata]);
+            }else{
+                unset($data[0][$key]['children'][0][$in]['children'][0][$inside]);
+                $newdata = json_encode($data);
+                $menus->update(['content'=>$newdata]);
             }
         }
+
+        //deleting the menu item here
         $status = $menuitem->delete();
         if($status){
             Session::flash('success','Menu Item Deleted Successfully');
+
         }else{
             Session::flash('error','Menu Item could not be Deleted');
         }

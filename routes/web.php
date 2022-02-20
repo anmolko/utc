@@ -274,7 +274,7 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
     Route::get('add-custom-link','App\Http\Controllers\MenuController@addCustomLink')->name('menu.custom');
     Route::get('/update-menu','App\Http\Controllers\MenuController@updateMenu')->name('menu.updateMenu');
     Route::post('/update-menuitem/{id}','App\Http\Controllers\MenuController@updateMenuItem')->name('menu.updatemenuitem');
-    Route::get('/delete-menuitem/{id}/{key}/{in?}','App\Http\Controllers\MenuController@deleteMenuItem')->name('menu.deletemenuitem');
+    Route::get('/delete-menuitem/{id}/{key}/{in?}/{inside?}','App\Http\Controllers\MenuController@deleteMenuItem')->name('menu.deletemenuitem');
     Route::get('/delete-menu/{id}','App\Http\Controllers\MenuController@destroy')->name('menu.delete');
 
 });

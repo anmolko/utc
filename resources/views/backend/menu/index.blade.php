@@ -199,6 +199,7 @@
                     </div>
                     <div class="card-body">
                         @if($desiredMenu == '')
+                            {{--creating new menu if no previous menu is saved--}}
                            <div class="card shadow-none">
                                 <div class="card-header">
                                     <h5 class="card-title text-primary mb-0">Create New Menu</h5>
@@ -235,6 +236,7 @@
                                 </div>
                           </div>
                         @else
+                            {{--displaying the menu structure if previous menu is saved--}}
 
                             <div id="menu-content">
                                 <div style="min-height: 240px;">
@@ -341,7 +343,62 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <ul class="children-content">
+                                                                                @if(isset($data->children))
+                                                                                    @foreach($data->children as $o)
+                                                                                        @foreach($o as $keys=>$data1)
+                                                                                            <li data-id="{{$data1->id}}" class="menu-item mt-2"> <span class="menu-item-bar"><i class="lnr lnr-move"></i> @if(empty($data1->name)) {{$data1->title}} @else {{$data1->name}} @endif <a href="#collapse{{$data1->id}}" class="pull-right coll-arrow d-block text-dark collapsed" data-toggle="collapse"></a></span>
+                                                                                                <div class="collapse" id="collapse{{$data1->id}}">
+                                                                                                    <div class="card shadow-sm ctm-border-radius input-box">
+                                                                                                        <div class="card-header" id="basic4">
+                                                                                                            <h4 class="cursor-pointer mb-0">
+                                                                                                                <a class="d-block text-dark">
+                                                                                                                    Edit details
+                                                                                                                </a>
+                                                                                                            </h4>
+                                                                                                        </div>
+                                                                                                        <div class="card-body p-2">
+                                                                                                            {!! Form::open(['method'=>'post','url'=>route('menu.updatemenuitem', @$data1->id),'class'=>'needs-validation','novalidate'=>'']) !!}
+                                                                                                            <div class="form-group mb-3">
+                                                                                                                <label>Link Name </label>
+                                                                                                                <input type="text" class="form-control" name="name" value="@if(empty($data1->name)) {{$data1->title}} @else {{$data1->name}} @endif">
+                                                                                                                <div class="invalid-feedback">
+                                                                                                                    Please enter the Link Name.
+                                                                                                                </div>
+                                                                                                            </div>
 
+                                                                                                            @if($data1->type == 'custom')
+                                                                                                                <div class="form-group mb-3">
+                                                                                                                    <label>URL </label>
+                                                                                                                    <input type="text" class="form-control" name="slug" value="{{$data1->slug}}" required>
+                                                                                                                    <div class="invalid-feedback">
+                                                                                                                        Please enter the URL.
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="custom-control custom-checkbox mb-3">
+                                                                                                                    <input type="checkbox" name="target" value="_blank" id="main-{{$data1->id}}"  @if($data1->target == '_blank') checked @endif class="custom-control-input">
+                                                                                                                    <label class="custom-control-label" for="main-{{$data1->id}}">
+                                                                                                                        <span class="h6">Open in a new tab</span>
+                                                                                                                    </label>
+                                                                                                                </div>
+                                                                                                            @endif
+                                                                                                            <div class="text-center">
+                                                                                                                <button class="pull-right btn btn-sm btn-outline-success"><i class="lnr lnr-bookmark"></i> Save</button>
+                                                                                                                <a href="{{url('auth/delete-menuitem')}}/{{$data1->id}}/{{$key}}/{{$in}}/{{$keys}}" class="pull-left btn btn-sm btn-outline-danger">
+                                                                                                                    <span class="lnr lnr-trash"></span> Delete
+                                                                                                                </a>
+                                                                                                            </div>
+
+                                                                                                            {!! Form::close() !!}
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </ul>
                                                                         </li>
                                                                     @endforeach
                                                                 @endforeach
@@ -446,7 +503,7 @@
             isValidTarget: function ($item, container) {
                 //for limiting the depth of the UL child
                 var depth = 1, // Start with a depth of one (the element itself)
-                    maxDepth = 2,
+                    maxDepth = 3,
                     children = $item.find('ul').first().find('li');
 
 
