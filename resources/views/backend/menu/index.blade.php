@@ -707,12 +707,12 @@
                 var menuid  = "{{$desiredMenu->id}}";
                 var location = $('input[name="location"]:checked').val();
                 var title = $('input[name="title"]').val();
-                if(location == null){
-                    swal("Mission location!", "Select the location to save the menu", "info");
+                if(title == ""){
+                    swal("Missing Title!", "Enter the title to save the menu", "info");
                     return false;
                 }
-                if(title == null){
-                    swal("Mission Title!", "Enter the title to save the menu", "info");
+                if(location == null){
+                    swal("Missing location!", "Select the location to save the menu", "info");
                     return false;
                 }
                 var data = JSON.parse($("#serialize_output").text());
