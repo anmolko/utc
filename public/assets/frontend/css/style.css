@@ -857,7 +857,7 @@ ul.flat-unstyled li>ul>li>a {
 
 .show-search button:before {
     content: "\f002";
-    font-family: fontawesome;
+    font-family: 'font awesome 5 pro';
     position: absolute;
     font-size: 18px;
     line-height: 45px;

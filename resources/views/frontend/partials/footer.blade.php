@@ -14,12 +14,12 @@
                                     <p class="questions">Got Questions ? </p>
                                     <p class="phone">Call Us: @if(!empty(@$setting_data->phone)) {{@$setting_data->phone}} @else +977 1234567 @endif</p>
                                     <p class="address">
-                                    @if(!empty(@$setting_data->address)) {{@$setting_data->address}} @else Kathmandu, Nepal @endif 
+                                    @if(!empty(@$setting_data->address)) {{@$setting_data->address}} @else Kathmandu, Nepal @endif
                                     </p>
                                 </div>
                             </div>
                             <!-- /.widget-content -->
-                            
+
                             <!-- /.social-list -->
                         </div>
                         <div class="widget-about">
@@ -69,7 +69,7 @@
                                 <li>
                                     <a href="#" title="">Desktops</a>
                                 </li>
-                              
+
                             </ul>
                             <!-- /.cat-list-ft -->
                         </div>
@@ -87,12 +87,12 @@
 											Contact us
 										</a>
                                 </li>
-                            
+
                             </ul>
                         </div>
                         <!-- /.widget-menu -->
                     </div>
-                  
+
                 </div>
                 <!-- /.row -->
                 <div class="row">
@@ -184,6 +184,43 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
+
+        $('#search_suggestion').keyup(function(){
+            var query = $(this).val();
+            if(query != '')
+            {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+            url:"{{ route('autocomplete.fetch') }}",
+            method:"POST",
+            data:{query:query, _token:_token},
+            success:function(data){
+                $('form.form-search .box-search input').closest('.boxed').children('.overlay').css({
+                    opacity: '1',
+                    display: 'block'
+                });
+                $('form.form-search .box-search input').parent('.box-search').children('.search-suggestions').css({
+                    opacity: '1',
+                    visibility: 'visible',
+                    top: '50px'
+                });
+                $('#search-suggestions').html(data);
+            }
+            });
+            }
+        });
+
+        $(document).on('blur', 'form.form-search .box-search input', function(){
+            $(this).closest('.boxed').children('.overlay').css({
+                    opacity: '0',
+                    display: 'none'
+                });
+                $(this).parent('.box-search').children('.search-suggestions').css({
+                    opacity: '0',
+                    visibility: 'hidden',
+                    top: '100px'
+                });
+        });
     });
     </script>
 	@yield('js')

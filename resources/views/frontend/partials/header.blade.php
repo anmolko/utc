@@ -19,7 +19,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php if(@$setting_data->favicon){?>{{asset('/images/uploads/settings/'.@$setting_data->favicon)}}<?php }?>">
 
@@ -44,7 +44,7 @@
 		gtag('js', new Date());
 
 		gtag('config', '{{@$setting_data->google_analytics}}');
-    
+
 
     </script>
     <style>
@@ -80,9 +80,9 @@
                 <span></span>
             </div>
         </div><!-- /.preloader -->
-        
+
         <section id="header" class="header">
-        
+
             <div class="header-middle">
                 <div class="container">
                     <div class="row">
@@ -97,9 +97,9 @@
                                     <ul class="menu">
                                         <li class="column-1">
                                             <a href="#" title="">Home</a>
-                                           
+
                                         </li>
-                                       
+
                                         <li class="has-mega-menu">
                                             <a href="#" title="">Electronic</a>
                                             <div class="submenu">
@@ -286,18 +286,18 @@
                                                                 <a href="{{route('product.brandseries',[@$product_brand->slug,@$product_series->slug])}}" title="">{{ucwords(@$product_series->name)}}</a>
                                                             </li>
                                                         @endforeach
-                                                          
+
                                                         </ul>
                                                         <div class="show">
                                                             <a href="{{route('product.brand',@$product_brand->slug)}}" title="">Shop All</a>
                                                         </div>
                                                     </div>
-                                                   
+
                                                 </div><!-- /.drop-menu -->
                                             @endif
                                         </li>
-                                    
-                                       
+
+
                                     @endforeach
                                 </ul><!-- /.menu -->
                                 @endif
@@ -305,182 +305,15 @@
                         </div><!-- /.col-md-3 col-2 -->
                         <div class="col-md-9 col-10">
                             <div class="top-search style1">
-                                <form action="#" method="get" class="form-search" accept-charset="utf-8">
-                                    <div class="cat-wrap cat-wrap-v1">
-                                        <select name="category">
-                                        <option hidden value="">All Category</option>
-                                    </select>
-                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                        <div class="all-categories">
-                                            <div class="cat-list-search">
-                                            @if(count($product_brand_data) > 0)
-                                                <div class="title">
-                                                    Laptops
-                                                </div>
-                                                <ul>
-                                                @foreach(@$product_brand_data as $product_brand)
-                                                    <li>{{ucwords($product_brand->name)}}</li>
-                                                @endforeach
-                                                </ul>
-                                            @endif
-                                            </div><!-- /.cat-list-search -->
-                                            <div class="cat-list-search">
-                                            @if(count($product_primary_data) > 0)
-                                                <div class="title">
-                                                    Electronics
-                                                </div>
-                                                <ul>
-                                                @foreach(@$product_primary_data as $product_primary)
-                                                    <li>{{ucwords($product_primary->name)}}</li>
-                                                @endforeach
-                                                </ul>
-                                            @endif
-                                            </div><!-- /.cat-list-search -->
-                                        
-                                        </div><!-- /.all-categories -->
-                                    </div><!-- /.cat-wrap -->
+                                <form action="{{route('searchProduct')}}" method="get" class="form-search" accept-charset="utf-8">
+
                                     <div class="box-search">
-                                        <input type="text" name="search" placeholder="Search what you looking for ?">
+                                        <input type="text" name="search" autocomplete="false" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
                                         <span class="btn-search">
                                             <button type="submit" class="waves-effect"><img src="{{asset('assets/frontend/images/icons/search-2.png')}}" alt=""></button>
                                         </span>
-                                        <div class="search-suggestions">
-                                            <div class="box-suggestions">
-                                                <div class="title">
-                                                    Search Suggestions
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/s05.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Razer RZ02-01071500-R3M1</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $50.00
-                                                                </span>
-                                                                <span class="regular">
-                                                                    $2,999.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/s06.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Notebook Black Spire V Nitro VN7-591G</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $24.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/14.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Apple iPad Mini G2356</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $90.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/02.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Razer RZ02-01071500-R3M1</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $50.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/l01.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Apple iPad Mini G2356</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $24.00
-                                                                </span>
-                                                                <span class="regular">
-                                                                    $2,999.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="image">
-                                                            <img src="images/product/other/s08.jpg" alt="">
-                                                        </div>
-                                                        <div class="info-product">
-                                                            <div class="name">
-                                                                <a href="#" title="">Beats Snarkitecture Headphones</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <span class="sale">
-                                                                    $90.00
-                                                                </span>
-                                                                <span class="regular">
-                                                                    $2,999.00
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /.box-suggestions -->
-                                            <div class="box-cat">
-                                                <div class="cat-list-search">
-                                                    <div class="title">
-                                                        Categories
-                                                    </div>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">Networking & Internet Devices</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Laptops, Desktops & Monitors</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Hard Drives & Memory Cards</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Printers & Ink</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Networking & Internet Devices</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Computer Accessories</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Software</a>
-                                                        </li>
-                                                    </ul>
-                                                </div><!-- /.cat-list-search -->
-                                            </div><!-- /.box-cat -->
+                                        <div class="search-suggestions" id="search-suggestions">
+
                                         </div><!-- /.search-suggestions -->
                                     </div><!-- /.box-search -->
                                 </form><!-- /.form-search -->
@@ -493,7 +326,7 @@
                                     <ul class="menu-compare-wishlist">
                                         <li class="compare">
                                             <a href="#" title="">
-                                                <img src="{{asset('assets/frontend/images/icons/compare-2.png')}}" alt="">
+                                                <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
                                             </a>
                                         </li>
                                         <li class="wishlist">

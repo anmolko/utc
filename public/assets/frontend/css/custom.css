@@ -2,26 +2,26 @@
   *	default color code
   *	f28b00
 */
-    
+
     .loading-effect-2>span,
     .loading-effect-2>span:before,
     .loading-effect-2>span:after {
         border: 2px solid #7DAC44;
     }
-    
+
     .flex-control-thumbs img:hover {
         border: 2px solid #7DAC44;
     }
-    
+
     .flex-control-thumbs .flex-active {
         border: 2px solid #7DAC44;
     }
-    
+
     .ui-widget-header {
         border: 1px solid #7DAC44;
         background: #7DAC44;
     }
-    
+
     .ui-state-default,
     .ui-widget-content .ui-state-default,
     .ui-widget-header .ui-state-default,
@@ -31,7 +31,7 @@
         border: 1px solid #7DAC44;
         background: #7DAC44;
     }
-    
+
     .ui-state-hover,
     .ui-widget-content .ui-state-hover,
     .ui-widget-header .ui-state-hover,
@@ -43,17 +43,17 @@
         border: 1px solid #7DAC44;
         background: #7DAC44;
     }
-    
+
     .owl-theme .owl-dots .owl-dot.active span:after,
     .owl-theme .owl-dots .owl-dot:hover span:after {
         background-color: #7DAC44;
     }
-    
+
     .owl-theme .owl-dots .owl-dot.active span,
     .owl-theme .owl-dots .owl-dot:hover span {
         border-color: #7DAC44;
     }
-    
+
     .product-box.color:hover .imagebox {
         border-color: #7DAC44 !important;
     }
@@ -61,398 +61,398 @@
 .imagebox span.item-sale {
     background-color: #7DAC44;
 } */
-    
+
     .imagebox .box-content .product-name a:hover {
         color: #7DAC44;
     }
-    
+
     .imagebox .box-bottom .btn-add-cart a:before {
         background: #7DAC44;
     }
-    
+
     .imagebox .box-bottom .compare-wishlist a:hover {
         color: #7DAC44;
     }
-    
+
     .imagebox.style1.v1 ul.cat-list li a:hover {
         color: #7DAC44;
     }
-    
+
     .imagebox.style1.v1 .btn-more a {
         color: #7DAC44;
     }
-    
+
     .imagebox.style1.v2:hover {
         border-color: #7DAC44;
     }
-    
+
     .box-6.big .product-box:hover {
         border: 2px solid #7DAC44;
     }
-    
+
     .counter.style1 .item-sale {
         background-color: #7DAC44;
     }
-    
+
     .count-down .square .text {
         color: #7DAC44;
     }
-    
+
     .imagebox.style3 .box-image.save span {
         background-color: #7DAC44;
     }
-    
+
     .imagebox:hover.style4 {
         border: 2px solid #7DAC44;
     }
-    
+
     .imagebox:hover.style4-4 {
         border: 1px solid #7DAC44 !important;
     }
-    
+
     .iconbox .box-header:hover .image:before {
         border: 2px solid #7DAC44;
     }
-    
+
     .product-wrap.style2 .product .product-item .imagebox.style2:hover {
         border: 2px solid #7DAC44;
     }
-    
+
     .slider .slider-item .item-text .header-item h2 {
         color: #7DAC44;
         font-size: 30px;
     }
-    
+
     .slider .slider-item.style4 .item-text .header-item h2 {
         color: #7DAC44;
     }
-    
+
     .slider .slider-item.style8 .item-text .content-item .price .sale {
         color: #7DAC44;
     }
-    
+
     .slider .slider-item.style8 .item-text .content-item .btn-shop a {
         border-color: #7DAC44;
         background: #7DAC44;
     }
-    
+
     .slider-item.style2 .item-text .content-item .price .sale {
         background-color: #7DAC44;
         font-size: 30px;
     }
-    
+
     .slider .slider-item.style10 .item-text .content-item .price .sale {
         color: #7DAC44;
     }
-    
+
     .iconbox.style1:before {
         border-color: #7DAC44;
     }
-    
+
     .iconbox.style1:before {
         border-color: #7DAC44;
     }
-    
+
     .iconbox.style1:after {
         border-color: #7DAC44;
     }
     /* Owl Carousel-3 */
-    
+
     .owl-carousel-3.owl-theme .owl-controls .owl-nav div.owl-prev:hover,
     .owl-carousel-3.owl-theme .owl-controls .owl-nav div.owl-next:hover {
         border: 2px solid #7DAC44;
     }
-    
+
     .header-bottom .grid-right {
         background-color: #7DAC44;
     }
-    
+
     .widget-categories>ul.cat-list.style1>li.active>span,
     .widget-categories>ul.cat-list.style1>li>span:hover {
         color: #7DAC44;
     }
-    
+
     input[type="checkbox"]:checked+label:before {
         background-color: #7DAC44;
     }
     /* Box Filter */
-    
+
     .filter {
         background-color: #7DAC44;
     }
-    
+
     .box-filter .widget .widget-content .box-checkbox .check-box input[type="checkbox"]:checked+label:before {
         background: #7DAC44;
     }
-    
+
     .queue i {
         color: #7DAC44;
     }
-    
+
     .product-detail.style2 .quanlity-box .text p.price {
         color: #7DAC44;
     }
-    
+
     .rating .queue-box li span i {
         color: #7DAC44;
     }
-    
+
     .flexslider .flex-viewport ul.slides li span {
         background: #7DAC44;
     }
-    
+
     .flexslider.style2 .flex-viewport ul.slides li span {
         background: #7DAC44;
     }
-    
+
     .table-cart tr td .total {
         color: #7DAC44;
     }
-    
+
     .cart-totals table tr td.price-total {
         color: #7DAC44;
     }
-    
+
     .box-checkout .checkout-login a {
         color: #7DAC44;
     }
-    
+
     .checkbox input[type="checkbox"]:checked+label::after {
         background-color: #7DAC44;
     }
-    
+
     .table-wishlist tbody tr td>div.price {
         color: #7DAC44;
     }
-    
+
     .table-compare tr td.price {
         color: #7DAC44;
     }
-    
+
     .table-compare tr td.add-cart a:before {
         background: #7DAC44;
     }
-    
+
     .team-member .member .image-member:hover img {
         border: 2px solid #7DAC44;
     }
-    
+
     .wrap-error .content-error .form-search-error form .search-input button:before {
         background: #7DAC44;
     }
-    
+
     .progres .progress-item .progress-bar .progress-animate {
         background-color: #7DAC44;
     }
-    
+
     .form-input .form-box .form-box-content ul li:hover,
     .form-input .form-box .form-box-content ul li.active {
         color: #7DAC44;
     }
-    
+
     ul.brands-tablist li:hover,
     ul.brands-tablist li.active {
         color: #7DAC44;
     }
-    
+
     .brands-list .brands-item a.box-cat:hover {
         background-color: #7DAC44;
     }
-    
+
     .imagebox.style6 .box-content .btn-more a {
         color: #7DAC44;
     }
-    
+
     .location .location-content ul.location-list li:hover {
         color: #7DAC44;
     }
-    
+
     .popup-newsletter .popup span {
         background-color: #7DAC44;
     }
-    
+
     a:hover,
     a:focus {
         color: #7DAC44;
     }
-    
+
     .sale {
         color: #7DAC44;
     }
-    
+
     ul.flat-infomation li.phone {
         color: #7DAC44;
     }
-    
+
     .header-middle.style1 {
         background-color: #7DAC44;
     }
-    
+
     .show-search button {
         color: #7DAC44;
     }
-    
+
     .top-search form.form-search .cat-wrap .all-categories .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
         background: #7DAC44;
     }
-    
+
     .top-search form.form-search .cat-wrap .all-categories .cat-list-search .title {
         color: #7DAC44;
     }
-    
+
     .top-search form.form-search .cat-wrap .all-categories .cat-list-search ul li:hover {
         color: #7DAC44;
     }
-    
+
     .search-suggestions .box-suggestions .title,
     .search-suggestions .box-cat .title {
         color: #7DAC44;
     }
-    
+
     .box-cart .inner-box>a:hover>div.icon-cart {
         border-color: #7DAC44;
     }
-    
+
     .box-cart .inner-box ul.menu-compare-wishlist li a:hover {
         border-color: #7DAC44;
     }
-    
+
     .box-cart .inner-box>a>div.icon-cart span {
         background-color: #7DAC44;
     }
-    
+
     .box-cart .inner-box .dropdown-box>ul>li .info-product .price {
         color: #7DAC44;
     }
-    
+
     .box-cart .inner-box .dropdown-box .total span.price {
         color: #7DAC44;
     }
-    
+
     .box-cart .inner-box .dropdown-box .btn-cart a.view-cart {
         color: #7DAC44;
         border: 2px solid #7DAC44;
     }
-    
+
     .box-cart .inner-box .dropdown-box .btn-cart a.view-cart:before,
     .box-cart .inner-box .dropdown-box .btn-cart a.check-out:before {
         background: #7DAC44;
     }
-    
+
     .header-bottom {
         background-color: #7DAC44;
     }
-    
+
     #mega-menu>ul.menu>li:hover>a .menu-title {
         color: #7DAC44;
     }
-    
+
     #mega-menu>ul.menu>li .drop-menu>.one-third .cat-title {
         color: #7DAC44;
     }
-    
+
     #mega-menu>ul.menu>li .drop-menu>.one-third .show a {
         color: #7DAC44;
     }
-    
+
     #mega-menu>ul.menu>li .drop-menu>.one-third .show a:before {
         background: #7DAC44;
     }
-    
+
     #mega-menu>ul.menu>li .drop-menu>.one-third ul.banner li .banner-text .banner-title {
         color: #7DAC44;
     }
-    
+
     #mainnav ul.menu>li:hover>a {
         color: #7DAC44;
     }
-    
+
     .today-deal.style1>a {
         color: #7DAC44;
     }
-    
+
     ul.menu li.column-1 .submenu>li>a:hover {
         color: #7DAC44;
     }
-    
+
     .submenu .cat-title {
         color: #7DAC44;
     }
-    
+
     .submenu .show a {
         color: #7DAC44;
     }
-    
+
     .submenu .show a:before {
         background: #7DAC44;
     }
-    
+
     .flat-breadcrumb ul.breadcrumbs li.trail-item a:hover {
         color: #7DAC44;
     }
-    
+
     .flat-breadcrumb ul.breadcrumbs li.trail-end a:before,
     .form-coupon form button:before,
     .cart-totals form .btn-cart-totals a.update:before,
     .cart-totals form .btn-cart-totals a.checkout:before {
         background: #7DAC44;
     }
-    
+
     .flat-breadcrumb ul.breadcrumbs li.trail-end a:hover {
         border-color: #7DAC44;
     }
-    
+
     .widget-categories>ul.cat-list>li.active>a {
         color: #7DAC44;
     }
-    
+
     .widget-categories>ul.cat-list>li>a:hover {
         color: #7DAC44;
     }
-    
+
     ul.product-list li .info-product .queue i {
         color: #7DAC44;
     }
-    
+
     .widget-tags ul.tag-list li a:hover {
         background-color: #7DAC44;
     }
-    
+
     article.main-post .content-post ul.meta-post li.date a:not(:hover) {
         color: #7DAC44;
     }
-    
+
     article.main-post .content-post .entry-post .more-link a:before {
         background: #7DAC44;
     }
-    
+
     ul.flat-pagination li.active a,
     ul.flat-pagination li a:hover {
         background-color: #7DAC44;
         border-color: #7DAC44;
     }
-    
+
     ul.flat-pagination li.prev a:hover,
     ul.flat-pagination li.next a:hover {
         color: #7DAC44;
     }
-    
+
     ul.app-list li:hover {
         border: 2px solid #7DAC44;
     }
-    
+
     article.main-post.single .content-post .entry-post blockquote span {
         color: #7DAC44;
     }
-    
+
     article.main-post.single .content-post .entry-post ul li:before {
         background-color: #7DAC44;
     }
-    
+
     ol.comment-list li.comment .comment-text .comment-metadata .queue {
         color: #7DAC44;
     }
-    
+
     .slider .slider-item:before {
         content: '';
         position: absolute;
@@ -464,30 +464,38 @@
         -webkit-transform: rotate(48deg);
         transform: rotate(48deg);
     }
-    
+
     p.copyright a {
         color: #94ca51;
     }
-    
+
     .header-middle #logo {
         margin-bottom: 15px;
     }
-    
+
     .widget-about .widget-content .info {
         margin-left: 25px;
     }
-    
+
     .widget-about .widget-content {
         padding-top: 0;
     }
-    
+
     .widget-about ul.social-list {
         margin-top: 10px;
     }
-    
+
     @media only screen and (min-width: 1200px) and (max-width: 1366px) {
         #mega-menu>ul.menu>li .drop-menu {
             left: 258px;
             width: 360px;
         }
+    }
+
+    #compute_select {
+        display: none;
+    }
+
+    .top-search.style1 form.form-search .box-search input {
+        padding-left: 30px;
     }
