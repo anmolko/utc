@@ -95,153 +95,51 @@
                             <div class="nav-wrap">
                                 <div id="mainnav" class="mainnav style1">
                                     <ul class="menu">
-                                        <li class="column-1">
-                                            <a href="#" title="">Home</a>
-
-                                        </li>
-
                                         <li class="has-mega-menu">
                                             <a href="#" title="">Electronic</a>
                                             <div class="submenu">
+                                            @foreach(@$product_primary_data->chunk(4) as $row)
+
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <h3 class="cat-title">Accessories</h3>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="">Electronics</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Furniture</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Accessories</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Divided</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Everyday Fashion</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Modern Classic</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Party</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="show">
-                                                            <a href="#" title="">Shop All</a>
-                                                        </div>
-                                                    </div><!-- /.col-md-3 -->
-                                                    <div class="col-md-3">
-                                                        <h3 class="cat-title">Laptop And Computer</h3>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="">Networking & Internet Devices</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Laptops, Desktops & Monitors</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Hard Drives & Memory Cards</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Printers & Ink</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Networking & Internet Devices</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Computer Accessories</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Software</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="show">
-                                                            <a href="#" title="">Shop All</a>
-                                                        </div>
-                                                    </div><!-- /.col-md-3 -->
-                                                    <div class="col-md-4">
-                                                        <h3 class="cat-title">Audio & Video</h3>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="">Headphones & Speakers</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Home Entertainment Systems</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">MP3 & Media Players</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="show">
-                                                            <a href="#" title="">Shop All</a>
-                                                        </div>
-                                                    </div><!-- /.col-md-4 -->
-                                                    <div class="col-md-2">
-                                                        <h3 class="cat-title">Home Audio</h3>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="">Home Theater Systems</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Receivers & Amplifiers</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">Speakers</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">CD Players & Turntables</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">High-Resolution Audio</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="">4K Ultra HD TVs</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="show">
-                                                            <a href="#" title="">Shop All</a>
-                                                        </div>
-                                                    </div><!-- /.col-md-2 -->
+                                                    @foreach(@$row as $product_primary)
+                                                        <div class="col-md-3">
+                                                        <a href="{{route('product.category',$product_primary->slug)}}" title=""><h3 class="cat-title">{{ucwords(@$product_primary->name)}}</h3></a>
+                                                            <ul>
+                                                                @foreach(@$product_primary->secondary as $product_secondary)
+                                                                    <li>
+                                                                        <a href="{{route('product.secondary',[@$product_primary->slug,@$product_secondary->slug])}}" title="">{{ucwords(@$product_secondary->name)}}</a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                          
+                                                        </div><!-- /.col-md-3 -->
+                                                    @endforeach
                                                 </div><!-- /.row -->
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="banner-box">
-                                                            <div class="inner-box">
-                                                                <a href="#" title="">
-                                                                    <img src="images/banner_boxes/submenu-01.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.col-md-6 -->
-                                                    <div class="col-md-6">
-                                                        <div class="banner-box">
-                                                            <div class="inner-box">
-                                                                <a href="#" title="">
-                                                                    <img src="images/banner_boxes/submenu-02.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.col-md-6 -->
-                                                </div><!-- /.row -->
+                                             @endforeach
                                             </div><!-- /.submenu -->
-                                        </li>
-                                        <li class="column-1">
-                                            <a href="blog.html" title="">Blog</a>
-                                        </li>
-                                        <li class="column-1">
-                                            <a href="contact.html" title="">Contact</a>
-                                            <ul class="submenu">
+                                        </li>   
+                                   
+                                        @if(!empty($top_nav_data))
+                                            @foreach($top_nav_data as $nav)
+                                            @if(!empty($nav->children[0]))
+
+                                            @else
+                                                @if($nav->type == 'custom')
                                                 <li>
-                                                    <a href="contact.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Contact 01</a>
-                                                </li>
+                                                    <a href="/{{$nav->slug}}" class="column-1 {{request()->is(@$nav->slug.'*') ? 'active' : ''}}" @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                @elseif($nav->type == 'category')
+                                                <li >
+                                                    <a href="{{url('product')}}/{{$nav->slug}}" class="column-1 {{request()->is('product/'.@$nav->slug.'*') ? 'active' : ''}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                @elseif($nav->type == 'post')
+                                                <li >
+                                                    <a href="{{url('blog')}}/{{$nav->slug}}" class="column-1 {{request()->is('blog/'.@$nav->slug.'*') ? 'active' : ''}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                @else
                                                 <li>
-                                                    <a href="contact-v2.html" title=""><i class="fa fa-angle-right" aria-hidden="true"></i>Contact 02</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                                    <a href="{{url('/')}}/{{$nav->slug}}" class="column-1 {{request()->is(@$nav->slug.'*') ? 'active' : ''}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                @endif
+                                            @endif
+                                            @endforeach
+                                        @endif
                                     </ul><!-- /.menu -->
                                 </div><!-- /.mainnav -->
                             </div><!-- /.nav-wrap -->
@@ -263,7 +161,7 @@
                     <div class="row">
                         <div class="col-md-3 col-2">
                             <div id="mega-menu">
-                                <div class="btn-mega"><span></span>ALL CATEGORIES</div>
+                                <div class="btn-mega"><span></span>Laptops By Brand</div>
                                 @if(count($product_brand_data) > 0)
                                 <ul class="menu">
                                     @foreach(@$product_brand_data as $product_brand)
@@ -308,7 +206,7 @@
                                 <form action="{{route('searchProduct')}}" method="get" class="form-search" accept-charset="utf-8">
 
                                     <div class="box-search">
-                                        <input type="text" name="search" autocomplete="false" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
+                                        <input type="text" name="search" autocomplete="off" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
                                         <span class="btn-search">
                                             <button type="submit" class="waves-effect"><img src="{{asset('assets/frontend/images/icons/search-2.png')}}" alt=""></button>
                                         </span>

@@ -43,6 +43,7 @@ Route::get('/products','App\Http\Controllers\FrontController@productFilter')->na
 Route::get('/product/category','App\Http\Controllers\FrontController@productCategoryFilter')->name('product.categoryfilter');
 Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
 Route::get('product/{category}','App\Http\Controllers\FrontController@productCategory')->name('product.category');
+Route::get('product/{category}/{secondary}','App\Http\Controllers\FrontController@productSecondary')->name('product.secondary');
 Route::get('/product', 'App\Http\Controllers\FrontController@products')->name('product.frontend');
 Route::post('/autocomplete/fetch', 'App\Http\Controllers\AutoCompleteController@fetch')->name('autocomplete.fetch');
 //end product

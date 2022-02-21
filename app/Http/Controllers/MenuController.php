@@ -64,7 +64,11 @@ class MenuController extends Controller
         }
         else{
             $desiredMenu = Menu::orderby('id','DESC')->first();
-            $menuTitle   = $desiredMenu->title;
+            if($desiredMenu !== null){
+                $menuTitle   = $desiredMenu->title;
+            }else{
+                $menuTitle   = "";
+            }
             if($desiredMenu){
                 if($desiredMenu->content != ''){
                     $menuitems = json_decode($desiredMenu->content);

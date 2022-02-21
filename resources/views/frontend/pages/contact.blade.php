@@ -154,17 +154,17 @@
                                 <ul class="social-list style2">
                                     <li>
                                         <a href="@if(!empty(@$setting_data->facebook)) {{@$setting_data->facebook}} @endif" target="_blank" title="">
-                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            <i class="fab fa-facebook" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="" target="_blank">
-                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        <a href="@if(!empty(@$setting_data->youtube)) {{@$setting_data->youtube}} @endif" title="" target="_blank">
+                                            <i class="fab fa-youtube" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="@if(!empty(@$setting_data->instagram)) {{@$setting_data->instagram}} @endif" title="" target="_blank">
-                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            <i class="fab fa-instagram" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                  

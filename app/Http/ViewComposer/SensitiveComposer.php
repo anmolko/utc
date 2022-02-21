@@ -17,11 +17,10 @@ class SensitiveComposer
     public function compose(View $view){
 
         $topNav           = Menu::where('location',1)->first();
-        $footerMenu       = Menu::where('location',2)->first();
+        $footerMenu       = Menu::where('location',2)->get();
         $productBrand     = Brand::with('series')->get();
-        $productPrimary     = ProductPrimaryCategory::all();
+        $productPrimary   = ProductPrimaryCategory::with('secondary')->get();
         $topNavItems      = json_decode(@$topNav->content);
-        $footerMenuItems  = json_decode(@$footerMenu->content);
         $topNavItems      = @$topNavItems[0];
         $footerMenuItems  = @$footerMenuItems[0];
 
@@ -44,17 +43,29 @@ class SensitiveComposer
             }
 
         }
+        foreach($footerMenu as $fmenu){
+            $footerMenuItems[]  = json_decode(@$fmenu->content);
 
-        if(!empty(@$footerMenuItems)){
-            foreach($footerMenuItems as $menu){
-                $menu->title = MenuItem::where('id',$menu->id)->value('title');
-                $menu->name = MenuItem::where('id',$menu->id)->value('name');
-                $menu->slug = MenuItem::where('id',$menu->id)->value('slug');
-                $menu->target = MenuItem::where('id',$menu->id)->value('target');
-                $menu->type = MenuItem::where('id',$menu->id)->value('type');
-            }
+        
 
+            // if(count(@$footerMenuItems) > 0){
+            //     foreach($footerMenuItems as $menu){
+            //         $menu->title = MenuItem::where('id',$menu->id)->value('title');
+            //         $menu->name = MenuItem::where('id',$menu->id)->value('name');
+            //         $menu->slug = MenuItem::where('id',$menu->id)->value('slug');
+            //         $menu->target = MenuItem::where('id',$menu->id)->value('target');
+            //         $menu->type = MenuItem::where('id',$menu->id)->value('type');
+            //     }
+    
+            // }
         }
+
+        foreach($footerMenuItems as $m[0]){
+            foreach($m[0] as $menu){
+              print_r($menu);
+            }
+        }
+
 
         $latestPostsfooter = Blog::orderBy('created_at', 'DESC')->where('status','publish')->take(2)->get();
 
