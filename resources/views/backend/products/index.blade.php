@@ -23,7 +23,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
-            max-width: 170px;
+            max-width: 185px;
         }
 
 
@@ -71,8 +71,8 @@
                                                     <th>Thumbnail</th>
                                                     <th>Name</th>
                                                     <th>Slug</th>
-                                                    <th>Primary Category</th>
                                                     <th>Brand</th>
+                                                    <th>Type</th>
                                                     <th>Status</th>
                                                     <th class="text-right">Action</th>
                                                 </tr>
@@ -90,8 +90,8 @@
                                                             </td>
                                                             <td class="hide-overflow">{{$product->name}}</td>
                                                             <td  class="hide-overflow">{{$product->slug}}</td>
-                                                            <td>{{ucfirst(@$product->primaryCategory->name)}}</td>
                                                             <td>{{ucfirst(@$product->brand->name)}}</td>
+                                                            <td>{{ucfirst(@$product->type)}}</td>
                                                             <td><div class="dropdown action-label drop-active">
                                                                     <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> {{(($product->status == 'active') ? "Active":"De-active")}}
                                                                     </a>
@@ -142,13 +142,13 @@
                                 <h4 class="card-title d-inline-block mb-0">
                                     Add Product Banner</strong>
                                 </h4>
-                                
+
                                 <p class="text-danger">Note* Please add the images size of 850px * 260px</p>
                             </div>
                             <div class="card-body">
                                 <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
                                 <div class="invalid-feedback">    </div>
-                                
+
                                 {!! Form::open(['url'=>route('banner-gallery.update'),'method'=>'put','class'=>'dropzone','id'=>'myDropzone','enctype'=>'multipart/form-data']) !!}
                                 <div class="dz-message">
                                     <div class="col-xs-8">
