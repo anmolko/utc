@@ -100,23 +100,14 @@ class FrontController extends Controller
         $allProducts = $this->product->with(['primaryCategory','secondaryCategory','attributeValue'])
                         ->where('status','active')
                         ->where('name', 'LIKE', '%' . $query . '%');
+                        
+                        
 
-        if (isset($request->pcategory)) {
-            $slug= $request->pcategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('primaryCategory',function($query)use($slug){
-                $query->whereIn('slug',$slug);
-            });
+        if (isset($request->min_price) && isset($request->max_price)) {
+            $minprice = $request->min_price;
+            $maxprice = $request->max_price;
+            $allProducts->whereBetween('price', [$minprice, $maxprice]);
         }
-
-        if (isset($request->scategory)) {
-            $slug= $request->scategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('secondaryCategory',function($query)use($slug){
-                $query->whereIn('slug', $slug );
-            });
-        }
-
         if (isset($request->pattribute)) {
             $slug = $request->pattribute;
             $allProducts->whereHas('attributeValue',function($query)use($slug){
@@ -278,21 +269,11 @@ class FrontController extends Controller
                         ->where('name', 'LIKE', '%' . $query . '%')
                         ->where('name', 'LIKE', '%' . $searchq . '%');
 
-        if (isset($request->pcategory)) {
-            $slug= $request->pcategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('primaryCategory',function($query)use($slug){
-                $query->whereIn('slug',$slug);
-            });
-        }
-
-        if (isset($request->scategory)) {
-            $slug= $request->scategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('secondaryCategory',function($query)use($slug){
-                $query->whereIn('slug', $slug );
-            });
-        }
+            if (isset($request->min_price) && isset($request->max_price)) {
+                $minprice = $request->min_price;
+                $maxprice = $request->max_price;
+                $allProducts->whereBetween('price', [$minprice, $maxprice]);
+            }
 
         if (isset($request->pattribute)) {
             $slug = $request->pattribute;
