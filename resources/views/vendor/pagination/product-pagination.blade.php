@@ -1,3 +1,5 @@
+<span class="allpagination">
+
 @if ($paginator->hasPages())
 <div class="blog-pagination">
     <span>Showing : {{ $paginator->firstItem() }}-{{ $paginator->lastItem() }} of {{ $paginator->total() }} results</span>
@@ -65,4 +67,5 @@
 <div class="clearfix"></div>
 </div><!-- /.blog-pagination -->
 @endif
+</span>
 

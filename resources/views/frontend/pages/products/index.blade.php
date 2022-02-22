@@ -136,9 +136,7 @@
                             </div>
                         </div>
                     </div><!-- /.wrap-imagebox -->
-                    <span class="allpagination">
                         {{ $allProducts->appends($_GET)->links('vendor.pagination.product-pagination') }}
-                    </span>
                 </div><!-- /.main-shop -->
             </div><!-- /.col-md-8 col-lg-9 -->
         </div><!-- /.row -->
