@@ -64,6 +64,7 @@ class SettingController extends Controller
             'email'                     => $request->input('email'),
             'google_analytics'          => $request->input('google_analytics'),
             'google_map'                => $request->input('google_map'),
+            'meta_pixel'                => $request->input('meta_pixel'),
             'created_by'                => Auth::user()->id,
         ];
 
@@ -123,7 +124,7 @@ class SettingController extends Controller
         $update_theme->email                    =  $request->input('email');
         $update_theme->google_analytics         =  $request->input('google_analytics');
         $update_theme->google_map               =  $request->input('google_map');
-
+        $update_theme->meta_pixel               =  $request->input('meta_pixel');
         $update_theme->updated_by               =  Auth::user()->id;
 
         $status=$update_theme->update();

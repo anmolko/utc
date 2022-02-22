@@ -87,9 +87,9 @@ class FrontController extends Controller
                     ->where('status','active')
                     ->where('name', 'LIKE', '%' . $query . '%')
                     ->paginate(9);
-        $product_banner = SiteBanner::where('name','product')->first();
+        $product_banners = SiteBanner::all();
 
-        return view('frontend.pages.products.index',compact('allProducts','product_attributes','product_primary_categories','latestProducts','product_banner'));
+        return view('frontend.pages.products.index',compact('allProducts','product_attributes','product_primary_categories','latestProducts','product_banners'));
     }
 
     public function productFilter(Request $request)

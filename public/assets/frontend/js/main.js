@@ -829,7 +829,7 @@
                     max: 1000,
                     values: [18, 500],
                     slide: function(event, ui) {
-                        $("#amount").val(ui.values[0] + "$" + " - " + ui.values[1] + "$");
+                        $("#amount").val(ui.values[0] + "NPR" + " - " + ui.values[1] + "NPR");
                     }
                 });
                 $("#amount").val($("#slider-range").slider("values", 0) + "$" + " - " + $("#slider-range").slider("values", 1) + "$");

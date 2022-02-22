@@ -223,6 +223,24 @@
 
                                 <div class="card shadow-none">
                                     <div class="card-header">
+                                        <h5 class="card-title text-primary mb-0">Facebook Meta Pixel</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group mb-0">
+                                                    <label>Meta Pixel Code</label>
+                                                    <textarea class="form-control" rows=4 name="meta_pixel" id="meta_pixel">{{@$settings->meta_pixel}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="card shadow-none">
+                                    <div class="card-header">
                                         <h5 class="card-title text-primary mb-0">Google Map</h5>
                                     </div>
                                     <div class="card-body">

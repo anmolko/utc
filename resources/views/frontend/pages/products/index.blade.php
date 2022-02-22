@@ -44,83 +44,24 @@
             </div><!-- /.col-md-4 col-lg-3 -->
             <div class="col-md-8 col-lg-9">
                 <div class="main-shop">
+                    @if(count(@$product_banners) > 0)
+                
                     <div class="slider owl-carousel-16 style1">
+                        @foreach(@$product_banners as $product_banner)
+
                         <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
+                            
                             <div class="item-image">
-                                <img src="images/banner_boxes/07.png" alt="">
+                                <img src="<?php if(@$product_banner->image){?>{{asset('/images/uploads/products/banner_gallery/'.@$product_banner->image)}}<?php }?>" alt="">
                             </div>
                             <div class="clearfix"></div>
                         </div><!-- /.slider-item style9 -->
-                        <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
-                            <div class="item-image">
-                                <img src="images/banner_boxes/05.png" alt="">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.slider-item style9 -->
-                        <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
-                            <div class="item-image">
-                                <img src="images/banner_boxes/07.png" alt="">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.slider-item style9 -->
-                        <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
-                            <div class="item-image">
-                                <img src="images/banner_boxes/05.png" alt="">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.slider-item style9 -->
-                        <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
-                            <div class="item-image">
-                                <img src="images/banner_boxes/07.png" alt="">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.slider-item style9 -->
-                        <div class="slider-item style9">
-                            <div class="item-text">
-                                <div class="header-item">
-                                    <p>You can build the banner for other category</p>
-                                    <h2 class="name">Shop Banner</h2>
-                                </div>
-                            </div>
-                            <div class="item-image">
-                                <img src="images/banner_boxes/07.png" alt="">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.slider-item style9 -->
+                       @endforeach
                     </div><!-- /.slider -->
+                    @endif
                     <div class="wrap-imagebox">
                         <div class="flat-row-title style1">
-                            <h3>Mobile & Tablet</h3>
+                            <h3>Product Lists</h3>
                             <span>
                                 Showing 1–15 of 20 results
                             </span>
