@@ -1,5 +1,7 @@
+<span class="showing">
 @if ($paginator->hasPages())
 
-<span>Showing : {{ $paginator->firstItem() }}-{{ $paginator->lastItem() }} of {{ $paginator->total() }}.</span>
+Showing : {{ $paginator->firstItem() }}-{{ $paginator->lastItem() }} of {{ $paginator->total() }} results
 @endif
+</span>
 

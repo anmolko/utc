@@ -32,17 +32,23 @@
         <div class="widget-content">
             <p>Price</p>
             <div class="price search-filter-input">
-                <div id="slider-range" class="price-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" ></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span></div>
-                <p class="amount">
-                    <input type="text" id="amount" disabled="">
-                </p>
+            <div id="slider-range" class="price-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                <div class="ui-slider-range ui-corner-all ui-widget-header" ></div>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
             </div>
+            <p class="amount">
+                <input type="text" id="amount" value="" disabled="">
+                <input type="hidden" id="min_price" value="" >
+                <input type="hidden" id="max_price" value="" >
+            </p>
+        </div>
         </div>
     </div><!-- /.widget widget-price -->
     @if(count($product_attributes) > 0)
     @foreach(@$product_attributes as $p_attribute)
     <div class="widget widget-brands">
-        <div class="widget-title">
+        <div class="widget-title utc-attribute-values">
             <h3>{{@$p_attribute->name}}<span></span></h3>
         </div>
         <div class="widget-content">

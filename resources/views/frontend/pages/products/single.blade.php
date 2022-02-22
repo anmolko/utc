@@ -97,17 +97,24 @@
                         
                     </div><!-- /.header-detail -->
                     <div class="brand-details">
-                        <div class="brand">SKU: <span class="id">FW511948218</span></div>
-                        <div class="brand-series">SKU: <span class="id">FW511948218</span></div>
+                        <div ><span class="brand">Brand: </span><span class="id">{{ucwords(@$product->brand->name)}}</span></div>
+                        <div ><span class="brand-series">Brand Series: </span><span class="id">{{ucwords(@$product->brandSeries->name)}}</span></div>
                     </div>
                     <div class="content-detail">
                         <div class="price">
+                            @if($product->state == "sale")
+
                             <div class="regular">
                                 NPR. {{number_format(@$product->price)}}
                             </div>
                             <div class="sale">
-                                $1,589.00
+                                NPR. {{number_format(@$product->discount_price)}}
                             </div>
+                            @else
+                            <div class="sale">
+                                NPR. {{number_format(@$product->price)}}
+                            </div>
+                            @endif
                         </div>
                         <div class="info-text">
                         {{@$product->summary}}
@@ -124,14 +131,14 @@
                             <div class="box-cart style2 detail-wishlist">
 
                                 <div class="compare-wishlist">
-                                    <a href="compare.html" class="wishlist" title=""><img src="images/icons/wishlist.png" alt="">Wishlist</a>
+                                    <a href="#" class="wishlist" title=""><img src="{{asset('assets/frontend/images/icons/wishlist.png')}}" alt="">Wishlist</a>
                                 </div>
                             </div>
                             
                         </div><!-- /.quanlity-box -->
                         <div class="box-cart style2">
                             <div class="btn-add-cart">
-                                <a href="#" title=""><img src="images/icons/add-cart.png" alt="">Add to Cart</a>
+                                <a href="#" title=""><img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart</a>
                             </div>
                             <div class="social-single">
                                 <span>SHARE</span>
@@ -207,24 +214,31 @@
                     @foreach($latestProducts as $index => $latest)
 
                     <div class="imagebox style4">
-                        <span class="item-sale">SALE</span>
-                        <span class="item-new">NEW</span>
+                        @if($latest->state == "new_arrival")
+                            <span class="item-new">NEW</span>
+                        @elseif($latest->state == "sale")
+                            <span class="item-sale">SALE</span>
+                        @endif
 
-                        <div class="box-image">
-                            <a href="#" title="">
-                                <img src="images/product/other/09.jpg" alt="">
+                        <div class="box-image single-image">
+                            <a href="{{route('product.single',@$latest->slug)}}" title="">
+                                <img src="<?php if(@$latest->thumbnail){?>{{asset('/images/uploads/products/'.@$latest->thumbnail)}}<?php }?>" alt="{{@$latest->slug}}"/>
                             </a>
                         </div><!-- /.box-image -->
                         <div class="box-content">
                             <div class="cat-name">
-                                <a href="#" title="">Laptops</a>
+                                <a href="#" title="">{{@ucwords($latest->type)}}</a>
                             </div>
                             <div class="product-name">
                                 <a href="{{route('product.single',@$latest->slug)}}" title="">{{ucwords(Str::limit(@$latest->name,100,' ...'))}}</a>
                             </div>
                             <div class="price">
-                                <span class="sale">$50.00</span>
-                                <span class="regular">$2,999.00</span>
+                                @if($latest->state == "sale")
+                                    <span class="sale">NPR {{number_format(@$latest->discount_price)}}</span>
+                                    <span class="regular">NPR {{number_format(@$latest->price)}}</span>
+                                @else
+                                    <span class="sale">NPR {{number_format(@$latest->price)}}</span>
+                                @endif
                             </div>
                         </div><!-- /.box-content -->
                     </div><!-- /.imagebox style4 -->

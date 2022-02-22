@@ -825,14 +825,17 @@
             $(function() {
                 $("#slider-range").slider({
                     range: true,
-                    min: 18,
-                    max: 1000,
-                    values: [18, 500],
+                    min: 200,
+                    max: 1000000,
+                    values: [1000, 100000],
                     slide: function(event, ui) {
-                        $("#amount").val(ui.values[0] + "NPR" + " - " + ui.values[1] + "NPR");
+                        $("#amount").val("NPR " + ui.values[0] + " - " + "NPR " + ui.values[1]);
+                        $("#min_price").val(ui.values[0]);
+                        $("#max_price").val(ui.values[1]);
+
                     }
                 });
-                $("#amount").val($("#slider-range").slider("values", 0) + "$" + " - " + $("#slider-range").slider("values", 1) + "$");
+                $("#amount").val($("#slider-range").slider("values", 0) + "NPR" + " - " + $("#slider-range").slider("values", 1) + "NPR");;
             });
         }
     }; // Filter Price
@@ -1217,9 +1220,8 @@
             }, 200);
 
 
-            $('.widget .widget-title.widget-title-category h3 span').toggleClass('deactive');
-            $('.widget .widget-title h3 span').toggleClass('active');
-            $('.widget .widget-title h3 span').closest('.widget').children('.widget-content').slideToggle(300);
+            $('.widget .widget-title.utc-attribute-values h3 span').toggleClass('active');
+            $('.widget .widget-title.utc-attribute-values h3 span').closest('.widget').children('.widget-content').slideToggle(300);
         });
     }; //remove Preloader
 

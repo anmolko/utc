@@ -240,6 +240,8 @@
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.zoom.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.flexslider-min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/owl.carousel.js')}}"></script>
+		<script type="text/javascript" src="{{asset('assets/frontend/js/jquery-ui.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.mCustomScrollbar.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/waves.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.countdown.js')}}"></script>

@@ -1,85 +1,66 @@
 
 
     
-    <div class="tab-content">
     @if(count($allProducts) > 0)
-                <!-- grid-view -->
-                <div id="grid-view" class="tab-pane active show" role="tabpanel">
-                    <div class="row">
-                        <!-- product-item start -->
-                        @if(count($allProducts) > 0)
-                            @foreach(@$allProducts as $product)
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="product-item">
-                                        <div class="product-img">
-                                            <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">
-                                                <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">{{ucwords(@$product->name)}} </a>
-                                            </h6>
-                                        
-                                        </div>
-                                    </div>
+    <div class="tab-product">
+        <div class="row sort-box">
+            @if(count($allProducts) > 0)
+                @foreach(@$allProducts as $product)
+                <div class="col-lg-4 col-sm-6">
+                    <div class="product-box">
+                        <div class="imagebox">
+                            @if($product->state == "new_arrival")
+                                <span class="item-new">NEW</span>
+                            @elseif($product->state == "sale")
+                                <span class="item-sale">SALE</span>
+                            @endif
+                            <div class="box-image single-image">
+                                <a href="{{route('product.single',@$product->slug)}}" title="">
+                                    <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
+                                </a>
+                                
+                            </div><!-- /.box-image -->
+                            <div class="box-content">
+                                <div class="cat-name">
+                                    <a href="#" title="">{{@ucwords($product->type)}}</a>
                                 </div>
-                            @endforeach
-                        @endif
-                        <!-- product-item end -->
-                        
+                                <div class="product-name">
+                                    <a href="{{route('product.single',@$product->slug)}}" title="">{{ucwords(Str::limit(@$product->name,40,' ...'))}}</a>
+                                </div>
+                                <div class="price">
+                                    @if($product->state == "sale")
+                                        <span class="sale">NPR {{number_format(@$product->discount_price)}}</span>
+                                        <span class="regular">NPR {{number_format(@$product->price)}}</span>
+                                    @else
+                                        <span class="sale">NPR {{number_format(@$product->price)}}</span>
+                                    @endif
+                                </div>
+                            </div><!-- /.box-content -->
+                            <div class="box-bottom">
+                                <div class="btn-add-cart">
+                                    <a href="#" title="">
+                                        <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart
+                                    </a>
+                                </div>
+                                
+                            </div><!-- /.box-bottom -->
+                        </div><!-- /.imagebox -->
                     </div>
-                </div>
-                <!-- list-view -->
-                <div id="list-view" class="tab-pane" role="tabpanel">
-                    <div class="row">
-                        <!-- product-item start -->
-                        @if(count($allProducts) > 0)
-                            @foreach(@$allProducts as $product)
-                                <div class="col-lg-12">
-                                    <div class="shop-list product-item">
-                                        <div class="product-img">
-                                            <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">
-                                                <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <div class="clearfix">
-                                                <h6 class="product-title f-left">
-                                                    <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">{{ucwords(@$product->name)}} </a>
-                                                </h6>
-                                            
-                                            </div>
-                                            <h6 class="brand-name mb-30">{{ucwords(@$product->primaryCategory->name)}}</h6>
-                                            <p>{{Str::limit(@$product->summary,400,' ...')}}</p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                        <!-- product-item end -->
-                        
-                    </div>                                        
-                </div>
-    @else
-    <!-- grid-view -->
-    <div id="grid-view" class="tab-pane active show" role="tabpanel">
-        <div class="row">
-                
-            <h3>No Data Found</h3>    
-        </div>
-    </div>
-    <!-- list-view -->
-    <div id="list-view" class="tab-pane" role="tabpanel">
-        <div class="row">
-            <h3>No Data Found</h3>    
+                </div><!-- /.col-lg-4 col-sm-6 -->
+                @endforeach
+            @endif
+            
         
-        </div>                                        
-    </div>
+        </div><!-- /.sort-box -->
+    </div><!-- /.tab-product -->
+    @else
+    <div class="tab-product">
+        <div class="row sort-box">
+            <h3 class="text-danger">No Data Found</h3>    
+        
+        </div><!-- /.sort-box -->
+    </div><!-- /.tab-product -->
     @endif
-    </div>
 
-    {{ $allProducts->appends($_GET)->links('vendor.pagination.default') }}
   
         
