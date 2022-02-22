@@ -135,6 +135,22 @@
 
                             </ul>
                         </div>
+                        @else
+                        
+                        <div class="widget-ft widget-menu">
+                            <div class="widget-title">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <!-- /.widget-title -->
+                            <ul>
+                                <li>
+                                    <a href="{{url('/blog')}}"> Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/contact')}}"> Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
                         @endif
 
                         <!-- /.widget-menu -->

@@ -26,8 +26,8 @@ class SensitiveComposer
         $topNavItems      = @$topNavItems[0];
         $footerItem1      = @$footerItem1[0];
         $footerItem2      = @$footerItem2[0];
-        $footerItemTitle1     = $footerMenu[0]->title;
-        $footerItemTitle2     = $footerMenu[1]->title;
+        $footerItemTitle1     = @$footerMenu[0]->title;
+        $footerItemTitle2     = @$footerMenu[1]->title;
 
         if(!empty(@$topNavItems)){
             foreach($topNavItems as $menu){
