@@ -62,9 +62,11 @@ class FrontController extends Controller
                                         $query->setRelation('products', $query->products->take(4)->sortBy('RAND()'));
                                         return $query;
                                     });
-        return view('welcome',compact('primary_categories_tab','sliders','latestPosts','product_primary_categories','latestProducts'));
+        $new_arrivals = $this->product->with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->where('state','new_arrival')->take(16)->get();
+
+        return view('welcome',compact('primary_categories_tab','sliders','latestPosts','product_primary_categories','latestProducts','new_arrivals'));
     }
-    
+
     public function productBrands($brand)
     {
         return view('frontend.pages.products.brand');
