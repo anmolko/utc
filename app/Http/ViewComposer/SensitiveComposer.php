@@ -26,6 +26,8 @@ class SensitiveComposer
         $topNavItems      = @$topNavItems[0];
         $footerItem1      = @$footerItem1[0];
         $footerItem2      = @$footerItem2[0];
+        $footerItemTitle1     = $footerMenu[0]->title;
+        $footerItemTitle2     = $footerMenu[1]->title;
 
         if(!empty(@$topNavItems)){
             foreach($topNavItems as $menu){
@@ -66,14 +68,15 @@ class SensitiveComposer
                 $menu2->type    = MenuItem::where('id',$menu2->id)->value('type');
             }
         }
-
         $latestPostsfooter = Blog::orderBy('created_at', 'DESC')->where('status','publish')->take(2)->get();
         $theme_data = Setting::first();
         $view
             ->with('setting_data', $theme_data)
             ->with('latestPostsfooter', $latestPostsfooter)
             ->with('footer_nav_data1', $footerItem1)
+            ->with('footer_nav_title1', $footerItemTitle1)
             ->with('footer_nav_data2', $footerItem2)
+            ->with('footer_nav_title2', $footerItemTitle2)
             ->with('product_brand_data', $productBrand)
             ->with('product_primary_data', $productPrimary)
             ->with('top_nav_data', $topNavItems);

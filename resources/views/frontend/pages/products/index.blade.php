@@ -3,44 +3,285 @@
 @section('styles')
 <style>
 
-    .product-cat label {
-        display: block;
-    }
-    button.pull-right {
-        float: right;
-    }
 
 </style>
 
-</style>
 @endsection
 @section('breadcrumb')
 
    <!-- BREADCRUMBS SETCTION START -->
-   <div class="breadcrumbs-section plr-200 mb-80 section">
-            <div class="{{($product_banner == null) ? 'breadcrumbs':''}} overlay-bg" @if($product_banner !== null) style="background: #f6f6f6 url('{{asset('/images/uploads/banners/'.@$product_banner->image)}}') no-repeat scroll center center;" @endif>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Our Products</h1>
-
-                                <ol class="breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li class="active">Products</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BREADCRUMBS SETCTION END -->
+        <section class="flat-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumbs">
+                            <li class="trail-item">
+                                <a href="/" title="">Home</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
+                            
+                            <li class="trail-end">
+                                <a href="#" title="">Products</a>
+                            </li>
+                        </ul><!-- /.breacrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-breadcrumb -->
+    <!-- BREADCRUMBS SETCTION END -->
 @endsection
-
-
 @section('content')
 
+<main id="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <div class="sidebar ">
+                    @include('frontend.pages.products.sidebar')
+                  
+                  
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-4 col-lg-3 -->
+            <div class="col-md-8 col-lg-9">
+                <div class="main-shop">
+                    <div class="slider owl-carousel-16 style1">
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/07.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/05.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/07.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/05.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/07.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                        <div class="slider-item style9">
+                            <div class="item-text">
+                                <div class="header-item">
+                                    <p>You can build the banner for other category</p>
+                                    <h2 class="name">Shop Banner</h2>
+                                </div>
+                            </div>
+                            <div class="item-image">
+                                <img src="images/banner_boxes/07.png" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                    </div><!-- /.slider -->
+                    <div class="wrap-imagebox">
+                        <div class="flat-row-title style1">
+                            <h3>Mobile & Tablet</h3>
+                            <span>
+                                Showing 1–15 of 20 results
+                            </span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="sort-product">
+                          
+                            <div class="sort">
+                                <div class="popularity">
+                                    <select name="popularity">
+                                        <option value="">Sort by popularity</option>
+                                        <option value="">Sort by popularity</option>
+                                        <option value="">Sort by popularity</option>
+                                        <option value="">Sort by popularity</option>
+                                    </select>
+                                </div>
+                                <div class="showed">
+                                    <select name="showed">
+                                        <option value="">Show 15</option>
+                                        <option value="">Show 15</option>
+                                        <option value="">Show 15</option>
+                                        <option value="">Show 15</option>
+                                    </select>
+                                </div>
+                            </div><!-- /.sort -->
+                            <div class="clearfix"></div>
+                        </div><!-- /.sort-product -->
+                        <div class="tab-product">
+                         
+                            <div class="row sort-box">
+                               
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-box">
+                                        <div class="imagebox">
+                                            <span class="item-sale">SALE</span>
+                                            <div class="box-image owl-carousel-1">
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/04.jpg" alt="">
+                                                </a>
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/04.jpg" alt="">
+                                                </a>
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/04.jpg" alt="">
+                                                </a>
+                                            </div><!-- /.box-image -->
+                                            <div class="box-content">
+                                                <div class="cat-name">
+                                                    <a href="#" title="">Computers</a>
+                                                </div>
+                                                <div class="product-name">
+                                                    <a href="#" title="">Apple İmac Z0SC4824<br />Retina</a>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="sale">$5,759.68</span>
+                                                    <span class="regular">$2,999.00</span>
+                                                </div>
+                                            </div><!-- /.box-content -->
+                                            <div class="box-bottom">
+                                                <div class="btn-add-cart">
+                                                    <a href="#" title="">
+                                                        <img src="images/icons/add-cart.png" alt="">Add to Cart
+                                                    </a>
+                                                </div>
+                                                <div class="compare-wishlist">
+                                                    <a href="#" class="compare" title="">
+                                                        <img src="images/icons/compare.png" alt="">Compare
+                                                    </a>
+                                                    <a href="#" class="wishlist" title="">
+                                                        <img src="images/icons/wishlist.png" alt="">Wishlist
+                                                    </a>
+                                                </div>
+                                            </div><!-- /.box-bottom -->
+                                        </div><!-- /.imagebox -->
+                                    </div>
+                                </div><!-- /.col-lg-4 col-sm-6 -->
+                            
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-box">
+                                        <div class="imagebox">
+                                            <span class="item-new">NEW</span>
+                                            <div class="box-image owl-carousel-1">
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/01.jpg" alt="">
+                                                </a>
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/01.jpg" alt="">
+                                                </a>
+                                                <a href="#" title="">
+                                                    <img src="images/product/other/01.jpg" alt="">
+                                                </a>
+                                            </div><!-- /.box-image -->
+                                            <div class="box-content">
+                                                <div class="cat-name">
+                                                    <a href="#" title="">Laptops</a>
+                                                </div>
+                                                <div class="product-name">
+                                                    <a href="#" title="">Apple iPad Mini<br />G2356</a>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="sale">$1,250.00</span>
+                                                    <span class="regular">$2,999.00</span>
+                                                </div>
+                                            </div><!-- /.box-content -->
+                                            <div class="box-bottom">
+                                                <div class="btn-add-cart">
+                                                    <a href="#" title="">
+                                                        <img src="images/icons/add-cart.png" alt="">Add to Cart
+                                                    </a>
+                                                </div>
+                                                <div class="compare-wishlist">
+                                                    <a href="#" class="compare" title="">
+                                                        <img src="images/icons/compare.png" alt="">Compare
+                                                    </a>
+                                                    <a href="#" class="wishlist" title="">
+                                                        <img src="images/icons/wishlist.png" alt="">Wishlist
+                                                    </a>
+                                                </div>
+                                            </div><!-- /.box-bottom -->
+                                        </div><!-- /.imagebox -->
+                                    </div>
+                                </div><!-- /.col-lg-4 col-sm-6 -->
+                               
+                            </div><!-- /.sort-box -->
+                        </div><!-- /.tab-product -->
+                    </div><!-- /.wrap-imagebox -->
+                    <div class="blog-pagination">
+                        <span>
+                            Showing 1–15 of 20 results
+                        </span>
+                        <ul class="flat-pagination style1">
+                            <li class="prev">
+                                <a href="#" title="">
+                                    <img src="images/icons/left-1.png" alt="">Prev Page
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">01</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">02</a>
+                            </li>
+                            <li class="active">
+                                <a href="#" class="waves-effect" title="">03</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" title="">04</a>
+                            </li>
+                            <li class="next">
+                                <a href="#" title="">
+                                    Next Page<img src="images/icons/right-1.png" alt="">
+                                </a>
+                            </li>
+                        </ul><!-- /.flat-pagination style1 -->
+                        <div class="clearfix"></div>
+                    </div><!-- /.blog-pagination -->
+                </div><!-- /.main-shop -->
+            </div><!-- /.col-md-8 col-lg-9 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main><!-- /#shop -->
    <!-- Start page content -->
    <div id="page-content" class="page-wrapper section">
 
@@ -158,7 +399,6 @@
                     </div>
                     <div class="col-lg-3 order-lg-1 order-2">
 
-                        @include('frontend.pages.products.sidebar')
 
                     </div>
                 </div>

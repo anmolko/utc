@@ -1215,6 +1215,11 @@
             setTimeout(function() {
                 $('.preloader').hide();
             }, 200);
+
+
+            $('.widget .widget-title.widget-title-category h3 span').toggleClass('deactive');
+            $('.widget .widget-title h3 span').toggleClass('active');
+            $('.widget .widget-title h3 span').closest('.widget').children('.widget-content').slideToggle(300);
         });
     }; //remove Preloader
 

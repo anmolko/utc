@@ -60,36 +60,83 @@
                         <!-- /.widget-about -->
                     </div>
                     <div class="col-lg-4 col-md-12">
-                        <div class="widget-ft widget-categories-ft">
-                            <div class="widget-title">
-                                <h3>Find By Categories</h3>
-                            </div>
-                            <!-- /.widget-title -->
-                            <ul class="cat-list-ft">
-                                <li>
-                                    <a href="#" title="">Desktops</a>
-                                </li>
+                        @if(@$footer_nav_data1 !== null)
+                            <div class="widget-ft widget-categories-ft">
+                                <div class="widget-title">
+                                    <h3>@if(@$footer_nav_title1 !== null) {{@$footer_nav_title1}} @endif</h3>
+                                </div>
+                                <!-- /.widget-title -->
+                                <ul class="cat-list-ft">
+                                    @if(!empty($footer_nav_data1))
+                                        @foreach($footer_nav_data1 as $nav)
+                                            @if(!empty($nav->children[0]))
+                                            @else
+                                                @if($nav->type == 'custom')
+                                                <li>
+                                                    <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                                </li>
+                                                @elseif($nav->type == 'post')
+                                                <li>
+                                                    <a href="{{url('blog')}}/{{$nav->slug}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                                </li>
+                                                @elseif($nav->type == 'category')
+                                                <li>
+                                                    <a href="{{url('product')}}/{{$nav->slug}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                                </li>
+                                                @else
+                                                <li>
+                                                    <a href="{{url('/')}}/{{$nav->slug}}"> @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                                </li>
 
-                            </ul>
-                            <!-- /.cat-list-ft -->
-                        </div>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </ul>
+                                <!-- /.cat-list-ft -->
+                            </div>
+                        @endif
                         <!-- /.widget-categries-ft -->
                     </div>
                     <div class="col-lg-4 col-md-12">
+                        @if(@$footer_nav_data2 !== null)
+
                         <div class="widget-ft widget-menu">
                             <div class="widget-title">
-                                <h3>Customer Care</h3>
+                                <h3>@if(@$footer_nav_title2 !== null) {{@$footer_nav_title2}} @endif</h3>
                             </div>
                             <!-- /.widget-title -->
                             <ul>
-                                <li>
-                                    <a href="#" title="">
-											Contact us
-										</a>
-                                </li>
+                            @if(!empty($footer_nav_data2))
+                                @foreach($footer_nav_data2 as $nav)
+                                    @if(!empty($nav->children[0]))
+                                    @else
+                                        @if($nav->type == 'custom')
+                                        <li>
+                                            <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                        </li>
+                                        @elseif($nav->type == 'post')
+                                        <li>
+                                            <a href="{{url('blog')}}/{{$nav->slug}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                        </li>
+                                        @elseif($nav->type == 'category')
+                                        <li>
+                                            <a href="{{url('product')}}/{{$nav->slug}}">@if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <a href="{{url('/')}}/{{$nav->slug}}"> @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                        </li>
+
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
 
                             </ul>
                         </div>
+                        @endif
+
                         <!-- /.widget-menu -->
                     </div>
 
