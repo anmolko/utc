@@ -144,9 +144,10 @@ class FrontController extends Controller
 
         $view = view('frontend.pages.products.filter_product',compact('allProducts'))->render();
         $topnav = view('frontend.pages.products.filter_pagination',compact('allProducts'))->render();
+        $alltopnav = view('frontend.pages.products.filter_all_pagination',compact('allProducts'))->render();
 
 
-        return response()->json(['view' => $view,'topnav' => $topnav]);
+        return response()->json(['view' => $view,'topnav' => $topnav,'alltopnav' => $alltopnav]);
 
     }
 
