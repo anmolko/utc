@@ -34,8 +34,8 @@
             <div class="price search-filter-input">
             <div id="slider-range" class="price-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                 <div class="ui-slider-range ui-corner-all ui-widget-header" ></div>
-                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default filter-product-price"></span>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default filter-product-price"></span>
             </div>
             <p class="amount">
                 <input type="text" id="amount" value="" disabled="">

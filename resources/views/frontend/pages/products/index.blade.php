@@ -212,7 +212,11 @@
             filter_data();
         });
 
-
+        $('.filter-product-price').on('change',function(){
+            clicked=true;
+            filter_data();
+        });
+        
 
 
         $('.orderby').on('change',function(){
