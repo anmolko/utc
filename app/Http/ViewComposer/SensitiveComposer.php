@@ -21,8 +21,11 @@ class SensitiveComposer
         $productBrand     = Brand::with('series')->get();
         $productPrimary   = ProductPrimaryCategory::with('secondary')->get();
         $topNavItems      = json_decode(@$topNav->content);
+        $footerItem1      = json_decode(@$footerMenu[0]->content);
+        $footerItem2      = json_decode(@$footerMenu[1]->content);
         $topNavItems      = @$topNavItems[0];
-        $footerMenuItems  = @$footerMenuItems[0];
+        $footerItem1      = @$footerItem1[0];
+        $footerItem2      = @$footerItem2[0];
 
         if(!empty(@$topNavItems)){
             foreach($topNavItems as $menu){
@@ -43,38 +46,34 @@ class SensitiveComposer
             }
 
         }
-        foreach($footerMenu as $fmenu){
-            $footerMenuItems[]  = json_decode(@$fmenu->content);
 
-        
-
-            // if(count(@$footerMenuItems) > 0){
-            //     foreach($footerMenuItems as $menu){
-            //         $menu->title = MenuItem::where('id',$menu->id)->value('title');
-            //         $menu->name = MenuItem::where('id',$menu->id)->value('name');
-            //         $menu->slug = MenuItem::where('id',$menu->id)->value('slug');
-            //         $menu->target = MenuItem::where('id',$menu->id)->value('target');
-            //         $menu->type = MenuItem::where('id',$menu->id)->value('type');
-            //     }
-    
-            // }
-        }
-
-        foreach($footerMenuItems as $m[0]){
-            foreach($m[0] as $menu){
-              print_r($menu);
+        if(!empty(@$footerItem1)){
+            foreach($footerItem1 as $menu1){
+                $menu1->title   = MenuItem::where('id',$menu1->id)->value('title');
+                $menu1->name    = MenuItem::where('id',$menu1->id)->value('name');
+                $menu1->slug    = MenuItem::where('id',$menu1->id)->value('slug');
+                $menu1->target  = MenuItem::where('id',$menu1->id)->value('target');
+                $menu1->type    = MenuItem::where('id',$menu1->id)->value('type');
             }
         }
 
+        if(!empty(@$footerItem2)){
+            foreach($footerItem2 as $menu2){
+                $menu2->title   = MenuItem::where('id',$menu2->id)->value('title');
+                $menu2->name    = MenuItem::where('id',$menu2->id)->value('name');
+                $menu2->slug    = MenuItem::where('id',$menu2->id)->value('slug');
+                $menu2->target  = MenuItem::where('id',$menu2->id)->value('target');
+                $menu2->type    = MenuItem::where('id',$menu2->id)->value('type');
+            }
+        }
 
         $latestPostsfooter = Blog::orderBy('created_at', 'DESC')->where('status','publish')->take(2)->get();
-
-
         $theme_data = Setting::first();
         $view
             ->with('setting_data', $theme_data)
             ->with('latestPostsfooter', $latestPostsfooter)
-            ->with('footer_nav_data', $footerMenuItems)
+            ->with('footer_nav_data1', $footerItem1)
+            ->with('footer_nav_data2', $footerItem2)
             ->with('product_brand_data', $productBrand)
             ->with('product_primary_data', $productPrimary)
             ->with('top_nav_data', $topNavItems);
