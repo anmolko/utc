@@ -70,10 +70,19 @@ class FrontController extends Controller
                                         $query->setRelation('products', $query->products->take(4)->sortBy('RAND()'));
                                         return $query;
                                     });
+        $product_brands   = $this->brand->with('series')
+                                ->orderBy('name','asc')->take(6)->get()
+                                ->map(function($query) {
+                                    $query->setRelation('series', $query->series->take(4));
+                                    return $query;
+                                });
+                                
+                            
+
         $laptopbybrands = $this->product->with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->where('type','laptops')->take(12)->get();
         $electronics = $this->product->with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->where('type','electronics')->take(12)->get();
 
-        return view('welcome',compact('primary_categories_tab','sliders','latestPosts','product_primary_categories','latestProducts','laptopbybrands','electronics'));
+        return view('welcome',compact('primary_categories_tab','product_brands','sliders','latestPosts','product_primary_categories','latestProducts','laptopbybrands','electronics'));
     }
 
     public function productBrands($brand,Request $request)

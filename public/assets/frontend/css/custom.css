@@ -590,3 +590,41 @@
     #mega-menu>ul.menu>li .drop-menu>.one-third ul li {
         width: 200px;
     }
+    
+    .box-owl-carousel.style1 .imagebox.style7 .box-image.latest-product {
+        height: 193px;
+        max-width: 324px;
+        display: inline-block;
+    }
+    
+    .box-owl-carousel.style1 .imagebox.style7 .box-image.latest-product a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .box-owl-carousel .rows .imagebox.style1.v1 .box-image.latest-laptop {
+        max-width: 178px;
+    }
+    
+    .box-owl-carousel .rows .imagebox.style1.v1 .box-image.latest-laptop a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .imagebox.style4.v1 .box-image.latest-electronic {
+        width: 175px;
+        display: contents;
+    }
+    
+    .imagebox.style4.v1 .box-image.latest-electronic a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .box-owl-carousel.style2 .rows .imagebox.style1.v1 .box-image.laptopbrand {
+        width: 178px;
+        margin-top: 0;
+    }
