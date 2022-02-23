@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title') {{ucwords(@$product_brand->name)}}  @endsection
+@section('title') {{ucwords(@$product_secondary_category->name)}}  @endsection
 @section('styles')
 <style>
 
@@ -22,9 +22,14 @@
                                 <a href="{{route('product.frontend')}}" title="">Product</a>
                                 <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
                             </li>
+
+                            <li class="trail-item">
+                                <a href="{{route('product.category',$product_primary_category->slug)}}" title="">{{ucwords(@$product_primary_category->name)}}</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
                             
                             <li class="trail-end">
-                                <a href="#" title="">{{ucwords(@$product_brand->name)}}</a>
+                                <a href="#" title="">{{ucwords(@$product_secondary_category->name)}}</a>
                             </li>
                         </ul><!-- /.breacrumbs -->
                     </div><!-- /.col-md-12 -->
@@ -42,7 +47,7 @@
         <div class="row">
             <div class="col-md-4 col-lg-3">
                 <div class="sidebar ">
-                    @include('frontend.pages.products.brand_sidebar')
+                    @include('frontend.pages.products.sidebar')
                   
                 </div><!-- /.sidebar -->
             </div><!-- /.col-md-4 col-lg-3 -->
@@ -170,13 +175,16 @@
             var min_price = $('#min_price').val();
             var max_price = $('#max_price').val();
             var pattribute = get_filter('product-attribute');
+            var pbrand = get_filter('product-brand');
             var orderby = $('.orderby').val();
-            var pbrand = '{{$product_brand->slug}}';
+            var pcategory = '{{$product_primary_category->slug}}';
+            var scategory = '{{$product_secondary_category->slug}}';
+
             var s = $('.searchby').val();
-            var url = '{{ route("product.brandfilter") }}';
+            var url = '{{ route("product.secondaryfilter") }}';
             $.ajax({
-                url:"/product/filterbrand?page="+page,
-                data:{min_price:min_price,pattribute:pattribute,pbrand:pbrand,orderby:orderby,max_price:max_price,s:s},
+                url:"/product/scategory?page="+page,
+                data:{pcategory:pcategory,scategory:scategory,min_price:min_price,pattribute:pattribute,pbrand:pbrand,orderby:orderby,max_price:max_price,s:s},
                 type: 'get',
                 contentType: "application/json; charset=utf-8",
                 beforeSend:function(){

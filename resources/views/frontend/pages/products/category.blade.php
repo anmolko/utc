@@ -172,12 +172,12 @@
             var pattribute = get_filter('product-attribute');
             var pbrand = get_filter('product-brand');
             var orderby = $('.orderby').val();
-
+            var pcategory = '{{$product_primary_category->slug}}';
             var s = $('.searchby').val();
             var url = '{{ route("product.categoryfilter") }}';
             $.ajax({
-                url:"/product/category?page="+page,
-                data:{min_price:min_price,pattribute:pattribute,pbrand:pbrand,orderby:orderby,max_price:max_price,s:s},
+                url:"/product/pcategory?page="+page,
+                data:{pcategory:pcategory,min_price:min_price,pattribute:pattribute,pbrand:pbrand,orderby:orderby,max_price:max_price,s:s},
                 type: 'get',
                 contentType: "application/json; charset=utf-8",
                 beforeSend:function(){

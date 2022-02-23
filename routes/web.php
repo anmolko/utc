@@ -40,8 +40,8 @@ Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->na
 Route::get('product/search/', 'App\Http\Controllers\FrontController@searchProduct')->name('searchProduct');
 Route::get('/products/search','App\Http\Controllers\FrontController@productSearchFilter')->name('productsearch.filter');
 Route::get('/products','App\Http\Controllers\FrontController@productFilter')->name('product.filter');
-Route::get('/product/category','App\Http\Controllers\FrontController@productCategoryFilter')->name('product.categoryfilter');
-Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
+Route::get('/product/pcategory','App\Http\Controllers\FrontController@productCategoryFilter')->name('product.categoryfilter');
+Route::get('/product/scategory','App\Http\Controllers\FrontController@productSecondaryFilter')->name('product.secondaryfilter');
 Route::get('product/category/{category}','App\Http\Controllers\FrontController@productCategory')->name('product.category');
 Route::get('product/category/{category}/{secondary}','App\Http\Controllers\FrontController@productSecondary')->name('product.secondary');
 Route::get('/product', 'App\Http\Controllers\FrontController@products')->name('product.frontend');
@@ -52,7 +52,10 @@ Route::post('/autocomplete/fetch', 'App\Http\Controllers\AutoCompleteController@
 //product by brand
 Route::get('product/brands/{brand}','App\Http\Controllers\FrontController@productBrands')->name('product.brand');
 Route::get('product/brands/{brand}/{series}','App\Http\Controllers\FrontController@productBrandSeries')->name('product.brandseries');
+Route::get('product/filterbrand','App\Http\Controllers\FrontController@productBrandFilter')->name('product.brandfilter');
 
+
+Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
 
 //blog
 Route::get('blog/search/', 'App\Http\Controllers\FrontController@searchBlog')->name('searchBlog');
