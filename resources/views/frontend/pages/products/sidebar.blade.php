@@ -45,6 +45,29 @@
         </div>
         </div>
     </div><!-- /.widget widget-price -->
+
+    
+   
+    @if(count($product_brands) > 0)
+    <div class="widget widget-brands">
+        <div class="widget-title utc-attribute-values">
+            <h3>Brands<span></span></h3>
+        </div>
+        <div class="widget-content">
+            <ul class="box-checkbox scroll">
+            @foreach(@$product_brands as $product_brand)
+
+                <li class="check-box">
+                    <input type="checkbox" class="common-selector product-brand" id="checkbox_{{@$product_brand->slug}}" name="product_brand[]" value="{{@$product_brand->slug}}">
+                    <label for="checkbox_{{@$product_brand->slug}}">{{ucwords(@$product_brand->name)}}</label>
+                </li>
+                @endforeach
+
+            </ul>
+        </div>
+    </div><!-- /.widget widget-brands -->
+    @endif
+
     @if(count($product_attributes) > 0)
     @foreach(@$product_attributes as $p_attribute)
     <div class="widget widget-brands">

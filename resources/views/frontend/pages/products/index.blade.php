@@ -165,13 +165,14 @@
             var min_price = $('#min_price').val();
             var max_price = $('#max_price').val();
             var pattribute = get_filter('product-attribute');
+            var pbrand = get_filter('product-brand');
             var orderby = $('.orderby').val();
             // var s = $('.searchby').val();
 
             var url = '{{ route("product.filter") }}';
             $.ajax({
                 url:"/products?page="+page,
-                data:{min_price:min_price,pattribute:pattribute,orderby:orderby,max_price:max_price},
+                data:{min_price:min_price,pattribute:pattribute,pbrand:pbrand,orderby:orderby,max_price:max_price},
                 type: 'get',
                 contentType: "application/json; charset=utf-8",
                 beforeSend:function(){
@@ -212,12 +213,11 @@
             filter_data();
         });
 
-        $('.filter-product-price').on('change',function(){
+        
+        $("#slider-range").on("slidestop", function(event, ui) {
             clicked=true;
             filter_data();
         });
-        
-
 
         $('.orderby').on('change',function(){
             clicked=true;

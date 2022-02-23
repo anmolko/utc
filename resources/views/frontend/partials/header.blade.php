@@ -206,7 +206,7 @@
                                 <form action="{{route('searchProduct')}}" method="get" class="form-search" accept-charset="utf-8">
 
                                     <div class="box-search">
-                                        <input type="text" name="search" autocomplete="off" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
+                                        <input type="text" name="s" class="searchby" autocomplete="off" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
                                         <span class="btn-search">
                                             <button type="submit" class="waves-effect"><img src="{{asset('assets/frontend/images/icons/search-2.png')}}" alt=""></button>
                                         </span>

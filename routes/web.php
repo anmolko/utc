@@ -42,16 +42,16 @@ Route::get('/products/search','App\Http\Controllers\FrontController@productSearc
 Route::get('/products','App\Http\Controllers\FrontController@productFilter')->name('product.filter');
 Route::get('/product/category','App\Http\Controllers\FrontController@productCategoryFilter')->name('product.categoryfilter');
 Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
-Route::get('product/{category}','App\Http\Controllers\FrontController@productCategory')->name('product.category');
-Route::get('product/{category}/{secondary}','App\Http\Controllers\FrontController@productSecondary')->name('product.secondary');
+Route::get('product/category/{category}','App\Http\Controllers\FrontController@productCategory')->name('product.category');
+Route::get('product/category/{category}/{secondary}','App\Http\Controllers\FrontController@productSecondary')->name('product.secondary');
 Route::get('/product', 'App\Http\Controllers\FrontController@products')->name('product.frontend');
 Route::post('/autocomplete/fetch', 'App\Http\Controllers\AutoCompleteController@fetch')->name('autocomplete.fetch');
 //end product
 
 
 //product by brand
-Route::get('/brands/{brand}','App\Http\Controllers\FrontController@productBrands')->name('product.brand');
-Route::get('/brands/{brand}/{series}','App\Http\Controllers\FrontController@productBrandSeries')->name('product.brandseries');
+Route::get('product/brands/{brand}','App\Http\Controllers\FrontController@productBrands')->name('product.brand');
+Route::get('product/brands/{brand}/{series}','App\Http\Controllers\FrontController@productBrandSeries')->name('product.brandseries');
 
 
 //blog

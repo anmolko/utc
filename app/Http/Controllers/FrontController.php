@@ -6,6 +6,7 @@ use App\Mail\ContactDetail;
 use App\Models\AttributeValue;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductPrimaryCategory;
@@ -32,9 +33,10 @@ class FrontController extends Controller
     protected $product_primary_category = null;
     protected $product_attribute = null;
     protected $product = null;
+    protected $brand = null;
 
 
-    public function __construct(Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
+    public function __construct(Brand $brand,Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
     {
         $this->bcategory = $bcategory;
         $this->blog = $blog;
@@ -43,6 +45,7 @@ class FrontController extends Controller
         $this->product_primary_category = $product_primary_category;
         $this->product_attribute = $product_attribute;
         $this->product = $product;
+        $this->brand = $brand;
 
     }
 
@@ -83,6 +86,7 @@ class FrontController extends Controller
     {
         $product_primary_categories   = $this->product_primary_category->with('secondary')->get();
         $product_attributes   = $this->product_attribute->with('values')->get();
+        $product_brands   = $this->brand->with('series')->get();
         $latestProducts = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(3)->get();
         $query = $request->s;
         $allProducts = $this->product->with(['primaryCategory','secondaryCategory'])
@@ -91,7 +95,7 @@ class FrontController extends Controller
                     ->paginate(9);
         $product_banners = SiteBanner::all();
 
-        return view('frontend.pages.products.index',compact('allProducts','product_attributes','product_primary_categories','latestProducts','product_banners'));
+        return view('frontend.pages.products.index',compact('product_brands','allProducts','product_attributes','product_primary_categories','latestProducts','product_banners'));
     }
 
     public function productFilter(Request $request)
@@ -101,16 +105,24 @@ class FrontController extends Controller
                         ->where('status','active')
                         ->where('name', 'LIKE', '%' . $query . '%');
                         
-                        
 
         if (isset($request->min_price) && isset($request->max_price)) {
             $minprice = $request->min_price;
             $maxprice = $request->max_price;
             $allProducts->whereBetween('price', [$minprice, $maxprice]);
         }
+
+        
         if (isset($request->pattribute)) {
             $slug = $request->pattribute;
             $allProducts->whereHas('attributeValue',function($query)use($slug){
+                $query->whereIn('slug', $slug );
+            });
+        }
+
+        if (isset($request->pbrand)) {
+            $slug = $request->pbrand;
+            $allProducts->whereHas('brand',function($query)use($slug){
                 $query->whereIn('slug', $slug );
             });
         }
@@ -149,25 +161,22 @@ class FrontController extends Controller
                         ->where('status','active')
                         ->where('name', 'LIKE', '%' . $query . '%');
 
-        if (isset($request->pcategory)) {
-            $slug= $request->pcategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('primaryCategory',function($query)use($slug){
-                $query->where('slug',$slug);
-            });
-        }
-
-        if (isset($request->scategory)) {
-            $slug= $request->scategory;
-            // $slug[] = implode("','", $slug);
-            $allProducts->whereHas('secondaryCategory',function($query)use($slug){
-                $query->whereIn('slug', $slug );
-            });
+        if (isset($request->min_price) && isset($request->max_price)) {
+            $minprice = $request->min_price;
+            $maxprice = $request->max_price;
+            $allProducts->whereBetween('price', [$minprice, $maxprice]);
         }
 
         if (isset($request->pattribute)) {
             $slug = $request->pattribute;
             $allProducts->whereHas('attributeValue',function($query)use($slug){
+                $query->whereIn('slug', $slug );
+            });
+        }
+
+        if (isset($request->pbrand)) {
+            $slug = $request->pbrand;
+            $allProducts->whereHas('brand',function($query)use($slug){
                 $query->whereIn('slug', $slug );
             });
         }
@@ -192,8 +201,9 @@ class FrontController extends Controller
 
         $view = view('frontend.pages.products.filter_product',compact('allProducts'))->render();
         $topnav = view('frontend.pages.products.filter_pagination',compact('allProducts'))->render();
+        $alltopnav = view('frontend.pages.products.filter_all_pagination',compact('allProducts'))->render();
 
-        return response()->json(['view' => $view,'topnav' => $topnav]);
+        return response()->json(['view' => $view,'topnav' => $topnav,'alltopnav' => $alltopnav]);
 
     }
 
@@ -219,6 +229,8 @@ class FrontController extends Controller
 
         $latestProducts = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(3)->get();
         $query = $request->s;
+        $product_brands   = $this->brand->with('series')->get();
+
         $allProducts = $this->product->with(['primaryCategory','secondaryCategory'])
                     ->where('status','active')
                     ->where('name', 'LIKE', '%' . $query . '%')
@@ -226,10 +238,9 @@ class FrontController extends Controller
                         $query->where('slug',$category);
                     })
                     ->paginate(9);
-        $product_banner = SiteBanner::where('name','product')->first();
+        $product_banners = SiteBanner::all();
 
-
-        return view('frontend.pages.products.category',compact('product_primary_category','allProducts','product_attributes','product_primary_categories','latestProducts','product_banner'));
+        return view('frontend.pages.products.category',compact('product_brands','product_primary_category','allProducts','product_attributes','product_primary_categories','latestProducts','product_banners'));
 
     }
 
@@ -249,14 +260,16 @@ class FrontController extends Controller
         $product_primary_categories   = $this->product_primary_category->with('secondary')->get();
         $product_attributes   = $this->product_attribute->with('values')->get();
         $latestProducts = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(3)->get();
-        $query = $request->searchby;
+        $product_brands   = $this->brand->with('series')->get();
+        $query = $request->s;
         $allProducts = $this->product->with(['primaryCategory','secondaryCategory'])
                     ->where('status','active')
                     ->where('name', 'LIKE', '%' . $query . '%')
                     ->paginate(9);
-        $product_banner = SiteBanner::where('name','product')->first();
+        $product_banners = SiteBanner::all();
 
-        return view('frontend.pages.products.search',compact('query','allProducts','product_attributes','product_primary_categories','latestProducts','product_banner'));
+
+        return view('frontend.pages.products.search',compact('query','product_brands','allProducts','product_attributes','product_primary_categories','latestProducts','product_banners'));
 
     }
 
@@ -269,15 +282,21 @@ class FrontController extends Controller
                         ->where('name', 'LIKE', '%' . $query . '%')
                         ->where('name', 'LIKE', '%' . $searchq . '%');
 
-            if (isset($request->min_price) && isset($request->max_price)) {
-                $minprice = $request->min_price;
-                $maxprice = $request->max_price;
-                $allProducts->whereBetween('price', [$minprice, $maxprice]);
-            }
+        if (isset($request->min_price) && isset($request->max_price)) {
+            $minprice = $request->min_price;
+            $maxprice = $request->max_price;
+            $allProducts->whereBetween('price', [$minprice, $maxprice]);
+        }
 
         if (isset($request->pattribute)) {
             $slug = $request->pattribute;
             $allProducts->whereHas('attributeValue',function($query)use($slug){
+                $query->whereIn('slug', $slug );
+            });
+        }
+        if (isset($request->pbrand)) {
+            $slug = $request->pbrand;
+            $allProducts->whereHas('brand',function($query)use($slug){
                 $query->whereIn('slug', $slug );
             });
         }

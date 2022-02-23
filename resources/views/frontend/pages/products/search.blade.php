@@ -2,72 +2,75 @@
 @section('title') Search Products  @endsection
 @section('styles')
 <style>
-
-    .product-cat label {
-        display: block;
-    }
-    button.pull-right {
-        float: right;
-    }
-
-</style>
-
 </style>
 @endsection
 @section('breadcrumb')
-
    <!-- BREADCRUMBS SETCTION START -->
-   <div class="breadcrumbs-section plr-200 mb-80 section">
-            <div class="{{($product_banner == null) ? 'breadcrumbs':''}} overlay-bg" @if($product_banner !== null) style="background: #f6f6f6 url('{{asset('/images/uploads/banners/'.@$product_banner->image)}}') no-repeat scroll center center;" @endif>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Search Result For: <strong>{{@$query}} </strong></h1>
-
-                                <ol class="breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="{{route('product.frontend')}}">Product</a></li>
-                                    <li class="active">Search </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- BREADCRUMBS SETCTION END -->
+   <section class="flat-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumbs">
+                            <li class="trail-item">
+                                <a href="/" title="">Home</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
+                            <li class="trail-item">
+                                <a href="{{route('product.frontend')}}" title="">Product</a>
+                                <span><img src="{{asset('assets/frontend/images/icons/arrow-right.png')}}" alt=""></span>
+                            </li>
+                            
+                            <li class="trail-end">
+                                <a href="#" title="">Search Result For: <strong>{{@$query}} </strong></a>
+                            </li>
+                        </ul><!-- /.breacrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.flat-breadcrumb -->
+    <!-- BREADCRUMBS SETCTION END -->
+ 
 @endsection
 
 
 @section('content')
+<!-- Start page content -->
+<main id="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <div class="sidebar ">
+                    @include('frontend.pages.products.sidebar')
+                  
+                  
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-4 col-lg-3 -->
+            <div class="col-md-8 col-lg-9">
+                <div class="main-shop">
+                    @if(count(@$product_banners) > 0)
+                
+                    <div class="slider owl-carousel-16 style1">
+                        @foreach(@$product_banners as $product_banner)
 
-   <!-- Start page content -->
-   <div id="page-content" class="page-wrapper section">
-
-        <!-- SHOP SECTION START -->
-        <div class="shop-section mb-80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 order-lg-2 order-1">
-                        <div class="shop-content">
-                            <!-- shop-option start -->
-                            <div class="shop-option box-shadow mb-30 clearfix">
-                                <!-- Nav tabs -->
-                                <ul class="nav shop-tab f-left" role="tablist">
-                                    <li>
-                                        <a class="active" href="#grid-view" data-bs-toggle="tab"><i class="zmdi zmdi-view-module"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#list-view" data-bs-toggle="tab"><i class="zmdi zmdi-view-list-alt"></i></a>
-                                    </li>
-                                </ul>
-
-                                <!-- short-by -->
-                                <div class="short-by f-left text-center">
-                                    <span>Sort by :</span>
+                        <div class="slider-item style9">
+                            
+                            <div class="item-image">
+                                <img src="<?php if(@$product_banner->image){?>{{asset('/images/uploads/products/banner_gallery/'.@$product_banner->image)}}<?php }?>" alt="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.slider-item style9 -->
+                       @endforeach
+                    </div><!-- /.slider -->
+                    @endif
+                    <div class="wrap-imagebox">
+                     
+                        <div class="sort-product">
+                            {{ $allProducts->links('vendor.pagination.simple-pagination') }}
+                          
+                            <div class="sort">
+                                <div class="popularity">
                                     <select class="orderby">
-                                            <option selected disabled>Choose One</option>
+                                            <option selected disabled>Sort By</option>
                                             <option value="latest">Latest</option>
                                             <option value="old">Oldest</option>
                                             <option value="asc">Name(A to Z)</option>
@@ -75,105 +78,80 @@
 
                                     </select>
                                 </div>
-
-                                 <!-- showing -->
-                                 <div class="showing f-right text-right">
-                                 {{ $allProducts->links('vendor.pagination.simple-pagination') }}
-
-                                </div>
-
-                            </div>
-                            <!-- shop-option end -->
-                            <!-- Tab Content start -->
-                            <div id="loading" style="" ></div>
+                              
+                            </div><!-- /.sort -->
+                            <div class="clearfix"></div>
+                        </div><!-- /.sort-product -->
+                        <div id="loading" style="" ></div>
                             <div id="content-loader">
-                                <div class="tab-content">
-                                    <!-- grid-view -->
-                                    <div id="grid-view" class="tab-pane active show" role="tabpanel">
-                                        <div class="row">
-                                            <!-- product-item start -->
-                                            @if(count($allProducts) > 0)
-                                                @foreach(@$allProducts as $product)
-                                                    <div class="col-lg-4 col-md-6">
-                                                        <div class="product-item">
-                                                            <div class="product-img">
-                                                                <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">
-                                                                    <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
+                                <div class="tab-product">
+                                
+                                    <div class="row sort-box">
+                                        @if(count($allProducts) > 0)
+                                            @foreach(@$allProducts as $product)
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="product-box">
+                                                    <div class="imagebox">
+                                                        @if($product->state == "new_arrival")
+                                                            <span class="item-new">NEW</span>
+                                                        @elseif($product->state == "sale")
+                                                            <span class="item-sale">SALE</span>
+                                                        @endif
+                                                        <div class="box-image single-image">
+                                                            <a href="{{route('product.single',@$product->slug)}}" title="">
+                                                                <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
+                                                            </a>
+                                                            
+                                                        </div><!-- /.box-image -->
+                                                        <div class="box-content">
+                                                            <div class="cat-name">
+                                                                <a href="#" title="">{{@ucwords($product->type)}}</a>
+                                                            </div>
+                                                            <div class="product-name">
+                                                                <a href="{{route('product.single',@$product->slug)}}" title="">{{ucwords(Str::limit(@$product->name,40,' ...'))}}</a>
+                                                            </div>
+                                                            <div class="price">
+                                                                @if($product->state == "sale")
+                                                                    <span class="sale">NPR {{number_format(@$product->discount_price)}}</span>
+                                                                    <span class="regular">NPR {{number_format(@$product->price)}}</span>
+                                                                @else
+                                                                    <span class="sale">NPR {{number_format(@$product->price)}}</span>
+                                                                @endif
+                                                            </div>
+                                                        </div><!-- /.box-content -->
+                                                        <div class="box-bottom">
+                                                            <div class="btn-add-cart">
+                                                                <a href="#" title="">
+                                                                    <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart
                                                                 </a>
                                                             </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">{{ucwords(@$product->name)}} </a>
-                                                                </h6>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                            <!-- product-item end -->
-
-                                        </div>
-                                    </div>
-                                    <!-- list-view -->
-                                    <div id="list-view" class="tab-pane" role="tabpanel">
-                                        <div class="row">
-                                            <!-- product-item start -->
-                                            @if(count($allProducts) > 0)
-                                                @foreach(@$allProducts as $product)
-                                                    <div class="col-lg-12">
-                                                        <div class="shop-list product-item">
-                                                            <div class="product-img">
-                                                                <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">
-                                                                    <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <div class="clearfix">
-                                                                    <h6 class="product-title f-left">
-                                                                        <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">{{ucwords(@$product->name)}} </a>
-                                                                    </h6>
-
-                                                                </div>
-                                                                <h6 class="brand-name mb-30">{{ucwords(@$product->primaryCategory->name)}}</h6>
-                                                                <p>{{Str::limit(@$product->summary,400,' ...')}}</p>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                            <!-- product-item end -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                                    <!-- Tab Content end -->
-                                <!-- shop-pagination start -->
-                                {{ $allProducts->appends($_GET)->links('vendor.pagination.default') }}
-
-                                <!-- shop-pagination end -->
+                                                         
+                                                        </div><!-- /.box-bottom -->
+                                                    </div><!-- /.imagebox -->
+                                                </div>
+                                            </div><!-- /.col-lg-4 col-sm-6 -->
+                                            @endforeach
+                                        @endif
+                                      
+                                    
+                                    </div><!-- /.sort-box -->
+                                </div><!-- /.tab-product -->
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-lg-3 order-lg-1 order-2">
+                    </div><!-- /.wrap-imagebox -->
+                        {{ $allProducts->appends($_GET)->links('vendor.pagination.product-pagination') }}
+                </div><!-- /.main-shop -->
+            </div><!-- /.col-md-8 col-lg-9 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main><!-- /#shop -->
 
-                        @include('frontend.pages.products.sidebar')
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SHOP SECTION END -->
-
-    </div>
-    <!-- End page content -->
+<!-- End page content -->
 @endsection
 @section('js')
 <script>
     $(document).ready(function(){
-        $(document).on('click', '.shop-pagination a', function(event){
+        $(document).on('click', '.flat-pagination a', function(event){
         event.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
             filter_data(page);
@@ -188,17 +166,18 @@
             }
             var action = 'fetch_data';
             var clicked = false;
-            var pcategory = get_filter('primary-category');
-            var scategory = get_filter('secondary-category');
+            var min_price = $('#min_price').val();
+            var max_price = $('#max_price').val();
             var pattribute = get_filter('product-attribute');
             var orderby = $('.orderby').val();
+            var pbrand = get_filter('product-brand');
             var s = $('.searchby').val();
             var searchq = '{{$query}}';
 
             var url = '{{ route("productsearch.filter") }}';
             $.ajax({
                 url:"/products/search?page="+page,
-                data:{scategory:scategory,pattribute:pattribute,orderby:orderby,pcategory:pcategory,s:s,searchby:searchq},
+                data:{min_price:min_price,pattribute:pattribute,max_price:max_price,pbrand:pbrand,orderby:orderby,s:s,searchby:searchq},
                 type: 'get',
                 contentType: "application/json; charset=utf-8",
                 beforeSend:function(){
@@ -207,6 +186,7 @@
                   if(!clicked){
                      $('#content-loader').html('');
                      $('.showing').html('');
+                     $('.allpagination').html('');
 
                   }
                 }
@@ -215,6 +195,8 @@
                   $('#loading').hide();
                     $('#content-loader').html(data.view);
                     $('.showing').html(data.topnav);
+                    $('.allpagination').html(data.alltopnav);
+
                     //  console.log(data.view)
 
                }, 1000);
@@ -238,12 +220,10 @@
         });
 
 
-
-        $('.search-product').on('click',function(){
+        $("#slider-range").on("slidestop", function(event, ui) {
             clicked=true;
             filter_data();
         });
-
 
         $('.orderby').on('change',function(){
             clicked=true;

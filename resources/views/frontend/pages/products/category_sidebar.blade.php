@@ -47,29 +47,3 @@
     @endforeach
     @endif
 
-    <!-- widget-product -->
-
-@if(count($latestProducts) > 0)
-    <aside class="widget widget-product box-shadow">
-        <h6 class="widget-title border-left mb-20">recent products</h6>
-        <!-- product-item start -->
-        @foreach(@$latestProducts as $product)
-
-        <div class="product-item">
-            <div class="product-img">
-                <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">
-                    <img src="<?php if(@$product->thumbnail){?>{{asset('/images/uploads/products/'.@$product->thumbnail)}}<?php }?>" alt="{{@$product->slug}}"/>
-                </a>
-            </div>
-            <div class="product-info">
-                <h6 class="product-title">
-                    <a href="{{route('product.single',['category'=>@$product->primaryCategory->slug,'slug'=>@$product->slug])}}">{{ucwords(@$product->name)}}</a>
-                </h6>
-                <h3 class="pro-price">{{ucwords(@$product->primaryCategory->name)}}</h3>
-            </div>
-        </div>
-        @endforeach
-
-                                  
-    </aside>
-@endif
