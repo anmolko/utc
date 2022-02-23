@@ -7,6 +7,7 @@ use App\Models\AttributeValue;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Brand;
+use App\Models\BrandSeries;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductPrimaryCategory;
@@ -34,10 +35,11 @@ class FrontController extends Controller
     protected $product_attribute = null;
     protected $product = null;
     protected $brand = null;
+    protected $brand_series = null;
     protected $product_secondary_category = null;
     
 
-    public function __construct(ProductSecondaryCategory $product_secondary_category,Brand $brand,Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
+    public function __construct(BrandSeries $brand_series,ProductSecondaryCategory $product_secondary_category,Brand $brand,Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
     {
         $this->bcategory = $bcategory;
         $this->blog = $blog;
@@ -47,6 +49,7 @@ class FrontController extends Controller
         $this->product_attribute = $product_attribute;
         $this->product = $product;
         $this->brand = $brand;
+        $this->brand_series = $brand_series;
         $this->product_secondary_category = $product_secondary_category;
 
     }
@@ -163,9 +166,106 @@ class FrontController extends Controller
 
     }
 
-    public function productBrandSeries($brand,$series)
+    public function productBrandSeries($brand,$series,Request $request)
     {
-        return view('frontend.pages.products.brand_series');
+        $data=[];
+        $product_brands             = $this->brand->with('series')->where('slug',$brand)->get();
+        $product_brand       = $this->brand->with('series')->where('slug',$brand)->first();
+        $brand_serie   = $this->brand_series->where('slug',$series)->first();
+
+        
+        $p_brand_id          = $product_brand->id;
+        $allProductAttribute = $this->product->with(['brand','primaryCategory','secondaryCategory','attributeValue'])
+                                ->whereHas('brand',function($query)use($p_brand_id){
+                                    $query->where('brand_id',$p_brand_id);
+                                })->get();
+
+        foreach($allProductAttribute as $allattribute_v){
+            foreach($allattribute_v->attributeValue as $attribute_v){
+                $data[]= $attribute_v->pivot->product_attribute_id;
+            }
+        }
+        $unique_attribute= array_unique($data);
+        $product_attributes   = $this->product_attribute->with('values')->whereIn('id',$unique_attribute)
+                                ->get();
+
+
+        $latestProducts = $this->product->with('primaryCategory')->orderBy('created_at', 'DESC')->where('status','active')->take(3)->get();
+        $query = $request->s;
+
+        $allProducts = $this->product->with(['primaryCategory','secondaryCategory','brandSeries'])
+                    ->where('status','active')
+                    ->where('name', 'LIKE', '%' . $query . '%')
+                    ->whereHas('brandSeries',function($query)use($series){
+                        $query->where('slug',$series);
+                    })
+                    ->paginate(9);
+        $product_banners = SiteBanner::all();
+        return view('frontend.pages.products.brand_series',compact('brand_serie','product_brands','product_brand','allProducts','product_attributes','latestProducts','product_banners'));
+
+    }
+
+    
+    public function productBrandSeriesFilter(Request $request)
+    {
+        
+        $query = $request->s;
+        $allProducts = $this->product->with(['primaryCategory','secondaryCategory','attributeValue','brand','brandSeries'])
+                        ->where('status','active')
+                        ->where('name', 'LIKE', '%' . $query . '%');
+
+        if (isset($request->min_price) && isset($request->max_price)) {
+            $minprice = $request->min_price;
+            $maxprice = $request->max_price;
+            $allProducts->whereBetween('price', [$minprice, $maxprice]);
+        }
+
+        if (isset($request->pattribute)) {
+            $slug = $request->pattribute;
+            $allProducts->whereHas('attributeValue',function($query)use($slug){
+                $query->whereIn('slug', $slug );
+            });
+        }
+
+        if (isset($request->pbrand)) {
+            $slug = $request->pbrand;
+            $allProducts->whereHas('brand',function($query)use($slug){
+                $query->where('slug', $slug );
+            });
+        }
+
+        
+        if (isset($request->pbrandseries)) {
+            $slug = $request->pbrandseries;
+            $allProducts->whereHas('brandSeries',function($query)use($slug){
+                $query->where('slug', $slug );
+            });
+        }
+
+
+        if (isset($request->orderby)) {
+            if ($request->orderby == "latest") {
+              $allProducts->orderBy('created_at','desc');
+            }
+            if ($request->orderby == "old") {
+              $allProducts->orderBy('created_at','asc');
+            }
+            if ($request->orderby == "asc") {
+              $allProducts->orderBy('name','asc');
+            }
+            if ($request->orderby == "desc") {
+              $allProducts->orderBy('name','desc');
+            }
+        }else{
+            $allProducts->orderBy(\DB::raw('RAND()'));
+        }
+        $allProducts = $allProducts->paginate(9);
+
+        $view = view('frontend.pages.products.filter_product',compact('allProducts'))->render();
+        $topnav = view('frontend.pages.products.filter_pagination',compact('allProducts'))->render();
+        $alltopnav = view('frontend.pages.products.filter_all_pagination',compact('allProducts'))->render();
+
+        return response()->json(['view' => $view,'topnav' => $topnav,'alltopnav' => $alltopnav]);
 
     }
 
