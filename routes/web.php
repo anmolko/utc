@@ -53,7 +53,15 @@ Route::post('/autocomplete/fetch', 'App\Http\Controllers\AutoCompleteController@
 Route::get('product/brands/{brand}','App\Http\Controllers\FrontController@productBrands')->name('product.brand');
 Route::get('product/brands/{brand}/{series}','App\Http\Controllers\FrontController@productBrandSeries')->name('product.brandseries');
 Route::get('product/filterbrand','App\Http\Controllers\FrontController@productBrandFilter')->name('product.brandfilter');
+Route::get('product/filterseries','App\Http\Controllers\FrontController@productBrandSeriesFilter')->name('product.brandseriesfilter');
 
+Route::get('/product/brands', function () {
+    return redirect('/product');
+});
+
+Route::get('/product/category', function () {
+    return redirect('/product');
+});
 
 Route::get('product/{slug}','App\Http\Controllers\FrontController@productSingle')->name('product.single');
 
