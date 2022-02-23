@@ -95,6 +95,8 @@
                             <div class="nav-wrap">
                                 <div id="mainnav" class="mainnav style1">
                                     <ul class="menu">
+                                        <li><a href="/" class="column-1 {{request()->is('/') ? 'active' : ''}}">Home</a>
+                                        </li>
                                         <li class="has-mega-menu">
                                             <a href="#" title="">Electronic</a>
                                             <div class="submenu">
