@@ -84,7 +84,56 @@
         </div><!-- /.preloader -->
 
         <section id="header" class="header">
+            @if(!empty(Auth::user()) && Auth::user()->user_type == 'customer')
+                <div class="header-top style3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="flat-support">
+{{--                                <li>--}}
+{{--                                    <a href="faq.html" title="">View Policy</a>--}}
+{{--                                </li>--}}
+                                <li>
+                                    <a href="{{route('front-user.dashboard')}}" title="">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('cart.list')}}" title="">My Cart</a>
+                                </li>
+                                <li>
+                                    <a href="#" title="">Check Out</a>
+                                </li>
+                            </ul>
+                            <!-- /.flat-support -->
+                        </div>
+                        <!-- /.col-md-4 -->
+                        <div class="col-md-4">
 
+                        </div>
+                        <!-- /.col-md-4 -->
+                        <div class="col-md-4">
+                            <ul class="flat-unstyled">
+                                <li class="account">
+                                    <a href="#" title="">{{ (!empty(Auth::user())) ? ucfirst(Auth::user()->name):"" }}</a>
+                                </li>
+                                <li>
+                                    <a title=""href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+
+                            </ul>
+                            <!-- /.flat-unstyled -->
+                        </div>
+                        <!-- /.col-md-4 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            @endif
             <div class="header-middle">
                 <div class="container">
                     <div class="row">
@@ -226,11 +275,13 @@
                             <div class="box-cart style1">
                                 <div class="inner-box">
                                     <ul class="menu-compare-wishlist">
-                                        <li class="compare">
-                                            <a href="{{route('front-user.index')}}" title="">
-                                                <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
-                                            </a>
-                                        </li>
+                                        @if(empty(Auth::user()))
+                                            <li class="compare">
+                                                <a href="{{route('front-user.index')}}" title="">
+                                                    <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
+                                                </a>
+                                            </li>
+                                        @endif
                                         <li class="wishlist">
                                             <a href="#" title="">
                                                 <img src="{{asset('assets/frontend/images/icons/wishlist-2.png')}}" alt="">
@@ -244,9 +295,9 @@
                                             <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">
                                             <span>{{ \Cart::getTotalQuantity()}}</span>
                                         </div>
-                                       
+
                                     </a>
-                                   
+
                                     @if(count(\Cart::getContent()) > 0)
                                     <div class="dropdown-box">
                                         <ul>
@@ -270,9 +321,9 @@
                                                     <input type="hidden" value="{{ $item->id }}" name="id">
                                                     <span class="delete" onclick="document.getElementById('delete_{{$item->id}}').submit();">x</span>
                                                 </form>
-                                                
+
                                             </li>
-                                            
+
                                         @endforeach
                                         </ul>
                                         <div class="total">
@@ -290,7 +341,7 @@
                                     </div>
 
                                     @endif
-                                    
+
                                 </div><!-- /.inner-box -->
                             </div><!-- /.box-cart -->
                         </div><!-- /.col-md-9 col-10 -->

@@ -45,6 +45,7 @@ Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('
 
 //Social Login
 Route::get('/user-login', 'App\Http\Controllers\SocialLoginController@index')->name('front-user.index');
+Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
 Route::get('/user-login/create', 'App\Http\Controllers\SocialLoginController@create')->name('front-user.create');
 Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@store')->name('front-user.store');
 Route::put('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@update')->name('front-user.update');
@@ -53,9 +54,10 @@ Route::get('/user-login/{user}/edit', 'App\Http\Controllers\SocialLoginControlle
 Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@CustomerLogin')->name('front-user.login');
 
 Route::get('/google/redirect','App\Http\Controllers\SocialLoginController@handleGoogleRedirect')->name('google.redirect');
-
 Route::get('/google/callback', 'App\Http\Controllers\SocialLoginController@handleGoogleCallback')->name('google.callback');
 
+Route::get('/facebook/redirect','App\Http\Controllers\SocialLoginController@handleFacebookRedirect')->name('facebook.redirect');
+Route::get('/facebook/callback', 'App\Http\Controllers\SocialLoginController@handleFacebookCallback')->name('facebook.callback');
 //End of Social Login
 
 //product

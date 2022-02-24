@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
@@ -16,7 +19,16 @@ class SocialLoginController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.user.login');
+        if (Auth::user() && Auth::user()->user_type == 'customer') {
+            return redirect('/user-dashboard');
+        } else {
+            return view('frontend.pages.user.login');
+        }
+    }
+
+    public function dashboard()
+    {
+        return view('frontend.pages.user.dashboard');
     }
 
     /**
@@ -85,9 +97,28 @@ class SocialLoginController extends Controller
         //
     }
 
-    public function login(Request $request)
-    {
-        //
+    public function CustomerLogin(Request $request){
+        $user = User::where('email', '=', $request->input('email'))->first();
+        if ($user === null) {
+            Session::flash('error','User Email is not registered with us.');
+            return redirect()->back();
+        }
+
+        $password = Hash::check($request->input('password'), $user->password);
+        if(!$password){
+            Session::flash('password','User Password does not match.');
+            return redirect()->back();
+        }
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            if(Auth::user()->user_type == 'customer'){
+                //return redirect('/dashboard');
+                return redirect()->back();
+            }  else {
+                Session::flash('warning','You cannot login to '.Auth::user()->user_type.' dashboard!');
+                return redirect()->back();
+            }
+
+        }
     }
 
     public function handleGoogleRedirect()
@@ -103,10 +134,66 @@ class SocialLoginController extends Controller
 
             if($userExisted){
                 Auth::login($userExisted);
+                return redirect()->route('front-user.dashboard');
+            }else{
+                $password = $user->getId().$user->getEmail();
+
+                $newuser = User::create([
+                    'name'=> $user->getName(),
+                    'email'=>$user->getEmail(),
+                    'image'=>$user->getAvatar(),
+                    'oauth_id'=>$user->getId(),
+                    'oauth_type'=>'google',
+                    'user_type'=>'customer',
+                    'status'=>1,
+                    'password'=>Hash::make($password),
+                ]);
+                Auth::login($newuser);
+                return redirect()->route('front-user.dashboard');
+
+
             }
 
-        }catch (\Exception $exc){
+        }catch (Exception $exc){
+            dd($exc);
+        }
+    }
 
+    public function handleFacebookRedirect()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        try {
+            $user           = Socialite::driver('facebook')->user();
+            $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','facebook')->first();
+
+            if($userExisted){
+                Auth::login($userExisted);
+                return redirect()->route('front-user.dashboard');
+            }else{
+                $password = $user->getId().$user->getEmail();
+
+                $newuser = User::create([
+                    'name'=> $user->getName(),
+                    'email'=>$user->getEmail(),
+                    'image'=>$user->getAvatar(),
+                    'oauth_id'=>$user->getId(),
+                    'oauth_type'=>'facebook',
+                    'user_type'=>'customer',
+                    'status'=>1,
+                    'password'=>Hash::make($password),
+                ]);
+                Auth::login($newuser);
+                return redirect()->route('front-user.dashboard');
+
+
+            }
+
+        }catch (Exception $exc){
+            dd($exc);
         }
     }
 }
