@@ -43,7 +43,7 @@ Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@store')->
 Route::put('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@update')->name('front-user.update');
 Route::delete('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@destroy')->name('front-user.destroy');
 Route::get('/user-login/{user}/edit', 'App\Http\Controllers\SocialLoginController@edit')->name('front-user.edit');
-Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@login')->name('front-user.login');
+Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@CustomerLogin')->name('front-user.login');
 
 Route::get('/google/redirect','App\Http\Controllers\SocialLoginController@handleGoogleRedirect')->name('google.redirect');
 
