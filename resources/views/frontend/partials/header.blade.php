@@ -113,14 +113,14 @@
                                                                     </li>
                                                                 @endforeach
                                                             </ul>
-                                                          
+
                                                         </div><!-- /.col-md-3 -->
                                                     @endforeach
                                                 </div><!-- /.row -->
                                              @endforeach
                                             </div><!-- /.submenu -->
-                                        </li>   
-                                   
+                                        </li>
+
                                         @if(!empty($top_nav_data))
                                             @foreach($top_nav_data as $nav)
                                             @if(!empty($nav->children[0]))
@@ -225,7 +225,7 @@
                                 <div class="inner-box">
                                     <ul class="menu-compare-wishlist">
                                         <li class="compare">
-                                            <a href="#" title="">
+                                            <a href="{{route('front-user.index')}}" title="">
                                                 <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
                                             </a>
                                         </li>

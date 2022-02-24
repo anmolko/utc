@@ -36,6 +36,21 @@ Route::get('/contact', 'App\Http\Controllers\FrontController@contact')->name('co
 Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->name('contact.store');
 
 
+//Social Login
+Route::get('/user-login', 'App\Http\Controllers\SocialLoginController@index')->name('front-user.index');
+Route::get('/user-login/create', 'App\Http\Controllers\SocialLoginController@create')->name('front-user.create');
+Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@store')->name('front-user.store');
+Route::put('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@update')->name('front-user.update');
+Route::delete('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@destroy')->name('front-user.destroy');
+Route::get('/user-login/{user}/edit', 'App\Http\Controllers\SocialLoginController@edit')->name('front-user.edit');
+Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@login')->name('front-user.login');
+
+Route::get('/google/redirect','App\Http\Controllers\SocialLoginController@handleGoogleRedirect')->name('google.redirect');
+
+Route::get('/google/callback', 'App\Http\Controllers\SocialLoginController@handleGoogleCallback')->name('google.callback');
+
+//End of Social Login
+
 //product
 Route::get('product/search/', 'App\Http\Controllers\FrontController@searchProduct')->name('searchProduct');
 Route::get('/products/search','App\Http\Controllers\FrontController@productSearchFilter')->name('productsearch.filter');
