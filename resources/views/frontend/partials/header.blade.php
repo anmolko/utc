@@ -282,11 +282,7 @@
                                                 </a>
                                             </li>
                                         @endif
-                                        <li class="wishlist">
-                                            <a href="#" title="">
-                                                <img src="{{asset('assets/frontend/images/icons/wishlist-2.png')}}" alt="">
-                                            </a>
-                                        </li>
+                                      
                                     </ul><!-- /.menu-compare-wishlist -->
                                 </div><!-- /.inner-box -->
                                 <div class="inner-box">

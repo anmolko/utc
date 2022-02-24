@@ -122,24 +122,23 @@
                        
                     </div><!-- /.content-detail -->
                     <div class="footer-detail">
-                        <div class="quanlity-box">
-                            <div class="quanlity">
-                                <span class="btn-down"></span>
-                                <input type="number" name="number" value="" min="1" max="100" placeholder="Quantiy">
-                                <span class="btn-up"></span>
-                            </div>
-                            <div class="box-cart style2 detail-wishlist">
-
-                                <div class="compare-wishlist">
-                                    <a href="#" class="wishlist" title=""><img src="{{asset('assets/frontend/images/icons/wishlist.png')}}" alt="">Wishlist</a>
-                                </div>
-                            </div>
-                            
-                        </div><!-- /.quanlity-box -->
+                      
                         <div class="box-cart style2">
-                            <div class="btn-add-cart">
-                                <a href="#" title=""><img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart</a>
-                            </div>
+                            <form style="display: inline-block;" action="{{ route('cart.store') }}" id="form_{{$product->id}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                <input type="hidden" value="{{ $product->name }}" name="name">
+                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                <input type="hidden" value="{{ $product->thumbnail }}"  name="image">
+                                <input type="hidden" value="{{ $product->slug }}"  name="slug">
+                                <input type="hidden" value="1" name="quantity">
+                                <div class="btn-add-cart">
+                                    <a  onclick="document.getElementById('form_{{$product->id}}').submit();" title="">
+                                        <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart
+                                    </a>
+                                </div>
+                            </form>
+                           
                             <div class="social-single">
                                 <span>SHARE</span>
                                 <ul class="social-list style2">
