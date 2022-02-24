@@ -30,6 +30,6 @@ class ContactDetail extends Mailable
      */
     public function build()
     {
-        return $this->subject('New Customer Enquiry - Webor Electronics')->view('frontend.template.email_template');
+        return $this->subject('New Customer Enquiry - Universal Trading Concern')->view('frontend.template.email_template');
     }
 }
