@@ -23,6 +23,7 @@ class CartController extends Controller
             'quantity' => $request->quantity,
             'attributes' => array(
                 'image' => $request->image,
+                'slug' => $request->slug,
             )
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');

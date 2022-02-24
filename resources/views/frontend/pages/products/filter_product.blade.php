@@ -43,6 +43,7 @@
                                     <input type="hidden" value="{{ $product->name }}" name="name">
                                     <input type="hidden" value="{{ $product->price }}" name="price">
                                     <input type="hidden" value="{{ $product->thumbnail }}"  name="image">
+                                    <input type="hidden" value="{{ $product->slug }}"  name="slug">
                                     <input type="hidden" value="1" name="quantity">
                                     <div class="btn-add-cart">
                                         <a  onclick="document.getElementById('form_{{$product->id}}').submit();" title="">
