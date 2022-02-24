@@ -23,6 +23,8 @@
 
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/css/toastr.min.css')}}">
+
        <!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{@$setting_data->google_analytics}}"></script>
 		<script>
@@ -78,6 +80,8 @@
                             <div class="nav-wrap">
                                 <div id="mainnav" class="mainnav style1">
                                     <ul class="menu">
+                                        <li><a href="/" class="column-1 {{request()->is('/') ? 'active' : ''}}">Home</a>
+                                        </li>
                                         <li class="has-mega-menu">
                                             <a href="#" title="">Electronic</a>
                                             <div class="submenu">
@@ -94,14 +98,14 @@
                                                                     </li>
                                                                 @endforeach
                                                             </ul>
-                                                        
+
                                                         </div><!-- /.col-md-3 -->
                                                     @endforeach
                                                 </div><!-- /.row -->
-                                            @endforeach
+                                             @endforeach
                                             </div><!-- /.submenu -->
-                                        </li>   
-                                
+                                        </li>
+
                                         @if(!empty($top_nav_data))
                                             @foreach($top_nav_data as $nav)
                                             @if(!empty($nav->children[0]))
@@ -189,7 +193,7 @@
                                 <form action="{{route('searchProduct')}}" method="get" class="form-search" accept-charset="utf-8">
 
                                     <div class="box-search">
-                                        <input type="text" name="search" autocomplete="off" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
+                                        <input type="text" name="s" class="searchby" autocomplete="off" id="search_suggestion" placeholder="Search what you looking for ?" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
                                         <span class="btn-search">
                                             <button type="submit" class="waves-effect"><img src="{{asset('assets/frontend/images/icons/search-2.png')}}" alt=""></button>
                                         </span>
@@ -206,7 +210,7 @@
                                 <div class="inner-box">
                                     <ul class="menu-compare-wishlist">
                                         <li class="compare">
-                                            <a href="#" title="">
+                                            <a href="{{route('front-user.index')}}" title="">
                                                 <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
                                             </a>
                                         </li>
@@ -221,40 +225,55 @@
                                     <a href="#" title="">
                                         <div class="icon-cart">
                                             <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">
-                                            <span>4</span>
+                                            <span>{{ \Cart::getTotalQuantity()}}</span>
                                         </div>
-                                        <div class="price">
-                                            $0.00
-                                        </div>
+                                       
                                     </a>
+                                   
+                                    @if(count(\Cart::getContent()) > 0)
                                     <div class="dropdown-box">
                                         <ul>
-                                            <li>
+                                        @foreach(\Cart::getContent() as $item)
+                                            <li >
                                                 <div class="img-product">
-                                                    <img src="images/product/other/img-cart-1.jpg" alt="">
+                                                    <img src="/images/uploads/products/{{ $item->attributes->image }}" alt="">
                                                 </div>
                                                 <div class="info-product">
                                                     <div class="name">
-                                                        Samsung - Galaxy S6 4G LTE <br />with 32GB Memory Cell Phone
+                                                        {{$item->name}}
                                                     </div>
                                                     <div class="price">
-                                                        <span>1 x</span>
-                                                        <span>$250.00</span>
+                                                        <span>{{$item->quantity}} x</span>
+                                                        <span>NPR. {{ \Cart::get($item->id)->getPriceSum() }}.00</span>
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <span class="delete">x</span>
+                                                <form action="{{ route('cart.remove') }}" id="delete_{{$item->id}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $item->id }}" name="id">
+                                                    <span class="delete" onclick="document.getElementById('delete_{{$item->id}}').submit();">x</span>
+                                                </form>
+                                                
                                             </li>
+                                            
+                                        @endforeach
                                         </ul>
                                         <div class="total">
                                             <span>Subtotal:</span>
-                                            <span class="price">$1,999.00</span>
+                                            <span class="price">NPR. {{ number_format(\Cart::getTotal()) }}.00</span>
                                         </div>
                                         <div class="btn-cart">
-                                            <a href="shop-cart.html" class="view-cart" title="">View Cart</a>
-                                            <a href="shop-checkout.html" class="check-out" title="">Checkout</a>
+                                            <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
+                                            <a href="/" class="check-out" title="">Checkout</a>
                                         </div>
-                                    </div><!-- /.dropdown-box -->
+                                    </div>
+                                    @else
+                                    <div class="dropdown-box">
+                                            <p class="text-danger">Your Shopping Cart is Empty</p>
+                                    </div>
+
+                                    @endif
+                                    
                                 </div><!-- /.inner-box -->
                             </div><!-- /.box-cart -->
                         </div><!-- /.col-md-9 col-10 -->
@@ -262,6 +281,7 @@
                 </div><!-- /.container -->
             </div><!-- /.header-bottom -->
         </section><!-- /#header -->
+
 
         @yield('slider')
         @yield('breadcrumb')

@@ -628,3 +628,11 @@
         width: 178px;
         margin-top: 0;
     }
+    
+    .btn-add-cart a {
+        cursor: pointer;
+    }
+    
+    .box-cart .inner-box .dropdown-box:before {
+        right: 10px;
+    }

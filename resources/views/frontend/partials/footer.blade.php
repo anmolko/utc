@@ -246,6 +246,8 @@
     <script type="text/javascript" src="{{asset('assets/frontend/js/waves.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.countdown.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/main.js')}}"></script>
+    <script src="{{asset('assets/backend/js/toastr.min.js')}}"></script>
+
     <!-- Messenger Chat Plugin Code -->
 
 
@@ -314,6 +316,15 @@
                 });
         });
     });
+
+    @if($message = Session::get('success'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.success("{{ $message }}");
+    @endif
     </script>
 	@yield('js')
 

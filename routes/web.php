@@ -35,6 +35,13 @@ Route::get('/', 'App\Http\Controllers\FrontController@index')->name('home');
 Route::get('/contact', 'App\Http\Controllers\FrontController@contact')->name('contact');
 Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->name('contact.store');
 
+//cart
+Route::get('cart', 'App\Http\Controllers\CartController@cartList')->name('cart.list');
+Route::post('cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.store');
+Route::post('update-cart', 'App\Http\Controllers\CartController@updateCart')->name('cart.update');
+Route::post('remove', 'App\Http\Controllers\CartController@removeCart')->name('cart.remove');
+Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('cart.clear');
+
 
 //Social Login
 Route::get('/user-login', 'App\Http\Controllers\SocialLoginController@index')->name('front-user.index');

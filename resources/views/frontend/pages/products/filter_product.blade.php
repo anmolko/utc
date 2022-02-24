@@ -37,11 +37,20 @@
                                 </div>
                             </div><!-- /.box-content -->
                             <div class="box-bottom">
-                                <div class="btn-add-cart">
-                                    <a href="#" title="">
-                                        <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart
-                                    </a>
-                                </div>
+                                <form action="{{ route('cart.store') }}" id="form_{{$product->id}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->name }}" name="name">
+                                    <input type="hidden" value="{{ $product->price }}" name="price">
+                                    <input type="hidden" value="{{ $product->thumbnail }}"  name="image">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <div class="btn-add-cart">
+                                        <a  onclick="document.getElementById('form_{{$product->id}}').submit();" title="">
+                                            <img src="{{asset('assets/frontend/images/icons/add-cart.png')}}" alt="">Add to Cart
+                                        </a>
+                                    </div>
+                                </form>
+                                
                                 
                             </div><!-- /.box-bottom -->
                         </div><!-- /.imagebox -->
