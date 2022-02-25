@@ -18,6 +18,7 @@
 	<meta property="og:description" content="@if(!empty(@$setting_data->website_description)) {{ucwords(@$setting_data->website_description)}} @else Universal Trading Concern @endif " />
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="google-site-verification" content="zlx3ak6wYlZ4_JzlIiT1btJ0cYiX2XvKeM1pAJ-ZheA" />
 
 
     <!-- Favicon -->
@@ -282,7 +283,7 @@
                                                 </a>
                                             </li>
                                         @endif
-                                      
+
                                     </ul><!-- /.menu-compare-wishlist -->
                                 </div><!-- /.inner-box -->
                                 <div class="inner-box">

@@ -166,12 +166,20 @@ class SocialLoginController extends Controller
 
     public function handleFacebookCallback()
     {
+
         try {
             $user           = Socialite::driver('facebook')->user();
             $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','facebook')->first();
 
             if($userExisted){
+                $usersRole = $userExisted->user_type;
+                if($usersRole !== 'customer'){
+                    Session::flash('warning','You cannot login to '.Auth::user()->user_type.' dashboard! Please create an account first.');
+                    return back();
+                }
                 Auth::login($userExisted);
+                Session::flash('success','You are now logged in to '.Auth::user()->user_type.' dashboard!');
+
                 return redirect()->route('front-user.dashboard');
             }else{
                 $password = $user->getId().$user->getEmail();
@@ -187,9 +195,8 @@ class SocialLoginController extends Controller
                     'password'=>Hash::make($password),
                 ]);
                 Auth::login($newuser);
+                Session::flash('success','You are now logged in to '.Auth::user()->user_type.' dashboard!');
                 return redirect()->route('front-user.dashboard');
-
-
             }
 
         }catch (Exception $exc){
