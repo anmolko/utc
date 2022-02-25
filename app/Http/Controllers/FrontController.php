@@ -689,6 +689,18 @@ class FrontController extends Controller
 
     }
 
+    public function privacypolicy()
+    {
+        return view('frontend.pages.privacy_policy');
+
+    }
+
+    public function termcondition()
+    {
+        return view('frontend.pages.term_condition');
+
+    }
+
     public function contactStore(Request $request)
     {
         $theme_data = Setting::first();
@@ -704,9 +716,9 @@ class FrontController extends Controller
                 'phone'        =>ucwords($theme_data->phone),
                 'logo'        =>ucwords($theme_data->logo_white),
             );
-            // Mail::to('surajmzn75@gmail.com')->send(new ContactDetail($data));
+            Mail::to('surajmzn75@gmail.com')->send(new ContactDetail($data));
 
-            Mail::to($theme_data->email)->cc(['suraj@canosoft.com.np','info@canosoft.com.np'])->send(new ContactDetail($data));
+            // Mail::to($theme_data->email)->cc(['suraj@canosoft.com.np','info@canosoft.com.np'])->send(new ContactDetail($data));
 
             Session::flash('success','Thank you for contacting us!');
 

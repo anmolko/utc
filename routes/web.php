@@ -32,6 +32,8 @@ Route::get('/categories', function () {
 Route::get('/', 'App\Http\Controllers\FrontController@index')->name('home');
 
 
+Route::get('/privacy-policy', 'App\Http\Controllers\FrontController@privacypolicy')->name('privacypolicy');
+Route::get('/term-condition', 'App\Http\Controllers\FrontController@termcondition')->name('termcondition');
 Route::get('/contact', 'App\Http\Controllers\FrontController@contact')->name('contact');
 Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->name('contact.store');
 
