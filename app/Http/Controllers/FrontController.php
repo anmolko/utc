@@ -85,6 +85,10 @@ class FrontController extends Controller
         return view('welcome',compact('primary_categories_tab','product_brands','sliders','latestPosts','product_primary_categories','latestProducts','laptopbybrands','electronics'));
     }
 
+    public function removeFacebookUser(Request $request){
+        
+    }
+    
     public function productBrands($brand,Request $request)
     {
         $data=[];
