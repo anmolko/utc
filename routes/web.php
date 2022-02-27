@@ -32,6 +32,14 @@ Route::get('/categories', function () {
 Route::get('/', 'App\Http\Controllers\FrontController@index')->name('home');
 
 
+Route::get('/user-login', function () {
+    if (Auth::user() && Auth::user()->user_type == 'customer') {
+        return redirect('/user-dashboard');
+    } else {
+        return view('frontend.pages.user.login');
+    }
+});
+
 Route::get('/privacy-policy', 'App\Http\Controllers\FrontController@privacypolicy')->name('privacypolicy');
 Route::get('/request/remove-user-data', 'App\Http\Controllers\FrontController@removeFacebookUser')->name('remove.facebook');
 Route::get('/term-condition', 'App\Http\Controllers\FrontController@termcondition')->name('termcondition');
@@ -47,8 +55,11 @@ Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('
 
 
 //Social Login
+Route::middleware(['customer'])->group(function () {
+    Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
+});
+
 Route::get('/user-login', 'App\Http\Controllers\SocialLoginController@index')->name('front-user.index');
-Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
 Route::get('/user-login/create', 'App\Http\Controllers\SocialLoginController@create')->name('front-user.create');
 Route::post('/user-login', 'App\Http\Controllers\SocialLoginController@store')->name('front-user.store');
 Route::put('/user-login/{user}', 'App\Http\Controllers\SocialLoginController@update')->name('front-user.update');
