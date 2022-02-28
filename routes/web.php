@@ -57,6 +57,9 @@ Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('
 //Social Login
 Route::middleware(['customer'])->group(function () {
     Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
+    Route::patch('user-edit/{id}', 'App\Http\Controllers\UserController@UpdateUser')->name('update_user');
+    Route::get('/delete-account', 'App\Http\Controllers\UserController@customerDestroy')->name('customer.destroy');
+
 });
 
 Route::get('/user-login', 'App\Http\Controllers\SocialLoginController@index')->name('front-user.index');

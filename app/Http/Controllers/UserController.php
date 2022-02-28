@@ -262,4 +262,53 @@ class UserController extends Controller
         return redirect()->back();
 
     }
+
+    
+    public function customerDestroy()
+    {
+        // Get the user
+        $deleteuser = Auth::user();
+        Auth::logout();
+
+        // Delete the user 
+        $deleted = $deleteuser->delete();;
+
+        if ($deleted) {
+            // User was deleted successfully, redirect to login
+            return redirect(url('user-login'));
+        } else {
+            // User was NOT deleted successfully, so log them back into your application! Could also use: Auth::loginUsingId($user->id);
+                Auth::login($user);
+
+            // Redirect them back with some data letting them know it failed (or handle however you need depending on your setup)
+            return back()->with('status', 'Failed to delete your profile');
+        }
+
+    }
+
+    
+
+    public function UpdateUser(Request $request, $id){
+        $user_data = User::find($id);
+        $user_data->name=$request->input('name');
+        $user_data->contact=$request->input('contact');
+        $user_data->gender=$request->input('gender');
+   
+        if(!$user_data) {
+            request()->session()->flash('error','User not found');
+            return redirect()->back();
+        }
+
+        $status=$user_data->update();
+  
+      if($status){
+  
+          Session::flash('success','Profile updated successfully');
+      }
+      else{
+  
+          Session::flash('error','Failed to update details');
+      }
+      return redirect()->back();
+      }
 }
