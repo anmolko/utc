@@ -27,6 +27,25 @@
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
+
+    .customer-image{
+        position: relative;
+        display: block;
+        font-family: 'Open Sans';
+        width: 100%;
+        line-height: 24px;
+        padding: 8px 15px 8px 30px;
+        color: #222222;
+        border: 2px solid #e5e5e5;
+        height: 48px !important;
+        border-radius: 30px;
+        background-color: transparent;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
 </style>
 @endsection
 
@@ -120,7 +139,7 @@
                     <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <h4 class="font-italic mb-4">Personal information</h4>
                         <div class="form-contact-content">
-                            <form id="form-contact" action="{{ route('update_user', @Auth::user()->id) }}" id="form-contact" method="post">
+                            <form id="form-contact" action="{{ route('update_user', @Auth::user()->id) }}" id="form-contact" method="post" enctype="multipart/form-data">
                                 <input name="_method" type="hidden" value="PATCH">
                                 @csrf
                                
@@ -146,6 +165,10 @@
                                     <input type="text"  name="contact" value="{{ @Auth::user()->contact }}" placeholder="Phone *"  required oninvalid="this.setCustomValidity('Enter a phone number')" oninput="this.setCustomValidity('')">
                                 </div>
 
+                                <div class="form-box password-contact">
+                                    <label for="image">Photo</label>
+                                    <input type="file"  name="image" class="form-control customer-image">
+                                </div>
         
                                 <div class="form-box">
                                     <button type="submit" class="contact">Update</button>

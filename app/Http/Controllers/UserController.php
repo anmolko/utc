@@ -299,6 +299,21 @@ class UserController extends Controller
             return redirect()->back();
         }
 
+        $oldimage             =  $user_data->image;
+        if (!empty($request->file('image'))){
+            $image =$request->file('image');
+            $name1 = uniqid().'_'.$image->getClientOriginalName();
+            $path = base_path().'/public/images/uploads/profiles/'.$name1;
+            $image_resize = Image::make($image->getRealPath())->orientate();
+            $image_resize->resize(300, 300);
+            if ($image_resize->save($path,80)){
+                $user_data->image= $name1;
+                if (!empty($oldimage) && file_exists(public_path().'/images/uploads/profiles/'.$oldimage)){
+                    @unlink(public_path().'/images/uploads/profiles/'.$oldimage);
+                }
+            }
+        }
+
         $status=$user_data->update();
   
       if($status){
