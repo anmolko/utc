@@ -82,12 +82,12 @@
                         <i class="fas fa-shopping-cart mr-2"></i>
                         <span class="font-weight-bold small text-uppercase">My Order</span></a>
 
-                    <a class="nav-link mb-3 p-3 shadow" href="{{route('customer.destroy')}}" aria-selected="false">
+                    <a class="nav-link mb-3 p-3 shadow" href="{{route('customer.destroy')}}" onclick="return confirm('Are you sure, you want to delete it?')" aria-selected="false">
                         <i class="fas fa-user-slash mr-2"></i>
                         <span class="font-weight-bold small text-uppercase">Delete Account</span></a>
 
                         
-                        <form id="customer-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="customer-logout-form" action="{{ route('logout') }}"  method="POST" class="d-none">
                                 @csrf
                             </form>
 
