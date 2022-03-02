@@ -54,6 +54,15 @@ Route::post('remove', 'App\Http\Controllers\CartController@removeCart')->name('c
 Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('cart.clear');
 
 
+
+Route::get('/orders', 'App\Http\Controllers\OrderController@index')->name('orders.index');
+Route::get('/orders/create', 'App\Http\Controllers\OrderController@create')->name('orders.create');
+Route::post('/orders', 'App\Http\Controllers\OrderController@store')->name('orders.store');
+Route::put('/orders/{order}', 'App\Http\Controllers\OrderController@update')->name('orders.update');
+Route::delete('/orders/{order}', 'App\Http\Controllers\OrderController@destroy')->name('orders.destroy');
+Route::get('/orders/{order}/edit', 'App\Http\Controllers\OrderController@edit')->name('orders.edit');
+
+
 //Social Login
 Route::middleware(['customer'])->group(function () {
     Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
