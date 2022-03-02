@@ -46,4 +46,9 @@ class Product extends Model
         return $this->hasOne('App\Models\ProductSeo', 'product_id');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order')->withPivot('id');
+    }
+
 }

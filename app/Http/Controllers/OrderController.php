@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\ProductOrder;
+use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
@@ -34,7 +39,38 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd('here');
+        $data=[
+            'total_amount'  => \Cart::getTotal(),
+            'delivery_type' =>  'normal',
+            'order_number'  => 'UNIVERSAL-'.str_pad(time() + 1, 8, "0", STR_PAD_LEFT),
+            'status'        => 'no_action',
+            'user_id'       => Auth::user()->id,
+            'created_by'    => Auth::user()->id,
+        ];
+        $order              = Order::create($data);
+        $order_id           = $order->id;
+
+        foreach(\Cart::getContent() as $row){
+            $data2=[
+                'order_id'      => $order_id,
+                'product_id'    => $row->id,
+                'price'         => $row->price,
+                'discount'      => 0,
+                'status'        => 'sold',
+                'quantity'      => $row->quantity,
+                'created_by'    => Auth::user()->id,
+            ];
+            $productorder = ProductOrder::create($data2);
+        }
+
+        if($order && $productorder){
+            Session::flash('success','Your order was placed successfully');
+            \Cart::clear();
+        }
+        else{
+            Session::flash('error','Your order was not placed. Please Try Again');
+        }
+        return redirect()->route('front-user.dashboard');
     }
 
     /**

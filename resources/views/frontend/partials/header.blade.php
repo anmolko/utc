@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -276,13 +275,14 @@
                             <div class="box-cart style1">
                                 <div class="inner-box">
                                     <ul class="menu-compare-wishlist">
-                                        @if(empty(Auth::user()))
+                                        @if(empty(Auth::user()) || @Auth::user()->user_type == 'admin')
                                             <li class="compare">
                                                 <a href="{{route('front-user.index')}}" title="">
                                                     <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
                                                 </a>
                                             </li>
                                         @endif
+
 
                                     </ul><!-- /.menu-compare-wishlist -->
                                 </div><!-- /.inner-box -->
