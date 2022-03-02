@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>Email <span class="text-muted text-danger">*</span></label>
-                        <input type="email" class="form-control" name="email" id="email" value="{{@$useredit->email}}" required>
+                        <input type="email" class="form-control" name="email" id="email" value="{{@$useredit->email}}" {{($useredit->user_type == 'customer') ? 'readonly':''}} required>
                         <div class="invalid-feedback">
                             Please enter your email.
                         </div>
@@ -51,6 +51,7 @@
                             </div>
                             @endif
                         </div>
+                    @if($useredit->user_type !== 'customer')
 
                         <div class="form-group">
                             <label>Password <span class="text-muted text-danger"></span></label>
@@ -67,6 +68,7 @@
                             </div>
                             @endif
                         </div>
+                    @endif
 
 
                         <div class="form-group mb-3">
@@ -87,7 +89,7 @@
                             @endif
                         </div>
 
-              
+
                 </div>
 
 
@@ -120,7 +122,14 @@
                                     </div>
                                 </div>
                                 <?php if(!empty($useredit->image)){?>
-                                <img id="current-img"  src="<?php if(!empty($useredit->image)){ echo '/images/uploads/profiles/'.$useredit->image; }  ?>"  alt="{{@$useredit->name}}" >
+
+
+                                @if($useredit->user_type == 'customer')
+                                    <img id="current-img"  src="<?php if(!empty($useredit->image)){ echo @$useredit->image; }  ?>"  alt="{{@$useredit->name}}" >
+                                @else
+                                    <img id="current-img"  src="<?php if(!empty($useredit->image)){ echo '/images/uploads/profiles/'.@$useredit->image; }  ?>"  alt="{{@$useredit->name}}" >
+                                @endif
+
                                 <?php }else{?>
                                     <img id="current-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="profile_image" class="w-100 current-img">
 
@@ -131,17 +140,29 @@
 
                     </div>
 
+                    @if($useredit->user_type !== 'customer')
+
                     <div class="form-group mb-3">
                         <label>User Type <span class="text-muted text-danger">*</span></label>
                         <select class="form-control" name="user_type" required>
                             <option value disabled selected> Select User Type</option>
                                 <option value="general" <?php if(@$useredit->user_type == "general") echo "selected"; ?>> General</option>
                                 <option value="admin" <?php if(@$useredit->user_type == "admin") echo "selected"; ?>> Admin</option>
+                                <option value="customer" <?php if(@$useredit->user_type == "customer") echo "selected"; ?>> Customer</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a user type.
                         </div>
                     </div>
+
+                    @else
+
+                        <div class="form-group mb-3">
+                            <label>User Type: </label>
+                            <input type="text" class="form-control"
+                                   id="user_type" name="user_type" value="{{@$useredit->user_type}}"  readonly>
+                        </div>
+                    @endif
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-theme button-1 text-white ctm-border-radius mt-4" value="submit">Update</button>

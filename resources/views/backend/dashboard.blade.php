@@ -114,11 +114,18 @@
                         <a href="{{route('user.index')}}" class="dash-card float-right mb-0 text-primary">Manage Users </a>
                     </div>
                     <div class="card-body">
-
                         @if(count(@$latestUsers) > 0)
                             @foreach(@$latestUsers as $index => $latest)
                                 <div class="media mb-3">
-                                    <div class="e-avatar avatar-online mr-3"><img src="<?php if(!empty(@$latest->image)){ echo '/images/uploads/profiles/'.@$latest->image; } else { if(@$latest->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$latest->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$latest->gender=="others") {echo '/images/uploads/profiles/other.png'; } } ?>" alt="{{@$user->name}}" class="img-fluid"></div>
+                                    <div class="e-avatar avatar-online mr-3">
+                                        @if($latest->user_type == 'customer')
+                                            <img src="<?php if(!empty(@$latest->image)){ echo @$latest->image; } else { if(@$latest->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$latest->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$latest->gender=="others") {echo '/images/uploads/profiles/other.png'; } } ?>" alt="{{@$user->name}}" class="img-fluid">
+                                        @else
+                                            <img src="<?php if(!empty(@$latest->image)){ echo '/images/uploads/profiles/'.@$latest->image; } else { if(@$latest->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$latest->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$latest->gender=="others") {echo '/images/uploads/profiles/other.png'; } } ?>" alt="{{@$user->name}}" class="img-fluid">
+
+                                        @endif
+                                    </div>
+
                                     <div class="media-body">
                                         <h6 class="m-0"><a href="{{route('user.edit',@$latest->id)}}">{{ucwords(@$latest->name)}}</a> <span>| {{ucwords(@$latest->user_type)}}</span></h6>
                                         <p class="mb-0 ctm-text-sm">{{@$latest->email}}</p>

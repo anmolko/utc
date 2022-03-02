@@ -30,7 +30,8 @@ class UserController extends Controller
         $all_user = User::orderBy('name','asc')->get();
         $general  = User::where('user_type','general')->orderBy('name','asc')->get();
         $admin    = User::where('user_type','admin')->orderBy('name','asc')->get();
-        return view('backend.user.index',compact('all_user','general','admin'));
+        $customer = User::where('user_type','customer')->orderBy('name','asc')->get();
+        return view('backend.user.index',compact('all_user','general','admin','customer'));
     }
 
     /**
@@ -252,7 +253,7 @@ class UserController extends Controller
             }
         }
         $status = $user->update();
-       
+
         if($status){
             Session::flash('success','User Details Updated Successfully');
         }
@@ -263,14 +264,14 @@ class UserController extends Controller
 
     }
 
-    
+
     public function customerDestroy()
     {
         // Get the user
         $deleteuser = Auth::user();
         Auth::logout();
 
-        // Delete the user 
+        // Delete the user
         $deleted = $deleteuser->delete();;
 
         if ($deleted) {
@@ -286,14 +287,14 @@ class UserController extends Controller
 
     }
 
-    
+
 
     public function UpdateUser(Request $request, $id){
         $user_data = User::find($id);
         $user_data->name=$request->input('name');
         $user_data->contact=$request->input('contact');
         $user_data->gender=$request->input('gender');
-   
+
         if(!$user_data) {
             request()->session()->flash('error','User not found');
             return redirect()->back();
@@ -315,13 +316,13 @@ class UserController extends Controller
         }
 
         $status=$user_data->update();
-  
+
       if($status){
-  
+
           Session::flash('success','Profile updated successfully');
       }
       else{
-  
+
           Session::flash('error','Failed to update details');
       }
       return redirect()->back();

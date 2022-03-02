@@ -15,6 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link" id="pills-general-tab" data-toggle="pill" href="#pills-general" role="tab" aria-controls="pills-general" aria-selected="false">General</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-customer-tab" data-toggle="pill" href="#pills-customer" role="tab" aria-controls="pills-customer" aria-selected="false">Customer</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -53,8 +56,22 @@
                                                 @foreach($all_user as  $user)
                                                     <tr>
                                                         <td>
-                                                            <a href="{{route('user.edit',$user->id)}}" class="avatar"><img class="img-fluid"  src="<?php if(!empty(@$user->image)){ echo '/images/uploads/profiles/'.@$user->image; } else { if(@$user->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$user->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$user->gender=="others") {echo '/images/uploads/profiles/others.png'; } } ?>" alt="{{@$user->name}}"></a>
-                                                            <h2><a href="{{route('user.edit',$user->id)}}"> {{ucwords(@$user->name)}}</a></h2>
+                                                            <a href="{{route('user.edit',$user->id)}}" class="avatar">
+
+                                                                @if($user->user_type == 'customer')
+                                                                    <img class="img-fluid"  src="<?php if(!empty(@$user->image)){ echo @$user->image; } else { if(@$user->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$user->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$user->gender=="others") {echo '/images/uploads/profiles/others.png'; } } ?>" alt="{{@$user->name}}">
+                                                                @else
+                                                                    <img class="img-fluid"  src="<?php if(!empty(@$user->image)){ echo '/images/uploads/profiles/'.@$user->image; } else { if(@$user->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$user->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$user->gender=="others") {echo '/images/uploads/profiles/others.png'; } } ?>" alt="{{@$user->name}}">
+
+                                                                @endif
+
+
+                                                            </a>
+
+
+                                                            <h2>
+
+                                                                <a href="{{route('user.edit',$user->id)}}"> {{ucwords(@$user->name)}}</a></h2>
                                                         </td>
                                                         <td>{{@$user->email}}</td>
                                                         <td>{{@$user->contact}}</td>
@@ -169,6 +186,65 @@
                                                     <tr>
                                                         <td>
                                                             <a href="{{route('user.edit',$user->id)}}" class="avatar"><img class="img-fluid"  src="<?php if(!empty(@$user->image)){ echo '/images/uploads/profiles/'.@$user->image; } else { if(@$user->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$user->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$user->gender=="others") {echo '/images/uploads/profiles/others.png'; } } ?>" alt="{{@$user->name}}"></a>
+                                                            <h2><a href="{{route('user.edit',$user->id)}}"> {{ucwords(@$user->name)}}</a></h2>
+                                                        </td>
+                                                        <td>{{@$user->email}}</td>
+                                                        <td>{{@$user->contact}}</td>
+                                                        <td>{{date('j F, Y',strtotime(@$user->created_at))}}</td>
+                                                        <td>
+                                                            <div class="dropdown action-label drop-active">
+                                                                <a href="javascript:void(0)" class="btn btn-white btn-sm dropdown-toggle" data-toggle="dropdown"> {{(($user->status == 0) ? "Deactive":"Active")}} <i class="caret"></i></a>
+                                                                <div class="dropdown-menu">
+                                                                    @if($user->status == 0)
+                                                                        <a class="dropdown-item status-update" aurum-update-action="{{route('user-status.update',$user->id)}}" href="#" id="1">Active</a>
+                                                                    @else
+                                                                        <a class="dropdown-item status-update" aurum-update-action="{{route('user-status.update',$user->id)}}" href="#" id="0">Deactive</a>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-action">
+                                                                <a href="{{route('user.edit',$user->id)}}" class="btn btn-sm btn-outline-success">
+                                                                    <span class="lnr lnr-pencil"></span> Edit
+                                                                </a>
+                                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger action-per-delete"  aurum-delete-per-action="{{route('user.destroy',$user->id)}}">
+                                                                    <span class="lnr lnr-trash"></span> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{--customer tab--}}
+                            <div class="tab-pane fade" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab">
+                                <div class="employee-office-table">
+                                    <div class="table-responsive">
+                                        <table id="general-index" class="table custom-table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Contact</th>
+                                                <th>Join Date</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @if(@$customer)
+                                                @foreach($customer as  $user)
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{{route('user.edit',$user->id)}}" class="avatar">
+                                                                <img class="img-fluid"  src="<?php if(!empty(@$user->image)){ echo @$user->image; } else { if(@$user->gender=="male") {echo '/images/uploads/profiles/male.png'; } elseif(@$user->gender=="female") {echo '/images/uploads/profiles/female.png'; } elseif(@$user->gender=="others") {echo '/images/uploads/profiles/others.png'; } } ?>" alt="{{@$user->name}}"></a>
                                                             <h2><a href="{{route('user.edit',$user->id)}}"> {{ucwords(@$user->name)}}</a></h2>
                                                         </td>
                                                         <td>{{@$user->email}}</td>
