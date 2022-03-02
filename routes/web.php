@@ -182,6 +182,18 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
 
     //End blog
 
+
+     //blog
+
+     Route::get('/ads', 'App\Http\Controllers\AdController@index')->name('ad.index');
+     Route::get('/ads/create', 'App\Http\Controllers\AdController@create')->name('ad.create');
+     Route::post('/ads', 'App\Http\Controllers\AdController@store')->name('ad.store');
+     Route::put('/ads/{ads}', 'App\Http\Controllers\AdController@update')->name('ad.update');
+     Route::delete('/ads/{ads}', 'App\Http\Controllers\AdController@destroy')->name('ad.destroy');
+     Route::get('/ads/{ads}/edit', 'App\Http\Controllers\AdController@edit')->name('ad.edit');
+ 
+     //End blog
+
     //sliders
 
     Route::get('/sliders', 'App\Http\Controllers\SliderController@index')->name('sliders.index');

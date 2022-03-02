@@ -101,6 +101,12 @@
                                         <a href="{{route('blogcategory.index')}}" class="{{(Request::segment(2) == 'blog-category') ? "text-white active":"text-dark"}} p-4 ctm-border-right"><span class="lnr lnr-book pr-0 pb-lg-2 font-23"></span><span class="">Blog</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
+                                        <a href="{{route('ad.index')}}" class="{{(Request::segment(2) == 'ads') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-bullhorn pr-0 pb-lg-2 font-23"></span><span class="">Ads</span></a>
+                                    </div>
+                                    <div class="col-6 align-items-center shadow-none text-center">
+                                        <a href="{{route('blogcategory.index')}}" class="{{(Request::segment(2) == 'blog-category') ? "text-white active":"text-dark"}} p-4 ctm-border-right"><span class="lnr lnr-cart pr-0 pb-lg-2 font-23"></span><span class="">Order</span></a>
+                                    </div>
+                                    <div class="col-6 align-items-center shadow-none text-center">
                                         <a href="{{route('setting.index')}}" class="{{(Request::segment(2) == 'settings') ? "text-white active":"text-dark"}} p-4 last-slider-btn1 ctm-border-right ctm-border-left"><span class="lnr lnr-cog pr-0 pb-lg-2 font-23"></span><span class="">Settings</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
