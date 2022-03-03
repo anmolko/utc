@@ -2,24 +2,24 @@
 @section('title') Home @endsection
 @section('styles')
 <style>
-    .boxed .flat-row.flat-banner-box.double-ad {
+    .boxed .flat-row.flat-banner-box.double-offer {
         padding: 30px 0 10px;
     }
 
     @media only screen and (max-width: 1366px){
-        .boxed.style1 .flat-banner-box.double-ad .container-fluid {
+        .boxed.style1 .flat-banner-box.double-offer .container-fluid {
             padding: 0 30px;
         }
     }
     @media only screen and (max-width: 1900px){
-        .boxed.style1 .flat-banner-box.double-ad .container-fluid {
+        .boxed.style1 .flat-banner-box.double-offer .container-fluid {
             width: 1170px;
             max-width: 100%;
         }
     }
 
     @media only screen and (max-width: 991px){
-        .boxed .flat-row.flat-banner-box.double-ad {
+        .boxed .flat-row.flat-banner-box.double-offer {
             padding: 30px 0;
         }
     }
@@ -151,7 +151,7 @@
 
     @if(@$first_ads->type=='double')
 
-        <section class="flat-row flat-banner-box double-ad">
+        <section class="flat-row flat-banner-box double-offer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="wrap-banner">
@@ -179,7 +179,7 @@
         </section><!-- /.flat-banner-box -->
     @elseif(@$first_ads->type=='single')
 
-        <section class="flat-row flat-banner-box double-ad">
+        <section class="flat-row flat-banner-box double-offer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -266,7 +266,7 @@
 
     @if(@$second_ads->type=='double')
 
-        <section class="flat-row flat-banner-box double-ad">
+        <section class="flat-row flat-banner-box double-offer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="wrap-banner">
@@ -294,7 +294,7 @@
         </section><!-- /.flat-banner-box -->
     @elseif(@$second_ads->type=='single')
 
-        <section class="flat-row flat-banner-box double-ad">
+        <section class="flat-row flat-banner-box double-offer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -368,7 +368,7 @@
 
     @if(@$third_ads->type=='double')
 
-    <section class="flat-row flat-banner-box double-ad">
+    <section class="flat-row flat-banner-box double-offer">
         <div class="container-fluid">
             <div class="row">
                 <div class="wrap-banner">
@@ -396,7 +396,7 @@
     </section><!-- /.flat-banner-box -->
     @elseif(@$third_ads->type=='single')
 
-    <section class="flat-row flat-banner-box double-ad">
+    <section class="flat-row flat-banner-box double-offer">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -470,7 +470,7 @@
 
     @if(@$four_ads->type=='double')
 
-    <section class="flat-row flat-banner-box double-ad">
+    <section class="flat-row flat-banner-box double-offer">
         <div class="container-fluid">
             <div class="row">
                 <div class="wrap-banner">
@@ -498,7 +498,7 @@
     </section><!-- /.flat-banner-box -->
     @elseif(@$four_ads->type=='single')
 
-    <section class="flat-row flat-banner-box double-ad">
+    <section class="flat-row flat-banner-box double-offer">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
