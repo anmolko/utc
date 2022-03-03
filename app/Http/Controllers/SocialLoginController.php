@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class SocialLoginController extends Controller
     public function index()
     {
         if (Auth::user() && Auth::user()->user_type == 'customer') {
-            return redirect('/user-dashboard');
+           return redirect()->route('front-user.dashboard');
         } else {
             return view('frontend.pages.user.login');
         }
@@ -28,7 +30,12 @@ class SocialLoginController extends Controller
 
     public function dashboard()
     {
-        return view('frontend.pages.user.dashboard');
+        $active = 'personal';
+        $user_id = Auth::user()->id;
+        $orders        = Order::with('products','user')->where('user_id', $user_id)->get();
+        $latestProducts = Product::with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->take(12)->get();
+
+        return view('frontend.pages.user.dashboard',compact('active','orders','latestProducts'));
     }
 
     /**

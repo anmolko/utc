@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\ProductOrder;
 use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,11 @@ class OrderController extends Controller
 
     public function customerindex()
     {
-//        $user_id = Auth::user()->id;
-//        $orders        = Order::with('products','user')->where('user_id', $user_id)->get();
-        return redirect('/user-dashboard');
+        $active = 'order';
+        $user_id = Auth::user()->id;
+        $orders        = Order::with('products','user')->where('user_id', $user_id)->get();
+        $latestProducts = Product::with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->take(4)->get();
+        return view('frontend.pages.user.dashboard',compact('active','orders','latestProducts'));
     }
 
 

@@ -34,13 +34,13 @@
         position: relative;
         margin-right: 8px;
     }
-    
+
     .box-cart.style2.detail-wishlist{
         margin-top:15px;
         margin-bottom:0px;
     }
 
-    
+
     @media only screen and (min-width: 1024px){
 
         .product-detail .footer-detail .social-single{
@@ -98,7 +98,7 @@
                 <div class="product-detail">
                     <div class="header-detail">
                         <h4 class="name">{{ucwords(@$product->name)}}</h4>
-                        
+
                     </div><!-- /.header-detail -->
                     <div class="brand-details">
                         <div ><span class="brand">Brand: </span><span class="id">{{ucwords(@$product->brand->name)}}</span></div>
@@ -125,10 +125,10 @@
                         <div class="info-text">
                         {{@$product->summary}}
                         </div>
-                       
+
                     </div><!-- /.content-detail -->
                     <div class="footer-detail">
-                      
+
                         <div class="box-cart style2">
                             <form style="display: inline-block;" action="{{ route('cart.store') }}" id="form_{{$product->id}}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -145,7 +145,7 @@
                                     </a>
                                 </div>
                             </form>
-                           
+
                             <div class="social-single">
                                 <span>SHARE</span>
                                 <ul class="social-list style2">
@@ -159,7 +159,7 @@
                                             <i class="fab fa-twitter" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                
+
                                     <li>
                                         <a href="#" onclick='whatsappShare("{{route('product.single',@$product->slug)}}","{{ $product->name }}")'  title="">
                                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
@@ -168,7 +168,7 @@
                                 </ul><!-- /.social-list -->
                             </div><!-- /.social-single -->
                         </div><!-- /.box-cart -->
-                     
+
                     </div><!-- /.footer-detail -->
                 </div><!-- /.product-detail -->
             </div><!-- /.col-md-6 -->
@@ -198,7 +198,7 @@
                 </div><!-- /.tecnical-specs -->
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
- 
+
     </div><!-- /.container -->
 </section><!-- /.flat-product-content -->
 
@@ -210,7 +210,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="flat-row-title">
-                    <h3>Recent Products</h3>
+                    <h3>Latest Products</h3>
                 </div>
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
@@ -249,7 +249,7 @@
                         </div><!-- /.box-content -->
                     </div><!-- /.imagebox style4 -->
                     @endforeach
-                    
+
                 </div><!-- /.owl-carousel-3 -->
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
