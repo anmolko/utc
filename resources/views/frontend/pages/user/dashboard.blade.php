@@ -202,7 +202,6 @@
                     <div class="tab-pane fade shadow rounded bg-white {{(@$active == 'order') ? "show active":""}} p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <h4 class="font-italic mb-4">My Order List</h4>
 
-                        @if(count($orders)>0)
                             <div class="table-responsive">
                                 <table id="all-orders" class="table table-striped table-bordered  responsive" role="grid" aria-describedby="basic-col-reorder_info">
                                     <thead>
@@ -216,6 +215,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @if(count($orders)>0)
                                         @foreach($orders as  $order)
                                             <tr data-child-value="{{$order}}">
                                                 <td class="details-control"><i class="fa fa-plus-square" aria-hidden="true"></i></td>
@@ -228,62 +228,14 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="6" style="text-align: center">You do not have order(s) place yet. Look through our <a href="{{route('product.frontend')}}" style="color: #0a90eb">products</a> to place your order.</td>
+                                        </tr>
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>
-                        @else
-                            <section class="flat-imagebox style4">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="flat-row-title">
-                                                <h3>Latest Products</h3>
-                                            </div>
-                                        </div><!-- /.col-md-12 -->
-                                    </div><!-- /.row -->
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="owl-carousel-3">
-                                                @foreach($latestProducts as $index => $latest)
-
-                                                    <div class="imagebox style4">
-                                                        @if($latest->state == "new_arrival")
-                                                            <span class="item-new">NEW</span>
-                                                        @elseif($latest->state == "sale")
-                                                            <span class="item-sale">SALE</span>
-                                                        @endif
-
-                                                        <div class="box-image single-image">
-                                                            <a href="{{route('product.single',@$latest->slug)}}" title="">
-                                                                <img src="<?php if(@$latest->thumbnail){?>{{asset('/images/uploads/products/'.@$latest->thumbnail)}}<?php }?>" alt="{{@$latest->slug}}"/>
-                                                            </a>
-                                                        </div><!-- /.box-image -->
-                                                        <div class="box-content">
-                                                            <div class="cat-name">
-                                                                <a href="#" title="">{{@ucwords($latest->type)}}</a>
-                                                            </div>
-                                                            <div class="product-name">
-                                                                <a href="{{route('product.single',@$latest->slug)}}" title="">{{ucwords(Str::limit(@$latest->name,100,' ...'))}}</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                @if($latest->state == "sale")
-                                                                    <span class="sale">NPR {{number_format(@$latest->discount_price)}}</span>
-                                                                    <span class="regular">NPR {{number_format(@$latest->price)}}</span>
-                                                                @else
-                                                                    <span class="sale">NPR {{number_format(@$latest->price)}}</span>
-                                                                @endif
-                                                            </div>
-                                                        </div><!-- /.box-content -->
-                                                    </div><!-- /.imagebox style4 -->
-                                                @endforeach
-
-                                            </div><!-- /.owl-carousel-3 -->
-                                        </div><!-- /.col-md-12 -->
-                                    </div><!-- /.row -->
-                                </div><!-- /.container -->
-                            </section><!-- /.flat-imagebox style4 -->
-
-                        @endif
                         <form action="#" method="post" id="deleted-form" >
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
@@ -319,7 +271,6 @@
                 '<tbody>';
 
             $.each(mainvalue.products, function( index, value ) {
-
                 imagename = '<img src="/images/uploads/products/' + value.thumbnail + '" class="current-img" style="max-width:120px;" alt=""/>';
                 inner_table += '<td style=" text-align: center;">' +
                     imagename + '</td>' +
@@ -330,17 +281,9 @@
                     '<td> NPR. '
                     + value.pivot.price + '</td>' +
                     '<td> NPR. ' + value.pivot.discount + '</td></tr>';
-
-
             });
-
-
-
-
             return inner_table;
         }
-
-
 
         all_orders();
         function all_orders(){
