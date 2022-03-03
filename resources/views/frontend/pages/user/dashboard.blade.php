@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <script src="{{asset('assets/frontend/js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/bootstrap.bundle.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-ui.min.css')}}">
+<link href="{{asset('assets/backend/css/sweetalert.css')}}" rel="stylesheet">
 <style>
     .select-gender{
         appearance: none;
@@ -54,6 +56,17 @@
     }
     .owl-carousel .owl-item{
         display: flex;
+    }
+    .sweet-alert button {
+        padding: 5px 32px!important;
+    }
+
+    td.details-controls {
+        text-align:center;
+        cursor: pointer;
+    }
+    tr.shown td.details-controls {
+        text-align:center;
     }
 </style>
 @endsection
@@ -110,18 +123,17 @@
                         <i class="fas fa-shopping-cart mr-2"></i>
                         <span class="font-weight-bold small text-uppercase">My Order</span></a>
 
-                    <a class="nav-link mb-3 p-3 shadow" href="{{route('customer.destroy')}}" onclick="return confirm('Are you sure, you want to delete it?')" aria-selected="false">
+                    <a class="nav-link mb-3 p-3 shadow customer-remove" href="#" hrm-delete-per-action="{{route('customer.destroy')}}" aria-selected="false">
                         <i class="fas fa-user-slash mr-2"></i>
                         <span class="font-weight-bold small text-uppercase">Delete Account</span></a>
 
 
-                        <form id="customer-logout-form" action="{{ route('logout') }}"  method="POST" class="d-none">
-                                @csrf
-                            </form>
-
-                        <a class="nav-link mb-3 p-3 shadow"  href="#"   onclick="event.preventDefault();
+                   <a class="nav-link mb-3 p-3 shadow"  href="#"   onclick="event.preventDefault();
                                                      document.getElementById('customer-logout-form').submit();" id="v-pills-settings-tab" aria-selected="false">
                         <i class="fas fa-sign-out-alt mr-2"></i>
+                       <form id="customer-logout-form" action="{{ route('logout') }}"  method="POST" class="d-none">
+                           @csrf
+                       </form>
                         <span class="font-weight-bold small text-uppercase">Logout</span></a>
                     </div>
             </div>
@@ -188,7 +200,7 @@
                     </div>
 
                     <div class="tab-pane fade shadow rounded bg-white {{(@$active == 'order') ? "show active":""}} p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <h4 class="font-italic mb-4">My Orders</h4>
+                        <h4 class="font-italic mb-4">My Order List</h4>
 
                         @if(count($orders)>0)
                             <div class="table-responsive">
@@ -212,19 +224,10 @@
                                                 <td>{{\Carbon\Carbon::parse(@$order->created_at)->isoFormat('MMM Do, YYYY')}}</td>
                                                 <td>{{@$order->user->email}}</td>
                                                 <td class="text-right">
-                                                    <div class="dropdown action-label drop-active">
-                                                        <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> <span class="lnr lnr-cog"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-                                                            {{--                                                                        <a class="dropdown-item action-blog-edit" href="#" hrm-update-action="{{route('blog.update',$blog->id)}}" hrm-edit-action="{{route('blog.edit',$blog->id)}}"> Edit </a>--}}
-                                                            <a class="dropdown-item action-delete" href="#" hrm-delete-per-action="{{route('orders.destroy',$order->id)}}"> Delete </a>
-                                                        </div>
-                                                    </div>
-
+                                                    <a class="btn btn-sm btn-warning action-delete" href="#" hrm-delete-per-action="{{route('orders.destroy',$order->id)}}"> <i class="fa fa-trash"></i> </a>
                                                 </td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div>
@@ -281,7 +284,10 @@
                             </section><!-- /.flat-imagebox style4 -->
 
                         @endif
-
+                        <form action="#" method="post" id="deleted-form" >
+                            {{csrf_field()}}
+                            <input name="_method" type="hidden" value="DELETE">
+                        </form>
 
                     </div>
                 </div>
@@ -290,12 +296,140 @@
     </div>
 </section>
 @endsection
-@section('scripts')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<script>
+@section('js')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="{{asset("assets/jquery-ui.js")}}" ></script>
+    <script src="{{asset('assets/backend/js/sweetalert.min.js')}}"></script>
+    <script>
     $(document).ready(function() {
-        $('#all-orders').DataTable();
+        function format(mainvalue) {
+            console.log(mainvalue);
+            var inner_table = '<table class="child_row-verified table-responsive table table-striped table-bordered nowrap">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>Image</th>' +
+                '<th>Product</th>' +
+                '<th>Brand </th>' +
+                '<th>Type</th>' +
+                '<th>Quantity</th>' +
+                '<th>Item Price</th>' +
+                '<th>Discount Price</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>';
 
-    })
+            $.each(mainvalue.products, function( index, value ) {
+
+                imagename = '<img src="/images/uploads/products/' + value.thumbnail + '" class="current-img" style="max-width:120px;" alt=""/>';
+                inner_table += '<td style=" text-align: center;">' +
+                    imagename + '</td>' +
+                    '<td><a class="product-name" href="/product/' + value.slug +'" target="_blank">' +  value.name + '</a></td>' +
+                    '<td>' + value.brand.name +'</td>' +
+                    '<td>' + value.type + '</td>' +
+                    '<td>' + value.pivot.quantity + '</td>' +
+                    '<td> NPR. '
+                    + value.pivot.price + '</td>' +
+                    '<td> NPR. ' + value.pivot.discount + '</td></tr>';
+
+
+            });
+
+
+
+
+            return inner_table;
+        }
+
+
+
+        all_orders();
+        function all_orders(){
+            var table = $('#all-orders').DataTable({
+                "orderable": false,
+                "bSort" : false,
+                "lengthMenu": [[5, 10, 50, 100, -1], [5, 10, 50, 100, "All"]],
+            });
+
+            // for all orders
+            $('#all-orders tbody').off('click', 'td.details-control');
+            $('#all-orders tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row( tr );
+
+                if ( row.child.isShown() ) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(tr.data('child-value'))).show();
+                    tr.addClass('shown');
+                }
+            } );
+        }
+    });
+
+    $(document).on('click','.action-delete', function (e) {
+        e.preventDefault();
+        var form = $('#deleted-form');
+        var action = $(this).attr('hrm-delete-per-action');
+        form.attr('action',$(this).attr('hrm-delete-per-action'));
+        $url = form.attr('action');
+        var form_data = form.serialize();
+        // $('.deleterole').attr('action',action);
+        swal({
+            title: "Are You Sure?",
+            text: "Your order will be removed permanently !",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        }, function(){
+            $.post( $url, form_data)
+                .done(function(response) {
+
+                    swal("Deleted!", "Order was removed successfully", "success");
+                    $(response).remove();
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2500);
+
+
+                })
+                .fail(function(response){
+                    console.log(response)
+
+                });
+        });
+    });
+
+    $(document).on('click','.customer-remove', function (e) {
+        e.preventDefault();
+        var action = $(this).attr('hrm-delete-per-action');
+            swal({
+                title: "Are You Sure?",
+                text: "Your login credentials including order details will be removed permanently!",
+                type: "info",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            }, function(){
+                $.get( action )
+                    .done(function(response) {
+                        swal("Deleted!", "Your credential was removed successfully", "success");
+                        $(response).remove();
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2500);
+
+
+                    })
+                    .fail(function(response){
+                        console.log(response)
+
+                });
+            });
+        });
 </script>
 @endsection

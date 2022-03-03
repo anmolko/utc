@@ -269,20 +269,22 @@ class UserController extends Controller
     {
         // Get the user
         $deleteuser = Auth::user();
-        Auth::logout();
+        $ordercount = count($deleteuser->orders);
 
+        if($ordercount>0){
+            $deleteuser->orders()->delete();
+        }
         // Delete the user
-        $deleted = $deleteuser->delete();;
-
+        Auth::logout();
+        $deleted = $deleteuser->delete();
         if ($deleted) {
             // User was deleted successfully, redirect to login
-            return redirect(url('user-login'));
+            return redirect()->route('front-user.index');
         } else {
             // User was NOT deleted successfully, so log them back into your application! Could also use: Auth::loginUsingId($user->id);
-                Auth::login($user);
-
+            Auth::login($deleteuser);
             // Redirect them back with some data letting them know it failed (or handle however you need depending on your setup)
-            return back()->with('status', 'Failed to delete your profile');
+            return back()->with('error', 'Unable to remove your profile at the moment. please try again later.');
         }
 
     }

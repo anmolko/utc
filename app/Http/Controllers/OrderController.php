@@ -70,11 +70,12 @@ class OrderController extends Controller
         $order_id           = $order->id;
 
         foreach(\Cart::getContent() as $row){
-            $data2=[
+            $discount = ($row->attributes->discount == null) ? 0 :$row->attributes->discount;
+                $data2=[
                 'order_id'      => $order_id,
                 'product_id'    => $row->id,
-                'price'         => $row->price,
-                'discount'      => 0,
+                'price'         => $row->attributes->orginal_price,
+                'discount'      => $discount,
                 'status'        => 'sold',
                 'quantity'      => $row->quantity,
                 'created_by'    => Auth::user()->id,
@@ -89,7 +90,7 @@ class OrderController extends Controller
         else{
             Session::flash('error','Your order was not placed. Please Try Again');
         }
-        return redirect()->route('front-user.dashboard');
+        return redirect()->route('customer-orders.index');
     }
 
     /**

@@ -32,14 +32,6 @@ Route::get('/categories', function () {
 Route::get('/', 'App\Http\Controllers\FrontController@index')->name('home');
 
 
-Route::get('/user-login', function () {
-    if (Auth::user() && Auth::user()->user_type == 'customer') {
-        return redirect('/user-dashboard');
-    } else {
-        return view('frontend.pages.user.login');
-    }
-});
-
 Route::get('/privacy-policy', 'App\Http\Controllers\FrontController@privacypolicy')->name('privacypolicy');
 Route::get('/request/remove-user-data', 'App\Http\Controllers\FrontController@removeFacebookUser')->name('remove.facebook');
 Route::get('/term-condition', 'App\Http\Controllers\FrontController@termcondition')->name('termcondition');
