@@ -75,14 +75,14 @@
     <div class="boxed style1">
 
         <div class="overlay"></div>
-
+        @if(\Request::is('/'))
         <!-- Preloader -->
         <div class="preloader">
             <div class="clear-loading loading-effect-2">
                 <span></span>
             </div>
         </div><!-- /.preloader -->
-
+        @endif
         <section id="header" class="header">
             @if(!empty(Auth::user()) && Auth::user()->user_type == 'customer')
                 <div class="header-top style3">
