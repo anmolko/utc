@@ -130,14 +130,19 @@ class SocialLoginController extends Controller
     {
         try {
             $user           = Socialite::driver('google')->user();
-            $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','google')->first();
+            //if the user already has a profile with same email as facebook, it will use the same credentials here
+            $facebook       = User::where('email',$user->getEmail())->where('oauth_type','facebook')->first();
+            if($facebook){
+                Auth::login($facebook);
+                return redirect()->route('front-user.dashboard');
+            }
 
+            $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','google')->first();
             if($userExisted){
                 Auth::login($userExisted);
                 return redirect()->route('front-user.dashboard');
             }else{
                 $password = $user->getId().$user->getEmail();
-
                 $newuser = User::create([
                     'name'=> $user->getName(),
                     'email'=>$user->getEmail(),
@@ -169,8 +174,14 @@ class SocialLoginController extends Controller
 
         try {
             $user           = Socialite::driver('facebook')->user();
-            $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','facebook')->first();
+            //if the user already has a profile with same email as google, it will use the same credentials here
+            $google         = User::where('email',$user->getEmail())->where('oauth_type','google')->first();
+            if($google){
+                Auth::login($google);
+                return redirect()->route('front-user.dashboard');
+            }
 
+            $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','facebook')->first();
             if($userExisted){
                 $usersRole = $userExisted->user_type;
                 if($usersRole !== 'customer'){

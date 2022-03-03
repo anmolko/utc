@@ -51,6 +51,10 @@
         .widget-ft.widget-about.logo-details {
             display: flex;
         }
+
+        .check-out{
+            cursor: pointer;
+        }
     </style>
     @yield('styles')
 
@@ -70,7 +74,56 @@
         @endif
 
         <section id="header" class="header">
+            @if(!empty(Auth::user()) && Auth::user()->user_type == 'customer')
+                <div class="header-top style3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="flat-support">
+                                    {{--                                <li>--}}
+                                    {{--                                    <a href="faq.html" title="">View Policy</a>--}}
+                                    {{--                                </li>--}}
+                                    <li>
+                                        <a href="{{route('front-user.dashboard')}}" title="">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('cart.list')}}" title="">My Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">Check Out</a>
+                                    </li>
+                                </ul>
+                                <!-- /.flat-support -->
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-4">
 
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-4">
+                                <ul class="flat-unstyled">
+                                    <li class="account">
+                                        <a href="#" title="">{{ (!empty(Auth::user())) ? ucfirst(Auth::user()->name):"" }}</a>
+                                    </li>
+                                    <li>
+                                        <a title=""href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+
+                                </ul>
+                                <!-- /.flat-unstyled -->
+                            </div>
+                            <!-- /.col-md-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container -->
+                </div>
+            @endif
             <div class="header-middle">
                 <div class="container">
                     <div class="row">
@@ -212,12 +265,13 @@
                             <div class="box-cart style1">
                                 <div class="inner-box">
                                     <ul class="menu-compare-wishlist">
-                                        <li class="compare">
-                                            <a href="{{route('front-user.index')}}" title="">
-                                                <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
-                                            </a>
-                                        </li>
-
+                                        @if(empty(Auth::user()) || @Auth::user()->user_type == 'admin')
+                                            <li class="compare">
+                                                <a href="{{route('front-user.index')}}" title="">
+                                                    <img src="{{asset('assets/frontend/images/icons/user.png')}}" alt="">
+                                                </a>
+                                            </li>
+                                        @endif
                                     </ul><!-- /.menu-compare-wishlist -->
                                 </div><!-- /.inner-box -->
                                 <div class="inner-box">
@@ -263,7 +317,11 @@
                                         </div>
                                         <div class="btn-cart">
                                             <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
-                                            <a href="/" class="check-out" title="">Checkout</a>
+                                            <form id="checkout-nav-form" action="{{route('orders.store')}}" method="post">
+                                                @csrf
+                                                <a onclick="$('#checkout-nav-form').submit();" class="check-out" title="">Checkout</a>
+                                            </form><!-- /form -->
+
                                         </div>
                                     </div>
                                     @else

@@ -113,7 +113,7 @@
             <div class="col-lg-4">
                 <div class="cart-totals">
                     <h3>Cart Totals</h3>
-                    <form id="checkout-form" action="{{route('orders.store')}}" id="checkout" method="post">
+                    <form id="checkout-form" action="{{route('orders.store')}}" method="post">
                         @csrf
                         <table>
                             <tbody>

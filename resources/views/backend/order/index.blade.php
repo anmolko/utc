@@ -65,7 +65,10 @@
     </style>
 @endsection
 @section('content')
-
+    <form action="#" method="post" id="deleted-form" >
+        {{csrf_field()}}
+        <input name="_method" type="hidden" value="DELETE">
+    </form>
     <div class="col-xl-9 col-lg-8 col-md-12">
         <div class="row">
             <div class="col-md-12">
@@ -75,8 +78,6 @@
                             <h4 class="card-title d-inline-block mb-0">
                                 Orders
                             </h4>
-                            <a href="javascript:void(0)" class="float-right add-doc text-primary" data-toggle="modal" data-target="#addSlider">Add Slider
-                            </a>
                         </div>
                         <div class="card-body">
                             <div class="employee-office-table">
@@ -84,7 +85,7 @@
                                     <table id="all-orders" class="table table-striped nowrap">
                                         <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>#</th>
                                             <th>Order Number</th>
                                             <th>Order By</th>
                                             <th>Contact Number</th>
@@ -111,7 +112,7 @@
                                                             </a>
                                                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
                                                                 {{--                                                                        <a class="dropdown-item action-blog-edit" href="#" hrm-update-action="{{route('blog.update',$blog->id)}}" hrm-edit-action="{{route('blog.edit',$blog->id)}}"> Edit </a>--}}
-                                                                <a class="dropdown-item action-blog-delete" href="#" hrm-delete-per-action="{{route('orders.destroy',$order->id)}}"> Delete </a>
+                                                                <a class="dropdown-item action-delete" href="#" hrm-delete-per-action="{{route('orders.destroy',$order->id)}}"> Delete </a>
                                                             </div>
                                                         </div>
 
@@ -207,6 +208,41 @@
             }
 
         });
+
+        $(document).on('click','.action-delete', function (e) {
+            e.preventDefault();
+            var form = $('#deleted-form');
+            var action = $(this).attr('hrm-delete-per-action');
+            form.attr('action',$(this).attr('hrm-delete-per-action'));
+            $url = form.attr('action');
+            var form_data = form.serialize();
+            // $('.deleterole').attr('action',action);
+            swal({
+                title: "Are You Sure?",
+                text: "This Customer order will be removed permanently",
+                type: "info",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            }, function(){
+                $.post( $url, form_data)
+                    .done(function(response) {
+
+                        swal("Deleted!", "Order was removed successfully", "success");
+                        $(response).remove();
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2500);
+
+
+                    })
+                    .fail(function(response){
+                        console.log(response)
+
+                    });
+            })
+
+        })
 
 
 

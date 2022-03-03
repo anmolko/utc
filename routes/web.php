@@ -56,6 +56,7 @@ Route::post('clear', 'App\Http\Controllers\CartController@clearAllCart')->name('
 
 
 Route::get('/orders', 'App\Http\Controllers\OrderController@index')->name('orders.index');
+Route::get('/my-order', 'App\Http\Controllers\OrderController@customerindex')->name('customer-orders.index');
 Route::get('/orders/create', 'App\Http\Controllers\OrderController@create')->name('orders.create');
 Route::post('/orders', 'App\Http\Controllers\OrderController@store')->name('orders.store');
 Route::put('/orders/{order}', 'App\Http\Controllers\OrderController@update')->name('orders.update');
@@ -191,7 +192,7 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
      Route::put('/ads/{ads}', 'App\Http\Controllers\AdController@update')->name('ad.update');
      Route::delete('/ads/{ads}', 'App\Http\Controllers\AdController@destroy')->name('ad.destroy');
      Route::get('/ads/{ads}/edit', 'App\Http\Controllers\AdController@edit')->name('ad.edit');
- 
+
      //End blog
 
     //sliders

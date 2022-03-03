@@ -64,6 +64,9 @@
         .widget-ft.widget-about.logo-details {
             display: flex;
         }
+        .check-out{
+            cursor: pointer;
+        }
     </style>
 
     @yield('styles')
@@ -329,7 +332,10 @@
                                         </div>
                                         <div class="btn-cart">
                                             <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
-                                            <a href="/" class="check-out" title="">Checkout</a>
+                                            <form id="checkout-nav-form" action="{{route('orders.store')}}" method="post">
+                                                @csrf
+                                                <a onclick="$('#checkout-nav-form').submit();" class="check-out" title="">Checkout</a>
+                                            </form><!-- /form -->
                                         </div>
                                     </div>
                                     @else

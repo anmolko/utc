@@ -18,9 +18,24 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders        = Order::with('products','user')->get();
-        return view('backend.order.index',compact('orders'));
+
+        if(empty(Auth::user())){
+            return redirect()->back();
+        } elseif(!empty(Auth::user()) && Auth::user()->user_type == 'customer'){
+            return redirect()->route('customer-orders.index');
+        }else{
+            $orders        = Order::with('products','user')->get();
+            return view('backend.order.index',compact('orders'));
+        }
     }
+
+    public function customerindex()
+    {
+//        $user_id = Auth::user()->id;
+//        $orders        = Order::with('products','user')->where('user_id', $user_id)->get();
+        return redirect('/user-dashboard');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -116,6 +131,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete          = Order::find($id);
+        $delete->delete();
+        return 'order_removed';
     }
 }
