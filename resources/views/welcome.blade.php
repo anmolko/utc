@@ -158,7 +158,7 @@
                         <div class="banner-box style1">
                             <div class="inner-box">
                                 <a href="{{@$first_ads->first_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$first_ads->first_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$first_ads->first_image)}}" alt="utc-banner">
                                 </a>
                             </div><!-- /.inner-box -->
                             
@@ -167,7 +167,7 @@
                         <div class="banner-box style1">
                             <div class="inner-box">
                                 <a href="{{@$first_ads->second_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$first_ads->second_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$first_ads->second_image)}}" alt="utc-banner">
                                 </a>
                             </div>
                             
@@ -186,7 +186,7 @@
                         <div class="banner-box">
                             <div class="inner-box">
                                 <a href="{{@$first_ads->first_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$first_ads->first_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$first_ads->first_image)}}" alt="utc-banner">
                                 </a>
                             </div>
                         </div><!-- /.banner-box -->
@@ -273,7 +273,7 @@
                         <div class="banner-box style1">
                             <div class="inner-box">
                                 <a href="{{@$second_ads->first_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$second_ads->first_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$second_ads->first_image)}}" alt="utc-banner">
                                 </a>
                             </div><!-- /.inner-box -->
                             
@@ -282,7 +282,7 @@
                         <div class="banner-box style1">
                             <div class="inner-box">
                                 <a href="{{@$second_ads->second_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$second_ads->second_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$second_ads->second_image)}}" alt="utc-banner">
                                 </a>
                             </div>
                             
@@ -301,7 +301,7 @@
                         <div class="banner-box">
                             <div class="inner-box">
                                 <a href="{{@$second_ads->first_url}}" title="">
-                                    <img src="{{asset('/images/uploads/ad/'.@$second_ads->first_image)}}" alt="utc-banner">
+                                    <img src="{{asset('/images/uploads/offer/'.@$second_ads->first_image)}}" alt="utc-banner">
                                 </a>
                             </div>
                         </div><!-- /.banner-box -->
@@ -375,7 +375,7 @@
                     <div class="banner-box style1">
                         <div class="inner-box">
                             <a href="{{@$third_ads->first_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$third_ads->first_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$third_ads->first_image)}}" alt="utc-banner">
                             </a>
                         </div><!-- /.inner-box -->
                         
@@ -384,7 +384,7 @@
                     <div class="banner-box style1">
                         <div class="inner-box">
                             <a href="{{@$third_ads->second_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$third_ads->second_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$third_ads->second_image)}}" alt="utc-banner">
                             </a>
                         </div>
                         
@@ -403,7 +403,7 @@
                     <div class="banner-box">
                         <div class="inner-box">
                             <a href="{{@$third_ads->first_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$third_ads->first_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$third_ads->first_image)}}" alt="utc-banner">
                             </a>
                         </div>
                     </div><!-- /.banner-box -->
@@ -477,7 +477,7 @@
                     <div class="banner-box style1">
                         <div class="inner-box">
                             <a href="{{@$four_ads->first_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$four_ads->first_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$four_ads->first_image)}}" alt="utc-banner">
                             </a>
                         </div><!-- /.inner-box -->
                         
@@ -486,7 +486,7 @@
                     <div class="banner-box style1">
                         <div class="inner-box">
                             <a href="{{@$four_ads->second_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$four_ads->second_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$four_ads->second_image)}}" alt="utc-banner">
                             </a>
                         </div>
                         
@@ -505,7 +505,7 @@
                     <div class="banner-box">
                         <div class="inner-box">
                             <a href="{{@$four_ads->first_url}}" title="">
-                                <img src="{{asset('/images/uploads/ad/'.@$four_ads->first_image)}}" alt="utc-banner">
+                                <img src="{{asset('/images/uploads/offer/'.@$four_ads->first_image)}}" alt="utc-banner">
                             </a>
                         </div>
                     </div><!-- /.banner-box -->

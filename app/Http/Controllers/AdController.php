@@ -60,7 +60,7 @@ class AdController extends Controller
         if(!empty($request->file('first_image'))){
             $first_image          = $request->file('first_image');
             $name           = uniqid().'_'.$first_image->getClientOriginalName();
-            $path           = base_path().'/public/images/uploads/ad/';
+            $path           = base_path().'/public/images/uploads/offer/';
             if($request->input('type')=='single'){
                 $moved          = Image::make($first_image->getRealPath())->resize(1140 , 200, function ($constraint) {
                     $constraint->aspectRatio(); //maintain image ratio
@@ -79,7 +79,7 @@ class AdController extends Controller
         if(!empty($request->file('second_image'))){
             $image        = $request->file('second_image');
             $name         = uniqid().'_'.$image->getClientOriginalName();
-            $path         = base_path().'/public/images/uploads/ad/';
+            $path         = base_path().'/public/images/uploads/offer/';
             $moved        = Image::make($image->getRealPath())->resize(620, 200, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($path.$name);
@@ -143,8 +143,8 @@ class AdController extends Controller
         $oldsecondimage                = $ad->second_image;
 
         if($request->input('type')=='single'){
-            if (!empty($oldsecondimage) && file_exists(public_path().'/images/uploads/ad/'.$oldsecondimage)){
-                @unlink(public_path().'/images/uploads/ad/'.$oldsecondimage);
+            if (!empty($oldsecondimage) && file_exists(public_path().'/images/uploads/offer/'.$oldsecondimage)){
+                @unlink(public_path().'/images/uploads/offer/'.$oldsecondimage);
             }
             $ad->second_image                = null;
         }
@@ -152,7 +152,7 @@ class AdController extends Controller
         if (!empty($request->file('first_image'))){
             $image       = $request->file('first_image');
             $name1       = uniqid().'_'.$image->getClientOriginalName();
-            $path        = base_path().'/public/images/uploads/ad/';
+            $path        = base_path().'/public/images/uploads/offer/';
 
             if($request->input('type')=='single'){
                 $moved          = Image::make($image->getRealPath())->resize(1140 , 200, function ($constraint) {
@@ -168,8 +168,8 @@ class AdController extends Controller
 
             if ($moved){
                 $ad->first_image= $name1;
-                if (!empty($oldfirstimage) && file_exists(public_path().'/images/uploads/ad/'.$oldfirstimage)){
-                    @unlink(public_path().'/images/uploads/ad/'.$oldfirstimage);
+                if (!empty($oldfirstimage) && file_exists(public_path().'/images/uploads/offer/'.$oldfirstimage)){
+                    @unlink(public_path().'/images/uploads/offer/'.$oldfirstimage);
                 }
             }
         }
@@ -177,15 +177,15 @@ class AdController extends Controller
         if (!empty($request->file('second_image'))){
             $image       = $request->file('second_image');
             $name1       = uniqid().'_'.$image->getClientOriginalName();
-            $thumb_path  = base_path().'/public/images/uploads/ad/';
+            $thumb_path  = base_path().'/public/images/uploads/offer/';
             $thumb       = Image::make($image->getRealPath())->resize(620 , 200, function ($constraint) {
                 $constraint->aspectRatio(); //maintain image ratio
             })->orientate()->save($thumb_path.$name1);
 
             if ($thumb){
                 $ad->second_image= $name1;
-                if (!empty($oldsecondimage) && file_exists(public_path().'/images/uploads/ad/'.$oldsecondimage)){
-                    @unlink(public_path().'/images/uploads/ad/'.$oldsecondimage);
+                if (!empty($oldsecondimage) && file_exists(public_path().'/images/uploads/offer/'.$oldsecondimage)){
+                    @unlink(public_path().'/images/uploads/offer/'.$oldsecondimage);
                 }
             }
         }
@@ -211,11 +211,11 @@ class AdController extends Controller
         $deletead      = Ads::find($id);
         $rid             = $deletead->id;
 
-        if (!empty($deletead->first_image) && file_exists(public_path().'/images/uploads/ad/'.$deletead->first_image)){
-            @unlink(public_path().'/images/uploads/ad/'.$deletead->first_image);
+        if (!empty($deletead->first_image) && file_exists(public_path().'/images/uploads/offer/'.$deletead->first_image)){
+            @unlink(public_path().'/images/uploads/offer/'.$deletead->first_image);
         }
-        if (!empty($deletead->second_image) && file_exists(public_path().'/images/uploads/ad/'.$deletead->second_image)){
-            @unlink(public_path().'/images/uploads/ad/'.$deletead->second_image);
+        if (!empty($deletead->second_image) && file_exists(public_path().'/images/uploads/offer/'.$deletead->second_image)){
+            @unlink(public_path().'/images/uploads/offer/'.$deletead->second_image);
         }
         $deletead->delete();
         return '#blog'.$rid;

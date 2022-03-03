@@ -101,7 +101,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img id="first-img" src="{{(@$edit->first_image) ? asset('/images/uploads/ad/'.@$edit->first_image) : asset('/images/uploads/default-placeholder.png');}}" alt="first_image" class="w-100 current-img">
+                                                <img id="first-img" src="{{(@$edit->first_image) ? asset('/images/uploads/offer/'.@$edit->first_image) : asset('/images/uploads/default-placeholder.png');}}" alt="first_image" class="w-100 current-img">
                                             </div>
                                         <span class="ctm-text-sm" id="first-image-label">*use image of 620 x 200px </span>
 
@@ -125,7 +125,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img id="second-img" src="{{(@$edit->second_image) ? asset('/images/uploads/ad/'.@$edit->second_image) : asset('/images/uploads/default-placeholder.png');}}" alt="second_image" class="w-100 current-img">
+                                                <img id="second-img" src="{{(@$edit->second_image) ? asset('/images/uploads/offer/'.@$edit->second_image) : asset('/images/uploads/default-placeholder.png');}}" alt="second_image" class="w-100 current-img">
                                             </div>
                                         <span class="ctm-text-sm">*use image of 620 x 200px </span>
                                         </div>

@@ -180,7 +180,7 @@
                                                         <td class="align-middle pt-6 pb-4 px-6">
                                                             <div class="avatar-upload">
                                                                 <div class="blog-preview">
-                                                                    <img id="blog-img" src="{{asset('/images/uploads/ad/'.@$ad->first_image)}}" />
+                                                                    <img id="blog-img" src="{{asset('/images/uploads/offer/'.@$ad->first_image)}}" />
                                                                 </div>
                                                             </div>
                                                         </td>
