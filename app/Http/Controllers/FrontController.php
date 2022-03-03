@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactDetail;
+use App\Models\Ads;
 use App\Models\AttributeValue;
 use App\Models\Blog;
 use App\Models\BlogCategory;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
+    protected $ads = null;
     protected $blog = null;
     protected $bcategory = null;
     protected $slider = null;
@@ -39,9 +41,10 @@ class FrontController extends Controller
     protected $product_secondary_category = null;
     
 
-    public function __construct(BrandSeries $brand_series,ProductSecondaryCategory $product_secondary_category,Brand $brand,Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
+    public function __construct(Ads $ads,BrandSeries $brand_series,ProductSecondaryCategory $product_secondary_category,Brand $brand,Product $product,ProductAttribute $product_attribute, ProductPrimaryCategory $product_primary_category,Setting $setting,BlogCategory $bcategory,Blog $blog,Slider $slider)
     {
         $this->bcategory = $bcategory;
+        $this->ads = $ads;
         $this->blog = $blog;
         $this->slider = $slider;
         $this->setting = $setting;
@@ -81,8 +84,18 @@ class FrontController extends Controller
 
         $laptopbybrands = $this->product->with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->where('type','laptops')->take(12)->get();
         $electronics = $this->product->with('primaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')->where('type','electronics')->take(12)->get();
+        $first_ads = $this->ads->where('position','first')->first();
+        $second_ads = $this->ads->where('position','second')->first();
+        $third_ads = $this->ads->where('position','third')->first();
+        $four_ads = $this->ads->where('position','four')->first();
 
-        return view('welcome',compact('primary_categories_tab','product_brands','sliders','latestPosts','product_primary_categories','latestProducts','laptopbybrands','electronics'));
+        $printers = $this->product->with('primaryCategory','secondaryCategory','brand')->orderBy('created_at', 'DESC')->where('status','active')
+                    ->whereHas('secondaryCategory',function($query){
+                        $query->where('slug','printers');
+                    })            
+                    ->take(12)->get();
+
+        return view('welcome',compact('printers','first_ads','second_ads','third_ads','four_ads','primary_categories_tab','product_brands','sliders','latestPosts','product_primary_categories','latestProducts','laptopbybrands','electronics'));
     }
 
     public function removeFacebookUser(Request $request){

@@ -19,11 +19,14 @@ class CartController extends Controller
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
-            'price' => $request->price,
+            'price' => ($request->discount) ? $request->discount : $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(
                 'image' => $request->image,
                 'slug' => $request->slug,
+                'discount' => $request->discount,
+                'orginal_price' => $request->price,
+
             )
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');

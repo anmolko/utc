@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type',['single','double']);
-            $table->enum('position',['first','second','third']);
+            $table->enum('position',['first','second','third','four']);
             $table->string('first_image')->nullable();
             $table->string('second_image')->nullable();
             $table->string('first_url');

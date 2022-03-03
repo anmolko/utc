@@ -1,10 +1,5 @@
 @extends('frontend.layouts.master')
 @section('title') View Shopping Cart  @endsection
-{{--@section('styles')--}}
-{{--<style>--}}
-{{--    --}}
-{{--</style>--}}
-{{--@endsection--}}
 
 @section('breadcrumb')
 
@@ -118,11 +113,10 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Shipping</td>
+                                    <td>Payment</td>
                                     <td class="btn-radio">
                                         <div class="radio-info">
-                                            <input type="radio" id="free-shipping" name="radio-flat-rate">
-                                            <label for="free-shipping">Free Shipping</label>
+                                            <label for="free-shipping">Cash on Delivery</label>
                                         </div>
 
                                     </td><!-- /.btn-radio -->

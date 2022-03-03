@@ -177,9 +177,7 @@
                                 <select class="form-control shadow-none product-brands" name="brand_id" required>
                                     <option value disabled> Select Primary Category</option>
                                     @foreach($brands as $brand)
-                                        @if(count($brand->series)>0)
                                             <option value="{{$brand->id}}" {{($product->brand_id == $brand->id) ? "selected" : ""}}> {{$brand->name}} </option>
-                                        @endif
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">

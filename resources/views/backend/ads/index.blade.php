@@ -1,9 +1,23 @@
 @extends('backend.layouts.master')
 @section('title') Ads @endsection
 @section('css')
-
     <style>
+         /*for image*/
+         .avatar-upload{
+            max-width: 505px!important;
+        }
 
+        .current-img{
+            border: 6px solid #f3f3f3;
+            border-radius: 10px;
+        }
+
+        #blog-img{
+            border: 6px solid #f3f3f3;
+            border-radius: 10px;
+            width: 400px;
+            height: 150px;
+        }
     </style>
 @endsection
 @section('content')
@@ -42,9 +56,15 @@
                                         <label>Display Position <span class="text-muted text-danger">*</span></label>
                                         <select class="form-control" name="position" required>
                                             <option value disabled selected>Select Position</option>
-                                            <option value="first" >First</option>
-                                            <option value="second" >Second</option>
-                                            <option value="third" >Third</option>
+   
+                                         
+                                                    <option value="first" {{(@$checkfirst !=null) ? "disabled" : "";}} >First</option>
+                                                    <option value="second" {{(@$checksecond !=null) ? "disabled" : "";}}>Second</option>
+                                                    <option value="third" {{(@$checkthird != null) ? "disabled" : "";}}>Third</option>
+                                                    <option value="four" {{(@$checkfour != null) ? "disabled" : "";}}>Four</option>
+                                                    
+                                                
+                                           
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a position.
@@ -52,80 +72,81 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row ad-container">
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label>Url for First Image <span class="text-muted text-danger">*</span></label>
+                                        <input type="url" class="form-control" name="first_url"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter the first url.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 double-url" >
+                                    <div class="form-group mb-3">
+                                        <label> Url for Second Image <span class="text-muted text-danger">*</span></label>
+                                        <input type="url" class="form-control" name="second_url"  id="second_url"  required>
+                                        <div class="invalid-feedback">
+                                            Please enter the second url.
+                                        </div>
+                                    </div>
+                                </div>
+                            
                                 <div class="col-sm-6 d-flex">
                                     <div class="row ">
                                         <div class="col-7">
-                                            <label>Image One <span class="text-muted text-danger">*</span></label>
+                                            <label>First Image  <span class="text-muted text-danger">*</span></label>
 
                                             <div class="custom-file h-auto">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
-                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageUpload" onchange="loadbasicFile('imageUpload','first-img',event)" name="first_image" required>
-                                                        <label for="imageUpload"></label>
+                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="firstimageUpload" onchange="loadbasicFile('firstimageUpload','first-img',event)" name="first_image" required>
+                                                        <label for="firstimageUpload"></label>
                                                         <div class="invalid-feedback" style="position: absolute; width: 45px;">
                                                             Please select a image.
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img id="first-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="first_image" class="w-100 first-img">
+                                                <img id="first-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="first_image" class="w-100 current-img">
                                             </div>
-                                        <span class="ctm-text-sm">*use image of 620 x 200px </span>
+                                        <span class="ctm-text-sm" id="first-image-label">*use image of 620 x 200px </span>
 
                                         </div>
 
                                     </div>
                                   
                                 </div>
-                                <div class="col-sm-6 d-flex">
+                                <div class="col-sm-6  double-url">
                                     <div class="row ">
                                         <div class="col-7">
-                                             <label>Image Two <span class="text-muted text-danger">*</span></label>
+                                             <label>Second Image  <span class="text-muted text-danger">*</span></label>
 
                                             <div class="custom-file h-auto">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
-                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="imageUpload" onchange="loadbasicFile('imageUpload','second-img',event)" name="second_image" required>
-                                                        <label for="imageUpload"></label>
+                                                        <input type="file"  accept="image/png, image/jpeg" class="custom-file-input" hidden id="secondimageUpload" onchange="loadbasicFile('secondimageUpload','second-img',event)" name="second_image" required>
+                                                        <label for="secondimageUpload"></label>
                                                         <div class="invalid-feedback" style="position: absolute; width: 45px;">
                                                             Please select a image.
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img id="second-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 second-img">
+                                                <img id="second-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
                                             </div>
                                         <span class="ctm-text-sm">*use image of 620 x 200px </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-3">
-                                        <label>First Url Image <span class="text-muted text-danger">*</span></label>
-                                        <textarea class="form-control" rows="8" name="description" id="editor" required></textarea>
-                                        <div class="invalid-feedback">
-                                            Please enter the post description.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-3">
-                                        <label>First Url Image <span class="text-muted text-danger">*</span></label>
-                                        <textarea class="form-control" rows="8" name="description" id="editor" required></textarea>
-                                        <div class="invalid-feedback">
-                                            Please enter the post description.
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-theme button-1 text-white ctm-border-radius mt-4" {{(@$checkfirst !=null && @$checksecond !=null && @$checkthird !=null && @$checkfour !=null ) ? "disabled" : "";}}  >Submit</button>
                             </div>
                         </div>
-
-
 
                     </div>
                 </div>
              
+                
             </div>
 
 
@@ -147,25 +168,31 @@
                                         <table id="ad-index-table" class="table custom-table">
                                             <thead>
                                             <tr>
+                                                <th>First Image</th>
                                                 <th>Position</th>
                                                 <th>Type</th>
                                                 <th class="text-right">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if(@$ads)
-                                                @foreach($ads as  $ad)
+                                                @foreach($allads as  $ad)
                                                     <tr>
-                                                      
-                                                        <td>{{ucfirst($ad->title)}}</td>
-                                                        <td>{{ucfirst($ad->slug)}}</td>
+                                                        <td class="align-middle pt-6 pb-4 px-6">
+                                                            <div class="avatar-upload">
+                                                                <div class="blog-preview">
+                                                                    <img id="blog-img" src="{{asset('/images/uploads/ad/'.@$ad->first_image)}}" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ucfirst($ad->position)}}</td>
+                                                        <td>{{ucfirst($ad->type)}}</td>
               
                                                         <td class="text-right">
                                                             <div class="dropdown action-label drop-active">
                                                                 <a href="javascript:void(0)" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false"> <span class="lnr lnr-cog"></span>
                                                                 </a>
                                                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-                                                                    <a class="dropdown-item action-ad-edit" href="#" hrm-update-action="{{route('ad.update',$ad->id)}}" hrm-edit-action="{{route('ad.edit',$ad->id)}}"> Edit </a>
+                                                                    <a class="dropdown-item " href="{{route('ad.edit',$ad->id)}}"  > Edit </a>
                                                                     <a class="dropdown-item action-ad-delete" href="#" hrm-delete-per-action="{{route('ad.destroy',$ad->id)}}"> Delete </a>
                                                                 </div>
                                                             </div>
@@ -173,7 +200,6 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                            @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -187,176 +213,10 @@
 
     </div>
 
-    <div class="modal fade" id="edit_blog_category">
-        <form action="#" method="post" id="deleted-form" >
-            {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
-        </form>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content pb-4">
-                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updateblogcategory','novalidate'=>'']) !!}
-
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title mb-3">Edit Blog Category</h4>
-                    <div class="form-group mb-3">
-                        <label>Category Name <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" id="update-name" required>
-                        <div class="invalid-feedback">
-                            Please enter the category name.
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Slug <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="slug" id="update-slug" required>
-                        <div class="invalid-feedback">
-                            Please enter the category Slug.
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-theme text-white ctm-border-radius float-right button-1">Update</button>
-                </div>
-
-                {!! Form::close() !!}
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade bd-example-modal-lg" id="edit_blog">
-        <form action="#" method="post" id="deleted-form" >
-            {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
-        </form>
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                {!! Form::open(['method'=>'PUT','class'=>'needs-validation updateblog','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
-
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title mb-3">Edit Blog Category</h4>
-
-                    <div class="form-group mb-3">
-                        <label>Category <span class="text-muted text-danger">*</span></label>
-                        <select class="form-control" name="blog_category_id" id="edit-blog-cat" required>
-                            <option value disabled>Select Blog Category</option>
-                            @if(!empty(@$categories))
-                                @foreach(@$categories as $categoryList)
-                                    <option value="{{ @$categoryList->id }}" >{{ ucwords(@$categoryList->name) }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a category.
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Title <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="title" id="edit-title" required>
-                        <div class="invalid-feedback">
-                            Please enter the post title.
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Slug <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="slug" id="blog-edit-slug" required>
-                        <input type="hidden"  name="status" id="edit-status" required>
-                        <div class="invalid-feedback">
-                            Please enter the post Slug.
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Summary <span class="text-muted text-danger">*</span></label>
-                        <textarea class="form-control" rows="6" name="excerpt" id="edit-excerpt" required></textarea>
-                        <div class="invalid-feedback">
-                            Please enter the post summary.
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Description <span class="text-muted text-danger">*</span></label>
-                        <textarea class="form-control update-descp" rows="6" name="description" id="edit-editor" required></textarea>
-                        <div class="invalid-feedback">
-                            Please enter the post description.
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card ctm-border-radius shadow-sm flex-fill">
-                                <div class="card-header">
-                                    <h4 class="card-title mb-0">
-                                        Blog Feature Image <span class="text-muted text-danger">*</span>
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row justify-content-center">
-                                        <div class="col-9 mb-4">
-                                            <div class="custom-file h-auto">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type="file" class="custom-file-input" hidden id="images-edit" onchange="loadbasicFile('images-edit','current-edit-img',event)" name="image">
-                                                        <label for="images-edit"></label>
-                                                        <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                            Please select a image.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img id="current-edit-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
-                                            </div>
-                                            <span class="ctm-text-sm">*use image minimum of 850 x 345px for blog</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card ctm-border-radius shadow-sm flex-fill">
-                                <div class="card-header">
-                                    <h4 class="card-title mb-0">
-                                        Blog Thumbnail Image <span class="text-muted text-danger">*</span>
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row justify-content-center">
-                                        <div class="col-8 mb-4">
-                                            <div class="custom-file h-auto">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type="file" class="custom-file-input" hidden id="images-thumb-edit" onchange="loadbasicFile('images-thumb-edit','current-editthumb-img',event)" name="thumb_image">
-                                                        <label for="images-thumb-edit"></label>
-                                                        <div class="invalid-feedback" style="position: absolute; width: 45px;">
-                                                            Please select a image.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img id="current-editthumb-img" src="{{asset('/images/uploads/default-placeholder.png')}}" alt="blog_image" class="w-100 current-img">
-                                            </div>
-                                            <span class="ctm-text-sm">*use image minimum of 258 x 230px for blog</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                    <button type="button" class="btn btn-danger float-right ml-3" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-theme text-white ctm-border-radius float-right button-1 mb-4">Update</button>
-                </div>
-
-                {!! Form::close() !!}
-
-            </div>
-        </div>
-    </div>
+    <form action="#" method="post" id="deleted-form" >
+        {{csrf_field()}}
+        <input name="_method" type="hidden" value="DELETE">
+    </form>
 
 
 
@@ -372,6 +232,8 @@
         };
 
         $(document).ready(function () {
+            $('.ad-container').hide();
+
             $('#ad-index-table').DataTable({
                 paging: true,
                 searching: true,
@@ -388,43 +250,27 @@
     $(document).on('change','#ad_type', function (e) {
         e.preventDefault();
         var type=$(this).val();
-        console.log(type)
+        $('.ad-container').show();
 
+        if( $(this).val() == 'single'){
+            $('.double-url').hide();
+            $('#second_url').removeAttr('required','required');
+            $('#second_url').attr('value','');
+            $('#secondimageUpload').attr('value','');
+            $('#secondimageUpload').removeAttr('required','required');
+            $("#first-image-label").text("*use image of 1140 x 200px");
+            
+        }else{
+            $('.double-url').show();
+            $('#discount_price').attr('required','required');
+            $('#secondimageUpload').attr('required','required');
+            $("#first-image-label").text("*use image of 620 x 200px");
+
+        }
 
     });
 
-    $(document).on('click','.action-ad-edit', function (e) {
-        e.preventDefault();
-        var url =  $(this).attr('hrm-edit-action');
-        // console.log(action)
-        var id=$(this).attr('id');
-        var action = $(this).attr('hrm-update-action');
-
-        $.ajax({
-            url: $(this).attr('hrm-edit-action'),
-            type: "GET",
-            cache: false,
-            dataType: 'json',
-            success: function(dataResult){
-                // $('#id').val(data.id);
-                $("#edit_blog").modal("toggle");
-                $('#edit-title').attr('value',dataResult.title);
-                $('#blog-edit-slug').attr('value',dataResult.slug);
-                $('#edit-excerpt').text(dataResult.excerpt);
-                $('#edit-status').attr('value',dataResult.status);
-                editor.setData( dataResult.description );
-                $('#current-edit-img').attr("src",'/images/uploads/blog/'+dataResult.image );
-                $('#current-editthumb-img').attr("src",'/images/uploads/blog/thumb/'+dataResult.thumb_image );
-                $('#edit-blog-cat option[value="'+dataResult.blog_category_id+'"]').prop('selected', true);
-                $('.updateblog').attr('action',action);
-
-            },
-            error: function(error){
-                console.log(error)
-            }
-        });
-    });
-
+   
     $(document).on('click','.action-ad-delete', function (e) {
             e.preventDefault();
             var form = $('#deleted-form');
@@ -445,7 +291,7 @@
                     .done(function(response) {
 
 
-                    swal("Deleted!", "Blog Deleted Successfully", "success");
+                    swal("Deleted!", "Ads Deleted Successfully", "success");
                     $(response).remove();
                     setTimeout(function() {
                         window.location.reload();

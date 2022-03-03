@@ -86,6 +86,10 @@
                                         <a href='#' id="zoom{{$loop->iteration}}" class='zoom'><img src="{{asset('/images/uploads/products/gallery/'.@$gallery->resized_name)}}" alt='' width='400' height='300' /></a>
                                 </li>
                             @endforeach
+                        @else
+                        <li data-thumb="{{asset('/images/uploads/products/'.@$product->thumbnail)}}">
+                                        <a href='#' id="zoom1" class='zoom'><img src="{{asset('/images/uploads/products/gallery/'.@$product->thumbnail)}}" alt='' width='400' height='300' /></a>
+                                </li>
                         @endif
                     </ul><!-- /.slides -->
                 </div><!-- /.flexslider -->
@@ -98,7 +102,9 @@
                     </div><!-- /.header-detail -->
                     <div class="brand-details">
                         <div ><span class="brand">Brand: </span><span class="id">{{ucwords(@$product->brand->name)}}</span></div>
+                        @if($product->brandSeries)
                         <div ><span class="brand-series">Brand Series: </span><span class="id">{{ucwords(@$product->brandSeries->name)}}</span></div>
+                        @endif
                     </div>
                     <div class="content-detail">
                         <div class="price">
@@ -129,6 +135,7 @@
                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                 <input type="hidden" value="{{ $product->name }}" name="name">
                                 <input type="hidden" value="{{ $product->price }}" name="price">
+                                <input type="hidden" value="{{ $product->discount_price }}" name="discount">
                                 <input type="hidden" value="{{ $product->thumbnail }}"  name="image">
                                 <input type="hidden" value="{{ $product->slug }}"  name="slug">
                                 <input type="hidden" value="1" name="quantity">

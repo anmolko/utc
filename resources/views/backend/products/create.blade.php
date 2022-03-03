@@ -173,9 +173,7 @@
                                     <option value disabled selected> Select Brand</option>
 
                                     @foreach($brands as $brand)
-                                        @if(count($brand->series)>0)
                                             <option value="{{$brand->id}}"> {{$brand->name}} </option>
-                                        @endif
                                     @endforeach
 
                                 </select>

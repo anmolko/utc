@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title') User Dashboard @endsection
 @section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <script src="{{asset('assets/frontend/js/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/bootstrap.bundle.min.js')}}"></script>
 <style>
@@ -139,7 +140,7 @@
                     <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <h4 class="font-italic mb-4">Personal information</h4>
                         <div class="form-contact-content">
-                            <form id="form-contact" action="{{ route('update_user', @Auth::user()->id) }}" id="form-contact" method="post" enctype="multipart/form-data">
+                            <form id="form-contact" action="" id="form-contact" method="post" enctype="multipart/form-data">
                                 <input name="_method" type="hidden" value="PATCH">
                                 @csrf
                                
@@ -179,8 +180,31 @@
                     </div>
 
                     <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <h4 class="font-italic mb-4">Bookings</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h4 class="font-italic mb-4">My Orders</h4>
+                        <div class="table-responsive">
+                            <table id="all-orders" class="table table-striped table-bordered  responsive" role="grid" aria-describedby="basic-col-reorder_info">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Order No</th>
+                                        <th>Total Amount</th>
+                                        <th>Order Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Order No</th>
+                                        <th>Total Amount</th>
+                                        <th>Order Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -188,4 +212,13 @@
         </div>
     </div>
 </section>
+@endsection
+@section('scripts')
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#all-orders').DataTable();
+
+    })
+</script>
 @endsection
