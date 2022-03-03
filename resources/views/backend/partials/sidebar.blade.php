@@ -13,9 +13,9 @@
                                                 <div class="custom-breadcrumb">
                                                     <ol class="breadcrumb no-bg-color d-inline-block p-0 m-0 mb-2">
                                                         <li class="breadcrumb-item d-inline-block"><a href="{{route('dashboard')}}" class="text-dark">Home</a></li>
-                                                        <li class="breadcrumb-item d-inline-block active">{{str_replace('-',' ',ucfirst(Request::segment(2)))}}</li>
+                                                        <li class="breadcrumb-item d-inline-block active">{{str_replace('-',' ',ucfirst((Request::segment(2)) ? Request::segment(2): Request::segment(1) ))}}</li>
                                                     </ol>
-                                                    <h4 class="text-dark">{{str_replace('-',' ',ucfirst(Request::segment(2)))}}</h4>
+                                                    <h4 class="text-dark">{{str_replace('-',' ',ucfirst((Request::segment(2)) ? Request::segment(2): Request::segment(1)))}}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                         <a href="{{route('ad.index')}}" class="{{(Request::segment(2) == 'ads') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-bullhorn pr-0 pb-lg-2 font-23"></span><span class="">Ads</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
-                                        <a href="{{route('orders.index')}}" class="{{(Request::segment(2) == 'orders') ? "text-white active":"text-dark"}} p-4 ctm-border-right"><span class="lnr lnr-cart pr-0 pb-lg-2 font-23"></span><span class="">Orders</span></a>
+                                        <a href="{{route('orders.index')}}" class="{{(Request::segment(1) == 'orders') ? "text-white active":"text-dark"}} p-4 ctm-border-right"><span class="lnr lnr-cart pr-0 pb-lg-2 font-23"></span><span class="">Orders</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
                                         <a href="{{route('sliders.index')}}" class="{{(Request::segment(2) == 'sliders') ? "text-white active":"text-dark"}} p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-picture pr-0 pb-lg-2 font-23"></span><span class="">Sliders</span></a>
