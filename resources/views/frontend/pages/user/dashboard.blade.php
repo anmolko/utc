@@ -160,7 +160,7 @@
                     <div class="tab-pane fade shadow rounded bg-white {{(@$active == 'personal') ? "show active":""}} p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <h4 class="font-italic mb-4">Personal information</h4>
                         <div class="form-contact-content">
-                            <form id="form-contact" action="" id="form-contact" method="post" enctype="multipart/form-data">
+                            <form id="form-contact" action="{{route('update_user',@Auth::user()->id)}}" method="post" enctype="multipart/form-data">
                                 <input name="_method" type="hidden" value="PATCH">
                                 @csrf
 

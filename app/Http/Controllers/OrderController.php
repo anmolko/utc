@@ -94,7 +94,7 @@ class OrderController extends Controller
             'total_amount'        =>$order->total_amount,
             'address'        =>Auth::user()->address,
             'date'        =>date('M j, Y',strtotime(@$order->created_at)),
-            'order_id'      => $order_id,
+            'order_id'      => $order->order_number,
             'site_address'        =>ucwords($theme_data->address),
             'site_email'        =>ucwords($theme_data->email),
             'site_name'        =>ucwords($theme_data->website_name),

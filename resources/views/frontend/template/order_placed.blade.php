@@ -714,7 +714,7 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="esd-block-image es-m-p0l es-p15l es-m-txt-c" align="left" style="font-size: 0px;">
-                                                                                        <a href="https://universaltrading.com.np/" target="_blank"><img src="/img/finalutclogo.png" alt="universal trading concern logo" title="universal trading concern logo" width="83" style="display: block;"></a>
+                                                                                        <a href="https://universaltrading.com.np/" target="_blank"><img src="https://universaltrading.com.np/img/finalutclogo.png" alt="universal trading concern logo" title="universal trading concern logo" width="83" style="display: block;"></a>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -894,7 +894,7 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="esd-block-image es-m-p0l es-m-txt-c" align="right" style="font-size: 0px;">
-                                                                                        <a href target="_blank"><img src="/img/finalutclogo.png" alt="universal trading concern logo" title="universal trading concern logo" width="93" style="display: block;"></a>
+                                                                                        <a href target="_blank"><img src="https://universaltrading.com.np/img/finalutclogo.png" alt="universal trading concern logo" title="universal trading concern logo" width="93" style="display: block;"></a>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
