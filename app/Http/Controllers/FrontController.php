@@ -735,7 +735,7 @@ class FrontController extends Controller
             );
             // Mail::to('surajmzn75@gmail.com')->send(new ContactDetail($data));
 
-            Mail::to($theme_data->email)->cc(['suraj@canosoft.com.np','info@canosoft.com.np'])->send(new ContactDetail($data));
+            Mail::to($theme_data->email)->send(new ContactDetail($data));
 
             Session::flash('success','Thank you for contacting us!');
 

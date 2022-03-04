@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlaced;
+
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductOrder;
+use App\Models\Setting;
 use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+
 
 class OrderController extends Controller
 {
@@ -81,7 +86,21 @@ class OrderController extends Controller
                 'created_by'    => Auth::user()->id,
             ];
             $productorder = ProductOrder::create($data2);
+
         }
+
+        $theme_data = Setting::first();
+        $alldata = array(
+            'total_amount'        =>$order->total_amount,
+            'address'        =>Auth::user()->address,
+            'date'        =>date('M j, Y',strtotime(@$order->created_at)),
+            'order_id'      => $order_id,
+            'site_address'        =>ucwords($theme_data->address),
+            'site_email'        =>ucwords($theme_data->email),
+            'site_name'        =>ucwords($theme_data->website_name),
+            'phone'        =>ucwords($theme_data->phone),
+        );
+        Mail::to(Auth::user()->email)->send(new OrderPlaced($alldata));
 
         if($order && $productorder){
             Session::flash('success','Your order was placed successfully');
