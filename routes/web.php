@@ -39,7 +39,7 @@ Route::get('/contact', 'App\Http\Controllers\FrontController@contact')->name('co
 Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->name('contact.store');
 
 //cart
-Route::get('cart', 'App\Http\Controllers\CartController@cartList')->name('cart.list');
+Route::get('cart', 'App\Http\Controllers\CartController@cartList')->name('cart.list')->middleware('customer');;
 Route::post('cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.store');
 Route::post('update-cart', 'App\Http\Controllers\CartController@updateCart')->name('cart.update');
 Route::post('remove', 'App\Http\Controllers\CartController@removeCart')->name('cart.remove');

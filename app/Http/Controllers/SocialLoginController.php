@@ -141,13 +141,13 @@ class SocialLoginController extends Controller
             $facebook       = User::where('email',$user->getEmail())->where('oauth_type','facebook')->first();
             if($facebook){
                 Auth::login($facebook);
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
             }
 
             $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','google')->first();
             if($userExisted){
                 Auth::login($userExisted);
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
             }else{
                 $password = $user->getId().$user->getEmail();
                 $newuser = User::create([
@@ -161,7 +161,7 @@ class SocialLoginController extends Controller
                     'password'=>Hash::make($password),
                 ]);
                 Auth::login($newuser);
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
 
 
             }
@@ -185,7 +185,7 @@ class SocialLoginController extends Controller
             $google         = User::where('email',$user->getEmail())->where('oauth_type','google')->first();
             if($google){
                 Auth::login($google);
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
             }
 
             $userExisted    = User::where('oauth_id',$user->id)->where('oauth_type','facebook')->first();
@@ -198,7 +198,7 @@ class SocialLoginController extends Controller
                 Auth::login($userExisted);
                 Session::flash('success','You are now logged in to '.Auth::user()->user_type.' dashboard!');
 
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
             }else{
                 $password = $user->getId().$user->getEmail();
 
@@ -214,7 +214,7 @@ class SocialLoginController extends Controller
                 ]);
                 Auth::login($newuser);
                 Session::flash('success','You are now logged in to '.Auth::user()->user_type.' dashboard!');
-                return redirect()->route('front-user.dashboard');
+                return redirect()->intended('/user-dashboard');
             }
 
         }catch (Exception $exc){
