@@ -767,3 +767,7 @@ button.btn.btn-secondary.btn-sm.edit-quantity {
     margin-bottom: 1rem;
     max-width: 9rem;
 }
+
+#mega-menu>ul.menu {
+    height: auto;
+}
