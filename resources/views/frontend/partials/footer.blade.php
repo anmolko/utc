@@ -136,7 +136,7 @@
                             </ul>
                         </div>
                         @else
-                        
+
                         <div class="widget-ft widget-menu">
                             <div class="widget-title">
                                 <h3>Useful Links</h3>
@@ -255,7 +255,7 @@
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "1994342144199742");
     chatbox.setAttribute("attribution", "biz_inbox");
-    
+
     window.fbAsyncInit = function() {
         FB.init({
         xfbml            : true,
@@ -325,8 +325,67 @@
         }
     toastr.success("{{ $message }}");
     @endif
+
+        @if($message = Session::get('warning'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.warning("{{ $message }}");
+        @endif
     </script>
 	@yield('js')
+
+    <div class="modal fade" id="popUpLogin" tabindex="-1" role="dialog" aria-labelledby="popUpLoginLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">User Sign in</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-contact-content">
+                            <form id="form-contact" action="{{route('front-user.login')}}" id="form-contact" method="post">
+                                @csrf
+                                <ul class="app-list" style="display: flex;">
+                                    <li class="app-store">
+                                        <a href="{{route('google.redirect')}}" title="">
+                                            <div class="img social-whatsapp">
+                                                <i class="fab fa-google" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h4>Google</h4>
+                                                <p> Login </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- /.app-store -->
+                                    <li class="google-play">
+                                        <a href="{{route('facebook.redirect')}}" title="">
+                                            <div class="img social-whatsapp">
+                                                <i class="fab fa-facebook" aria-hidden="true"></i>
+
+                                            </div>
+                                            <div class="text">
+                                                <h4>Facebook</h4>
+                                                <p> Login </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- /.google-play -->
+                                </ul>
+
+                            </form><!-- /#form-contact -->
+
+                        </div><!-- /.form-contact-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 </body>
 

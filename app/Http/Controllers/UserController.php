@@ -291,7 +291,7 @@ class UserController extends Controller
 
 
 
-    public function UpdateUser(Request $request, $id){
+    public function frontProfileUser(Request $request, $id){
         $user_data = User::find($id);
         $user_data->name=$request->input('name');
         $user_data->contact=$request->input('contact');
@@ -328,6 +328,7 @@ class UserController extends Controller
 
           Session::flash('error','Failed to update details');
       }
-      return redirect()->back();
-      }
+
+      return redirect()->intended('front-user.dashboard');
+    }
 }

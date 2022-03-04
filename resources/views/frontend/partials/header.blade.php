@@ -102,9 +102,14 @@
                                 <li>
                                     <a href="{{route('cart.list')}}" title="">My Cart</a>
                                 </li>
-                                <li>
-                                    <a href="#" title="">Check Out</a>
-                                </li>
+                                @if(count(\Cart::getContent()) > 0)
+                                    <li>
+                                        <form id="checkout-nav-form" action="{{route('orders.store')}}" method="post">
+                                            @csrf
+                                            <a onclick="$('#checkout-nav-form').submit();" title="">Checkout</a>
+                                        </form><!-- /form -->
+                                    </li>
+                                @endif
                             </ul>
                             <!-- /.flat-support -->
                         </div>
@@ -333,15 +338,22 @@
                                         <div class="btn-cart">
                                             @if(empty(Auth::user()))
                                                 {{Session::put('url.intended', '/cart')}}
-                                            <a href="{{ route('cart.list') }}" class="view-cart" title="">View Csssart</a>
+                                            <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
                                             @else
                                                 <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
                                             @endif
 
+                                            @if(empty(Auth::user()))
+                                                <a href="#" data-toggle="modal" data-target="#popUpLogin" class="check-out" title="">Sign In</a>
+                                            @else
                                                 <form id="checkout-nav-form" action="{{route('orders.store')}}" method="post">
-                                                @csrf
-                                                <a onclick="$('#checkout-nav-form').submit();" class="check-out" title="">Checkout</a>
-                                            </form><!-- /form -->
+                                                    @csrf
+                                                    <a onclick="$('#checkout-nav-form').submit();" class="check-out" title="">Checkout</a>
+                                                </form><!-- /form -->
+                                            @endif
+
+
+
                                         </div>
                                     </div>
                                     @else

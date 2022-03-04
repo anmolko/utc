@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function cartList()
     {
+        if(empty(Auth::user())){
+            return redirect()->route('front-user.index');
+        } elseif(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'general'){
+            Session::flash('warning','Please login as a customer to view your cart. Admin credentials are not valid.');
+            return redirect()->back();
+        }
         $cartItems = \Cart::getContent();
         // dd($cartItems);
         return view('frontend.pages.carts.list', compact('cartItems'));
@@ -30,7 +38,7 @@ class CartController extends Controller
             )
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
-        
+
         return redirect()->back();
     }
 

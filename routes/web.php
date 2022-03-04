@@ -39,7 +39,7 @@ Route::get('/contact', 'App\Http\Controllers\FrontController@contact')->name('co
 Route::post('/contact', 'App\Http\Controllers\FrontController@contactStore')->name('contact.store');
 
 //cart
-Route::get('cart', 'App\Http\Controllers\CartController@cartList')->name('cart.list')->middleware('customer');;
+Route::get('cart', 'App\Http\Controllers\CartController@cartList')->name('cart.list');
 Route::post('cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.store');
 Route::post('update-cart', 'App\Http\Controllers\CartController@updateCart')->name('cart.update');
 Route::post('remove', 'App\Http\Controllers\CartController@removeCart')->name('cart.remove');
@@ -59,7 +59,7 @@ Route::get('/orders/{order}/edit', 'App\Http\Controllers\OrderController@edit')-
 //Social Login
 Route::middleware(['customer'])->group(function () {
     Route::get('/user-dashboard', 'App\Http\Controllers\SocialLoginController@dashboard')->name('front-user.dashboard');
-    Route::patch('user-edit/{id}', 'App\Http\Controllers\UserController@UpdateUser')->name('update_user');
+    Route::patch('user-edit/{id}', 'App\Http\Controllers\UserController@frontProfileUser')->name('update_user');
     Route::get('/delete-account', 'App\Http\Controllers\UserController@customerDestroy')->name('customer.destroy');
 
 });

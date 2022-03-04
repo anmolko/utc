@@ -63,6 +63,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        if( Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'general'){
+            Session::flash('warning','Please login as a customer to place an order. Admin credentials are not valid.');
+            return redirect()->back();
+        }elseif(Auth::user()->user_type == 'customer' && Auth::user()->contact == null){
+            Session::flash('warning','Please update your contact information first.');
+            Session::put('url.intended', '/cart');
+            return redirect()->route('front-user.dashboard');
+
+        }
         $data=[
             'total_amount'  => \Cart::getTotal(),
             'delivery_type' =>  'normal',
@@ -100,7 +109,7 @@ class OrderController extends Controller
             'site_name'        =>ucwords($theme_data->website_name),
             'phone'        =>ucwords($theme_data->phone),
         );
-        Mail::to(Auth::user()->email)->send(new OrderPlaced($alldata));
+//        Mail::to(Auth::user()->email)->send(new OrderPlaced($alldata));
 
         if($order && $productorder){
             Session::flash('success','Your order was placed successfully');
