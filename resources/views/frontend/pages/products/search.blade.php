@@ -47,7 +47,7 @@
             </div><!-- /.col-md-4 col-lg-3 -->
             <div class="col-md-8 col-lg-9">
                 <div class="main-shop">
-                    @if(count(@$product_banners) > 0)
+                    @if(count(@$product_banners) > 1)
                 
                     <div class="slider owl-carousel-16 style1">
                         @foreach(@$product_banners as $product_banner)

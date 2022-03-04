@@ -143,7 +143,7 @@
                                     Add Product Banner</strong>
                                 </h4>
 
-                                <p class="text-danger">Note* Please add the images size of 850px * 260px</p>
+                                <p class="text-danger">Note* Please add  2 or more image to display (images size of 850px * 260px)</p>
                             </div>
                             <div class="card-body">
                                 <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
