@@ -186,7 +186,12 @@
                                     <input type="text"  name="contact" value="{{ @Auth::user()->contact }}" placeholder="Phone *"  required oninvalid="this.setCustomValidity('Enter a phone number')" oninput="this.setCustomValidity('')">
                                 </div>
 
-                                <div class="form-box password-contact">
+                                <div class="form-box one-half password-contact">
+                                    <label for="address">Address*</label>
+                                    <input type="text"  name="address" value="{{ @Auth::user()->address }}" placeholder="Address *"  required oninvalid="this.setCustomValidity('Enter a address')" oninput="this.setCustomValidity('')">
+                                </div>
+
+                                <div class="form-box one-half password-contact">
                                     <label for="image">Photo</label>
                                     <input type="file"  name="image" class="form-control customer-image">
                                 </div>

@@ -296,6 +296,7 @@ class UserController extends Controller
         $user_data->name=$request->input('name');
         $user_data->contact=$request->input('contact');
         $user_data->gender=$request->input('gender');
+        $user_data->address=$request->input('address');
 
         if(!$user_data) {
             request()->session()->flash('error','User not found');
