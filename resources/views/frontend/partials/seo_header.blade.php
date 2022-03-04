@@ -316,7 +316,12 @@
                                             <span class="price">NPR. {{ number_format(\Cart::getTotal()) }}.00</span>
                                         </div>
                                         <div class="btn-cart">
-                                            <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
+                                            @if(empty(Auth::user()))
+                                                {{Session::put('url.intended', '/cart')}}
+                                                <a href="{{ route('cart.list') }}" class="view-cart" title="">View Csssart</a>
+                                            @else
+                                                <a href="{{ route('cart.list') }}" class="view-cart" title="">View Cart</a>
+                                            @endif
                                             <form id="checkout-nav-form" action="{{route('orders.store')}}" method="post">
                                                 @csrf
                                                 <a onclick="$('#checkout-nav-form').submit();" class="check-out" title="">Checkout</a>
