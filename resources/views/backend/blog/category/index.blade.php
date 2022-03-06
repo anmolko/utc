@@ -44,7 +44,9 @@
             position: relative;
         }
 
-
+        .ck.ck-balloon-panel {
+            z-index: 1050 !important;
+        }
 
 
     </style>
