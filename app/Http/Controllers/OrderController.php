@@ -100,16 +100,23 @@ class OrderController extends Controller
 
         $theme_data = Setting::first();
         $alldata = array(
-            'total_amount'        =>$order->total_amount,
-            'address'        =>Auth::user()->address,
-            'date'        =>date('M j, Y',strtotime(@$order->created_at)),
-            'order_id'      => $order->order_number,
-            'site_address'        =>ucwords($theme_data->address),
-            'site_email'        =>ucwords($theme_data->email),
-            'site_name'        =>ucwords($theme_data->website_name),
-            'phone'        =>ucwords($theme_data->phone),
+            'total_amount'      =>  $order->total_amount,
+            'address'           =>  Auth::user()->address,
+            'date'              =>  date('M j, Y',strtotime(@$order->created_at)),
+            'order_id'          =>  $order->order_number,
+            'site_address'      =>  ucwords($theme_data->address),
+            'site_email'        =>  ucwords($theme_data->email),
+            'site_name'         =>  ucwords($theme_data->website_name),
+            'phone'             =>  ucwords($theme_data->phone),
+            'whatsapp'          =>  ucwords($theme_data->whatsapp),
+            'viber'             =>  ucwords($theme_data->viber),
+            'name'              =>  Auth::user()->name,
         );
-//        Mail::to(Auth::user()->email)->send(new OrderPlaced($alldata));
+
+        $alldata['order'] = Order::with('products','user')->where('id', $order->id)->first();
+
+        {{dd($alldata);}}
+//        Mail::to('anmolkoirala3@gmail.com')->send(new OrderPlaced($alldata));
 
         if($order && $productorder){
             Session::flash('success','Your order was placed successfully');

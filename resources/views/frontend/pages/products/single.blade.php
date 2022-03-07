@@ -88,7 +88,7 @@
                             @endforeach
                         @else
                         <li data-thumb="{{asset('/images/uploads/products/'.@$product->thumbnail)}}">
-                                        <a href='#' id="zoom1" class='zoom'><img src="{{asset('/images/uploads/products/gallery/'.@$product->thumbnail)}}" alt='' width='400' height='300' /></a>
+                                        <a href='#' id="zoom1" class='zoom'><img src="{{asset('/images/uploads/products/'.@$product->thumbnail)}}" alt='' width='400' height='300' /></a>
                                 </li>
                         @endif
                     </ul><!-- /.slides -->

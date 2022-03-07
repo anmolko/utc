@@ -30,6 +30,6 @@ class OrderPlaced extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your Order Placed - Universal Trading Concern')->view('frontend.template.order_placed');
+        return $this->subject('Your order is placed - Universal Trading Concern')->view('frontend.template.order_placed');
     }
 }
