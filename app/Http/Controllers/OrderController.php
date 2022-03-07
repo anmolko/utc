@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminOrderPlaced;
 use App\Mail\OrderPlaced;
 
 use App\Models\Order;
@@ -115,8 +116,10 @@ class OrderController extends Controller
 
         $alldata['order'] = Order::with('products','user')->where('id', $order->id)->first();
 
-        {{dd($alldata);}}
-//        Mail::to('anmolkoirala3@gmail.com')->send(new OrderPlaced($alldata));
+        Mail::to(Auth::user()->email)->send(new OrderPlaced($alldata));
+        if (!empty($theme_data->email)){
+            Mail::to($theme_data->email)->send(new AdminOrderPlaced($alldata));
+        }
 
         if($order && $productorder){
             Session::flash('success','Your order was placed successfully');
