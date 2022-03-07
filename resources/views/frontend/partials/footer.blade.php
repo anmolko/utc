@@ -179,7 +179,7 @@
                                 </li>
                                 <!-- /.app-store -->
                                 <li class="google-play">
-                                    <a href="viber://chat?number={{@$sensitive_data->viber}}" target="_blank" title="">
+                                    <a href="viber://chat?number={{@$setting_data->viber}}" target="_blank" title="">
                                         <div class="img social-whatsapp">
                                           <i class="fab fa-viber" aria-hidden="true"></i>
 
