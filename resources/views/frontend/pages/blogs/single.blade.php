@@ -1,5 +1,21 @@
-@extends('frontend.layouts.master')
-@section('title') {{ucwords(@$singleBlog->title)}}  @endsection
+@extends('frontend.layouts.single_product_master')
+@section('seo')
+    <title>{{ucfirst(@$singleBlog->title)}}</title>
+    <meta name='description' itemprop='description'  content='{!! @$singleBlog->description !!}' />
+    <meta name='keywords' content='{{ucfirst(@$singleBlog->description)}}' />
+    <meta property='article:published_time' content='<?php if(@$singleBlog->updated_at !=''){?>{{@$singleBlog->updated_at}} <?php }else {?> {{@$singleBlog->created_at}} <?php }?>' />
+    <meta property='article:section' content='article' />
+    <meta property="og:description" content="{{ucfirst(@$singleBlog->description)}}" />
+    <meta property="og:title" content="{{ucfirst(@$singleBlog->title)}}" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:type" content="ecommerce" />
+    <meta property="og:locale" content="en-us" />
+    <meta property="og:locale:alternate"  content="en-us" />
+    <meta property="og:site_name" content="@if(!empty(@$setting_data->website_name)) {{ucwords(@$setting_data->website_name)}} @else Advance Management Group @endif" />
+    <meta property="og:image" content="<?php if(@$singleBlog->image){?>{{asset('/images/uploads/blog/'.@$singleBlog->image)}}<?php }?>" />
+    <meta property="og:image:url" content="<?php if(@$singleBlog->image){?>{{asset('/images/uploads/blog/'.@$singleBlog->image)}}<?php }?>" />
+    <meta property="og:image:size" content="300" />
+@endsection
 @section('styles')
 <style>
     ul.product-list > li {

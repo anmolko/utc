@@ -7,7 +7,7 @@
     <meta property='article:section' content='article' />
     <meta property="og:description" content="{{ucfirst(@$product->productSEO->description)}}" />
     <meta property="og:title" content="{{ucfirst(@$product->productSEO->title)}}" />
-    <meta property="og:url" content="https://universaltrading.com.np/,www.universaltrading.com.np/,{{url()->current()}}" />
+    <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:type" content="ecommerce" />
     <meta property="og:locale" content="en-us" />
     <meta property="og:locale:alternate"  content="en-us" />
