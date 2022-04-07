@@ -1,7 +1,7 @@
 @extends('frontend.layouts.single_product_master')
 @section('seo')
     <title>{{ucfirst(@$singleBlog->title)}}</title>
-    <meta name='description' itemprop='description'  content='{!! @$singleBlog->description !!}' />
+    <meta name='description' itemprop='description'  content='{{ucfirst(@$singleBlog->description)}}' />
     <meta name='keywords' content='{{ucfirst(@$singleBlog->description)}}' />
     <meta property='article:published_time' content='<?php if(@$singleBlog->updated_at !=''){?>{{@$singleBlog->updated_at}} <?php }else {?> {{@$singleBlog->created_at}} <?php }?>' />
     <meta property='article:section' content='article' />
