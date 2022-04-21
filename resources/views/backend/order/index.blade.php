@@ -141,7 +141,6 @@
         $(document).ready(function () {
 
             function format(mainvalue) {
-                console.log(mainvalue);
                 var inner_table = '<table class="child_row-verified table-responsive table table-striped table-bordered nowrap">' +
                     '<thead>' +
                     '<tr>' +

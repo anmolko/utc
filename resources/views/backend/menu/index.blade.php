@@ -31,9 +31,16 @@
 @endsection
 @section('content')
 
-    <div class="col-xl-9 col-lg-8  col-md-12">
 
-        <div class="card shadow-sm ctm-border-radius grow">
+
+    <div class="col-xl-9 col-lg-8  col-md-12">
+        <?php
+        $slug_to_disable = [];
+        if($desiredMenu !== null){
+            $slug_to_disable = get_slugs_to_disable($desiredMenu->slug);
+        }
+        ?>
+            <div class="card shadow-sm ctm-border-radius grow">
             <div class="card-body align-center">
                 <div class="row filter-row">
 
@@ -84,18 +91,18 @@
                                 <div class="card-header" id="basic1">
                                     <h4 class="cursor-pointer mb-0">
                                         <a class="coll-arrow d-block text-dark collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#basic-one" aria-expanded="true">
-                                            Primary Category
-                                            <br><span class="ctm-text-sm">Your current Primary category lists.</span>
+                                            Pages
+                                            <br><span class="ctm-text-sm">Your current page lists.</span>
                                         </a>
                                     </h4>
                                 </div>
-                                <div class="card-body p-0 {{(count($menus) == 0) ? 'disabled':''}}" id="menu-list">
+                                <div class="card-body p-0 {{(count($menus) == 0) ? 'disabled':''}}" id="pages-list">
                                     <div id="basic-one" class="ctm-padding collapse show" aria-labelledby="basic1" data-parent="#accordion-details" style="">
                                         @if(count($cat) !== 0)
                                             @foreach($cat as $c)
-                                                <div class="custom-control custom-checkbox mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="cats-{{$c->id}}" value="{{$c->id}}" name="select-cats[]">
-                                                    <label class="custom-control-label" for="cats-{{$c->id}}">
+                                                <div class="custom-control custom-checkbox mb-3 {{(in_array($c->slug, $slug_to_disable)) ? 'disabled':''}}">
+                                                    <input type="checkbox" class="custom-control-input" id="cats-{{$c->id}}" value="{{$c->id}}" name="select-cats[]" {{(in_array($c->slug, $slug_to_disable)) ? 'disabled':''}}>
+                                                    <label class="custom-control-label {{(in_array($c->slug, $slug_to_disable)) ? 'disabled':''}}" for="cats-{{$c->id}}">
                                                         <span class="h6">
                                                             {{ucfirst($c->name)}}</span>
                                                     </label>
@@ -108,7 +115,7 @@
                                         @endif
 
                                         <div class="text-center {{(count($cat) == 0) ? 'disabled':''}}">
-                                            <label class="pull-left btn-sm btn btn-theme button-1 ctm-border-radius text-white"><input type="checkbox" id="select-all-menus" class="hidden"> Select All</label>
+                                            <label class="pull-left btn-sm btn btn-theme button-1 ctm-border-radius text-white"><input type="checkbox" id="select-all-caregories" class="hidden"> Select All</label>
                                             <button type="button" class="pull-right btn-sm btn btn-theme button-1 ctm-border-radius text-white" id="add-category">Add to Menu</button>
                                         </div>
 
@@ -129,9 +136,9 @@
                                     <div id="term-office" class="ctm-padding collapse" aria-labelledby="headingThree" data-parent="#accordion-details" style="">
                                         @if(count($blogs) !== 0)
                                                 @foreach($blogs as $blog)
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" name="select-post[]" value="{{$blog->id}}" class="custom-control-input" id="posts-{{$blog->id}}">
-                                                        <label class="custom-control-label" for="posts-{{$blog->id}}">
+                                                    <div class="custom-control custom-checkbox mb-3 {{(in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}">
+                                                        <input type="checkbox" name="select-post[]" value="{{$blog->id}}" class="custom-control-input" id="posts-{{$blog->id}}" {{(count($menus) == 0 || in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}>
+                                                        <label class="custom-control-label {{(in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}" for="posts-{{$blog->id}}">
                                                             <span class="h6">{{$blog->title}}</span>
                                                         </label>
                                                     </div>
@@ -183,9 +190,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -198,7 +203,6 @@
                     </div>
                     <div class="card-body">
                         @if($desiredMenu == '')
-                            {{--creating new menu if no previous menu is saved--}}
                            <div class="card shadow-none">
                                 <div class="card-header">
                                     <h5 class="card-title text-primary mb-0">Create New Menu</h5>
@@ -210,7 +214,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title" class="text-heading">Menu Name</label>
+                                                        <label for="name" class="text-heading">Menu Name</label>
                                                         <input type="text" class="form-control form-control-lg" id="name" name="name" required>
                                                         <div class="invalid-feedback">
                                                             Please enter the menu name.
@@ -244,11 +248,9 @@
                                 </div>
                           </div>
                         @else
-                            {{--displaying the menu structure if previous menu is saved--}}
-
                             <div id="menu-content">
                                 <div style="min-height: 240px;">
-                                    <p>Select Posts, Primary Category or add custom links to menus.</p>
+                                    <p>Select Posts, pages or add custom links to menus.</p>
                                     @if($desiredMenu != '')
                                         <ul class="menu ui-sortable" id="menuitems">
                                             @if(!empty($menuitems))
@@ -281,13 +283,13 @@
                                                                                     Please enter the URL.
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="custom-control custom-checkbox mb-3">
-                                                                                <input type="checkbox" name="target" value="_blank" id="main-{{$item->id}}"  @if($item->target == '_blank') checked @endif class="custom-control-input">
-                                                                                <label class="custom-control-label" for="main-{{$item->id}}">
-                                                                                    <span class="h6">Open in a new tab</span>
-                                                                                </label>
-                                                                            </div>
                                                                         @endif
+                                                                        <div class="custom-control custom-checkbox mb-3">
+                                                                            <input type="checkbox" name="target" value="_blank" id="main-{{$item->id}}"  @if($item->target == '_blank') checked @endif class="custom-control-input">
+                                                                            <label class="custom-control-label" for="main-{{$item->id}}">
+                                                                                <span class="h6">Open in a new tab</span>
+                                                                            </label>
+                                                                        </div>
                                                                         <div class="text-center">
                                                                         <button class="pull-right btn btn-sm btn-outline-success"><i class="lnr lnr-bookmark"></i> Save</button>
                                                                         <a href="{{url('auth/delete-menuitem')}}/{{$item->id}}/{{$key}}" class="pull-left btn btn-sm btn-outline-danger">
@@ -332,13 +334,13 @@
                                                                                                     Please enter the URL.
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="custom-control custom-checkbox mb-3">
-                                                                                                <input type="checkbox" name="target" value="_blank" id="main-{{$data->id}}"  @if($data->target == '_blank') checked @endif class="custom-control-input">
-                                                                                                <label class="custom-control-label" for="main-{{$data->id}}">
-                                                                                                    <span class="h6">Open in a new tab</span>
-                                                                                                </label>
-                                                                                            </div>
                                                                                         @endif
+                                                                                        <div class="custom-control custom-checkbox mb-3">
+                                                                                            <input type="checkbox" name="target" value="_blank" id="main-{{$data->id}}"  @if($data->target == '_blank') checked @endif class="custom-control-input">
+                                                                                            <label class="custom-control-label" for="main-{{$data->id}}">
+                                                                                                <span class="h6">Open in a new tab</span>
+                                                                                            </label>
+                                                                                        </div>
                                                                                         <div class="text-center">
                                                                                             <button class="pull-right btn btn-sm btn-outline-success"><i class="lnr lnr-bookmark"></i> Save</button>
                                                                                             <a href="{{url('auth/delete-menuitem')}}/{{$data->id}}/{{$key}}/{{$in}}" class="pull-left btn btn-sm btn-outline-danger">
@@ -383,13 +385,13 @@
                                                                                                                         Please enter the URL.
                                                                                                                     </div>
                                                                                                                 </div>
-                                                                                                                <div class="custom-control custom-checkbox mb-3">
-                                                                                                                    <input type="checkbox" name="target" value="_blank" id="main-{{$data1->id}}"  @if($data1->target == '_blank') checked @endif class="custom-control-input">
-                                                                                                                    <label class="custom-control-label" for="main-{{$data1->id}}">
-                                                                                                                        <span class="h6">Open in a new tab</span>
-                                                                                                                    </label>
-                                                                                                                </div>
                                                                                                             @endif
+                                                                                                            <div class="custom-control custom-checkbox mb-3">
+                                                                                                                <input type="checkbox" name="target" value="_blank" id="main-{{$data1->id}}"  @if($data1->target == '_blank') checked @endif class="custom-control-input">
+                                                                                                                <label class="custom-control-label" for="main-{{$data1->id}}">
+                                                                                                                    <span class="h6">Open in a new tab</span>
+                                                                                                                </label>
+                                                                                                            </div>
                                                                                                             <div class="text-center">
                                                                                                                 <button class="pull-right btn btn-sm btn-outline-success"><i class="lnr lnr-bookmark"></i> Save</button>
                                                                                                                 <a href="{{url('auth/delete-menuitem')}}/{{$data1->id}}/{{$key}}/{{$in}}/{{$keys}}" class="pull-left btn btn-sm btn-outline-danger">
@@ -420,7 +422,6 @@
                                 </div>
 
                                 @if($desiredMenu != '')
-
                                     <div class="form-group">
                                         <label for="title" class="text-heading">Edit Title (for frontend display)</label>
                                         <input type="text" class="form-control form-control-lg" id="title" name="title" value="{{$menuTitle}}" required>
@@ -428,8 +429,6 @@
                                             Please enter the menu title.
                                         </div>
                                     </div>
-
-
                                     <div class="form-group menulocation">
                                         <p class="mb-2">Select Menu Location: </p>
 
@@ -454,7 +453,6 @@
 
                                 @endif
                             </div>
-
                         @endif
                     </div>
                 </div>
@@ -477,7 +475,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="title" class="text-heading">Menu Name</label>
+                                <label for="name" class="text-heading">Menu Name</label>
                                 <input type="text" class="form-control form-control-lg" id="name" name="name" required>
                                 <div class="invalid-feedback">
                                     Please enter the menu name.
@@ -594,13 +592,13 @@
             $('#serialize_output').text(jsonString);
         });
 
-        $('#select-all-menus').click(function(event) {
+        $('#select-all-caregories').click(function(event) {
             if(this.checked) {
-                $('#menu-list :checkbox').each(function() {
+                $('#pages-list :checkbox:not(:disabled)').each(function() {
                         this.checked = true;
                 });
             }else{
-                $('#menu-list :checkbox').each(function() {
+                $('#pages-list :checkbox:not(:disabled)').each(function() {
                     this.checked = false;
                 });
             }
@@ -608,11 +606,11 @@
 
         $('#select-all-posts').click(function(event) {
             if(this.checked) {
-                $('#posts-list :checkbox').each(function() {
+                $('#posts-list :checkbox:not(:disabled)').each(function() {
                     this.checked = true;
                 });
             }else{
-                $('#posts-list :checkbox').each(function() {
+                $('#posts-list :checkbox:not(:disabled)').each(function() {
                     this.checked = false;
                 });
             }
@@ -621,32 +619,32 @@
         @if($desiredMenu)
 
             $('#add-category').click(function(){
-                var menuid  = "{{$desiredMenu->id}}";
-                var n       = $('input[name="select-cats[]"]:checked').length;
-                var array   = $('input[name="select-cats[]"]:checked');
-                var ids     = [];
+            var menuid  = "{{$desiredMenu->id}}";
+            var n       = $('input[name="select-cats[]"]:checked').length;
+            var array   = $('input[name="select-cats[]"]:checked');
+            var ids     = [];
 
-                if(n == 0){
-                    return false;
+            if(n == 0){
+                return false;
+            }
+
+            for(var i=0;i<n;i++){
+                ids[i] =  array.eq(i).val();
+            }
+
+            if(ids.length == 0){
+                return false;
+            }
+
+            $.ajax({
+                type:"get",
+                data: {menuid:menuid,ids:ids},
+                url: "{{route('menu.cat')}}",
+                success:function(res){
+                    location.reload();
                 }
-
-                for(var i=0;i<n;i++){
-                    ids[i] =  array.eq(i).val();
-                }
-
-                if(ids.length == 0){
-                    return false;
-                }
-
-                $.ajax({
-                    type:"get",
-                    data: {menuid:menuid,ids:ids},
-                    url: "{{route('menu.cat')}}",
-                    success:function(res){
-                        location.reload();
-                    }
-                });
             });
+        });
 
             $('#add-posts').click(function(){
                 var menuid  = "{{$desiredMenu->id}}";
@@ -712,7 +710,7 @@
                     return false;
                 }
                 if(location == null){
-                    swal("Missing location!", "Select the location to save the menu", "info");
+                    swal("Mission location!", "Select the location to save the menu", "info");
                     return false;
                 }
                 var data = JSON.parse($("#serialize_output").text());

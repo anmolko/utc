@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Menu;
 use App\Models\MenuItem;
-use App\Models\Page;
 use App\Models\ProductPrimaryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +19,12 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menuitems    = '';
-        $desiredMenu  = '';
-        $menuTitle    = '';
-        $cat          = ProductPrimaryCategory::all();
-        $menus        = Menu::all();
-        $blogs        = Blog::all();
+        $menuitems          = '';
+        $desiredMenu        = '';
+        $menuTitle          = '';
+        $cat                = ProductPrimaryCategory::all();
+        $menus              = Menu::all();
+        $blogs              = Blog::all();
         if(isset($_GET['slug']) && $_GET['slug'] != 'new'){
             $id = $_GET['slug'];
             $desiredMenu = Menu::where('slug',$id)->first();
@@ -103,8 +102,7 @@ class MenuController extends Controller
                 }
             }
         }
-
-        return view('backend.menu.index',compact('blogs','menus','menuTitle','desiredMenu','menuitems','cat'));
+        return view('backend.menu.index',compact('cat','menuTitle','blogs','menus','desiredMenu','menuitems'));
 
     }
 
@@ -129,7 +127,7 @@ class MenuController extends Controller
         $data=[
             'name'                => $request->input('name'),
             'title'               => $request->input('title'),
-            'slug'                => $request->input('slug'),
+            'slug'               => $request->input('slug'),
             'created_by'          => Auth::user()->id,
         ];
         $menu = Menu::create($data);
