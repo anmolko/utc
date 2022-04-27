@@ -73,7 +73,11 @@
                                             @else
                                                 @if($nav->type == 'custom')
                                                 <li>
-                                                    <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                                    @if(str_contains(@$nav->slug,'http'))    
+                                                        <a href="{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                    @else
+                                                        <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                                    @endif
                                                 </li>
                                                 @elseif($nav->type == 'post')
                                                 <li>
@@ -113,7 +117,11 @@
                                     @else
                                         @if($nav->type == 'custom')
                                         <li>
-                                            <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a>
+                                            @if(str_contains(@$nav->slug,'http'))    
+                                                <a href="{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                            @else
+                                                <a href="/{{$nav->slug}}"  @if($nav->target == NULL)  @else target="{{$nav->target}}" @endif>  @if($nav->name == NULL) {{$nav->title}} @else {{$nav->name}} @endif</a></li>
+                                            @endif
                                         </li>
                                         @elseif($nav->type == 'post')
                                         <li>
