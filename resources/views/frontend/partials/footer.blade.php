@@ -216,7 +216,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="copyright">All Rights Reserved © Universal Trading Concern 2022 | Developed  by <a
+                        <p class="copyright">All Rights Reserved © Universal Trading Concern {{date("Y")}} | Developed  by <a
 										rel="noopener" target="_blank" href="https://www.canosoft.com.np/">Canosoft Techonology </a></p>
                         <p class="btn-scroll">
                             <a href="#" title="">
